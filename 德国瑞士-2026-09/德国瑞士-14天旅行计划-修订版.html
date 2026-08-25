@@ -1,0 +1,2518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>德国+瑞士 14日自驾环游（修订版）</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root {
+    --primary: #0EA5E9;
+    --primary-dark: #0284C7;
+    --primary-light: #E0F2FE;
+    --primary-50: #F0F9FF;
+    --accent: #F97316;
+    --accent-dark: #EA580C;
+    --accent-light: #FFF7ED;
+    --success: #10B981;
+    --success-light: #D1FAE5;
+    --rose: #F43F5E;
+    --rose-light: #FFF1F2;
+    --violet: #8B5CF6;
+    --bg: #F8FAFC;
+    --card: #FFFFFF;
+    --text: #0C4A6E;
+    --text-body: #334155;
+    --text-muted: #475569;
+    --border: #E2E8F0;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 28px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: 200ms ease-out;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text-body); line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 24px 20px 48px; }
+
+  /* ---- SVG Icon System ---- */
+  .icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; flex-shrink: 0;
+  }
+  .icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-sm { width: 16px; height: 16px; }
+  .icon-lg { width: 24px; height: 24px; }
+
+  /* ---- Hero ---- */
+  .hero {
+    position: relative; border-radius: var(--radius); padding: 56px 44px 48px;
+    margin-bottom: 36px; overflow: hidden; color: white;
+    background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 50%, #8B5CF6 100%);
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 20% 80%, rgba(249,115,22,0.2) 0%, transparent 70%),
+      radial-gradient(ellipse 500px 500px at 80% 20%, rgba(139,92,246,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse 300px 300px at 60% 60%, rgba(255,255,255,0.06) 0%, transparent 50%);
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; line-height: 1.2; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.92rem; opacity: 0.92; }
+  .hero-meta-item { display: flex; align-items: center; gap: 7px; }
+  .hero-meta-item .icon { color: rgba(255,255,255,0.85); }
+  .hero-orb {
+    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.12; pointer-events: none;
+    animation: orbFloat 10s ease-in-out infinite alternate;
+  }
+  .hero-orb-1 { width: 300px; height: 300px; background: #F97316; top: -80px; right: -60px; }
+  .hero-orb-2 { width: 200px; height: 200px; background: #38BDF8; bottom: -60px; left: -40px; animation-delay: -5s; }
+
+  @keyframes orbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(20px, -15px) scale(1.1); }
+  }
+
+  /* ---- Section Nav ---- */
+  .section-nav {
+    display: flex; gap: 8px; margin-bottom: 32px; overflow-x: auto;
+    padding-bottom: 4px; -webkit-overflow-scrolling: touch;
+  }
+  .section-nav::-webkit-scrollbar { height: 0; }
+  .nav-pill {
+    display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px;
+    border-radius: 99px; font-size: 0.85rem; font-weight: 500; white-space: nowrap;
+    background: var(--card); border: 1px solid var(--border); color: var(--text-muted);
+    cursor: pointer; transition: all var(--transition); text-decoration: none;
+  }
+  .nav-pill:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
+  .nav-pill .icon { width: 16px; height: 16px; }
+
+  /* ---- Section ---- */
+  .section { margin-bottom: 40px; scroll-margin-top: 20px; }
+  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .section-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: var(--radius-sm);
+    background: var(--primary-light); color: var(--primary);
+  }
+  .section-title { font-size: 1.2rem; font-weight: 700; color: var(--text); }
+
+  /* ---- Weather ---- */
+  .weather-bar { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+  .weather-bar::-webkit-scrollbar { height: 4px; }
+  .weather-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+  .weather-card {
+    flex: 0 0 auto; min-width: 108px; background: var(--card); border-radius: var(--radius-sm);
+    padding: 14px 12px; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+    transition: all var(--transition);
+  }
+  .weather-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .weather-card .w-date { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
+  .weather-card .w-icon { font-size: 28px; line-height: 1; margin: 4px 0 8px; }
+  .weather-card .w-icon svg { width: 32px; height: 32px; }
+  .weather-card .w-temp { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+  .weather-card .w-temp-low { color: var(--text-muted); font-weight: 400; }
+  .weather-tip {
+    display: flex; align-items: flex-start; gap: 10px; margin-top: 14px; padding: 14px 18px;
+    background: var(--primary-50); border: 1px solid #BAE6FD; border-radius: var(--radius-sm); font-size: 0.88rem; color: var(--primary-dark);
+  }
+  .weather-tip .icon { flex-shrink: 0; margin-top: 1px; }
+
+  /* ---- Day Card ---- */
+  .day-card {
+    background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+    border: 1px solid var(--border); margin-bottom: 16px; overflow: hidden;
+    transition: box-shadow var(--transition);
+  }
+  .day-card:hover { box-shadow: var(--shadow-md); }
+  .day-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 22px; cursor: pointer; user-select: none;
+    transition: background var(--transition);
+  }
+  .day-header:hover { background: var(--primary-50); }
+  .day-header:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+  .day-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--primary), var(--violet));
+    color: white; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; margin-right: 14px;
+  }
+  .day-header-left { display: flex; align-items: center; }
+  .day-header-info h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .day-header-info .day-meta { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; display: flex; align-items: center; gap: 6px; }
+  .day-header .toggle-icon {
+    width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: var(--bg); color: var(--text-muted); transition: all var(--transition);
+  }
+  .day-card.collapsed .toggle-icon { transform: rotate(-90deg); }
+  .day-body {
+    padding: 4px 22px 22px; border-top: 1px solid var(--border);
+    max-height: 3000px; overflow: hidden; transition: max-height 0.35s ease-out, padding 0.35s ease-out;
+  }
+  .day-card.collapsed .day-body { max-height: 0; padding-top: 0; padding-bottom: 0; border-top-color: transparent; }
+
+  /* ---- Timeline ---- */
+  .timeline { position: relative; padding-left: 32px; padding-top: 18px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 10px; top: 24px; bottom: 12px;
+    width: 2px; background: linear-gradient(to bottom, var(--primary), var(--border));
+    border-radius: 2px;
+  }
+  .tl-item { position: relative; margin-bottom: 22px; }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -28px; top: 4px; width: 14px; height: 14px;
+    border-radius: 50%; border: 2.5px solid var(--primary); background: white; z-index: 1;
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+  .tl-item.is-meal .tl-dot { border-color: var(--accent); background: var(--accent-light); box-shadow: 0 0 0 3px var(--accent-light); }
+  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 3px; }
+  .tl-content h4 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .tl-content p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+  .tl-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 0.73rem; padding: 3px 10px; border-radius: 99px; font-weight: 500;
+  }
+  .tag-cost { background: var(--accent-light); color: var(--accent-dark); }
+  .tag-transport { background: var(--success-light); color: #047857; }
+  .tag-free { background: var(--primary-light); color: var(--primary-dark); }
+
+  /* ---- Meal Card ---- */
+  .meal-card {
+    display: flex; align-items: center; gap: 14px; padding: 12px 16px;
+    background: linear-gradient(135deg, #FFF7ED, #FFFBEB); border: 1px solid #FED7AA;
+    border-radius: var(--radius-sm); margin-top: 6px;
+  }
+  .meal-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: white; display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-sm); color: var(--accent); flex-shrink: 0;
+  }
+  .meal-info { flex: 1; min-width: 0; }
+  .meal-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+  .meal-detail { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .meal-price { font-weight: 700; color: var(--accent-dark); white-space: nowrap; font-size: 0.95rem; }
+
+  /* ---- Hotels ---- */
+  .hotel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .hotel-card {
+    background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+    border: 1px solid var(--border); padding: 22px; position: relative;
+    cursor: default; transition: all var(--transition);
+  }
+  .hotel-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .hotel-badge {
+    position: absolute; top: 14px; right: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--violet));
+    color: white; font-size: 0.72rem; font-weight: 600;
+    padding: 3px 12px; border-radius: 99px;
+  }
+  .hotel-name { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 6px; padding-right: 60px; }
+  .hotel-area { display: flex; align-items: center; gap: 5px; font-size: 0.83rem; color: var(--text-muted); margin-bottom: 12px; }
+  .hotel-price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 12px; }
+  .hotel-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+  .hotel-price-unit { font-size: 0.8rem; color: var(--text-muted); }
+  .hotel-highlights { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
+  .hotel-tag { display: inline-block; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: var(--primary-light); color: var(--primary-dark); margin-right: 4px; margin-bottom: 4px; }
+
+  /* ---- Budget ---- */
+  .budget-wrapper {
+    background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+    border: 1px solid var(--border); overflow: hidden;
+  }
+  .budget-chart { display: flex; height: 8px; overflow: hidden; }
+  .budget-chart-seg { transition: width 0.6s ease-out; }
+  .budget-table { width: 100%; border-collapse: collapse; }
+  .budget-table th, .budget-table td { padding: 12px 18px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+  .budget-table th { background: var(--bg); color: var(--text-muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .budget-table .cat-row td { font-weight: 600; color: var(--text); background: var(--primary-50); }
+  .budget-table .cat-row .cat-icon { display: inline-flex; align-items: center; gap: 8px; }
+  .budget-table .cat-row .cat-icon .icon { color: var(--primary); }
+  .budget-table .sub-row td { color: var(--text-muted); padding-left: 48px; }
+  .budget-table .subtotal { text-align: right; font-weight: 600; color: var(--primary); }
+  .budget-table td:last-child { text-align: right; }
+
+  .budget-total {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 24px;
+    background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 50%, #8B5CF6 100%);
+    border-radius: var(--radius); color: white; margin-top: 16px;
+  }
+  .budget-total-label { font-size: 0.95rem; font-weight: 500; opacity: 0.9; }
+  .budget-total-per { font-size: 0.85rem; opacity: 0.75; margin-top: 2px; }
+  .budget-total-amount { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+
+  /* ---- Tips ---- */
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .tip-card {
+    display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px;
+    background: var(--accent-light); border: 1px solid #FED7AA; border-radius: var(--radius-sm);
+    font-size: 0.88rem; color: var(--text-body);
+  }
+  .tip-icon {
+    width: 28px; height: 28px; border-radius: 8px; background: white;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-sm); color: var(--accent); flex-shrink: 0;
+  }
+  .tip-icon .icon { width: 14px; height: 14px; }
+
+  /* ---- Footer ---- */
+  .footer { text-align: center; padding: 28px 20px; color: var(--text-muted); font-size: 0.78rem; margin-top: 20px; }
+  .footer-line { width: 48px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--violet)); border-radius: 99px; margin: 0 auto 12px; }
+
+  /* ---- Print ---- */
+  @media print {
+    body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .container { padding: 0; max-width: 100%; }
+    .hero { break-inside: avoid; }
+    .day-card { break-inside: avoid; }
+    .day-card.collapsed .day-body { max-height: none !important; padding: 4px 22px 22px !important; border-top: 1px solid var(--border) !important; }
+    .toggle-icon, .section-nav { display: none !important; }
+    .hotel-card:hover, .weather-card:hover, .day-card:hover { transform: none; box-shadow: var(--shadow); }
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 640px) {
+    .container { padding: 16px 14px 32px; }
+    .hero { padding: 36px 24px 32px; }
+    .hero h1 { font-size: 1.55rem; }
+    .hero-meta { gap: 12px; font-size: 0.85rem; }
+    .day-header { padding: 14px 16px; }
+    .day-num { width: 34px; height: 34px; font-size: 0.78rem; margin-right: 10px; }
+    .day-body { padding: 4px 16px 16px; }
+    .timeline { padding-left: 26px; }
+    .hotel-grid { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .budget-total { flex-direction: column; text-align: center; gap: 8px; padding: 18px; }
+    .section-nav { gap: 6px; }
+    .nav-pill { padding: 6px 12px; font-size: 0.8rem; }
+  }
+
+  /* ---- Reduced Motion ---- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .day-body { transition: none; }
+  }
+
+  /* ---- Focus ---- */
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+
+  .route-bar { display:flex; flex-wrap:wrap; align-items:center; gap:8px; background:#EFF6FF; border:1px solid #BFDBFE; border-radius:10px; padding:10px 14px; margin-bottom:14px; font-size:13px; color:#1E40AF; }
+  .route-bar .r-km { font-weight:600; }
+  .route-bar a { color:#2563EB; text-decoration:none; font-weight:600; }
+  .route-bar a:hover { text-decoration:underline; }
+  .route-map { width:100%; height:320px; border:1px solid var(--border); border-radius:10px; margin:0 0 16px; box-shadow:var(--shadow); background:#E8EEF4; z-index:0; }
+  .map-stop span {
+    display:flex; align-items:center; justify-content:center;
+    width:24px; height:24px; border-radius:50%;
+    background:#2563EB; color:#fff; font-size:12px; font-weight:700;
+    border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.35);
+  }
+  .map-stop.first span { background:#10B981; }
+  .map-stop.last span { background:#F43F5E; }
+  .leaflet-tooltip.map-tip { font-size:12px; font-weight:600; }
+  .drive-total { background:#F0FDF4; border:1px solid #BBF7D0; color:#166534; border-radius:10px; padding:12px 16px; font-size:14px; margin:0 0 18px; }
+  @media print { .route-map { display:none; } }
+
+  .xhs-block { background:#FFF1F2; border:1px solid #FECDD3; border-radius:10px; padding:12px 14px; margin-bottom:16px; }
+  .xhs-title { font-size:13px; font-weight:700; color:#BE123C; margin-bottom:8px; }
+  .xhs-item { display:block; background:#fff; border:1px solid #FFE4E6; border-radius:8px; padding:10px 12px; margin-bottom:8px; text-decoration:none; color:inherit; transition:box-shadow .15s; }
+  .xhs-item:last-child { margin-bottom:0; }
+  .xhs-item:hover { box-shadow:var(--shadow-md); }
+  .xhs-item-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .xhs-item-title { font-size:13px; font-weight:600; color:#9F1239; }
+  .xhs-likes { font-size:12px; color:#F43F5E; white-space:nowrap; }
+  .xhs-takeaway { font-size:12px; color:var(--text-muted); margin-top:4px; line-height:1.6; }
+
+  /* ---- Readability overhaul ---- */
+  /* Sticky nav so section links are always reachable */
+  .section-nav {
+    position: sticky; top: 0; z-index: 60;
+    background: var(--bg); padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Day toolbar: index chips + expand/collapse controls */
+  .day-toolbar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+    margin-bottom: 16px; padding: 12px 14px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);
+  }
+  .day-chip {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 38px; height: 30px; padding: 0 8px;
+    border-radius: 8px; border: 1px solid var(--border);
+    background: var(--bg); color: var(--text-muted);
+    font-size: 0.78rem; font-weight: 600; text-decoration: none;
+    cursor: pointer; transition: all var(--transition);
+  }
+  .day-chip:hover { background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary); }
+  .day-toolbar-spacer { flex: 1; }
+  .day-toolbar-btn {
+    padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border);
+    background: white; color: var(--text-muted); font-size: 0.78rem; font-weight: 600;
+    cursor: pointer; transition: all var(--transition); font-family: inherit;
+  }
+  .day-toolbar-btn:hover { background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary); }
+
+  /* Stronger day header hierarchy */
+  .day-card { scroll-margin-top: 130px; }
+  .day-header-info h3 { font-size: 1.12rem; }
+  .day-header-info .day-meta { font-size: 0.85rem; font-weight: 500; }
+  .day-num { width: 44px; height: 44px; font-size: 0.9rem; }
+
+  /* Timeline: fixed-width time column, clearer rows */
+  .tl-item {
+    display: grid; grid-template-columns: 92px 1fr; column-gap: 4px;
+    padding-bottom: 14px; margin-bottom: 14px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .tl-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .tl-time {
+    font-size: 0.82rem; color: var(--primary-dark); font-weight: 700;
+    text-transform: none; letter-spacing: 0; margin-bottom: 0;
+    padding-top: 2px; line-height: 1.4;
+  }
+  .tl-content h4 { font-size: 0.98rem; }
+  .tl-content p { font-size: 0.86rem; }
+
+  /* Missing styles: nightly stay bar + pace note (were rendered unstyled) */
+  .stay-bar {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-top: 16px; padding: 12px 16px;
+    background: var(--primary-50); border: 1px solid #BAE6FD;
+    border-radius: var(--radius-sm); font-size: 0.88rem; color: var(--text);
+  }
+  .stay-bar .stay-label {
+    font-weight: 700; color: var(--primary-dark); white-space: nowrap; font-size: 0.82rem;
+  }
+  .pace-note {
+    margin-bottom: 14px; padding: 10px 14px;
+    background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-sm);
+    font-size: 0.85rem; color: #92400E;
+  }
+
+  @media print {
+    .day-toolbar { display: none !important; }
+    .section-nav { position: static; }
+  }
+  @media (max-width: 640px) {
+    .tl-item { grid-template-columns: 76px 1fr; }
+    .day-num { width: 38px; height: 38px; }
+    .day-card { scroll-margin-top: 110px; }
+  }
+
+  .stay-bar { display:flex; gap:10px; align-items:baseline; background:#F5F3FF; border:1px solid #DDD6FE; border-radius:10px; padding:10px 14px; margin-top:16px; font-size:13px; color:#5B21B6; }
+  .stay-label { font-weight:700; white-space:nowrap; }
+  .pace-note { background:#FFFBEB; border:1px solid #FDE68A; color:#92400E; border-radius:10px; padding:10px 14px; margin-bottom:14px; font-size:13px; }
+  .xhs-block { margin-top:12px; margin-bottom:0; }
+
+  .alt-head { font-size:16px; font-weight:700; color:var(--text); margin:26px 0 12px; }
+
+  .booking-btn { display:inline-block; margin-top:8px; font-size:12px; font-weight:600; color:#003580; background:#EAF2FD; border:1px solid #BFDBFE; border-radius:6px; padding:5px 10px; text-decoration:none; }
+  .booking-btn:hover { background:#DBEAFE; }
+  .booking-link { color:#003580; font-weight:600; text-decoration:none; white-space:nowrap; }
+  .booking-link:hover { text-decoration:underline; }
+
+  .preview-card { display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px 14px; text-decoration:none; color:inherit; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s; }
+  .preview-card:hover { box-shadow:var(--shadow-md); transform:translateY(-1px); }
+  .pc-badge { flex:none; width:36px; height:36px; border-radius:9px; color:#fff; font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center; font-family:inherit; }
+  .pc-body { flex:1; min-width:0; }
+  .pc-title { font-size:13px; font-weight:700; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .pc-sub { font-size:12px; color:var(--text-muted); margin-top:2px; line-height:1.55; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .pc-meta { font-size:11px; color:#FF2442; margin-top:4px; font-weight:600; }
+  .pc-arrow { flex:none; color:var(--text-muted); font-size:15px; }
+  .booking-card { margin-top:10px; border-color:#BFDBFE; background:linear-gradient(135deg,#F0F7FF 0%,#fff 60%); }
+  .stay-card { margin-top:16px; }
+  .xhs-card { margin-bottom:8px; border-color:#FECDD3; background:linear-gradient(135deg,#FFF5F6 0%,#fff 60%); }
+  .xhs-card:last-child { margin-bottom:0; }
+  .gmaps-link { color:#2563EB; font-weight:600; text-decoration:none; }
+  .gmaps-link:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero" role="banner">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content">
+      <h1 id="heroTitle">德国+瑞士 14日自驾环游（修订版）</h1>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+          <span id="heroDate">2026-09-25 ~ 10-08</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <span id="heroTravelers">2人 · 自驾</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+          <span>预估 <strong id="heroBudget">¥59090</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Nav -->
+  <nav class="section-nav" aria-label="快速导航">
+    <a class="nav-pill" href="#sec-weather"><span class="icon"><svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"/><path d="M12 2v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg></span>天气</a>
+    <a class="nav-pill" href="#sec-days"><span class="icon"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>行程</a>
+    <a class="nav-pill" href="#sec-hotels"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M3 7v14M21 7v14M6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg></span>住宿</a>
+    <a class="nav-pill" href="#sec-budget"><span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>预算</a>
+    <a class="nav-pill" href="#sec-tips"><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>贴士</a>
+  </nav>
+
+  <!-- Weather -->
+  <div class="section" id="sec-weather">
+    <div class="section-header">
+      <div class="section-icon"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"/><path d="M12 2v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg></span></div>
+      <h2 class="section-title">天气概览</h2>
+    </div>
+    <div class="weather-bar" id="weatherBar"></div>
+    <div class="weather-tip" id="weatherTip"></div>
+  </div>
+
+  <!-- Daily Itinerary -->
+  <div class="section" id="sec-days">
+    <div class="section-header">
+      <div class="section-icon"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></span></div>
+      <h2 class="section-title">每日行程</h2>
+    </div>
+    <div class="day-toolbar" id="dayToolbar"></div>
+    <div id="daysContainer"></div>
+  </div>
+
+  <!-- Hotels -->
+  <div class="section" id="sec-hotels">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--accent-light);color:var(--accent);"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><path d="M3 21h18M3 7v14M21 7v14M6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg></span></div>
+      <h2 class="section-title">住宿推荐</h2>
+    </div>
+    <div class="hotel-grid" id="hotelGrid"></div>
+  </div>
+
+  <!-- Budget -->
+  <div class="section" id="sec-budget">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--success-light);color:var(--success);"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span></div>
+      <h2 class="section-title">预算明细</h2>
+    </div>
+    <div class="budget-wrapper">
+      <div class="budget-chart" id="budgetChart"></div>
+      <table class="budget-table" id="budgetTable">
+        <thead><tr><th>分类</th><th>项目</th><th style="text-align:right">费用</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="budget-total" id="budgetTotal">
+      <div>
+        <div class="budget-total-label">预估总费用</div>
+        <div class="budget-total-per">人均 ¥29545</div>
+      </div>
+      <div class="budget-total-amount">¥59090</div>
+    </div>
+  </div>
+
+  <!-- Tips -->
+  <div class="section" id="sec-tips">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--rose-light);color:var(--rose);"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span></div>
+      <h2 class="section-title">实用贴士</h2>
+    </div>
+    <div class="tips-grid" id="tipsList"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-line"></div>
+    <p>由 AI 生成 · 价格与信息仅供参考，请以实际为准 · 2026-08-25</p>
+  </footer>
+
+</div>
+
+<script>
+const tripData = {
+  "title": "德国+瑞士 14日自驾环游（修订版）",
+  "dateRange": "2026-09-25 ~ 10-08",
+  "travelers": "2人 · 自驾",
+  "generationDate": "2026-08-25",
+  "revisionNotes": [
+    "① 龙疆(Lungern)调整到 Day5 苏黎世→因特拉肯途中顺路游玩，不再走回头路",
+    "② 新增海德堡(Heidelberg)一晚：Day10 罗滕堡→海德堡，Day11 上午继续游览后前往莱茵河谷",
+    "③ 莱茵河谷小镇按口碑重排：布劳巴赫(马克斯堡)、博帕德(四湖景缆车)、圣戈尔(莱茵费尔斯堡)、巴哈拉赫、上韦瑟尔、洛蕾莱、吕德斯海姆",
+    "④ 博登湖(林道)移至 Day4 福森→苏黎世顺路停靠，原 Day8 不再绕路",
+    "⑤ Day11 住巴哈拉赫、Day12 住法兰克福机场，住宿总晚数仍为 11 晚",
+    "⑥ v2：根据小红书高赞笔记优化酒店（苏黎世改 Central Plaza、琉森改 Radisson Blu、海德堡选希尔顿）；每日行程增加行车路线地图、公里数与驾驶时长；预算剔除伴手礼，澄清全程仅租一次车、德瑞两国通用，交通费无重叠",
+    "⑦ v3：琉森并入 Day5 顺路游，Day7 改为因特拉肯周边（伊瑟尔特瓦尔德+施皮茨）+伯尔尼过夜，去黑森林当天经伯尔尼中转车程更短；除 Day9 外每日驾驶≤3h；罗滕堡经小红书核实为强烈推荐（870赞《孤独星球》封面小镇），予以保留；莱茵河谷地图点位全部加'Germany'后缀修正定位；每日行程末尾附当晚酒店与小红书笔记",
+    "⑧ v4：小红书'德瑞必去'榜单核对——新增维尔茨堡(Day10)与布里恩茨蒸汽火车(Day7)；国王湖/采尔马特/Stoos/科隆等经评估不纳入（见贴士区评估表）；酒店改万豪系优先（慕尼黑/苏黎世/海德堡/法兰克福机场四站万豪，其余城镇无万豪系保留原优选）",
+    "⑨ v5：瑞士补充核对——Day6 傍晚新增哈德昆观景台（可选），First山/雪朗峰列为 Day6 替代方案，图恩/Sigriswil 列为 Day7 可选，莱茵瀑布列为 Day8 可选加站（标注3.5h取舍）；铁力士有避雷帖不推荐"
+  ],
+  "weather": {
+    "summary": "9月底-10月初，德瑞秋凉，晴多云为主，山区早晚偏冷（出行日超出15天预报范围，以下为气候均值，出发前请再查实时预报）",
+    "avgHigh": 17,
+    "avgLow": 8,
+    "rainfall": "30~40%",
+    "clothing": "长袖+薄毛衣+防风外套；少女峰需羽绒服/厚外套",
+    "tips": "阿尔卑斯山区天气多变，少女峰行程如遇大雾可与 Day5/Day7 灵活互换"
+  },
+  "days": [
+    {
+      "date": "09/25",
+      "weekday": "周五",
+      "theme": "北京 → 香港（出发日）",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 30,
+        "low": 26
+      },
+      "activities": [
+        {
+          "time": "15:30",
+          "name": "抵达北京首都机场 T3",
+          "duration": "-",
+          "cost": 0,
+          "transport": "市内交通",
+          "note": "国际航班建议提前 3 小时到机场"
+        },
+        {
+          "time": "18:40",
+          "name": "CX393 北京首都T3 → 香港T1",
+          "duration": "3h45",
+          "cost": 0,
+          "transport": "国泰航空",
+          "note": "22:25 抵达香港，转机停留 2h35（含在机票 ¥11,300/人中）"
+        },
+        {
+          "time": "23:00",
+          "name": "香港机场转机休息",
+          "duration": "2h",
+          "cost": 0,
+          "transport": "-",
+          "note": "无需入境香港，直接走转机通道"
+        }
+      ]
+    },
+    {
+      "date": "09/26",
+      "weekday": "周六",
+      "theme": "香港 → 慕尼黑 · 巴伐利亚首府初印象",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 18,
+        "low": 9
+      },
+      "activities": [
+        {
+          "time": "01:00",
+          "name": "CX301 香港T1 → 慕尼黑T1",
+          "duration": "12h05",
+          "cost": 0,
+          "transport": "国泰航空",
+          "note": "08:05 抵达慕尼黑"
+        },
+        {
+          "time": "09:30",
+          "name": "机场取车",
+          "duration": "1h",
+          "cost": 0,
+          "transport": "租车",
+          "note": "建议提前在国内办好驾照宣誓翻译件/国际驾照认证件"
+        },
+        {
+          "time": "11:00",
+          "name": "玛利亚广场 + 慕尼黑新市政厅",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "自驾+步行",
+          "note": "11:00/12:00/17:00 有木偶报时钟表演"
+        },
+        {
+          "time": "12:30",
+          "name": "午餐",
+          "meal": {
+            "name": "皇家啤酒屋 Hofbräuhaus",
+            "cuisine": "巴伐利亚菜",
+            "perPerson": 25,
+            "recommended": "烤猪肘、白香肠、HB啤酒",
+            "location": "玛利亚广场步行 5 分钟"
+          }
+        },
+        {
+          "time": "14:30",
+          "name": "圣母教堂 + 慕尼黑王宫",
+          "duration": "3h",
+          "cost": 120,
+          "transport": "步行",
+          "note": "王宫门票约 €10/人"
+        },
+        {
+          "time": "17:30",
+          "name": "英国花园",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "自驾/电车",
+          "note": "看冲浪者挑战艾斯巴赫河浪"
+        },
+        {
+          "time": "19:30",
+          "name": "晚餐",
+          "meal": {
+            "name": "Augustiner-Keller",
+            "cuisine": "德式啤酒花园",
+            "perPerson": 28,
+            "recommended": "烤排骨、Radler",
+            "location": "市中心"
+          }
+        }
+      ],
+      "route": {
+        "from": "慕尼黑机场MUC",
+        "to": "慕尼黑市区",
+        "via": [],
+        "km": 40,
+        "driveTime": "约0.5小时",
+        "mapPts": [
+          "Munich Airport, Germany",
+          "Munich, Germany"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "一口气说完慕尼黑主要景点",
+          "likes": "527",
+          "url": "https://www.xiaohongshu.com/explore/69dd8455000000001e00d790?xsec_token=ABpYmiTzGYFyQctkNOtgwnJQwzCo5yRubig3dC5JZCgTE%3D&xsec_source=pc_feed",
+          "takeaway": "王宫+珍宝馆至少预留3小时；市政厅木偶钟每天固定场次；新天鹅堡适合从慕尼黑一日往返"
+        }
+      ],
+      "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 · 约¥1,100/晚",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Munich%20Marriott%20Hotel%2C%20Munich"
+    },
+    {
+      "date": "09/27",
+      "weekday": "周日",
+      "theme": "慕尼黑 → 福森 · 新天鹅堡童话日",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 17,
+        "low": 8
+      },
+      "activities": [
+        {
+          "time": "08:30",
+          "name": "慕尼黑 → 福森",
+          "duration": "2h",
+          "cost": 0,
+          "transport": "自驾约 130km",
+          "note": "⚠️ 新天鹅堡门票务必提前官网预订时间段"
+        },
+        {
+          "time": "11:00",
+          "name": "新天鹅堡",
+          "duration": "2.5h",
+          "cost": 300,
+          "transport": "步行/摆渡车",
+          "note": "门票约 €21/人；内部禁止拍照"
+        },
+        {
+          "time": "12:00",
+          "name": "午餐",
+          "meal": {
+            "name": "Schlossrestaurant Neuschwanstein",
+            "cuisine": "德式简餐",
+            "perPerson": 20,
+            "recommended": "香肠拼盘",
+            "location": "景区入口"
+          }
+        },
+        {
+          "time": "14:00",
+          "name": "玛丽安桥",
+          "duration": "1h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "拍摄新天鹅堡全景最佳机位"
+        },
+        {
+          "time": "16:00",
+          "name": "福森小镇",
+          "duration": "2h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "彩色老城 + 圣曼格修道院外观"
+        },
+        {
+          "time": "18:30",
+          "name": "晚餐",
+          "meal": {
+            "name": "Restaurant Ritterstub'n",
+            "cuisine": "德式",
+            "perPerson": 25,
+            "recommended": "炸猪排",
+            "location": "福森老城"
+          }
+        }
+      ],
+      "route": {
+        "from": "慕尼黑",
+        "to": "福森",
+        "via": [],
+        "km": 130,
+        "driveTime": "约2小时",
+        "mapPts": [
+          "Munich, Germany",
+          "Füssen, Germany"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "德国新天鹅堡很美，但是槽点也很多…",
+          "likes": "298",
+          "url": "https://www.xiaohongshu.com/explore/68dab80b0000000011016daf?xsec_token=ABdhDj8r7z9q6p0O7rbhT1mchRX2L3pn0eB_rQZrCBl90%3D&xsec_source=pc_feed",
+          "takeaway": "玛丽安桥限流要排队；讲解多为德语场；内部禁止拍照；返程公交班次少——自驾可避免"
+        },
+        {
+          "title": "新天鹅堡｜德国最火景点，90%游客票都买错",
+          "likes": "7",
+          "url": "https://www.xiaohongshu.com/explore/6a740029000000002403f181?xsec_token=AB632AMkQjz1wag6Dh-BO-gPkEr9mlE5l79lNf-yt7rLc%3D&xsec_source=pc_feed",
+          "takeaway": "门票按预约时段进场，90%游客票买错，务必提前官网订"
+        }
+      ],
+      "stay": "Hotel Schlosskrone · 福森 · 约¥1,100/晚",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Schlosskrone%2C%20F%C3%BCssen"
+    },
+    {
+      "date": "09/28",
+      "weekday": "周一",
+      "theme": "福森 → 林道(博登湖) → 苏黎世",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 19,
+        "low": 10
+      },
+      "activities": [
+        {
+          "time": "09:00",
+          "name": "福森 → 林道",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "自驾约 110km",
+          "note": "顺路停靠，避免原方案 Day8 绕路去博登湖"
+        },
+        {
+          "time": "10:30",
+          "name": "林道港 + 博登湖畔",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "灯塔+石狮是博登湖标志性机位"
+        },
+        {
+          "time": "12:00",
+          "name": "午餐",
+          "meal": {
+            "name": "林道港边餐厅",
+            "cuisine": "德式/湖鱼",
+            "perPerson": 25,
+            "recommended": "博登湖白鲑 Felchen",
+            "location": "林道港"
+          }
+        },
+        {
+          "time": "13:30",
+          "name": "林道 → 苏黎世",
+          "duration": "2h",
+          "cost": 320,
+          "transport": "自驾约 140km",
+          "note": "⚠️ 入境瑞士需购高速年票 Vignette（约 CHF40，边境加油站可买）"
+        },
+        {
+          "time": "15:30",
+          "name": "林登霍夫山 + 苏黎世老城",
+          "duration": "2h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "《爱的迫降》取景地"
+        },
+        {
+          "time": "17:30",
+          "name": "班霍夫大街 + 苏黎世湖畔",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "班霍夫大街为购物街，湖边看日落更惬意"
+        },
+        {
+          "time": "19:00",
+          "name": "晚餐",
+          "meal": {
+            "name": "Zeughauskeller",
+            "cuisine": "瑞士传统菜",
+            "perPerson": 45,
+            "recommended": "苏黎世小牛肉 Zürcher Geschnetzeltes",
+            "location": "班霍夫大街旁"
+          }
+        }
+      ],
+      "route": {
+        "from": "福森",
+        "to": "苏黎世",
+        "via": [
+          "林道(博登湖)"
+        ],
+        "km": 250,
+        "driveTime": "约3.5小时",
+        "mapPts": [
+          "Füssen, Germany",
+          "Lindau, Germany",
+          "Zürich, Switzerland"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "🇨🇭苏黎世一日游攻略，看一篇就够",
+          "likes": "301",
+          "url": "https://www.xiaohongshu.com/explore/69845ede000000000d00ba9f?xsec_token=AB-Fd0tPIpfGMegJIbrH9OUCiKreyxWRMy61qAQDtj1DI%3D&xsec_source=pc_feed",
+          "takeaway": "苏黎世一日游一篇搞定：老城+班霍夫大街+湖边的经典动线"
+        }
+      ],
+      "stay": "Zurich Marriott Hotel（万豪系）· 苏黎世 · 约¥1,500/晚",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Zurich%20Marriott%20Hotel%2C%20Zurich"
+    },
+    {
+      "date": "09/29",
+      "weekday": "周二",
+      "theme": "苏黎世 → 琉森 → 龙疆 → 因特拉肯（顺路游玩，不走回头路）",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 17,
+        "low": 8
+      },
+      "activities": [
+        {
+          "time": "08:30",
+          "name": "苏黎世 → 琉森",
+          "duration": "1h",
+          "cost": 0,
+          "transport": "自驾 55km",
+          "note": "✅ 修订：琉森并入 Day5 顺路游，不再从因特拉肯折返"
+        },
+        {
+          "time": "09:30",
+          "name": "卡佩尔廊桥 + 八角水塔 + 琉森老城",
+          "duration": "2h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "欧洲最古老木桥；老城 Gerberggasse 彩绘房子顺路逛"
+        },
+        {
+          "time": "11:30",
+          "name": "垂死狮子像",
+          "duration": "45min",
+          "cost": 0,
+          "transport": "步行",
+          "note": "马克·吐温称'世上最悲恸的雕像'；时间紧可跳过"
+        },
+        {
+          "time": "12:15",
+          "name": "午餐",
+          "meal": {
+            "name": "Old Swiss House",
+            "cuisine": "瑞士传统菜",
+            "perPerson": 50,
+            "recommended": "维纳炸肉排",
+            "location": "狮子广场旁"
+          }
+        },
+        {
+          "time": "13:15",
+          "name": "琉森 → 龙疆 Lungern",
+          "duration": "45min",
+          "cost": 0,
+          "transport": "自驾 40km",
+          "note": "✅ 龙疆顺路游玩，黄金列车同款景观公路"
+        },
+        {
+          "time": "14:00",
+          "name": "龙疆小镇 + 龙疆湖",
+          "duration": "2h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "翡翠色湖水（小红书304赞攻略）：①明信片机位 Kaiserstuhl 观景台步行10分钟；②S弯定位 Mülibachersträssli 14；⚠️勿入私人草坪，只走公共步道"
+        },
+        {
+          "time": "16:00",
+          "name": "龙疆 → 布里恩茨",
+          "duration": "30min",
+          "cost": 0,
+          "transport": "自驾（Brünig 山口）",
+          "note": "布里恩茨湖畔短停拍照，湖水绿松石色；累了可直接跳过"
+        },
+        {
+          "time": "16:45",
+          "name": "布里恩茨 → 因特拉肯",
+          "duration": "30min",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "傍晚抵达入住"
+        },
+        {
+          "time": "17:30",
+          "name": "何维克街 + 荷黑马特绿地",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "大草坪远眺少女峰，滑翔伞降落点"
+        },
+        {
+          "time": "19:00",
+          "name": "晚餐",
+          "meal": {
+            "name": "Husi Bierhaus",
+            "cuisine": "瑞士/德式",
+            "perPerson": 40,
+            "recommended": "芝士火锅 Fondue",
+            "location": "因特拉肯西站附近"
+          }
+        }
+      ],
+      "route": {
+        "from": "苏黎世",
+        "to": "因特拉肯",
+        "via": [
+          "琉森",
+          "龙疆",
+          "布里恩茨"
+        ],
+        "km": 140,
+        "driveTime": "约2.5小时（分三段）",
+        "mapPts": [
+          "Zürich, Switzerland",
+          "Lucerne, Switzerland",
+          "Lungern, Switzerland",
+          "Brienz, Switzerland",
+          "Interlaken, Switzerland"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "🇨🇭卢塞恩（琉森）老城Citywalk路线",
+          "likes": "186",
+          "url": "https://www.xiaohongshu.com/explore/6a4a2401000000001003ee59?xsec_token=ABMfWHyTX5xL1FoPE0_jN2r2iWEhMtJ0okidLPHoE8-_8%3D&xsec_source=pc_feed",
+          "takeaway": "老城Citywalk：卡佩尔廊桥傍晚光线最好→Gerberggasse彩绘房→穆塞格城墙俯瞰红屋顶→狮子像；冰川公园通票免费但一般"
+        },
+        {
+          "title": "瑞士🇨🇭| 龙疆小镇怎么玩，看这里！",
+          "likes": "304",
+          "url": "https://www.xiaohongshu.com/explore/69e83b4c0000000020038456?xsec_token=AB5VStRa0CRj7N3AZF8dK0kMU9U0XGvTD-tsYrXFhkMu0%3D&xsec_source=pc_feed",
+          "takeaway": "Kaiserstuhl观景台明信片机位；S弯定位Mülibachersträssli 14；清晨8-10点倒影最美"
+        },
+        {
+          "title": "🇨🇭瑞士龙疆Lungern最全防坑攻略",
+          "likes": "272",
+          "url": "https://www.xiaohongshu.com/explore/6a4d80ce0000000022018d07?xsec_token=ABF3wAEOcRwqG4HRXlywMX9haHK1MCKA97-gV_5vfaK0g%3D&xsec_source=pc_feed",
+          "takeaway": "勿信站内指示牌去私人领地；2号站台旁小路通往公共半岛；禁令牌多，只走公共步道"
+        },
+        {
+          "title": "🇨🇭一天速通因特拉肯附近五个小镇攻略",
+          "likes": "493",
+          "url": "https://www.xiaohongshu.com/explore/6a1c2bb3000000003601ef3f?xsec_token=ABMBaxmHK0aZupPLql17gUgpvcM8Wm1s1dl0QjWn93yE4%3D&xsec_source=pc_feed",
+          "takeaway": "因特拉肯是周边小镇的交通枢纽，火车/游船都从这里出发"
+        }
+      ],
+      "stay": "Beatenberg Resort & Spa（比滕贝格度假村）· 因特拉肯周边 · 约¥1,700/晚 · ⚠️不可取消",
+      "xhsNote": "本日较紧凑：琉森只取精华（廊桥+老城+狮子像约3h），如想更轻松可跳过狮子像或布里恩茨短停",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Beatenberg%20Resort%20%26%20Spa%2C%20Beatenberg"
+    },
+    {
+      "date": "09/30",
+      "weekday": "周三",
+      "theme": "少女峰 · 欧洲之巅",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 15,
+        "low": 7
+      },
+      "activities": [
+        {
+          "time": "07:30",
+          "name": "因特拉肯 → 格林德瓦",
+          "duration": "40min",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "⚠️ 出发前查 Jungfrau 官网山顶实时摄像头，大雾则与 Day7 互换"
+        },
+        {
+          "time": "08:30",
+          "name": "少女峰铁路（艾格快线+登山火车）",
+          "duration": "5h",
+          "cost": 3000,
+          "transport": "缆车+齿轮火车",
+          "note": "往返约 CHF190/人；山顶冰宫、斯芬克斯观景台；山上 0~-5°C 需厚外套"
+        },
+        {
+          "time": "13:30",
+          "name": "午餐",
+          "meal": {
+            "name": "少女峰山顶餐厅/下山后格林德瓦",
+            "cuisine": "瑞士简餐",
+            "perPerson": 35,
+            "recommended": "山顶餐厅热汤面",
+            "location": "Jungfraujoch"
+          }
+        },
+        {
+          "time": "15:00",
+          "name": "劳特布龙嫩",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "瀑布山谷，施陶布河瀑布 Staubbachfall"
+        },
+        {
+          "time": "17:00",
+          "name": "格林德瓦 · 梦幻山坡",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "自驾+步行",
+          "note": "傍晚顺光拍摄山坡木屋最佳"
+        },
+        {
+          "time": "18:00",
+          "name": "哈德昆观景台 Harder Kulm（可选）",
+          "duration": "1.5h",
+          "cost": 600,
+          "transport": "缆车 10min 上山",
+          "note": "✅ 新增：因特拉肯自家门口的观景台，缆车起点就在东站旁；双湖+少女峰同框，日落时分最美，约 CHF35/人；若少女峰当天下山晚可跳过"
+        },
+        {
+          "time": "19:00",
+          "name": "晚餐",
+          "meal": {
+            "name": "Restaurant Taverne",
+            "cuisine": "瑞士菜",
+            "perPerson": 45,
+            "recommended": "煎小牛肉",
+            "location": "因特拉肯"
+          }
+        }
+      ],
+      "route": {
+        "from": "因特拉肯",
+        "to": "劳特布龙嫩",
+        "via": [
+          "格林德瓦"
+        ],
+        "km": 70,
+        "driveTime": "约1.5小时(环线)",
+        "mapPts": [
+          "Interlaken, Switzerland",
+          "Grindelwald, Switzerland",
+          "Lauterbrunnen, Switzerland"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "🇨🇭瑞士10天深度游！我最爱的小镇·山峰排名",
+          "likes": "564",
+          "url": "https://www.xiaohongshu.com/explore/69b91b21000000002103a7e4?xsec_token=ABZuLuJvTsujNa1aGBOypeDxkagpJt7IAgqi7q7da2fXU%3D&xsec_source=pc_feed",
+          "takeaway": "564赞排名：First山第1、雪朗峰第2、少女峰\"人多可玩性低\"；小镇榜：施皮茨第1、图恩第2、格林德瓦第3"
+        },
+        {
+          "title": "少女峰别再走左上右下了！自驾的来抄作业",
+          "likes": "352",
+          "url": "https://www.xiaohongshu.com/explore/69c92bf3000000002200fd52?xsec_token=ABeBW_z0lOuZcsmT5AOXIgu-YOP5yQ6n5mBR-_ZG-rghw%3D&xsec_source=pc_feed",
+          "takeaway": "自驾停车格林德瓦Terminal室内停车场；Eiger Express缆车比火车快40分钟；Terminal免费领中文登山护照山顶盖章；山顶建议留2.5小时"
+        }
+      ],
+      "stay": "Beatenberg Resort & Spa · 因特拉肯周边 · 约¥1,700/晚（第2晚）",
+      "xhsNote": "若对少女峰票价犹豫，小红书564赞排名认为 First山（滑板车/卡丁车/飞鹰）+雪朗峰（007旋转餐厅）可玩性更高，可作 Day6 替代方案，价格约为少女峰一半",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Beatenberg%20Resort%20%26%20Spa%2C%20Beatenberg"
+    },
+    {
+      "date": "10/01",
+      "weekday": "周四",
+      "theme": "因特拉肯周边（布里恩茨蒸汽火车 · 施皮茨）→ 伯尔尼",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 17,
+        "low": 9
+      },
+      "activities": [
+        {
+          "time": "08:50",
+          "name": "因特拉肯 → 布里恩茨",
+          "duration": "20min",
+          "cost": 0,
+          "transport": "自驾 20km",
+          "note": "✅ 新增：小红书1359赞称这段蒸汽火车'夯爆了'"
+        },
+        {
+          "time": "09:30",
+          "name": "布里恩茨-洛特峰蒸汽火车 Brienz Rothorn Bahn",
+          "duration": "2h",
+          "cost": 850,
+          "transport": "百年蒸汽登山火车",
+          "note": "往返约 CHF52/人（两人约 CHF104）；一路爬升一步一景，山顶俯瞰布里恩茨湖全景"
+        },
+        {
+          "time": "12:00",
+          "name": "午餐",
+          "meal": {
+            "name": "布里恩茨湖畔餐厅",
+            "cuisine": "瑞士菜",
+            "perPerson": 35,
+            "recommended": "湖鱼、Rösti",
+            "location": "布里恩茨码头旁"
+          }
+        },
+        {
+          "time": "13:00",
+          "name": "布里恩茨 → 施皮茨 Spiez",
+          "duration": "25min",
+          "cost": 0,
+          "transport": "自驾 25km",
+          "note": "图恩湖畔'世外桃源'小镇"
+        },
+        {
+          "time": "13:30",
+          "name": "施皮茨城堡 + 图恩湖畔",
+          "duration": "1.5h",
+          "cost": 80,
+          "transport": "步行",
+          "note": "城堡门票约 CHF10；葡萄园+湖景+雪山同框"
+        },
+        {
+          "time": "15:00",
+          "name": "施皮茨 → 伯尔尼",
+          "duration": "40min",
+          "cost": 0,
+          "transport": "自驾 40km",
+          "note": "今晚住伯尔尼，次日去黑森林顺路且车程更短"
+        },
+        {
+          "time": "16:00",
+          "name": "伯尔尼老城：Zytglogge 钟楼 + 爱因斯坦故居",
+          "duration": "1.5h",
+          "cost": 60,
+          "transport": "步行",
+          "note": "整点前钟楼机械木偶报时；老城为 UNESCO 世界遗产"
+        },
+        {
+          "time": "17:30",
+          "name": "联邦宫观景平台 + 熊公园",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "Bundesterrasse 俯瞰阿勒河大拐弯；熊公园免费"
+        },
+        {
+          "time": "19:00",
+          "name": "晚餐",
+          "meal": {
+            "name": "Café du Commerce",
+            "cuisine": "西班牙菜（小红书亲测不踩雷）",
+            "perPerson": 35,
+            "recommended": "西班牙烩饭、烤香肠",
+            "location": "伯尔尼老城"
+          }
+        }
+      ],
+      "route": {
+        "from": "因特拉肯",
+        "to": "伯尔尼",
+        "via": [
+          "布里恩茨",
+          "施皮茨"
+        ],
+        "km": 85,
+        "driveTime": "约1.5小时",
+        "mapPts": [
+          "Interlaken, Switzerland",
+          "Brienz, Switzerland",
+          "Spiez, Switzerland",
+          "Bern, Switzerland"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "6个瑞士宝藏小众隐藏景点，本地人都爱去",
+          "likes": "46",
+          "url": "https://www.xiaohongshu.com/explore/68ed5ae50000000003018c1e?xsec_token=ABymBRC8KqYk4euFP7nf4kmzajS6hBC_XetnovsOG7OGA%3D&xsec_source=pc_feed",
+          "takeaway": "本地人私藏：Sigriswil 340m悬索桥俯瞰图恩湖（距施皮茨20分钟）；苏黎世有薛定谔的猫雕像"
+        },
+        {
+          "title": "🇨🇭体验 从夯到拉个人向",
+          "likes": "1359",
+          "url": "https://www.xiaohongshu.com/explore/6a344edb0000000008003245?xsec_token=ABrb0OpUoRracfI8ze5RRO5U5IPehmKG7xhNNOmAvbMEE%3D&xsec_source=pc_feed",
+          "takeaway": "1359赞瑞士全体验评级：布里恩茨蒸汽火车\"夯爆了\"两人仅CHF104；龙疆\"顶级\"；采尔马特\"夯\""
+        },
+        {
+          "title": "施皮茨➕图恩小镇一日攻略看这篇❗️",
+          "likes": "138",
+          "url": "https://www.xiaohongshu.com/explore/69dbf510000000002102c945?xsec_token=ABpVG79Wi6vC6MUuxa8t5emGtu5lynzOCXTWJfGD8pVHs%3D&xsec_source=pc_feed",
+          "takeaway": "施皮茨+图恩一日玩法详解放这了"
+        },
+        {
+          "title": "🇨🇭伯尔尼🐻｜超顺路一日游攻略",
+          "likes": "250",
+          "url": "https://www.xiaohongshu.com/explore/6a09c913000000003701d23c?xsec_token=ABFTxlJAg1JkQnFb3xzeLG-eKgJiqAMbZU38r5G0sW9Ik%3D&xsec_source=pc_feed",
+          "takeaway": "伯尔尼顺路一日游：酒店领 Bern Ticket 免费坐车；钟楼整点报时、联邦宫平台、熊公园、大教堂登塔"
+        }
+      ],
+      "stay": "Hotel Bären am Bundesplatz（联邦广场熊酒店）· 伯尔尼老城 · 约¥1,000/晚 · 送 Bern Ticket 免费公交",
+      "xhsNote": "时间充裕可在施皮茨之后加图恩 Thun（15分钟车程）：564赞排名第2小镇，图恩城堡塔楼俯瞰全湖；Sigriswil 340米悬索桥距图恩20分钟，本地人私藏机位",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20B%C3%A4ren%20am%20Bundesplatz%2C%20Bern"
+    },
+    {
+      "date": "10/02",
+      "weekday": "周五",
+      "theme": "伯尔尼 → 黑森林（特里贝格）→ 滴滴湖",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 16,
+        "low": 7
+      },
+      "activities": [
+        {
+          "time": "09:00",
+          "name": "伯尔尼 → 特里贝格 Triberg",
+          "duration": "2h",
+          "cost": 0,
+          "transport": "自驾 175km",
+          "note": "✅ 经伯尔尼中转后车程缩短，无需早起赶路"
+        },
+        {
+          "time": "11:00",
+          "name": "世界最大咕咕钟 + 特里贝格瀑布",
+          "duration": "2.5h",
+          "cost": 130,
+          "transport": "步行",
+          "note": "瀑布门票约 €8/人；咕咕钟整点报时"
+        },
+        {
+          "time": "13:30",
+          "name": "午餐",
+          "meal": {
+            "name": "Café Schäfer",
+            "cuisine": "德式咖啡屋",
+            "perPerson": 18,
+            "recommended": "黑森林蛋糕（号称最正宗配方）",
+            "location": "特里贝格主街"
+          }
+        },
+        {
+          "time": "14:30",
+          "name": "特里贝格 → 滴滴湖",
+          "duration": "40min",
+          "cost": 0,
+          "transport": "自驾 35km",
+          "note": ""
+        },
+        {
+          "time": "15:15",
+          "name": "滴滴湖游船",
+          "duration": "1h",
+          "cost": 120,
+          "transport": "电动游船",
+          "note": "约 €8/人，40分钟环湖"
+        },
+        {
+          "time": "16:30",
+          "name": "滴滴湖环湖步道 + 湖滨小镇",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "湖水清澈，黑森林门户"
+        },
+        {
+          "time": "18:30",
+          "name": "晚餐",
+          "meal": {
+            "name": "Maritim 酒店餐厅",
+            "cuisine": "德式",
+            "perPerson": 30,
+            "recommended": "鳟鱼",
+            "location": "酒店内"
+          }
+        }
+      ],
+      "route": {
+        "from": "伯尔尼",
+        "to": "滴滴湖",
+        "via": [
+          "特里贝格"
+        ],
+        "km": 210,
+        "driveTime": "约2.5-3小时",
+        "mapPts": [
+          "Bern, Switzerland",
+          "Triberg im Schwarzwald, Germany",
+          "Titisee-Neustadt, Germany"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "😅别被滤镜骗了，这才是真实的莱茵河瀑布",
+          "likes": "279",
+          "url": "https://www.xiaohongshu.com/explore/69a557ff0000000022031853?xsec_token=ABJtXO8p3V0kKaWknPmaaEt9kZwu1d3CVa0mq63W83k4A%3D&xsec_source=pc_feed",
+          "takeaway": "279赞实拍莱茵瀑布：欧洲水量最大瀑布，乘船靠近中央岩石最震撼"
+        },
+        {
+          "title": "连续去了三次德国黑森林，怎么玩一篇讲明白",
+          "likes": "196",
+          "url": "https://www.xiaohongshu.com/explore/68dd304b0000000007031e76?xsec_token=ABUtpc_irKvX5rpA90jwBtvWZ6_XTwdiPjvkXO7Wnqw-Q%3D&xsec_source=pc_feed",
+          "takeaway": "三刷黑森林博主总结：自驾最灵活，随时停靠沿途风景；湖区+瀑布+蛋糕是经典组合"
+        }
+      ],
+      "stay": "Maritim TitiseeHotel（蒂蒂湖酒店）· 滴滴湖畔 · 约¥1,100/晚",
+      "xhsNote": "可选加站：莱茵瀑布（沙夫豪森，欧洲水量最大瀑布，257/279赞）。伯尔尼→瀑布1.5h、瀑布→特里贝格1h15，加站后当日驾驶约3.5h（超出3h原则），需8:30出发并压缩特里贝格停留；想看'真·大瀑布'可考虑，否则按原行程",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Maritim%20TitiseeHotel%2C%20Titisee-Neustadt"
+    },
+    {
+      "date": "10/03",
+      "weekday": "周六",
+      "theme": "滴滴湖 → 罗滕堡（本日车程最长，约3小时）",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 16,
+        "low": 7
+      },
+      "activities": [
+        {
+          "time": "09:00",
+          "name": "滴滴湖晨游 + 湖畔早餐",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "清晨湖面最平静，适合最后拍一波黑森林湖景"
+        },
+        {
+          "time": "10:30",
+          "name": "滴滴湖 → 罗滕堡",
+          "duration": "3h",
+          "cost": 0,
+          "transport": "自驾 230km",
+          "note": "⚠️ 全程最长一段驾驶，中途服务区休息一次；保留罗滕堡依据：小红书870赞《孤独星球》封面小镇"
+        },
+        {
+          "time": "14:00",
+          "name": "午餐",
+          "meal": {
+            "name": "Baumeisterhaus",
+            "cuisine": "德式",
+            "perPerson": 25,
+            "recommended": "法兰克尼亚烤猪肩",
+            "location": "罗滕堡主街"
+          }
+        },
+        {
+          "time": "15:30",
+          "name": "罗滕堡老城 + 步云莱 Plönlein + 圣乔治屠龙雕像喷水池",
+          "duration": "2.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "《孤独星球》封面机位；下午旅行团渐散"
+        },
+        {
+          "time": "19:00",
+          "name": "晚餐",
+          "meal": {
+            "name": "Zur Höll",
+            "cuisine": "法兰克尼亚菜",
+            "perPerson": 28,
+            "recommended": "烤肠拼盘、雪球点心 Schneeball",
+            "location": "罗滕堡老城"
+          }
+        },
+        {
+          "time": "20:30",
+          "name": "守夜人巡游 Night Watchman Tour",
+          "duration": "1h",
+          "cost": 130,
+          "transport": "步行",
+          "note": "英文团 20:30 市集广场集合，约 €9/人，强烈推荐的体验"
+        }
+      ],
+      "route": {
+        "from": "滴滴湖",
+        "to": "罗滕堡",
+        "via": [],
+        "km": 230,
+        "driveTime": "约3小时（全程最长）",
+        "mapPts": [
+          "Titisee-Neustadt, Germany",
+          "Rothenburg ob der Tauber, Germany"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "不愧是德版《孤独星球》的封面小镇，美翻了！！",
+          "likes": "870",
+          "url": "https://www.xiaohongshu.com/explore/69ae94d6000000001a028855?xsec_token=AByT12ToGMrE-DNDmUAlU4nzIdgHf77UPhWwtFK3KYm8A%3D&xsec_source=pc_feed",
+          "takeaway": "注意是 Rothenburg ob der Tauber（北边还有个同名罗滕堡）；Plönlein 封面机位要 8:30 前去，否则全是旅行团；城墙整圈可上约4km"
+        }
+      ],
+      "stay": "Hotel Rappen Rothenburg（罗滕堡拉彭酒店）· 近城门 · 约¥950/晚",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Rappen%2C%20Rothenburg%20ob%20der%20Tauber"
+    },
+    {
+      "date": "10/04",
+      "weekday": "周日",
+      "theme": "罗滕堡 → 维尔茨堡（新增）→ 海德堡",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 18,
+        "low": 9
+      },
+      "activities": [
+        {
+          "time": "08:30",
+          "name": "罗滕堡城墙环城步道 + 城堡花园",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "清晨人少，城墙上俯瞰红屋顶老城"
+        },
+        {
+          "time": "10:00",
+          "name": "罗滕堡 → 维尔茨堡",
+          "duration": "45min",
+          "cost": 0,
+          "transport": "自驾 60km",
+          "note": "✅ 新增：小红书368赞评级'顶级'，与海德堡同档"
+        },
+        {
+          "time": "10:45",
+          "name": "维尔茨堡主教宫 Residenz",
+          "duration": "1.5h",
+          "cost": 150,
+          "transport": "步行",
+          "note": "UNESCO 世界遗产，欧洲最顶级巴洛克宫殿之一，约 €9/人；缇耶波罗穹顶壁画"
+        },
+        {
+          "time": "12:30",
+          "name": "午餐",
+          "meal": {
+            "name": "老美因桥畔餐厅/酒馆",
+            "cuisine": "法兰克尼亚菜",
+            "perPerson": 25,
+            "recommended": "法兰克尼亚葡萄酒 Silvaner",
+            "location": "Alte Mainbrücke 旁"
+          }
+        },
+        {
+          "time": "13:30",
+          "name": "老美因桥 + 远眺玛利亚堡",
+          "duration": "1h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "桥上捧杯葡萄酒看城堡是本地传统；体力好可步行上堡"
+        },
+        {
+          "time": "14:30",
+          "name": "维尔茨堡 → 海德堡",
+          "duration": "1h45",
+          "cost": 0,
+          "transport": "自驾 165km",
+          "note": ""
+        },
+        {
+          "time": "16:15",
+          "name": "海德堡老城 + 老桥 + 铜猴",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "老桥桥头摸铜猴寓意重返海德堡；城堡改到明早"
+        },
+        {
+          "time": "19:00",
+          "name": "晚餐",
+          "meal": {
+            "name": "Zum Roten Ochsen（红牛酒馆）",
+            "cuisine": "德式传统酒馆",
+            "perPerson": 30,
+            "recommended": "烤猪肘、本地啤酒",
+            "location": "海德堡主街，1839 年老店"
+          }
+        }
+      ],
+      "route": {
+        "from": "罗滕堡",
+        "to": "海德堡",
+        "via": [
+          "维尔茨堡"
+        ],
+        "km": 225,
+        "driveTime": "约2.5小时",
+        "mapPts": [
+          "Rothenburg ob der Tauber, Germany",
+          "Würzburg, Germany",
+          "Heidelberg, Germany"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "从夯到拉锐评德国11州37城 夯到顶级",
+          "likes": "368",
+          "url": "https://www.xiaohongshu.com/explore/69deaf170000000023006d87?xsec_token=AB_UHpxdwTHY1T4n-ka5WXmHxnlQd8rcFOLcASxP_iwpw%3D&xsec_source=pc_feed",
+          "takeaway": "368赞：维尔茨堡评级\"顶级\"——玛利亚堡俯瞰不逊海德堡，主教宫为欧洲最顶级巴洛克之一"
+        },
+        {
+          "title": "🇩🇪海德堡｜超详细一日游保姆级攻略🗺️干货",
+          "likes": "315",
+          "url": "https://www.xiaohongshu.com/explore/69c2c8a6000000001a023245?xsec_token=ABTjlwK0z8Qoapn2FnZ3m-x_yi9rKpgQUWuKFWPfuaTIE%3D&xsec_source=pc_feed",
+          "takeaway": "保姆级路线：俾斯麦广场→大学图书馆→主街→学生监狱→圣灵大教堂→城堡→铜猴→老桥→哲学家小径"
+        }
+      ],
+      "stay": "Heidelberg Marriott Hotel（万豪系）· 海德堡 · 约¥900/晚",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Heidelberg%20Marriott%20Hotel%2C%20Heidelberg"
+    },
+    {
+      "date": "10/05",
+      "weekday": "周一",
+      "theme": "海德堡 → 莱茵河谷（马克斯堡 · 博帕德 · 圣戈尔 · 巴哈拉赫）",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 18,
+        "low": 9
+      },
+      "activities": [
+        {
+          "time": "08:00",
+          "name": "海德堡城堡（齿轮缆车上下）",
+          "duration": "2h",
+          "cost": 160,
+          "transport": "缆车",
+          "note": "缆车+城堡庭院+大酒桶联票约 €9/人；露台俯瞰老城红屋顶与内卡河，早上去人少"
+        },
+        {
+          "time": "10:15",
+          "name": "哲学家小径 Philosophenweg",
+          "duration": "1h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "内卡河北岸，拍摄海德堡老城+城堡全景最佳机位"
+        },
+        {
+          "time": "11:30",
+          "name": "海德堡 → 布劳巴赫 Braubach",
+          "duration": "1h45",
+          "cost": 0,
+          "transport": "自驾 160km",
+          "note": "进入莱茵河谷精华段（世界文化遗产）"
+        },
+        {
+          "time": "13:30",
+          "name": "午餐",
+          "meal": {
+            "name": "布劳巴赫小镇餐厅",
+            "cuisine": "德式",
+            "perPerson": 22,
+            "recommended": "莱茵烤肠",
+            "location": "Braubach 老城"
+          }
+        },
+        {
+          "time": "14:30",
+          "name": "博帕德 Boppard + 四湖景缆车",
+          "duration": "2h",
+          "cost": 200,
+          "transport": "自驾 25min + 缆车",
+          "note": "Sesselbahn 缆车约 €13/人登顶 Gedeonseck，俯瞰莱茵河大回环'四湖景'，莱茵河谷最经典视角"
+        },
+        {
+          "time": "16:30",
+          "name": "圣戈尔 St. Goar + 莱茵费尔斯堡",
+          "duration": "1.5h",
+          "cost": 100,
+          "transport": "自驾 20min",
+          "note": "莱茵河谷最大城堡废墟，地下甬道探险"
+        },
+        {
+          "time": "18:15",
+          "name": "巴哈拉赫 Bacharach",
+          "duration": "1h",
+          "cost": 0,
+          "transport": "自驾 15min",
+          "note": "入住小镇，傍晚看 Postenturm 塔楼葡萄园日落"
+        },
+        {
+          "time": "19:30",
+          "name": "晚餐",
+          "meal": {
+            "name": "Weinberg-Schlößchen 餐厅/小镇酒馆",
+            "cuisine": "德式+雷司令",
+            "perPerson": 30,
+            "recommended": "莱茵雷司令 Riesling",
+            "location": "巴哈拉赫"
+          }
+        }
+      ],
+      "route": {
+        "from": "海德堡",
+        "to": "巴哈拉赫",
+        "via": [
+          "布劳巴赫(马克斯堡)",
+          "博帕德",
+          "圣戈尔"
+        ],
+        "km": 200,
+        "driveTime": "约2.5小时",
+        "mapPts": [
+          "Heidelberg, Germany",
+          "Braubach, Germany",
+          "Boppard, Germany",
+          "Sankt Goar, Germany",
+          "Bacharach, Germany"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "🏰德国的浪漫，是莱茵河上古堡写成的史诗",
+          "likes": "124",
+          "url": "https://www.xiaohongshu.com/explore/6948fbd6000000001f00fd5e?xsec_token=ABt9usv-aUv10MOjlnoIz1cUdxSqT09Zl2GuJeDzL01NE%3D&xsec_source=pc_feed",
+          "takeaway": "65km中游40+城堡全清单：鼠塔、尼德瓦尔德纪念碑、巴哈拉赫、普法尔茨石堡、洛蕾莱都在这段世界遗产河段"
+        }
+      ],
+      "stay": "Hotel Weinberg-Schlößchen · 巴哈拉赫 · 约¥900/晚",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Weinberg-Schl%C3%B6%C3%9Fchen%2C%20Bacharach"
+    },
+    {
+      "date": "10/06",
+      "weekday": "周二",
+      "theme": "莱茵河谷（巴哈拉赫 · 上韦瑟尔 · 洛蕾莱 · 吕德斯海姆）→ 法兰克福",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 18,
+        "low": 9
+      },
+      "activities": [
+        {
+          "time": "08:30",
+          "name": "巴哈拉赫老城晨游",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "莱茵河谷保存最完好的中世纪小镇，木筋房+老城墙，清晨无人超好拍"
+        },
+        {
+          "time": "10:00",
+          "name": "上韦瑟尔 Oberwesel",
+          "duration": "45min",
+          "cost": 0,
+          "transport": "自驾 10min",
+          "note": "红色圣母教堂 + 山上 Schönburg 城堡外观"
+        },
+        {
+          "time": "11:00",
+          "name": "洛蕾莱巨岩观景台 Loreley",
+          "duration": "45min",
+          "cost": 0,
+          "transport": "自驾 10min",
+          "note": "莱茵河最窄最深险滩，女妖传说发源地"
+        },
+        {
+          "time": "12:00",
+          "name": "午餐",
+          "meal": {
+            "name": "吕德斯海姆画眉鸟小巷酒馆",
+            "cuisine": "德式",
+            "perPerson": 25,
+            "recommended": "吕德斯海姆咖啡（白兰地火焰咖啡）",
+            "location": "Drosselgasse"
+          }
+        },
+        {
+          "time": "12:30",
+          "name": "吕德斯海姆：画眉鸟小巷 + 音乐盒博物馆",
+          "duration": "2h",
+          "cost": 120,
+          "transport": "步行",
+          "note": "音乐盒博物馆约 €8/人"
+        },
+        {
+          "time": "14:30",
+          "name": "尼德瓦尔德纪念碑缆车",
+          "duration": "1.5h",
+          "cost": 160,
+          "transport": "缆车",
+          "note": "缆车约 €10/人，葡萄田上空俯瞰莱茵河大拐弯，秋季葡萄叶金黄最美"
+        },
+        {
+          "time": "16:30",
+          "name": "吕德斯海姆 → 法兰克福机场",
+          "duration": "1h",
+          "cost": 0,
+          "transport": "自驾约 70km",
+          "note": "机场还车（预留加油+验车 1 小时）"
+        },
+        {
+          "time": "19:00",
+          "name": "晚餐",
+          "meal": {
+            "name": "机场/酒店餐厅",
+            "cuisine": "简餐",
+            "perPerson": 25,
+            "recommended": "早休息",
+            "location": "Hyatt Place 法兰克福机场"
+          }
+        }
+      ],
+      "route": {
+        "from": "巴哈拉赫",
+        "to": "法兰克福机场",
+        "via": [
+          "上韦瑟尔",
+          "洛蕾莱",
+          "吕德斯海姆"
+        ],
+        "km": 115,
+        "driveTime": "约2小时",
+        "mapPts": [
+          "Bacharach, Germany",
+          "Oberwesel, Germany",
+          "Loreley, Sankt Goarshausen, Germany",
+          "Rüdesheim am Rhein, Germany",
+          "Frankfurt Airport, Germany"
+        ]
+      },
+      "xhs": [
+        {
+          "title": "📍吕德斯海姆｜游船+缆车+画眉鸟巷一日游",
+          "likes": "32",
+          "url": "https://www.xiaohongshu.com/explore/6a64b0d40000000011011b51?xsec_token=ABN0bMqzWDsU_MwVbVw6Jw7OAtNWN5vEC_l21W6S7imL8%3D&xsec_source=pc_feed",
+          "takeaway": "吕德斯海姆经典三件套：莱茵游船+尼德瓦尔德缆车+画眉鸟小巷一日游"
+        },
+        {
+          "title": "🇩🇪Bacharach小镇必看攻略！不然累死",
+          "likes": "43",
+          "url": "https://www.xiaohongshu.com/explore/6a3eb4fc0000000008030f30?xsec_token=ABWlAkdIs0KIuHzjCR1jgqsMIAgwp9g2GCaHfKEX9AFOo%3D&xsec_source=pc_feed",
+          "takeaway": "孤独星球同款机位导航Postenturm；城堡旁小路可抄近道上葡萄园，省一半爬升"
+        }
+      ],
+      "stay": "Frankfurt Airport Marriott Hotel（万豪系）· 法兰克福机场 · 约¥1,100/晚",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Frankfurt%20Airport%20Marriott%20Hotel%2C%20Frankfurt"
+    },
+    {
+      "date": "10/07",
+      "weekday": "周三",
+      "theme": "法兰克福 → 香港（返程）",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 18,
+        "low": 10
+      },
+      "activities": [
+        {
+          "time": "10:30",
+          "name": "前往法兰克福机场 T3",
+          "duration": "-",
+          "cost": 0,
+          "transport": "酒店 shuttle/步行",
+          "note": "13:40 起飞，建议 10:30 前到，留时间办退税"
+        },
+        {
+          "time": "13:40",
+          "name": "CX288 法兰克福T3 → 香港T1",
+          "duration": "11h40",
+          "cost": 0,
+          "transport": "国泰航空",
+          "note": "次日 07:20 抵达香港"
+        }
+      ]
+    },
+    {
+      "date": "10/08",
+      "weekday": "周四",
+      "theme": "香港 → 北京 · 行程结束",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 26,
+        "low": 17
+      },
+      "activities": [
+        {
+          "time": "07:20",
+          "name": "抵达香港，转机停留 4h40",
+          "duration": "-",
+          "cost": 0,
+          "transport": "-",
+          "note": "时间充裕，可在机场用餐休息"
+        },
+        {
+          "time": "12:00",
+          "name": "CX332 香港T1 → 北京首都T3",
+          "duration": "3h25",
+          "cost": 0,
+          "transport": "国泰航空",
+          "note": "15:25 抵达北京，结束愉快行程"
+        }
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "name": "Munich Marriott Hotel（慕尼黑万豪酒店）",
+      "area": "慕尼黑 · 1晚 9/26 · 万豪系",
+      "pricePerNight": 1100,
+      "highlights": "万豪系;英国花园旁;停车方便;可累积万豪积分",
+      "rating": "4.3",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Munich%20Marriott%20Hotel%2C%20Munich"
+    },
+    {
+      "name": "Hotel Schlosskrone（施洛斯科隆酒店）",
+      "area": "福森 · 1晚 9/27",
+      "pricePerNight": 1100,
+      "highlights": "四星;含早;步行可达福森老城;距新天鹅堡10分钟车程;当地无万豪系",
+      "rating": "4.4",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Schlosskrone%2C%20F%C3%BCssen"
+    },
+    {
+      "name": "Zurich Marriott Hotel（苏黎世万豪酒店）",
+      "area": "苏黎世 · 1晚 9/28 · 万豪系",
+      "pricePerNight": 1500,
+      "highlights": "万豪系;利马特河畔近火车站;非万豪备选：Central Plaza（小红书力荐，更便宜）",
+      "rating": "4.4",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Zurich%20Marriott%20Hotel%2C%20Zurich"
+    },
+    {
+      "name": "Beatenberg Resort & Spa（比滕贝格度假村）",
+      "area": "因特拉肯周边 · 2晚 9/29-9/30",
+      "pricePerNight": 1700,
+      "highlights": "四星;含早;俯瞰图恩湖;⚠️不可取消故保留;平替参考：Wilderswil Jungfrau Alpine Inn（小红书96赞，约¥1000/晚含早，近车站）;当地无万豪系",
+      "rating": "4.3",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Beatenberg%20Resort%20%26%20Spa%2C%20Beatenberg"
+    },
+    {
+      "name": "Hotel Bären am Bundesplatz（伯尔尼联邦广场熊酒店）",
+      "area": "伯尔尼 · 1晚 10/1 ✨小红书力荐",
+      "pricePerNight": 1000,
+      "highlights": "四星;老城中心近钟楼;送 Bern Ticket 免费公交;比琉森便宜且次日去黑森林更近;伯尔尼无万豪系",
+      "rating": "4.4",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20B%C3%A4ren%20am%20Bundesplatz%2C%20Bern"
+    },
+    {
+      "name": "Maritim TitiseeHotel（蒂蒂湖酒店）",
+      "area": "滴滴湖 · 1晚 10/2",
+      "pricePerNight": 1100,
+      "highlights": "四星;含早;湖景房;当地无万豪系",
+      "rating": "4.2",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Maritim%20TitiseeHotel%2C%20Titisee-Neustadt"
+    },
+    {
+      "name": "Hotel Rappen Rothenburg（罗滕堡拉彭酒店）",
+      "area": "罗滕堡 · 1晚 10/3",
+      "pricePerNight": 950,
+      "highlights": "四星;含早;近城门停车方便;自带餐厅口碑好;当地无万豪系",
+      "rating": "4.3",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Rappen%2C%20Rothenburg%20ob%20der%20Tauber"
+    },
+    {
+      "name": "Heidelberg Marriott Hotel（海德堡万豪酒店）",
+      "area": "海德堡 · 1晚 10/4 · 万豪系",
+      "pricePerNight": 900,
+      "highlights": "万豪系;内卡河畔有停车场;小红书红榜备选：Hilton Heidelberg",
+      "rating": "4.2",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Heidelberg%20Marriott%20Hotel%2C%20Heidelberg"
+    },
+    {
+      "name": "Hotel Weinberg-Schlößchen（韦恩伯格-斯辰酒店）",
+      "area": "巴哈拉赫 · 1晚 10/5",
+      "pricePerNight": 900,
+      "highlights": "三星;含早;葡萄园景观;小镇中心;当地无万豪系",
+      "rating": "4.4",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Weinberg-Schl%C3%B6%C3%9Fchen%2C%20Bacharach"
+    },
+    {
+      "name": "Frankfurt Airport Marriott Hotel（法兰克福机场万豪酒店）",
+      "area": "法兰克福机场 · 1晚 10/6 · 万豪系",
+      "pricePerNight": 1100,
+      "highlights": "万豪系;直连T1航站楼;还车超方便",
+      "rating": "4.4",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Frankfurt%20Airport%20Marriott%20Hotel%2C%20Frankfurt"
+    }
+  ],
+  "budget": {
+    "transport": {
+      "items": [
+        {
+          "name": "国泰航空往返机票 ×2人（实查 ¥11,300/人）",
+          "cost": 22600
+        },
+        {
+          "name": "租车 11天 含全险（慕尼黑取/法兰克福还，德瑞全程同一辆车，无重复计费）≈",
+          "cost": 5500
+        },
+        {
+          "name": "油费 ≈（全程约1,655km，柴油/95号 ~€1.7/L）",
+          "cost": 2000
+        },
+        {
+          "name": "停车费 ≈（瑞士城市停车较贵 CHF3-5/h）",
+          "cost": 800
+        },
+        {
+          "name": "瑞士高速年票 Vignette ≈（唯一跨国附加费）",
+          "cost": 320
+        }
+      ],
+      "subtotal": 31220
+    },
+    "accommodation": {
+      "items": [
+        {
+          "name": "慕尼黑万豪 1晚 ~",
+          "cost": 1100
+        },
+        {
+          "name": "福森 1晚 ~",
+          "cost": 1100
+        },
+        {
+          "name": "苏黎世万豪 1晚 ~",
+          "cost": 1500
+        },
+        {
+          "name": "因特拉肯 2晚 ~",
+          "cost": 3400
+        },
+        {
+          "name": "伯尔尼 1晚 ~",
+          "cost": 1000
+        },
+        {
+          "name": "滴滴湖 1晚 ~",
+          "cost": 1100
+        },
+        {
+          "name": "罗滕堡 1晚 ~",
+          "cost": 950
+        },
+        {
+          "name": "海德堡万豪 1晚 ~",
+          "cost": 900
+        },
+        {
+          "name": "巴哈拉赫 1晚 ~",
+          "cost": 900
+        },
+        {
+          "name": "法兰克福机场万豪 1晚 ~",
+          "cost": 1100
+        }
+      ],
+      "subtotal": 13050
+    },
+    "food": {
+      "items": [
+        {
+          "name": "正餐 2人 × 11天 ≈（午晚餐人均€20-50）",
+          "cost": 7500
+        }
+      ],
+      "subtotal": 7500
+    },
+    "tickets": {
+      "items": [
+        {
+          "name": "少女峰铁路往返 ×2 ≈",
+          "cost": 3000
+        },
+        {
+          "name": "新天鹅堡 ×2 ≈",
+          "cost": 300
+        },
+        {
+          "name": "琉森湖游船+冰川公园 ×2 ≈",
+          "cost": 450
+        },
+        {
+          "name": "滴滴湖游船+特里贝格瀑布 ≈",
+          "cost": 250
+        },
+        {
+          "name": "海德堡城堡缆车 ×2 ≈",
+          "cost": 160
+        },
+        {
+          "name": "马克斯堡+博帕德缆车+莱茵费尔斯堡 ≈",
+          "cost": 430
+        },
+        {
+          "name": "尼德瓦尔德缆车+音乐盒博物馆 ≈",
+          "cost": 280
+        },
+        {
+          "name": "慕尼黑王宫+罗滕堡守夜人巡游 ≈",
+          "cost": 250
+        },
+        {
+          "name": "布里恩茨蒸汽火车 ×2 ≈",
+          "cost": 850
+        },
+        {
+          "name": "维尔茨堡主教宫 ×2 ≈",
+          "cost": 150
+        },
+        {
+          "name": "哈德昆缆车 ×2 ≈",
+          "cost": 600
+        }
+      ],
+      "subtotal": 6720
+    },
+    "other": {
+      "items": [
+        {
+          "name": "旅行保险 ×2 ≈",
+          "cost": 600
+        }
+      ],
+      "subtotal": 600
+    },
+    "total": 59090,
+    "perPerson": 29545
+  },
+  "tips": [
+    "路线逻辑：慕尼黑→福森→(林道/博登湖)→苏黎世→琉森→龙疆→因特拉肯(3天)→伊瑟尔特瓦尔德/施皮茨→伯尔尼→黑森林→罗滕堡→海德堡→莱茵河谷→法兰克福，全程环线无回头路，总里程约1,625km，仅 Day9 约3小时驾驶，其余均在3小时内",
+    "交通费无重叠：全程只租一次车（慕尼黑机场取、法兰克福机场还），德国+瑞士段由同一辆车覆盖；德国高速免费，瑞士只需一张 CHF40 高速年票 Vignette（边境加油站购买贴前挡），除此之外无其他跨国交通费",
+    "新天鹅堡、少女峰铁路务必提前在官网购票订时段；少女峰出发前查山顶实时天气摄像头",
+    "龙疆打卡（小红书高赞实测）：Kaiserstuhl 观景台拍明信片全景；S弯公路定位 Mülibachersträssli 14；只在公共区域拍摄，勿闯私人领地",
+    "伯尔尼住宿均送 Bern Ticket，市内公交/电车免费坐，部分景点门票折扣（联邦宫观景平台、熊公园免费）",
+    "罗滕堡值得去：小红书870赞称其为'德版孤独星球封面小镇、迪士尼木偶奇遇记原型'，且多次入选'德国童话小镇'榜单，故保留",
+    "酒店已按小红书+Booking口碑优化：苏黎世 Central Plaza、琉森 Radisson Blu、海德堡 Hilton（当地红黑榜唯一红榜）；慕尼黑避开 Holiday Inn City Centre（小红书黑榜：离地铁远）",
+    "德国高速部分路段限速，注意观察；莱茵河谷小镇停车位少，建议早到或停镇外 P+R",
+    "莱茵河谷精华在布劳巴赫—吕德斯海姆 65km 河段（UNESCO 世界遗产），本方案两天慢游，含马克斯堡、博帕德四湖景缆车、上韦瑟尔、洛蕾莱",
+    "10月初海德堡/莱茵河谷正值葡萄采收季，雷司令新酒 Federweißer 值得尝",
+    "标注 ~ 为参考价、≈ 为估算价；酒店以实际预订为准（报价不含城市税）",
+    "机票和酒店为动态定价，出行前请在国泰官网/携程/Booking 确认实际价格并预订",
+    "酒店万豪系优先：慕尼黑万豪、苏黎世万豪、海德堡万豪、法兰克福机场万豪均可累积万豪旅享家积分；福森/因特拉肯/伯尔尼/滴滴湖/罗滕堡/巴哈拉赫无万豪系酒店，保留小红书+Booking口碑优选"
+  ],
+  "totalDrive": {
+    "km": 1625,
+    "note": "全程自驾总里程约 1,625 公里；除 Day9（滴滴湖→罗滕堡 约3小时）外每日驾驶均在 3 小时内；跨国不换车：同一辆车德瑞两国通用，只需入瑞士时买一张高速年票 Vignette，交通费无重叠"
+  },
+  "alternatives": [
+    {
+      "place": "维尔茨堡 Würzburg",
+      "verdict": "✅ 已纳入 Day10",
+      "reason": "小红书368赞评'顶级'；罗滕堡→海德堡必经，仅多停半天，主教宫为UNESCO"
+    },
+    {
+      "place": "布里恩茨蒸汽火车 Brienz Rothorn Bahn",
+      "verdict": "✅ 已纳入 Day7 上午",
+      "reason": "1359赞称'夯爆了'，百年蒸汽机车，两人仅约CHF104"
+    },
+    {
+      "place": "国王湖 Königssee",
+      "verdict": "❌ 不纳入",
+      "reason": "慕尼黑以东2.5h，与新天鹅堡方向相反，需+1天；如想去可替换福森那天"
+    },
+    {
+      "place": "采尔马特 Zermatt（马特洪峰）",
+      "verdict": "❌ 不纳入",
+      "reason": "1359赞'夯'，但因特拉肯以南2.5h需住1-2晚，会砍掉莱茵河谷；留给下次"
+    },
+    {
+      "place": "Stoos 山脊线",
+      "verdict": "❌ 不纳入",
+      "reason": "1359赞'夯到顶'，在苏黎世-琉森之间但需半天徒步；Day5已排满，若舍弃龙疆可互换"
+    },
+    {
+      "place": "科隆 Cologne（大教堂）",
+      "verdict": "❌ 不纳入",
+      "reason": "368赞'顶级'但在莱茵河谷以北，往返绕行3h，不顺法兰克福"
+    },
+    {
+      "place": "班贝格 Bamberg（小威尼斯）",
+      "verdict": "❌ 备选",
+      "reason": "188赞秘境；与维尔茨堡二选一，维尔茨堡更顺路"
+    },
+    {
+      "place": "丁克尔斯比尔 Dinkelsbühl",
+      "verdict": "❌ 备选",
+      "reason": "188赞秘境，距罗滕堡45分钟；风格类似罗滕堡但没旅游团，可互换"
+    },
+    {
+      "place": "柯赫姆 Cochem（摩泽尔河谷）",
+      "verdict": "❌ 不纳入",
+      "reason": "188赞；布劳巴赫以西45分钟绕行，Day11已满"
+    },
+    {
+      "place": "柏林 / 汉堡 / 德累斯顿",
+      "verdict": "🚫 明确排除",
+      "reason": "按你的要求不去柏林汉堡；德累斯顿在东部太远"
+    },
+    {
+      "place": "哈德昆 Harder Kulm",
+      "verdict": "✅ 已纳入 Day6 傍晚",
+      "reason": "因特拉肯门口的双湖+少女峰观景台，缆车10分钟，日落最美"
+    },
+    {
+      "place": "First山 / 雪朗峰 / 米伦",
+      "verdict": "🔄 Day6 替代方案",
+      "reason": "564赞排名：First山可玩性第1（滑板车/卡丁车）、雪朗峰第2（007旋转餐厅）；认为少女峰性价比低。均为少女峰地区内替换，不影响后续行程"
+    },
+    {
+      "place": "图恩 Thun",
+      "verdict": "🔄 Day7 可选加站",
+      "reason": "564赞小镇榜第2，施皮茨坐船/开车15分钟即达，城堡塔楼值得登"
+    },
+    {
+      "place": "Sigriswil 悬索桥",
+      "verdict": "🔄 Day7 备选",
+      "reason": "46赞本地人私藏，340米悬索桥横跨峡谷俯瞰图恩湖，距施皮茨20分钟"
+    },
+    {
+      "place": "莱茵瀑布（沙夫豪森）",
+      "verdict": "🔄 Day8 可选加站",
+      "reason": "欧洲水量最大瀑布，恰在伯尔尼→黑森林路线上；但当日驾驶升至3.5h，超出3h原则，已标注取舍"
+    },
+    {
+      "place": "瑞吉山 Rigi",
+      "verdict": "❌ 不纳入",
+      "reason": "564赞：与琉森经典组合，但1359赞认为'被Stoos完克'；Day5已排满"
+    },
+    {
+      "place": "铁力士 Titlis",
+      "verdict": "❌ 不纳入",
+      "reason": "小红书有多篇避雷帖（'体验感超差'），性价比不如少女峰地区"
+    },
+    {
+      "place": "蒙特勒 / 西庸城堡 / 冰川3000 / 拉沃",
+      "verdict": "❌ 不纳入",
+      "reason": "瑞士西南部法语区，距环线绕行3h+，需额外1-2天；适合下次日内瓦湖专线"
+    }
+  ]
+};
+
+// SVG icon templates (inline, no external deps)
+const SVG = {
+  sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>',
+  cloud: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>',
+  cloudSun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M4.93 4.93l1.41 1.41M20 12h2M4 12H2M19.07 4.93l-1.41 1.41"/><circle cx="12" cy="9" r="4" opacity=".5"/><path d="M18 13h-1.26A7 7 0 0 0 6 15.26 5 5 0 1 0 9 23h9a5 5 0 0 0 0-10z"/></svg>',
+  rain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 13V4a4 4 0 0 0-8 0v1H6a4 4 0 0 0 0 8h10a4 4 0 0 0 0-8Z"/><path d="M8 19v2M12 19v2M16 19v2"/></svg>',
+  storm: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><path d="m13 12-3 5h4l-3 5"/></svg>',
+  snow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><path d="M8 18l.01 0M12 18l.01 0M16 18l.01 0"/></svg>',
+  utensils: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>',
+  mapPin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+  lightbulb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18h6M10 22h4M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>',
+  info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+  plane: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>',
+  hotel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M3 7v14M21 7v14M6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3"/><rect x="7" y="10" width="3" height="3" rx=".5"/><rect x="14" y="10" width="3" height="3" rx=".5"/><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg>',
+  ticket: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>',
+  box: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
+  chevDown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>'
+};
+
+const weatherIcons = { sunny: SVG.sun, cloudy: SVG.cloud, rainy: SVG.rain, stormy: SVG.storm, snowy: SVG.snow, partlyCloudy: SVG.cloudSun, overcast: SVG.cloud };
+const budgetColors = { transport: '#0EA5E9', accommodation: '#8B5CF6', food: '#F97316', tickets: '#F43F5E', other: '#64748B' };
+const budgetIcons = { transport: SVG.plane, accommodation: SVG.hotel, food: SVG.utensils, tickets: SVG.ticket, other: SVG.box };
+const budgetLabels = { transport: '交通', accommodation: '住宿', food: '餐饮', tickets: '门票', other: '其他' };
+
+function renderWeather(weather, days) {
+  const bar = document.getElementById('weatherBar');
+  bar.innerHTML = days.map(d => {
+    const icon = weatherIcons[d.weather.icon] || SVG.cloudSun;
+    return `<div class="weather-card">
+      <div class="w-date">${d.date} ${d.weekday}</div>
+      <div class="w-icon" style="color:${d.weather.icon === 'sunny' ? '#F59E0B' : d.weather.icon === 'rainy' ? '#0EA5E9' : '#64748B'}">${icon}</div>
+      <div class="w-temp">${d.weather.high}° <span class="w-temp-low">/ ${d.weather.low}°</span></div>
+    </div>`;
+  }).join('');
+
+  const tip = document.getElementById('weatherTip');
+  tip.innerHTML = `<span class="icon" style="color:var(--primary)">${SVG.info}</span>
+    <span>${weather.clothing} · 降水概率 ${weather.rainfall} · ${weather.tips}</span>`;
+}
+
+let pendingRouteMaps = [];
+const routeMapInstances = [];
+
+// Geocoded coordinates for every route waypoint (via Nominatim, baked in at generation time)
+const GEO = {"Munich Airport, Germany":[48.35396,11.77859],"Munich, Germany":[48.13711,11.57538],"Füssen, Germany":[47.5676,10.69932],"Lindau, Germany":[47.57287,9.69619],"Zürich, Switzerland":[47.37445,8.54104],"Lucerne, Switzerland":[47.05214,8.30581],"Lungern, Switzerland":[46.78573,8.16073],"Brienz, Switzerland":[46.756,8.0303],"Interlaken, Switzerland":[46.68552,7.85851],"Grindelwald, Switzerland":[46.62427,8.03675],"Lauterbrunnen, Switzerland":[46.5939,7.9078],"Spiez, Switzerland":[46.69195,7.67747],"Bern, Switzerland":[46.94847,7.45217],"Triberg im Schwarzwald, Germany":[48.1298,8.23227],"Titisee-Neustadt, Germany":[47.91734,8.17352],"Rothenburg ob der Tauber, Germany":[49.3658,10.16292],"Würzburg, Germany":[49.77804,9.94348],"Heidelberg, Germany":[49.40936,8.69472],"Braubach, Germany":[50.27512,7.65107],"Boppard, Germany":[50.23128,7.58859],"Sankt Goar, Germany":[50.15,7.71667],"Bacharach, Germany":[50.05979,7.7684],"Oberwesel, Germany":[50.1075,7.72662],"Loreley, Sankt Goarshausen, Germany":[50.12064,7.73241],"Rüdesheim am Rhein, Germany":[50.0293,7.8902],"Frankfurt Airport, Germany":[50.02441,8.5552]};
+
+function buildRouteMap(el, pts) {
+  const stops = pts.map(p => ({ name: p, ll: GEO[p] })).filter(s => s.ll);
+  if (!stops.length) return;
+  const map = L.map(el, { scrollWheelZoom: false });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors · routing: OSRM'
+  }).addTo(map);
+  stops.forEach((s, idx) => {
+    const cls = idx === 0 ? 'map-stop first' : idx === stops.length - 1 ? 'map-stop last' : 'map-stop';
+    L.marker(s.ll, {
+      icon: L.divIcon({ className: cls, html: '<span>' + (idx + 1) + '</span>', iconSize: [24, 24], iconAnchor: [12, 12] })
+    }).addTo(map).bindTooltip(s.name, { direction: 'top', className: 'map-tip' });
+  });
+  const latlngs = stops.map(s => s.ll);
+  const bounds = L.latLngBounds(latlngs);
+  // Guarantee: the entire day's trip is visible within the frame from the start
+  map.fitBounds(bounds, { padding: [40, 40] });
+  const state = { map, bounds };
+  routeMapInstances.push(state);
+  const drawFallback = () => {
+    L.polyline(latlngs, { color: '#2563EB', weight: 4, opacity: 0.8, dashArray: '2 6' }).addTo(map);
+  };
+  // Driving route via OSRM demo server (no API key); refit after it arrives
+  fetch('https://router.project-osrm.org/route/v1/driving/' + latlngs.map(ll => ll[1] + ',' + ll[0]).join(';') + '?overview=full&geometries=geojson')
+    .then(r => (r.ok ? r.json() : Promise.reject(new Error('osrm'))))
+    .then(data => {
+      const geom = data && data.routes && data.routes[0] && data.routes[0].geometry;
+      if (!geom) { drawFallback(); return; }
+      const line = L.geoJSON(geom, { style: { color: '#2563EB', weight: 4, opacity: 0.85 } }).addTo(map);
+      state.bounds = bounds.extend(line.getBounds());
+      map.fitBounds(state.bounds, { padding: [40, 40] });
+    })
+    .catch(drawFallback);
+}
+
+function initRouteMaps() {
+  if (!window.L || !pendingRouteMaps.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      obs.unobserve(en.target);
+      const conf = pendingRouteMaps.find(m => m.elId === en.target.id);
+      if (conf) buildRouteMap(en.target, conf.pts);
+    });
+  }, { rootMargin: '300px' });
+  pendingRouteMaps.forEach(m => {
+    const el = document.getElementById(m.elId);
+    if (el) obs.observe(el);
+  });
+}
+
+// After expanding/collapsing day cards, recalc map size and re-fit the whole route
+function refreshRouteMaps() {
+  setTimeout(() => {
+    routeMapInstances.forEach(s => {
+      const el = s.map.getContainer();
+      if (!el.offsetParent) return;
+      s.map.invalidateSize();
+      if (s.bounds && s.bounds.isValid()) s.map.fitBounds(s.bounds, { padding: [40, 40] });
+    });
+  }, 420);
+}
+
+function renderDayToolbar(days) {
+  const bar = document.getElementById('dayToolbar');
+  if (!bar) return;
+  const chips = days.map((d, i) =>
+    `<a class="day-chip" href="#day-${i + 1}" title="${d.date} ${d.weekday} · ${d.theme}">D${i + 1}</a>`
+  ).join('');
+  bar.innerHTML = chips
+    + '<span class="day-toolbar-spacer"></span>'
+    + '<button class="day-toolbar-btn" onclick="setAllDays(false)">全部展开</button>'
+    + '<button class="day-toolbar-btn" onclick="setAllDays(true)">全部折叠</button>';
+}
+
+function setAllDays(collapse) {
+  document.querySelectorAll('#daysContainer .day-card').forEach(card => {
+    card.classList.toggle('collapsed', collapse);
+    const header = card.querySelector('.day-header');
+    if (header) header.setAttribute('aria-expanded', String(!collapse));
+  });
+  refreshRouteMaps();
+}
+
+function renderDays(days) {
+  pendingRouteMaps = [];
+  const container = document.getElementById('daysContainer');
+  container.innerHTML = days.map((day, i) => {
+    const wIcon = weatherIcons[day.weather.icon] || SVG.cloudSun;
+    const acts = day.activities.map(a => {
+      const isMeal = a.meal || /[午晚早]餐/.test(a.name);
+      let html = `<div class="tl-item${isMeal ? ' is-meal' : ''}"><div class="tl-dot"></div>`;
+      html += `<div class="tl-time">${a.time}${a.duration ? ' · ' + a.duration : ''}</div><div class="tl-content">`;
+      html += `<h4>${a.name}</h4>`;
+      if (a.note) html += `<p>${a.note}</p>`;
+      if (a.meal) {
+        html += `<div class="meal-card">
+          <div class="meal-icon"><span class="icon">${SVG.utensils}</span></div>
+          <div class="meal-info">
+            <div class="meal-name">${a.meal.name}</div>
+            <div class="meal-detail">${a.meal.cuisine} · ${a.meal.location}${a.meal.recommended ? ' · 推荐：' + a.meal.recommended : ''}</div>
+          </div>
+          <div class="meal-price">¥${a.meal.perPerson}/人</div>
+        </div>`;
+      }
+      const tags = [];
+      if (a.cost === 0) tags.push(`<span class="tag tag-free">免费</span>`);
+      else if (a.cost) tags.push(`<span class="tag tag-cost">¥${a.cost}</span>`);
+      if (a.transport) tags.push(`<span class="tag tag-transport">${a.transport}</span>`);
+      if (tags.length) html += `<div class="tl-tags">${tags.join('')}</div>`;
+      html += `</div></div>`;
+      return html;
+    }).join('');
+
+    let routeHtml = '';
+    if (day.route) {
+      const r = day.route;
+      const pts = [r.from].concat(r.via || []).concat([r.to]);
+      const mpts = r.mapPts || pts;
+      const dirUrl = 'https://www.google.com/maps/dir/' + mpts.map(p => encodeURIComponent(p)).join('/');
+      const mapId = 'route-map-' + (i + 1);
+      pendingRouteMaps.push({ elId: mapId, pts: mpts });
+      routeHtml = '<div class="route-bar">'
+        + '<span>🚗 ' + pts.join(' → ') + '</span>'
+        + '<span class="r-km">丨 约 ' + r.km + ' km</span>'
+        + '<span>丨 驾驶 ' + r.driveTime + '</span>'
+        + '<a class="gmaps-link" href="' + dirUrl + '" target="_blank" rel="noopener">Google Maps 打开 ↗</a>'
+        + '</div>'
+        + '<div class="route-map" id="' + mapId + '"></div>';
+    }
+    let paceHtml = '';
+    if (day.xhsNote) {
+      paceHtml = '<div class="pace-note">⏱️ 节奏提示：' + day.xhsNote + '</div>';
+    }
+    let stayHtml = '';
+    if (day.stay) {
+      stayHtml = day.stayUrl
+        ? '<a class="preview-card booking-card stay-card" href="' + day.stayUrl + '" target="_blank" rel="noopener">'
+          + '<div class="pc-badge" style="background:#003580">B</div>'
+          + '<div class="pc-body"><div class="pc-title">🏨 当晚住宿 · Booking.com 预订</div>'
+          + '<div class="pc-sub">' + day.stay + '</div></div><div class="pc-arrow">↗</div></a>'
+        : '<div class="stay-bar"><span class="stay-label">🏨 当晚住宿</span><span>' + day.stay + '</span></div>';
+    }
+    let xhsHtml = '';
+    if (day.xhs && day.xhs.length) {
+      xhsHtml = '<div class="xhs-block"><div class="xhs-title">📕 小红书实测 · 到了这地方看什么（' + day.xhs.length + '篇）</div>'
+        + day.xhs.map(n => '<a class="preview-card xhs-card" href="' + n.url + '" target="_blank" rel="noopener">'
+          + '<div class="pc-badge" style="background:#FF2442">薯</div>'
+          + '<div class="pc-body"><div class="pc-title">' + n.title + '</div>'
+          + (n.takeaway ? '<div class="pc-sub">' + n.takeaway + '</div>' : '')
+          + '<div class="pc-meta">小红书 · ❤ ' + n.likes + '</div></div>'
+          + '<div class="pc-arrow">↗</div></a>').join('') + '</div>';
+    }
+    return `<div class="day-card" id="day-${i + 1}">
+      <div class="day-header" tabindex="0" role="button" aria-expanded="true"
+           onclick="toggleDay(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDay(this)}">
+        <div class="day-header-left">
+          <div class="day-num">D${i + 1}</div>
+          <div class="day-header-info">
+            <h3>${day.theme}</h3>
+            <div class="day-meta">
+              <span>${day.date} ${day.weekday}</span>
+              <span style="display:inline-flex;align-items:center;gap:3px;color:${day.weather.icon === 'sunny' ? '#F59E0B' : '#64748B'}">
+                <span class="icon icon-sm">${wIcon}</span> ${day.weather.high}°/${day.weather.low}°
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="toggle-icon"><span class="icon icon-sm">${SVG.chevDown}</span></div>
+      </div>
+      <div class="day-body">${routeHtml}${paceHtml}<div class="timeline">${acts}</div>${stayHtml}${xhsHtml}</div>
+    </div>`;
+  }).join('');
+  initRouteMaps();
+}
+
+function toggleDay(el) {
+  const card = el.closest('.day-card');
+  const expanded = !card.classList.contains('collapsed');
+  card.classList.toggle('collapsed');
+  el.setAttribute('aria-expanded', !expanded);
+  refreshRouteMaps();
+}
+
+function renderHotels(hotels) {
+  document.getElementById('hotelGrid').innerHTML = hotels.map((h, i) => {
+    const tags = h.highlights.split(/[;；、,，]/).filter(Boolean).map(t => `<span class="hotel-tag">${t.trim()}</span>`).join('');
+    return `<div class="hotel-card">
+      ${i === 0 ? '<div class="hotel-badge">推荐</div>' : ''}
+      <div class="hotel-name">${h.name}</div>
+      ${h.bookingUrl ? '<a class="preview-card booking-card" href="' + h.bookingUrl + '" target="_blank" rel="noopener">'
+        + '<div class="pc-badge" style="background:#003580">B</div>'
+        + '<div class="pc-body"><div class="pc-title">' + h.name.split('（')[0] + '</div>'
+        + '<div class="pc-sub">Booking.com · ' + h.area + ' · 评分 ' + h.rating + '/5 · 约¥' + h.pricePerNight + '/晚</div></div>'
+        + '<div class="pc-arrow">↗</div></a>' : ''}
+      <div class="hotel-area"><span class="icon icon-sm" style="color:var(--accent)">${SVG.mapPin}</span>${h.area}</div>
+      <div class="hotel-price-row"><span class="hotel-price">¥${h.pricePerNight}</span><span class="hotel-price-unit">/晚</span></div>
+      <div class="hotel-highlights">${tags}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderBudget(budget) {
+  // Chart bar
+  const cats = Object.entries(budget).filter(([k]) => !['total', 'perPerson'].includes(k));
+  const total = budget.total || cats.reduce((s, [, d]) => s + d.subtotal, 0);
+  document.getElementById('budgetChart').innerHTML = cats.map(([cat, data]) =>
+    `<div class="budget-chart-seg" style="width:${(data.subtotal / total * 100).toFixed(1)}%;background:${budgetColors[cat] || '#94A3B8'}"></div>`
+  ).join('');
+
+  // Table
+  const tbody = document.querySelector('#budgetTable tbody');
+  tbody.innerHTML = cats.map(([cat, data]) => {
+    const icon = budgetIcons[cat] || SVG.box;
+    const label = budgetLabels[cat] || cat;
+    let rows = `<tr class="cat-row"><td colspan="2"><span class="cat-icon"><span class="icon icon-sm" style="color:${budgetColors[cat]}">${icon}</span>${label}</span></td><td class="subtotal">¥${data.subtotal.toLocaleString()}</td></tr>`;
+    data.items.forEach(item => { rows += `<tr class="sub-row"><td></td><td>${item.name}</td><td>¥${item.cost.toLocaleString()}</td></tr>`; });
+    return rows;
+  }).join('');
+
+  // Total bar
+  const el = document.getElementById('budgetTotal');
+  el.querySelector('.budget-total-amount').textContent = `¥${total.toLocaleString()}`;
+  el.querySelector('.budget-total-per').textContent = `人均 ¥${(budget.perPerson || 0).toLocaleString()}`;
+}
+
+function renderTips(tips) {
+  document.getElementById('tipsList').innerHTML = tips.map(t =>
+    `<div class="tip-card"><div class="tip-icon"><span class="icon">${SVG.lightbulb}</span></div><span>${t}</span></div>`
+  ).join('');
+}
+
+if (tripData) {
+  document.getElementById('heroTitle').textContent = tripData.title;
+  if (tripData.dateRange) document.getElementById('heroDate').textContent = tripData.dateRange;
+  if (tripData.travelers) document.getElementById('heroTravelers').textContent = tripData.travelers;
+  if (tripData.budget) document.getElementById('heroBudget').textContent = `¥${(tripData.budget.total || 0).toLocaleString()}`;
+  renderWeather(tripData.weather, tripData.days);
+  if (tripData.totalDrive) {
+    const dc = document.getElementById('daysContainer');
+    const banner = document.createElement('div');
+    banner.className = 'drive-total';
+    banner.textContent = '🛣️ ' + tripData.totalDrive.note;
+    dc.parentNode.insertBefore(banner, dc);
+  }
+  renderDayToolbar(tripData.days);
+  renderDays(tripData.days);
+  renderHotels(tripData.hotels);
+  renderBudget(tripData.budget);
+  renderTips(tripData.tips);
+  if (tripData.alternatives) {
+    const list = document.getElementById('tipsList');
+    const head = document.createElement('div');
+    head.className = 'alt-head';
+    head.textContent = '🧭 小红书"德瑞必去"榜单核对：未纳入目的地评估';
+    list.parentNode.insertBefore(head, list);
+    tripData.alternatives.forEach(a => {
+      const div = document.createElement('div');
+      div.className = 'tip-card';
+      div.innerHTML = '<div class="tip-icon"><span class="icon">' + SVG.lightbulb + '</span></div><span><b>' + a.place + '</b> ' + a.verdict + ' — ' + a.reason + '</span>';
+      list.appendChild(div);
+    });
+  }
+}
+</script>
+</body>
+</html>
