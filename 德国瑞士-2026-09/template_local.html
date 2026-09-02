@@ -152,6 +152,12 @@
   .day-header-left { display: flex; align-items: center; }
   .day-header-info h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); line-height: 1.3; }
   .day-header-info .day-meta { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; display: flex; align-items: center; gap: 6px; }
+  .day-summary { font-size: 0.82rem; color: var(--text-body); margin-top: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 7px; line-height: 1.4; }
+  .day-summary .ds-route { font-weight: 600; color: var(--text); }
+  .day-summary .ds-fly, .day-summary .ds-stay { font-size: 0.71rem; font-weight: 600; padding: 2px 9px; border-radius: 99px; white-space: nowrap; }
+  .day-summary .ds-fly { background: #EFF6FF; color: #2563EB; }
+  .day-summary .ds-stay { background: var(--accent-light); color: var(--accent-dark); }
+  .day-summary .ds-end { background: var(--bg); color: var(--text-muted); }
   .day-header .toggle-icon {
     width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
     background: var(--bg); color: var(--text-muted); transition: all var(--transition);
@@ -451,6 +457,13 @@
   .bk-sub { font-size:0.8rem; color:var(--text-muted); line-height:1.45; }
   .bk-status { flex:none; font-size:0.76rem; font-weight:600; padding:3px 11px; border-radius:99px; background:var(--bg); color:var(--text-muted); white-space:nowrap; }
   .booking-row.is-booked .bk-status { background:var(--success-light); color:#047857; }
+  .bk-addr { font-size:0.8rem; color:var(--success); font-weight:600; margin-top:2px; }
+  .bk-hint { font-size:0.72rem; color:var(--text-muted); opacity:0.75; margin-top:2px; }
+  .bk-actions { flex:none; display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
+  .bk-pdf { font-size:0.78rem; font-weight:600; color:#003580; background:#EAF2FD; border:1px solid #BFDBFE; border-radius:6px; padding:4px 10px; text-decoration:none; white-space:nowrap; }
+  .bk-pdf:hover { background:#DBEAFE; }
+  .bk-rec { font-size:0.76rem; font-weight:600; color:var(--accent); text-decoration:none; white-space:nowrap; }
+  .bk-rec:hover { text-decoration:underline; }
   .stay-card { margin-top:16px; }
   .xhs-card { margin-bottom:8px; border-color:#FECDD3; background:linear-gradient(135deg,#FFF5F6 0%,#fff 60%); }
   .xhs-card:last-child { margin-bottom:0; }
@@ -530,7 +543,7 @@
       <h2 class="section-title">预订状态</h2>
       <span class="booking-progress" id="bookingProgress"></span>
     </div>
-    <p class="booking-hint">勾选已经预订好的机票和酒店，状态会自动保存在本设备浏览器中（换设备/清除缓存后需重新勾选）。</p>
+    <p class="booking-hint">机票 / 租车 / 酒店的预订进度。已上传订单 PDF 的项目自动标记「已预订」并可点开查看；其余可手动勾选（本设备浏览器记忆）。把订单 PDF 发我即可加入仓库，永久保存、两人跨设备可见。</p>
     <div class="booking-list" id="bookingList"></div>
   </div>
 
@@ -775,6 +788,18 @@ function renderDays(days) {
           + '<div class="pc-meta">小红书 · ❤ ' + n.likes + '</div></div>'
           + '<div class="pc-arrow">↗</div></a>').join('') + '</div>';
     }
+    // Compact overview line: from→to, flight flag, and where you sleep tonight
+    const hasFlight = day.activities.some(a => /航空|✈|EK ?\d|CX ?\d/.test((a.transport || '') + ' ' + (a.name || '')));
+    let seg = day.route ? (day.route.from + ' → ' + day.route.to) : day.theme.split('·')[0].trim();
+    let stayCity = '';
+    if (day.stay) { const pp = day.stay.split('·'); if (pp.length > 1) stayCity = pp[1].trim(); }
+    const sIcon = day.route ? '🚗' : '📍';
+    const summaryHtml = '<div class="day-summary">'
+      + '<span class="ds-route">' + sIcon + ' ' + seg + '</span>'
+      + (hasFlight ? '<span class="ds-fly">✈ 有航班</span>' : '')
+      + (stayCity ? '<span class="ds-stay">🏨 ' + stayCity + '</span>' : '<span class="ds-stay ds-end">🏁 无住宿</span>')
+      + '</div>';
+
     return `<div class="day-card" id="day-${i + 1}">
       <div class="day-header" tabindex="0" role="button" aria-expanded="true"
            onclick="toggleDay(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDay(this)}">
@@ -788,6 +813,7 @@ function renderDays(days) {
                 <span class="icon icon-sm">${wIcon}</span> ${day.weather.high}°/${day.weather.low}°
               </span>
             </div>
+            ${summaryHtml}
           </div>
         </div>
         <div class="toggle-icon"><span class="icon icon-sm">${SVG.chevDown}</span></div>
@@ -851,38 +877,65 @@ function renderBudget(budget) {
 var BOOKING_KEY = 'germany2026_bookings';
 function loadBookings() { try { return JSON.parse(localStorage.getItem(BOOKING_KEY)) || {}; } catch (e) { return {}; } }
 function saveBookings(m) { try { localStorage.setItem(BOOKING_KEY, JSON.stringify(m)); } catch (e) {} }
+// An item counts as booked if it has an uploaded order PDF (repo-hosted) OR the
+// traveler manually ticked it. hasDoc items are locked-on (can't untick).
+function isBooked(it, state) { return !!it.pdf || !!state[it.id]; }
 function updateBookingProgress(items) {
   var s = loadBookings();
-  var done = items.filter(function (it) { return s[it.id]; }).length;
+  var done = items.filter(function (it) { return isBooked(it, s); }).length;
   var el = document.getElementById('bookingProgress');
   if (el) el.textContent = '已预订 ' + done + ' / ' + items.length;
 }
-function renderBookings(flights, hotels) {
+function renderBookings(flights, hotels, car) {
   var items = [];
-  (flights || []).forEach(function (f) { items.push({ id: f.id, kind: '✈️', title: f.label, sub: f.detail }); });
-  (hotels || []).forEach(function (h, i) { items.push({ id: 'hotel-' + i, kind: '🏨', title: h.name.split('（')[0], sub: h.area + ' · 约¥' + h.pricePerNight + '/晚' }); });
+  (flights || []).forEach(function (f) {
+    items.push({ id: f.id, kind: '✈️', title: f.label, sub: f.detail, pdf: f.pdfUrl || '', addr: f.bookedRef || '' });
+  });
+  (car ? [car] : []).forEach(function (c) {
+    items.push({ id: c.id || 'car', kind: '🚗', title: c.label, sub: c.detail, pdf: c.pdfUrl || '', addr: c.bookedRef || '' });
+  });
+  (hotels || []).forEach(function (h, i) {
+    items.push({ id: 'hotel-' + i, kind: '🏨', title: h.name.split('（')[0], sub: h.area + ' · 约¥' + h.pricePerNight + '/晚',
+      pdf: h.pdfUrl || '', addr: h.bookedAddress || '', rec: h.bookingUrl || '' });
+  });
   var state = loadBookings();
   var container = document.getElementById('bookingList');
   container.innerHTML = items.map(function (it) {
-    var done = !!state[it.id];
-    return '<label class="booking-row' + (done ? ' is-booked' : '') + '" data-id="' + it.id + '">'
-      + '<input type="checkbox"' + (done ? ' checked' : '') + '>'
+    var done = isBooked(it, state);
+    var locked = !!it.pdf;
+    var right = '';
+    if (it.pdf) right += '<a class="bk-pdf" href="' + it.pdf + '" target="_blank" rel="noopener">📄 查看订单</a>';
+    else if (it.rec) right += '<a class="bk-rec" href="' + it.rec + '" target="_blank" rel="noopener">去预订 ↗</a>';
+    right += '<span class="bk-status">' + (done ? '已预订' : '未预订') + '</span>';
+    var addr = it.addr ? '<span class="bk-addr">📍 实际预订：' + it.addr + '</span>' : '';
+    var hint = (!it.pdf) ? '<span class="bk-hint">订单 PDF 可发我加入仓库永久保存</span>' : '';
+    return '<div class="booking-row' + (done ? ' is-booked' : '') + '" data-id="' + it.id + '">'
+      + '<input type="checkbox"' + (done ? ' checked' : '') + (locked ? ' disabled' : '') + '>'
       + '<span class="bk-kind">' + it.kind + '</span>'
-      + '<span class="bk-text"><span class="bk-title">' + it.title + '</span><span class="bk-sub">' + it.sub + '</span></span>'
-      + '<span class="bk-status">' + (done ? '已预订' : '未预订') + '</span>'
-      + '</label>';
+      + '<span class="bk-text"><span class="bk-title">' + it.title + '</span><span class="bk-sub">' + it.sub + '</span>' + addr + hint + '</span>'
+      + '<span class="bk-actions">' + right + '</span>'
+      + '</div>';
   }).join('');
   updateBookingProgress(items);
-  container.querySelectorAll('.booking-row input').forEach(function (cb) {
-    cb.addEventListener('change', function (e) {
-      var row = e.target.closest('.booking-row');
-      var id = row.dataset.id;
-      var s = loadBookings();
-      if (e.target.checked) s[id] = true; else delete s[id];
-      saveBookings(s);
-      row.classList.toggle('is-booked', e.target.checked);
-      row.querySelector('.bk-status').textContent = e.target.checked ? '已预订' : '未预订';
-      updateBookingProgress(items);
+  // Toggle handler: clicking the row (not a link) or the checkbox toggles the
+  // manual-booked flag; locked (has-PDF) rows are not toggleable.
+  function setRow(row, checked) {
+    var id = row.dataset.id;
+    var s = loadBookings();
+    if (checked) s[id] = true; else delete s[id];
+    saveBookings(s);
+    row.classList.toggle('is-booked', checked);
+    var st = row.querySelector('.bk-status'); if (st) st.textContent = checked ? '已预订' : '未预订';
+    updateBookingProgress(items);
+  }
+  container.querySelectorAll('.booking-row').forEach(function (row) {
+    var cb = row.querySelector('input');
+    if (cb.disabled) return;
+    cb.addEventListener('change', function (e) { setRow(row, e.target.checked); });
+    row.addEventListener('click', function (e) {
+      if (e.target.closest('a') || e.target === cb) return;
+      cb.checked = !cb.checked;
+      setRow(row, cb.checked);
     });
   });
 }
@@ -909,7 +962,7 @@ if (tripData) {
   renderDayToolbar(tripData.days);
   renderDays(tripData.days);
   renderHotels(tripData.hotels);
-  renderBookings(tripData.flights, tripData.hotels);
+  renderBookings(tripData.flights, tripData.hotels, tripData.car);
   renderBudget(tripData.budget);
   renderTips(tripData.tips);
   if (tripData.alternatives) {
