@@ -437,6 +437,20 @@
   .pc-meta { font-size:11px; color:#FF2442; margin-top:4px; font-weight:600; }
   .pc-arrow { flex:none; color:var(--text-muted); font-size:15px; }
   .booking-card { margin-top:10px; border-color:#BFDBFE; background:linear-gradient(135deg,#F0F7FF 0%,#fff 60%); }
+  /* ---- Booking tracker ---- */
+  .booking-progress { margin-left:auto; font-size:0.85rem; font-weight:700; color:var(--success); background:var(--success-light); padding:5px 14px; border-radius:99px; white-space:nowrap; }
+  .booking-hint { font-size:0.82rem; color:var(--text-muted); margin:-8px 0 16px; }
+  .booking-list { display:flex; flex-direction:column; gap:10px; }
+  .booking-row { display:flex; align-items:center; gap:13px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); padding:14px 16px; cursor:pointer; transition:all var(--transition); }
+  .booking-row:hover { box-shadow:var(--shadow); }
+  .booking-row input { width:20px; height:20px; accent-color:var(--success); flex:none; cursor:pointer; }
+  .booking-row.is-booked { border-color:#6EE7B7; background:linear-gradient(135deg,#ECFDF5 0%,#fff 60%); }
+  .bk-kind { font-size:1.15rem; flex:none; }
+  .bk-text { display:flex; flex-direction:column; gap:2px; flex:1 1 auto; min-width:0; }
+  .bk-title { font-size:0.95rem; font-weight:600; color:var(--text); }
+  .bk-sub { font-size:0.8rem; color:var(--text-muted); line-height:1.45; }
+  .bk-status { flex:none; font-size:0.76rem; font-weight:600; padding:3px 11px; border-radius:99px; background:var(--bg); color:var(--text-muted); white-space:nowrap; }
+  .booking-row.is-booked .bk-status { background:var(--success-light); color:#047857; }
   .stay-card { margin-top:16px; }
   .xhs-card { margin-bottom:8px; border-color:#FECDD3; background:linear-gradient(135deg,#FFF5F6 0%,#fff 60%); }
   .xhs-card:last-child { margin-bottom:0; }
@@ -475,6 +489,7 @@
     <a class="nav-pill" href="#sec-weather"><span class="icon"><svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"/><path d="M12 2v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg></span>天气</a>
     <a class="nav-pill" href="#sec-days"><span class="icon"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>行程</a>
     <a class="nav-pill" href="#sec-hotels"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M3 7v14M21 7v14M6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg></span>住宿</a>
+    <a class="nav-pill" href="#sec-bookings"><span class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>预订</a>
     <a class="nav-pill" href="#sec-budget"><span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>预算</a>
     <a class="nav-pill" href="#sec-tips"><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>贴士</a>
   </nav>
@@ -506,6 +521,17 @@
       <h2 class="section-title">住宿推荐</h2>
     </div>
     <div class="hotel-grid" id="hotelGrid"></div>
+  </div>
+
+  <!-- Bookings -->
+  <div class="section" id="sec-bookings">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--success-light);color:var(--success);"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span></div>
+      <h2 class="section-title">预订状态</h2>
+      <span class="booking-progress" id="bookingProgress"></span>
+    </div>
+    <p class="booking-hint">勾选已经预订好的机票和酒店，状态会自动保存在本设备浏览器中（换设备/清除缓存后需重新勾选）。</p>
+    <div class="booking-list" id="bookingList"></div>
   </div>
 
   <!-- Budget -->
@@ -822,6 +848,45 @@ function renderBudget(budget) {
   el.querySelector('.budget-total-per').textContent = `人均 ¥${(budget.perPerson || 0).toLocaleString()}`;
 }
 
+var BOOKING_KEY = 'germany2026_bookings';
+function loadBookings() { try { return JSON.parse(localStorage.getItem(BOOKING_KEY)) || {}; } catch (e) { return {}; } }
+function saveBookings(m) { try { localStorage.setItem(BOOKING_KEY, JSON.stringify(m)); } catch (e) {} }
+function updateBookingProgress(items) {
+  var s = loadBookings();
+  var done = items.filter(function (it) { return s[it.id]; }).length;
+  var el = document.getElementById('bookingProgress');
+  if (el) el.textContent = '已预订 ' + done + ' / ' + items.length;
+}
+function renderBookings(flights, hotels) {
+  var items = [];
+  (flights || []).forEach(function (f) { items.push({ id: f.id, kind: '✈️', title: f.label, sub: f.detail }); });
+  (hotels || []).forEach(function (h, i) { items.push({ id: 'hotel-' + i, kind: '🏨', title: h.name.split('（')[0], sub: h.area + ' · 约¥' + h.pricePerNight + '/晚' }); });
+  var state = loadBookings();
+  var container = document.getElementById('bookingList');
+  container.innerHTML = items.map(function (it) {
+    var done = !!state[it.id];
+    return '<label class="booking-row' + (done ? ' is-booked' : '') + '" data-id="' + it.id + '">'
+      + '<input type="checkbox"' + (done ? ' checked' : '') + '>'
+      + '<span class="bk-kind">' + it.kind + '</span>'
+      + '<span class="bk-text"><span class="bk-title">' + it.title + '</span><span class="bk-sub">' + it.sub + '</span></span>'
+      + '<span class="bk-status">' + (done ? '已预订' : '未预订') + '</span>'
+      + '</label>';
+  }).join('');
+  updateBookingProgress(items);
+  container.querySelectorAll('.booking-row input').forEach(function (cb) {
+    cb.addEventListener('change', function (e) {
+      var row = e.target.closest('.booking-row');
+      var id = row.dataset.id;
+      var s = loadBookings();
+      if (e.target.checked) s[id] = true; else delete s[id];
+      saveBookings(s);
+      row.classList.toggle('is-booked', e.target.checked);
+      row.querySelector('.bk-status').textContent = e.target.checked ? '已预订' : '未预订';
+      updateBookingProgress(items);
+    });
+  });
+}
+
 function renderTips(tips) {
   document.getElementById('tipsList').innerHTML = tips.map(t =>
     `<div class="tip-card"><div class="tip-icon"><span class="icon">${SVG.lightbulb}</span></div><span>${t}</span></div>`
@@ -844,6 +909,7 @@ if (tripData) {
   renderDayToolbar(tripData.days);
   renderDays(tripData.days);
   renderHotels(tripData.hotels);
+  renderBookings(tripData.flights, tripData.hotels);
   renderBudget(tripData.budget);
   renderTips(tripData.tips);
   if (tripData.alternatives) {
