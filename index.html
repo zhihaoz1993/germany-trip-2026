@@ -437,6 +437,20 @@
   .pc-meta { font-size:11px; color:#FF2442; margin-top:4px; font-weight:600; }
   .pc-arrow { flex:none; color:var(--text-muted); font-size:15px; }
   .booking-card { margin-top:10px; border-color:#BFDBFE; background:linear-gradient(135deg,#F0F7FF 0%,#fff 60%); }
+  /* ---- Booking tracker ---- */
+  .booking-progress { margin-left:auto; font-size:0.85rem; font-weight:700; color:var(--success); background:var(--success-light); padding:5px 14px; border-radius:99px; white-space:nowrap; }
+  .booking-hint { font-size:0.82rem; color:var(--text-muted); margin:-8px 0 16px; }
+  .booking-list { display:flex; flex-direction:column; gap:10px; }
+  .booking-row { display:flex; align-items:center; gap:13px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); padding:14px 16px; cursor:pointer; transition:all var(--transition); }
+  .booking-row:hover { box-shadow:var(--shadow); }
+  .booking-row input { width:20px; height:20px; accent-color:var(--success); flex:none; cursor:pointer; }
+  .booking-row.is-booked { border-color:#6EE7B7; background:linear-gradient(135deg,#ECFDF5 0%,#fff 60%); }
+  .bk-kind { font-size:1.15rem; flex:none; }
+  .bk-text { display:flex; flex-direction:column; gap:2px; flex:1 1 auto; min-width:0; }
+  .bk-title { font-size:0.95rem; font-weight:600; color:var(--text); }
+  .bk-sub { font-size:0.8rem; color:var(--text-muted); line-height:1.45; }
+  .bk-status { flex:none; font-size:0.76rem; font-weight:600; padding:3px 11px; border-radius:99px; background:var(--bg); color:var(--text-muted); white-space:nowrap; }
+  .booking-row.is-booked .bk-status { background:var(--success-light); color:#047857; }
   .stay-card { margin-top:16px; }
   .xhs-card { margin-bottom:8px; border-color:#FECDD3; background:linear-gradient(135deg,#FFF5F6 0%,#fff 60%); }
   .xhs-card:last-child { margin-bottom:0; }
@@ -464,7 +478,7 @@
         </div>
         <div class="hero-meta-item">
           <span class="icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
-          <span>预估 <strong id="heroBudget">¥59090</strong></span>
+          <span>预估 <strong id="heroBudget">¥60190</strong></span>
         </div>
       </div>
     </div>
@@ -475,6 +489,7 @@
     <a class="nav-pill" href="#sec-weather"><span class="icon"><svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"/><path d="M12 2v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg></span>天气</a>
     <a class="nav-pill" href="#sec-days"><span class="icon"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>行程</a>
     <a class="nav-pill" href="#sec-hotels"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M3 7v14M21 7v14M6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg></span>住宿</a>
+    <a class="nav-pill" href="#sec-bookings"><span class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>预订</a>
     <a class="nav-pill" href="#sec-budget"><span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>预算</a>
     <a class="nav-pill" href="#sec-tips"><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>贴士</a>
   </nav>
@@ -508,6 +523,17 @@
     <div class="hotel-grid" id="hotelGrid"></div>
   </div>
 
+  <!-- Bookings -->
+  <div class="section" id="sec-bookings">
+    <div class="section-header">
+      <div class="section-icon" style="background:var(--success-light);color:var(--success);"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span></div>
+      <h2 class="section-title">预订状态</h2>
+      <span class="booking-progress" id="bookingProgress"></span>
+    </div>
+    <p class="booking-hint">勾选已经预订好的机票和酒店，状态会自动保存在本设备浏览器中（换设备/清除缓存后需重新勾选）。</p>
+    <div class="booking-list" id="bookingList"></div>
+  </div>
+
   <!-- Budget -->
   <div class="section" id="sec-budget">
     <div class="section-header">
@@ -524,9 +550,9 @@
     <div class="budget-total" id="budgetTotal">
       <div>
         <div class="budget-total-label">预估总费用</div>
-        <div class="budget-total-per">人均 ¥29545</div>
+        <div class="budget-total-per">人均 ¥30095</div>
       </div>
-      <div class="budget-total-amount">¥59090</div>
+      <div class="budget-total-amount">¥60190</div>
     </div>
   </div>
 
@@ -552,6 +578,18 @@ const tripData = {
   "dateRange": "2026-09-25 ~ 10-08",
   "travelers": "2人 · 自驾",
   "generationDate": "2026-08-25",
+  "flights": [
+    {
+      "id": "flight-out",
+      "label": "去程 · 9/25 北京 → 迪拜 → 慕尼黑",
+      "detail": "EK309 PEK 07:25 → DXB 11:35 · 中转 3h40 · EK051 DXB 15:15 → MUC 20:00（阿联酋航空 · 777-300ER）"
+    },
+    {
+      "id": "flight-return",
+      "label": "回程 · 10/7 法兰克福 → 迪拜 → 北京",
+      "detail": "EK048 FRA 22:20 → DXB 06:40(+1) · 中转 4h · EK308 DXB 10:40 → PEK 22:20（阿联酋航空 · 777-300ER）"
+    }
+  ],
   "revisionNotes": [
     "① 龙疆(Lungern)调整到 Day5 苏黎世→因特拉肯途中顺路游玩，不再走回头路",
     "② 新增海德堡(Heidelberg)一晚：Day10 罗滕堡→海德堡，Day11 上午继续游览后前往莱茵河谷",
@@ -575,43 +613,59 @@ const tripData = {
     {
       "date": "09/25",
       "weekday": "周五",
-      "theme": "北京 → 香港（出发日）",
+      "theme": "北京 → 迪拜 → 慕尼黑（出发日）",
       "weather": {
         "icon": "partlyCloudy",
-        "high": 30,
-        "low": 26
+        "high": 20,
+        "low": 11
       },
       "activities": [
         {
-          "time": "15:30",
+          "time": "04:00",
           "name": "抵达北京首都机场 T3",
           "duration": "-",
           "cost": 0,
           "transport": "市内交通",
-          "note": "国际航班建议提前 3 小时到机场"
+          "note": "EK309 07:25 起飞，国际航班建议提前 3 小时到机场办票安检"
         },
         {
-          "time": "18:40",
-          "name": "CX393 北京首都T3 → 香港T1",
-          "duration": "3h45",
+          "time": "07:25",
+          "name": "EK309 北京首都T3 → 迪拜T3",
+          "duration": "8h10",
           "cost": 0,
-          "transport": "国泰航空",
-          "note": "22:25 抵达香港，转机停留 2h35（含在机票 ¥11,300/人中）"
+          "transport": "阿联酋航空",
+          "note": "波音777-300ER · 有餐食；11:35 抵达迪拜（含在机票 ¥11,300/人中）"
         },
         {
-          "time": "23:00",
-          "name": "香港机场转机休息",
-          "duration": "2h",
+          "time": "11:35",
+          "name": "中转迪拜 T3（停留 3h40）",
+          "duration": "3h40",
           "cost": 0,
           "transport": "-",
-          "note": "无需入境香港，直接走转机通道"
+          "note": "无需过境签 · 行李直达，无需重新取行李"
+        },
+        {
+          "time": "15:15",
+          "name": "EK051 迪拜T3 → 慕尼黑T1",
+          "duration": "6h45",
+          "cost": 0,
+          "transport": "阿联酋航空",
+          "note": "波音777-300ER · 有餐食；20:00 抵达慕尼黑 T1"
+        },
+        {
+          "time": "20:30",
+          "name": "机场取车 + 入住慕尼黑万豪",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "租车",
+          "note": "建议提前在国内办好驾照宣誓翻译件/国际驾照认证件；当晚入住休息，次日整天游慕尼黑"
         }
       ]
     },
     {
       "date": "09/26",
       "weekday": "周六",
-      "theme": "香港 → 慕尼黑 · 巴伐利亚首府初印象",
+      "theme": "慕尼黑 · 巴伐利亚首府初印象",
       "weather": {
         "icon": "partlyCloudy",
         "high": 18,
@@ -619,20 +673,12 @@ const tripData = {
       },
       "activities": [
         {
-          "time": "01:00",
-          "name": "CX301 香港T1 → 慕尼黑T1",
-          "duration": "12h05",
-          "cost": 0,
-          "transport": "国泰航空",
-          "note": "08:05 抵达慕尼黑"
-        },
-        {
-          "time": "09:30",
-          "name": "机场取车",
+          "time": "09:00",
+          "name": "酒店早餐 + 出发",
           "duration": "1h",
           "cost": 0,
-          "transport": "租车",
-          "note": "建议提前在国内办好驾照宣誓翻译件/国际驾照认证件"
+          "transport": "-",
+          "note": "昨晚已抵达入住，今日整天游慕尼黑，无需赶路"
         },
         {
           "time": "11:00",
@@ -1812,7 +1858,7 @@ const tripData = {
     {
       "date": "10/07",
       "weekday": "周三",
-      "theme": "法兰克福 → 香港（返程）",
+      "theme": "法兰克福市区半日游 → 迪拜（返程）",
       "weather": {
         "icon": "partlyCloudy",
         "high": 18,
@@ -1820,27 +1866,70 @@ const tripData = {
       },
       "activities": [
         {
-          "time": "10:30",
-          "name": "前往法兰克福机场 T3",
+          "time": "09:30",
+          "name": "退房 + 驱车进法兰克福市区",
           "duration": "-",
           "cost": 0,
-          "transport": "酒店 shuttle/步行",
-          "note": "13:40 起飞，建议 10:30 前到，留时间办退税"
+          "transport": "自驾",
+          "note": "返程航班改为晚上 22:20 起飞，白天空出可游法兰克福老城"
         },
         {
-          "time": "13:40",
-          "name": "CX288 法兰克福T3 → 香港T1",
-          "duration": "11h40",
+          "time": "10:00",
+          "name": "罗马广场 Römerberg + 老市政厅 + 保罗教堂",
+          "duration": "2h",
           "cost": 0,
-          "transport": "国泰航空",
-          "note": "次日 07:20 抵达香港"
+          "transport": "步行",
+          "note": "法兰克福老城核心，桁架房+市政厅广场，适合逛吃拍照"
+        },
+        {
+          "time": "12:00",
+          "name": "午餐（法兰克福老城）",
+          "meal": {
+            "name": "Kleinmarkthalle 室内市场",
+            "cuisine": "德式小吃/香肠",
+            "perPerson": 20,
+            "recommended": "法兰克福香肠、绿酱、苹果酒 Apfelwein",
+            "location": "罗马广场步行 5 分钟"
+          }
+        },
+        {
+          "time": "14:00",
+          "name": "美因河畔 + 铁桥 Eiserner Steg（可选博物馆岸）",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "沿河散步看天际线，时间富余可逛施泰德博物馆区"
+        },
+        {
+          "time": "16:30",
+          "name": "法兰克福机场还车",
+          "duration": "1h",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "全程租车在此归还（慕尼黑取/法兰克福还）；预留退税与还车时间"
+        },
+        {
+          "time": "18:30",
+          "name": "抵达法兰克福机场 T3 办登机 + 退税",
+          "duration": "-",
+          "cost": 0,
+          "transport": "-",
+          "note": "EK048 22:20 起飞，建议提前 3h 到，先办退税再安检"
+        },
+        {
+          "time": "22:20",
+          "name": "EK048 法兰克福T3 → 迪拜T3",
+          "duration": "6h20",
+          "cost": 0,
+          "transport": "阿联酋航空",
+          "note": "波音777-300ER · 有餐食；次日(10/08) 06:40 抵达迪拜"
         }
       ]
     },
     {
       "date": "10/08",
       "weekday": "周四",
-      "theme": "香港 → 北京 · 行程结束",
+      "theme": "迪拜 → 北京 · 行程结束",
       "weather": {
         "icon": "partlyCloudy",
         "high": 26,
@@ -1848,20 +1937,20 @@ const tripData = {
       },
       "activities": [
         {
-          "time": "07:20",
-          "name": "抵达香港，转机停留 4h40",
-          "duration": "-",
+          "time": "06:40",
+          "name": "抵达迪拜 T3，中转停留 4h",
+          "duration": "4h",
           "cost": 0,
           "transport": "-",
-          "note": "时间充裕，可在机场用餐休息"
+          "note": "无需过境签 · 行李直达；时间充裕，可在机场用餐休息"
         },
         {
-          "time": "12:00",
-          "name": "CX332 香港T1 → 北京首都T3",
-          "duration": "3h25",
+          "time": "10:40",
+          "name": "EK308 迪拜T3 → 北京首都T3",
+          "duration": "7h40",
           "cost": 0,
-          "transport": "国泰航空",
-          "note": "15:25 抵达北京，结束愉快行程"
+          "transport": "阿联酋航空",
+          "note": "波音777-300ER · 有餐食；22:20 抵达北京，结束愉快行程"
         }
       ]
     }
@@ -1869,7 +1958,7 @@ const tripData = {
   "hotels": [
     {
       "name": "Munich Marriott Hotel（慕尼黑万豪酒店）",
-      "area": "慕尼黑 · 1晚 9/26 · 万豪系",
+      "area": "慕尼黑 · 2晚 9/25-9/26 · 万豪系",
       "pricePerNight": 1100,
       "highlights": "万豪系;英国花园旁;停车方便;可累积万豪积分",
       "rating": "4.3",
@@ -1952,7 +2041,7 @@ const tripData = {
     "transport": {
       "items": [
         {
-          "name": "国泰航空往返机票 ×2人（实查 ¥11,300/人）",
+          "name": "阿联酋航空往返机票 ×2人（经迪拜中转，¥11,300/人）",
           "cost": 22600
         },
         {
@@ -1977,8 +2066,8 @@ const tripData = {
     "accommodation": {
       "items": [
         {
-          "name": "慕尼黑万豪 1晚 ~",
-          "cost": 1100
+          "name": "慕尼黑万豪 2晚（9/25 晚抵达+9/26）~",
+          "cost": 2200
         },
         {
           "name": "福森 1晚 ~",
@@ -2017,7 +2106,7 @@ const tripData = {
           "cost": 1100
         }
       ],
-      "subtotal": 13050
+      "subtotal": 14150
     },
     "food": {
       "items": [
@@ -2086,8 +2175,8 @@ const tripData = {
       ],
       "subtotal": 600
     },
-    "total": 59090,
-    "perPerson": 29545
+    "total": 60190,
+    "perPerson": 30095
   },
   "tips": [
     "路线逻辑：慕尼黑→福森→(林道/博登湖)→苏黎世→琉森→龙疆→因特拉肯(3天)→伊瑟尔特瓦尔德/施皮茨→伯尔尼→黑森林→罗滕堡→海德堡→莱茵河谷→法兰克福，全程环线无回头路，总里程约1,625km，仅 Day9 约3小时驾驶，其余均在3小时内",
@@ -2101,7 +2190,7 @@ const tripData = {
     "莱茵河谷精华在布劳巴赫—吕德斯海姆 65km 河段（UNESCO 世界遗产），本方案两天慢游，含马克斯堡、博帕德四湖景缆车、上韦瑟尔、洛蕾莱",
     "10月初海德堡/莱茵河谷正值葡萄采收季，雷司令新酒 Federweißer 值得尝",
     "标注 ~ 为参考价、≈ 为估算价；酒店以实际预订为准（报价不含城市税）",
-    "机票和酒店为动态定价，出行前请在国泰官网/携程/Booking 确认实际价格并预订",
+    "机票和酒店为动态定价，出行前请在阿联酋官网/携程/Booking 确认实际价格并预订",
     "酒店万豪系优先：慕尼黑万豪、苏黎世万豪、海德堡万豪、法兰克福机场万豪均可累积万豪旅享家积分；福森/因特拉肯/伯尔尼/滴滴湖/罗滕堡/巴哈拉赫无万豪系酒店，保留小红书+Booking口碑优选"
   ],
   "totalDrive": {
@@ -2475,6 +2564,45 @@ function renderBudget(budget) {
   el.querySelector('.budget-total-per').textContent = `人均 ¥${(budget.perPerson || 0).toLocaleString()}`;
 }
 
+var BOOKING_KEY = 'germany2026_bookings';
+function loadBookings() { try { return JSON.parse(localStorage.getItem(BOOKING_KEY)) || {}; } catch (e) { return {}; } }
+function saveBookings(m) { try { localStorage.setItem(BOOKING_KEY, JSON.stringify(m)); } catch (e) {} }
+function updateBookingProgress(items) {
+  var s = loadBookings();
+  var done = items.filter(function (it) { return s[it.id]; }).length;
+  var el = document.getElementById('bookingProgress');
+  if (el) el.textContent = '已预订 ' + done + ' / ' + items.length;
+}
+function renderBookings(flights, hotels) {
+  var items = [];
+  (flights || []).forEach(function (f) { items.push({ id: f.id, kind: '✈️', title: f.label, sub: f.detail }); });
+  (hotels || []).forEach(function (h, i) { items.push({ id: 'hotel-' + i, kind: '🏨', title: h.name.split('（')[0], sub: h.area + ' · 约¥' + h.pricePerNight + '/晚' }); });
+  var state = loadBookings();
+  var container = document.getElementById('bookingList');
+  container.innerHTML = items.map(function (it) {
+    var done = !!state[it.id];
+    return '<label class="booking-row' + (done ? ' is-booked' : '') + '" data-id="' + it.id + '">'
+      + '<input type="checkbox"' + (done ? ' checked' : '') + '>'
+      + '<span class="bk-kind">' + it.kind + '</span>'
+      + '<span class="bk-text"><span class="bk-title">' + it.title + '</span><span class="bk-sub">' + it.sub + '</span></span>'
+      + '<span class="bk-status">' + (done ? '已预订' : '未预订') + '</span>'
+      + '</label>';
+  }).join('');
+  updateBookingProgress(items);
+  container.querySelectorAll('.booking-row input').forEach(function (cb) {
+    cb.addEventListener('change', function (e) {
+      var row = e.target.closest('.booking-row');
+      var id = row.dataset.id;
+      var s = loadBookings();
+      if (e.target.checked) s[id] = true; else delete s[id];
+      saveBookings(s);
+      row.classList.toggle('is-booked', e.target.checked);
+      row.querySelector('.bk-status').textContent = e.target.checked ? '已预订' : '未预订';
+      updateBookingProgress(items);
+    });
+  });
+}
+
 function renderTips(tips) {
   document.getElementById('tipsList').innerHTML = tips.map(t =>
     `<div class="tip-card"><div class="tip-icon"><span class="icon">${SVG.lightbulb}</span></div><span>${t}</span></div>`
@@ -2497,6 +2625,7 @@ if (tripData) {
   renderDayToolbar(tripData.days);
   renderDays(tripData.days);
   renderHotels(tripData.hotels);
+  renderBookings(tripData.flights, tripData.hotels);
   renderBudget(tripData.budget);
   renderTips(tripData.tips);
   if (tripData.alternatives) {
