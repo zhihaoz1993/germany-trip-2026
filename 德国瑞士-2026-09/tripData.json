@@ -143,6 +143,15 @@
       },
       "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 (München) · 约¥1,100/晚",
       "stayUrl": "https://www.booking.com/searchresults.html?ss=Munich%20Marriott%20Hotel%2C%20Munich",
+      "xhs": [
+        {
+          "title": "一口气说完慕尼黑主要景点",
+          "likes": "555",
+          "url": "https://www.xiaohongshu.com/explore/69dd8455000000001e00d790?xsec_token=ABpYmiTzGYFyQctkNOtgwnJQwzCo5yRubig3dC5JZCgTE%3D&xsec_source=pc_feed",
+          "takeaway": "抵达日只取玛丽安广场、老城和啤酒花园；把王宫留给 Day 2。",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062157/463ff1225a9ccf6154c4cad0a5798606/note_pre_post_uhdr/1040g3r031utvemtsiq005nt2q6k08ous3m12e60!nd_prv_wlteh_webp_3"
+        }
+      ],
       "xhsNote": "红眼航班清晨抵达，当天以休整+轻量市区游为主，早点休息倒时差"
     },
     {
@@ -215,12 +224,26 @@
           }
         }
       ],
+      "route": {
+        "from": "慕尼黑万豪酒店",
+        "to": "慕尼黑万豪酒店",
+        "via": ["玛丽安广场", "英国花园"],
+        "km": 14,
+        "driveTime": "约35分钟（市区驾驶；其余步行）",
+        "mapPts": [
+          "Munich Marriott Hotel, Munich, Germany",
+          "Marienplatz, Munich, Germany",
+          "English Garden, Munich, Germany",
+          "Munich Marriott Hotel, Munich, Germany"
+        ]
+      },
       "xhs": [
         {
           "title": "一口气说完慕尼黑主要景点",
           "likes": "527",
           "url": "https://www.xiaohongshu.com/explore/69dd8455000000001e00d790?xsec_token=ABpYmiTzGYFyQctkNOtgwnJQwzCo5yRubig3dC5JZCgTE%3D&xsec_source=pc_feed",
-          "takeaway": "王宫+珍宝馆至少预留3小时；市政厅木偶钟每天固定场次；新天鹅堡适合从慕尼黑一日往返"
+          "takeaway": "王宫+珍宝馆至少预留3小时；市政厅木偶钟每天固定场次；新天鹅堡适合从慕尼黑一日往返",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062157/463ff1225a9ccf6154c4cad0a5798606/note_pre_post_uhdr/1040g3r031utvemtsiq005nt2q6k08ous3m12e60!nd_prv_wlteh_webp_3"
         }
       ],
       "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 (München) · 约¥1,100/晚",
@@ -313,7 +336,8 @@
           "title": "德国新天鹅堡很美，但是槽点也很多…",
           "likes": "298",
           "url": "https://www.xiaohongshu.com/explore/68dab80b0000000011016daf?xsec_token=ABdhDj8r7z9q6p0O7rbhT1mchRX2L3pn0eB_rQZrCBl90%3D&xsec_source=pc_feed",
-          "takeaway": "玛丽安桥限流要排队；讲解多为德语场；内部禁止拍照；返程公交班次少——自驾可避免"
+          "takeaway": "玛丽安桥限流要排队；讲解多为德语场；内部禁止拍照；返程公交班次少——自驾可避免",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/fe839b6320e3cc7034eea56cd84f89e4/notes_uhdr/1040g3qg31n196ftmli0g5og796ik18okd7vns3o!nd_prv_wlteh_webp_3"
         },
         {
           "title": "新天鹅堡｜德国最火景点，90%游客票都买错",
@@ -422,7 +446,8 @@
           "title": "🇨🇭苏黎世一日游攻略，看一篇就够",
           "likes": "301",
           "url": "https://www.xiaohongshu.com/explore/69845ede000000000d00ba9f?xsec_token=AB-Fd0tPIpfGMegJIbrH9OUCiKreyxWRMy61qAQDtj1DI%3D&xsec_source=pc_feed",
-          "takeaway": "苏黎世一日游一篇搞定：老城+班霍夫大街+湖边的经典动线"
+          "takeaway": "苏黎世一日游一篇搞定：老城+班霍夫大街+湖边的经典动线",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062157/728b2db8c5afcda162c94e8e087e6b11/notes_pre_post/1040g3k831s6upebd5k005p493mb487kfi14v1fo!nd_prv_wlteh_webp_3"
         }
       ],
       "stay": "Zurich Marriott Hotel（万豪系）· 苏黎世 (Zürich) · 约¥1,500/晚",
@@ -553,7 +578,8 @@
           "title": "🇨🇭卢塞恩（琉森）老城Citywalk路线",
           "likes": "186",
           "url": "https://www.xiaohongshu.com/explore/6a4a2401000000001003ee59?xsec_token=ABMfWHyTX5xL1FoPE0_jN2r2iWEhMtJ0okidLPHoE8-_8%3D&xsec_source=pc_feed",
-          "takeaway": "老城Citywalk：卡佩尔廊桥傍晚光线最好→Gerberggasse彩绘房→穆塞格城墙俯瞰红屋顶→狮子像；冰川公园通票免费但一般"
+          "takeaway": "老城Citywalk：卡佩尔廊桥傍晚光线最好→Gerberggasse彩绘房→穆塞格城墙俯瞰红屋顶→狮子像；冰川公园通票免费但一般",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062157/1fa0ad35ef51e4ce95886562930dc168/1040g008322801tra6u005o6hvjp0bncnip11rc8!nd_prv_wlteh_webp_3"
         },
         {
           "title": "瑞士🇨🇭| 龙疆小镇怎么玩，看这里！",
@@ -675,7 +701,8 @@
           "title": "🇨🇭瑞士10天深度游！我最爱的小镇·山峰排名",
           "likes": "564",
           "url": "https://www.xiaohongshu.com/explore/69b91b21000000002103a7e4?xsec_token=ABZuLuJvTsujNa1aGBOypeDxkagpJt7IAgqi7q7da2fXU%3D&xsec_source=pc_feed",
-          "takeaway": "564赞排名：First山第1、雪朗峰第2、少女峰\"人多可玩性低\"；小镇榜：施皮茨第1、图恩第2、格林德瓦第3"
+          "takeaway": "564赞排名：First山第1、雪朗峰第2、少女峰\"人多可玩性低\"；小镇榜：施皮茨第1、图恩第2、格林德瓦第3",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/57a6d9f0fd00c0966100db328c7c0d98/1040g2sg31tqeppmm6u704103jnnmjubkjksh5b8!nd_prv_wlteh_webp_3"
         },
         {
           "title": "少女峰别再走左上右下了！自驾的来抄作业",
@@ -803,7 +830,8 @@
           "title": "6个瑞士宝藏小众隐藏景点，本地人都爱去",
           "likes": "46",
           "url": "https://www.xiaohongshu.com/explore/68ed5ae50000000003018c1e?xsec_token=ABymBRC8KqYk4euFP7nf4kmzajS6hBC_XetnovsOG7OGA%3D&xsec_source=pc_feed",
-          "takeaway": "本地人私藏：Sigriswil 340m悬索桥俯瞰图恩湖（距施皮茨20分钟）；苏黎世有薛定谔的猫雕像"
+          "takeaway": "本地人私藏：Sigriswil 340m悬索桥俯瞰图恩湖（距施皮茨20分钟）；苏黎世有薛定谔的猫雕像",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/a95a6706418e46c97f887e6427f52390/spectrum/1040g0k031njek3i9ku004a4rp7r6qji4dfn9nc0!nd_prv_wlteh_webp_3"
         },
         {
           "title": "🇨🇭体验 从夯到拉个人向",
@@ -925,7 +953,8 @@
           "title": "😅别被滤镜骗了，这才是真实的莱茵河瀑布",
           "likes": "279",
           "url": "https://www.xiaohongshu.com/explore/69a557ff0000000022031853?xsec_token=ABJtXO8p3V0kKaWknPmaaEt9kZwu1d3CVa0mq63W83k4A%3D&xsec_source=pc_feed",
-          "takeaway": "279赞实拍莱茵瀑布：欧洲水量最大瀑布，乘船靠近中央岩石最震撼"
+          "takeaway": "279赞实拍莱茵瀑布：欧洲水量最大瀑布，乘船靠近中央岩石最震撼",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/c5fbc139a8593dfb7e3fe74aab0b18df/spectrum/1040g34o31t756hq5me105pktmj8p45894poc8rg!nd_prv_wlteh_webp_3"
         },
         {
           "title": "连续去了三次德国黑森林，怎么玩一篇讲明白",
@@ -1024,7 +1053,8 @@
           "title": "不愧是德版《孤独星球》的封面小镇，美翻了！！",
           "likes": "870",
           "url": "https://www.xiaohongshu.com/explore/69ae94d6000000001a028855?xsec_token=AByT12ToGMrE-DNDmUAlU4nzIdgHf77UPhWwtFK3KYm8A%3D&xsec_source=pc_feed",
-          "takeaway": "注意是 Rothenburg ob der Tauber（北边还有个同名罗滕堡）；Plönlein 封面机位要 8:30 前去，否则全是旅行团；城墙整圈可上约4km"
+          "takeaway": "注意是 Rothenburg ob der Tauber（北边还有个同名罗滕堡）；Plönlein 封面机位要 8:30 前去，否则全是旅行团；城墙整圈可上约4km",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/c3dd8943dd7ae9f12babe6be01345226/notes_pre_post/1040g3k031tg5s04u62004a0ljq53183c5ccu188!nd_prv_wlteh_webp_3"
         }
       ],
       "stay": "Hotel Rappen Rothenburg（罗滕堡拉彭酒店）· 罗滕堡 (Rothenburg o.d.T.) 近城门 · 约¥950/晚",
@@ -1135,7 +1165,8 @@
           "title": "从夯到拉锐评德国11州37城 夯到顶级",
           "likes": "368",
           "url": "https://www.xiaohongshu.com/explore/69deaf170000000023006d87?xsec_token=AB_UHpxdwTHY1T4n-ka5WXmHxnlQd8rcFOLcASxP_iwpw%3D&xsec_source=pc_feed",
-          "takeaway": "368赞：维尔茨堡评级\"顶级\"——玛利亚堡俯瞰不逊海德堡，主教宫为欧洲最顶级巴洛克之一"
+          "takeaway": "368赞：维尔茨堡评级\"顶级\"——玛利亚堡俯瞰不逊海德堡，主教宫为欧洲最顶级巴洛克之一",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/ad9cbf36d3f03363bc287c0688aa0ac1/notes_pre_post/1040g3k831uv51ve9iib05nt2q6k08ous5797m4g!nd_prv_wlteh_webp_3"
         },
         {
           "title": "🇩🇪海德堡｜超详细一日游保姆级攻略🗺️干货",
@@ -1256,7 +1287,8 @@
           "title": "🏰德国的浪漫，是莱茵河上古堡写成的史诗",
           "likes": "124",
           "url": "https://www.xiaohongshu.com/explore/6948fbd6000000001f00fd5e?xsec_token=ABt9usv-aUv10MOjlnoIz1cUdxSqT09Zl2GuJeDzL01NE%3D&xsec_source=pc_feed",
-          "takeaway": "65km中游40+城堡全清单：鼠塔、尼德瓦尔德纪念碑、巴哈拉赫、普法尔茨石堡、洛蕾莱都在这段世界遗产河段"
+          "takeaway": "65km中游40+城堡全清单：鼠塔、尼德瓦尔德纪念碑、巴哈拉赫、普法尔茨石堡、洛蕾莱都在这段世界遗产河段",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062159/56b0bed882db53b4639325e6d14fde08/spectrum/1040g34o31qcuv9rdmu104bq5q0qs1me46lj8q8o!nd_prv_wlteh_webp_3"
         }
       ],
       "stay": "Hotel Weinberg-Schlößchen · 巴哈拉赫 (Bacharach) · 约¥900/晚",
@@ -1371,7 +1403,8 @@
           "title": "📍吕德斯海姆｜游船+缆车+画眉鸟巷一日游",
           "likes": "32",
           "url": "https://www.xiaohongshu.com/explore/6a64b0d40000000011011b51?xsec_token=ABN0bMqzWDsU_MwVbVw6Jw7OAtNWN5vEC_l21W6S7imL8%3D&xsec_source=pc_feed",
-          "takeaway": "吕德斯海姆经典三件套：莱茵游船+尼德瓦尔德缆车+画眉鸟小巷一日游"
+          "takeaway": "吕德斯海姆经典三件套：莱茵游船+尼德瓦尔德缆车+画眉鸟小巷一日游",
+          "cover": "https://sns-webpic-qc.xhscdn.com/202609062159/dbcb8b2905d8e548e4c3b7c2df348f98/spectrum/1040g0k032320lr0sn4004a0pimtffqnv85e6ka0!nd_prv_wlteh_webp_3"
         },
         {
           "title": "🇩🇪Bacharach小镇必看攻略！不然累死",
@@ -1833,9 +1866,9 @@
   ],
   "car": {
     "id": "car",
-    "label": "租车 · 慕尼黑 (München) 取 / 法兰克福 (Frankfurt) 还",
-    "detail": "约12天含全险，德瑞全程同一辆车，无重复计费（9/25 清晨慕尼黑取 / 10/7 中午法兰克福还）",
+    "label": "Sixt 租车 · 慕尼黑机场取 / 法兰克福机场还 · 已确认",
+    "detail": "9/25 08:00 慕尼黑机场取车 → 10/7 14:00 法兰克福机场还车 · 13天 · Mercedes-Benz GLC 或同级 · €1,172.41 已预付 · 含跨境驾驶、无免赔额保障、GPS/CarPlay；取车冻结 €500 押金",
     "pdfUrl": "",
-    "bookedRef": ""
+    "bookedRef": "Sixt 9738997067"
   }
 }
