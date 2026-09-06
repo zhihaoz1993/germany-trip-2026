@@ -1,608 +1,32 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>德国+瑞士 14日自驾环游（修订版）</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
-<style>
-  :root {
-    --primary: #0EA5E9;
-    --primary-dark: #0284C7;
-    --primary-light: #E0F2FE;
-    --primary-50: #F0F9FF;
-    --accent: #F97316;
-    --accent-dark: #EA580C;
-    --accent-light: #FFF7ED;
-    --success: #10B981;
-    --success-light: #D1FAE5;
-    --rose: #F43F5E;
-    --rose-light: #FFF1F2;
-    --violet: #8B5CF6;
-    --bg: #F8FAFC;
-    --card: #FFFFFF;
-    --text: #0C4A6E;
-    --text-body: #334155;
-    --text-muted: #475569;
-    --border: #E2E8F0;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
-    --shadow-lg: 0 12px 28px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04);
-    --radius: 16px;
-    --radius-sm: 10px;
-    --transition: 200ms ease-out;
-  }
-
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background: var(--bg); color: var(--text-body); line-height: 1.65; -webkit-font-smoothing: antialiased;
-  }
-
-  .container { max-width: 980px; margin: 0 auto; padding: 24px 20px 48px; }
-
-  /* ---- SVG Icon System ---- */
-  .icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 20px; height: 20px; flex-shrink: 0;
-  }
-  .icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .icon-sm { width: 16px; height: 16px; }
-  .icon-lg { width: 24px; height: 24px; }
-
-  /* ---- Hero ---- */
-  .hero {
-    position: relative; border-radius: var(--radius); padding: 56px 44px 48px;
-    margin-bottom: 36px; overflow: hidden; color: white;
-    background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 50%, #8B5CF6 100%);
-  }
-  .hero::before {
-    content: ''; position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 600px 400px at 20% 80%, rgba(249,115,22,0.2) 0%, transparent 70%),
-      radial-gradient(ellipse 500px 500px at 80% 20%, rgba(139,92,246,0.3) 0%, transparent 60%),
-      radial-gradient(ellipse 300px 300px at 60% 60%, rgba(255,255,255,0.06) 0%, transparent 50%);
-  }
-  .hero-content { position: relative; z-index: 1; }
-  .hero h1 { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; line-height: 1.2; }
-  .hero-meta { display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.92rem; opacity: 0.92; }
-  .hero-meta-item { display: flex; align-items: center; gap: 7px; }
-  .hero-meta-item .icon { color: rgba(255,255,255,0.85); }
-  .hero-orb {
-    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.12; pointer-events: none;
-    animation: orbFloat 10s ease-in-out infinite alternate;
-  }
-  .hero-orb-1 { width: 300px; height: 300px; background: #F97316; top: -80px; right: -60px; }
-  .hero-orb-2 { width: 200px; height: 200px; background: #38BDF8; bottom: -60px; left: -40px; animation-delay: -5s; }
-
-  @keyframes orbFloat {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(20px, -15px) scale(1.1); }
-  }
-
-  /* ---- Section Nav ---- */
-  .section-nav {
-    display: flex; gap: 8px; margin-bottom: 32px; overflow-x: auto;
-    padding-bottom: 4px; -webkit-overflow-scrolling: touch;
-  }
-  .section-nav::-webkit-scrollbar { height: 0; }
-  .nav-pill {
-    display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px;
-    border-radius: 99px; font-size: 0.85rem; font-weight: 500; white-space: nowrap;
-    background: var(--card); border: 1px solid var(--border); color: var(--text-muted);
-    cursor: pointer; transition: all var(--transition); text-decoration: none;
-  }
-  .nav-pill:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
-  .nav-pill .icon { width: 16px; height: 16px; }
-
-  /* ---- Section ---- */
-  .section { margin-bottom: 40px; scroll-margin-top: 20px; }
-  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-  .section-icon {
-    display: flex; align-items: center; justify-content: center;
-    width: 36px; height: 36px; border-radius: var(--radius-sm);
-    background: var(--primary-light); color: var(--primary);
-  }
-  .section-title { font-size: 1.2rem; font-weight: 700; color: var(--text); }
-
-  /* ---- Weather ---- */
-  .weather-bar { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
-  .weather-bar::-webkit-scrollbar { height: 4px; }
-  .weather-bar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
-  .weather-card {
-    flex: 0 0 auto; min-width: 108px; background: var(--card); border-radius: var(--radius-sm);
-    padding: 14px 12px; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
-    transition: all var(--transition);
-  }
-  .weather-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-  .weather-card .w-date { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
-  .weather-card .w-icon { font-size: 28px; line-height: 1; margin: 4px 0 8px; }
-  .weather-card .w-icon svg { width: 32px; height: 32px; }
-  .weather-card .w-temp { font-size: 0.88rem; font-weight: 600; color: var(--text); }
-  .weather-card .w-temp-low { color: var(--text-muted); font-weight: 400; }
-  .weather-tip {
-    display: flex; align-items: flex-start; gap: 10px; margin-top: 14px; padding: 14px 18px;
-    background: var(--primary-50); border: 1px solid #BAE6FD; border-radius: var(--radius-sm); font-size: 0.88rem; color: var(--primary-dark);
-  }
-  .weather-tip .icon { flex-shrink: 0; margin-top: 1px; }
-
-  /* ---- Day Card ---- */
-  .day-card {
-    background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-    border: 1px solid var(--border); margin-bottom: 16px; overflow: hidden;
-    transition: box-shadow var(--transition);
-  }
-  .day-card:hover { box-shadow: var(--shadow-md); }
-  .day-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 22px; cursor: pointer; user-select: none;
-    transition: background var(--transition);
-  }
-  .day-header:hover { background: var(--primary-50); }
-  .day-header:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
-  .day-num {
-    display: flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border-radius: var(--radius-sm);
-    background: linear-gradient(135deg, var(--primary), var(--violet));
-    color: white; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; margin-right: 14px;
-  }
-  .day-header-left { display: flex; align-items: center; }
-  .day-header-info h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); line-height: 1.3; }
-  .day-header-info .day-meta { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; display: flex; align-items: center; gap: 6px; }
-  .day-summary { font-size: 0.82rem; color: var(--text-body); margin-top: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 7px; line-height: 1.4; }
-  .day-summary .ds-route { font-weight: 600; color: var(--text); }
-  .day-summary .ds-fly, .day-summary .ds-stay { font-size: 0.71rem; font-weight: 600; padding: 2px 9px; border-radius: 99px; white-space: nowrap; }
-  .day-summary .ds-fly { background: #EFF6FF; color: #2563EB; }
-  .day-summary .ds-stay { background: var(--accent-light); color: var(--accent-dark); }
-  .day-summary .ds-end { background: var(--bg); color: var(--text-muted); }
-  .day-header .toggle-icon {
-    width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    background: var(--bg); color: var(--text-muted); transition: all var(--transition);
-  }
-  .day-card.collapsed .toggle-icon { transform: rotate(-90deg); }
-  .day-body {
-    padding: 4px 22px 22px; border-top: 1px solid var(--border);
-    max-height: 3000px; overflow: hidden; transition: max-height 0.35s ease-out, padding 0.35s ease-out;
-  }
-  .day-card.collapsed .day-body { max-height: 0; padding-top: 0; padding-bottom: 0; border-top-color: transparent; }
-
-  /* ---- Timeline ---- */
-  .timeline { position: relative; padding-left: 32px; padding-top: 18px; }
-  .timeline::before {
-    content: ''; position: absolute; left: 10px; top: 24px; bottom: 12px;
-    width: 2px; background: linear-gradient(to bottom, var(--primary), var(--border));
-    border-radius: 2px;
-  }
-  .tl-item { position: relative; margin-bottom: 22px; }
-  .tl-item:last-child { margin-bottom: 0; }
-  .tl-dot {
-    position: absolute; left: -28px; top: 4px; width: 14px; height: 14px;
-    border-radius: 50%; border: 2.5px solid var(--primary); background: white; z-index: 1;
-    box-shadow: 0 0 0 3px var(--primary-light);
-  }
-  .tl-item.is-meal .tl-dot { border-color: var(--accent); background: var(--accent-light); box-shadow: 0 0 0 3px var(--accent-light); }
-  .tl-time { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 3px; }
-  .tl-content h4 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
-  .tl-content p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
-  .tl-tags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
-  .tag {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 0.73rem; padding: 3px 10px; border-radius: 99px; font-weight: 500;
-  }
-  .tag-cost { background: var(--accent-light); color: var(--accent-dark); }
-  .tag-transport { background: var(--success-light); color: #047857; }
-  .tag-free { background: var(--primary-light); color: var(--primary-dark); }
-
-  /* ---- Meal Card ---- */
-  .meal-card {
-    display: flex; align-items: center; gap: 14px; padding: 12px 16px;
-    background: linear-gradient(135deg, #FFF7ED, #FFFBEB); border: 1px solid #FED7AA;
-    border-radius: var(--radius-sm); margin-top: 6px;
-  }
-  .meal-icon {
-    width: 38px; height: 38px; border-radius: 10px;
-    background: white; display: flex; align-items: center; justify-content: center;
-    box-shadow: var(--shadow-sm); color: var(--accent); flex-shrink: 0;
-  }
-  .meal-info { flex: 1; min-width: 0; }
-  .meal-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
-  .meal-detail { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .meal-price { font-weight: 700; color: var(--accent-dark); white-space: nowrap; font-size: 0.95rem; }
-
-  /* ---- Hotels ---- */
-  .hotel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-  .hotel-card {
-    background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-    border: 1px solid var(--border); padding: 22px; position: relative;
-    cursor: default; transition: all var(--transition);
-  }
-  .hotel-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
-  .hotel-badge {
-    position: absolute; top: 14px; right: 14px;
-    background: linear-gradient(135deg, var(--primary), var(--violet));
-    color: white; font-size: 0.72rem; font-weight: 600;
-    padding: 3px 12px; border-radius: 99px;
-  }
-  .hotel-name { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 6px; padding-right: 60px; }
-  .hotel-area { display: flex; align-items: center; gap: 5px; font-size: 0.83rem; color: var(--text-muted); margin-bottom: 12px; }
-  .hotel-price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 12px; }
-  .hotel-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
-  .hotel-price-unit { font-size: 0.8rem; color: var(--text-muted); }
-  .hotel-highlights { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
-  .hotel-tag { display: inline-block; font-size: 0.72rem; padding: 2px 8px; border-radius: 4px; background: var(--primary-light); color: var(--primary-dark); margin-right: 4px; margin-bottom: 4px; }
-
-  /* ---- Budget ---- */
-  .budget-wrapper {
-    background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
-    border: 1px solid var(--border); overflow: hidden;
-  }
-  .budget-chart { display: flex; height: 8px; overflow: hidden; }
-  .budget-chart-seg { transition: width 0.6s ease-out; }
-  .budget-table { width: 100%; border-collapse: collapse; }
-  .budget-table th, .budget-table td { padding: 12px 18px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
-  .budget-table th { background: var(--bg); color: var(--text-muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
-  .budget-table .cat-row td { font-weight: 600; color: var(--text); background: var(--primary-50); }
-  .budget-table .cat-row .cat-icon { display: inline-flex; align-items: center; gap: 8px; }
-  .budget-table .cat-row .cat-icon .icon { color: var(--primary); }
-  .budget-table .sub-row td { color: var(--text-muted); padding-left: 48px; }
-  .budget-table .subtotal { text-align: right; font-weight: 600; color: var(--primary); }
-  .budget-table td:last-child { text-align: right; }
-
-  .budget-total {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 22px 24px;
-    background: linear-gradient(135deg, #0EA5E9 0%, #6366F1 50%, #8B5CF6 100%);
-    border-radius: var(--radius); color: white; margin-top: 16px;
-  }
-  .budget-total-label { font-size: 0.95rem; font-weight: 500; opacity: 0.9; }
-  .budget-total-per { font-size: 0.85rem; opacity: 0.75; margin-top: 2px; }
-  .budget-total-amount { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
-
-  /* ---- Tips ---- */
-  .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
-  .tip-card {
-    display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px;
-    background: var(--accent-light); border: 1px solid #FED7AA; border-radius: var(--radius-sm);
-    font-size: 0.88rem; color: var(--text-body);
-  }
-  .tip-icon {
-    width: 28px; height: 28px; border-radius: 8px; background: white;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: var(--shadow-sm); color: var(--accent); flex-shrink: 0;
-  }
-  .tip-icon .icon { width: 14px; height: 14px; }
-
-  /* ---- Footer ---- */
-  .footer { text-align: center; padding: 28px 20px; color: var(--text-muted); font-size: 0.78rem; margin-top: 20px; }
-  .footer-line { width: 48px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--violet)); border-radius: 99px; margin: 0 auto 12px; }
-
-  /* ---- Print ---- */
-  @media print {
-    body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .container { padding: 0; max-width: 100%; }
-    .hero { break-inside: avoid; }
-    .day-card { break-inside: avoid; }
-    .day-card.collapsed .day-body { max-height: none !important; padding: 4px 22px 22px !important; border-top: 1px solid var(--border) !important; }
-    .toggle-icon, .section-nav { display: none !important; }
-    .hotel-card:hover, .weather-card:hover, .day-card:hover { transform: none; box-shadow: var(--shadow); }
-  }
-
-  /* ---- Responsive ---- */
-  @media (max-width: 640px) {
-    .container { padding: 16px 14px 32px; }
-    .hero { padding: 36px 24px 32px; }
-    .hero h1 { font-size: 1.55rem; }
-    .hero-meta { gap: 12px; font-size: 0.85rem; }
-    .day-header { padding: 14px 16px; }
-    .day-num { width: 34px; height: 34px; font-size: 0.78rem; margin-right: 10px; }
-    .day-body { padding: 4px 16px 16px; }
-    .timeline { padding-left: 26px; }
-    .hotel-grid { grid-template-columns: 1fr; }
-    .tips-grid { grid-template-columns: 1fr; }
-    .budget-total { flex-direction: column; text-align: center; gap: 8px; padding: 18px; }
-    .section-nav { gap: 6px; }
-    .nav-pill { padding: 6px 12px; font-size: 0.8rem; }
-  }
-
-  /* ---- Reduced Motion ---- */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    .day-body { transition: none; }
-  }
-
-  /* ---- Focus ---- */
-  :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
-
-  .route-bar { display:flex; flex-wrap:wrap; align-items:center; gap:8px; background:#EFF6FF; border:1px solid #BFDBFE; border-radius:10px; padding:10px 14px; margin-bottom:14px; font-size:13px; color:#1E40AF; }
-  .route-bar .r-km { font-weight:600; }
-  .route-bar a { color:#2563EB; text-decoration:none; font-weight:600; }
-  .route-bar a:hover { text-decoration:underline; }
-  .route-map { width:100%; height:320px; border:1px solid var(--border); border-radius:10px; margin:0 0 16px; box-shadow:var(--shadow); background:#E8EEF4; z-index:0; }
-  .map-stop span {
-    display:flex; align-items:center; justify-content:center;
-    width:24px; height:24px; border-radius:50%;
-    background:#2563EB; color:#fff; font-size:12px; font-weight:700;
-    border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.35);
-  }
-  .map-stop.first span { background:#10B981; }
-  .map-stop.last span { background:#F43F5E; }
-  .leaflet-tooltip.map-tip { font-size:12px; font-weight:600; }
-  .drive-total { background:#F0FDF4; border:1px solid #BBF7D0; color:#166534; border-radius:10px; padding:12px 16px; font-size:14px; margin:0 0 18px; }
-  @media print { .route-map { display:none; } }
-
-  .xhs-block { background:#FFF1F2; border:1px solid #FECDD3; border-radius:10px; padding:12px 14px; margin-bottom:16px; }
-  .xhs-title { font-size:13px; font-weight:700; color:#BE123C; margin-bottom:8px; }
-  .xhs-item { display:block; background:#fff; border:1px solid #FFE4E6; border-radius:8px; padding:10px 12px; margin-bottom:8px; text-decoration:none; color:inherit; transition:box-shadow .15s; }
-  .xhs-item:last-child { margin-bottom:0; }
-  .xhs-item:hover { box-shadow:var(--shadow-md); }
-  .xhs-item-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
-  .xhs-item-title { font-size:13px; font-weight:600; color:#9F1239; }
-  .xhs-likes { font-size:12px; color:#F43F5E; white-space:nowrap; }
-  .xhs-takeaway { font-size:12px; color:var(--text-muted); margin-top:4px; line-height:1.6; }
-
-  /* ---- Readability overhaul ---- */
-  /* Sticky nav so section links are always reachable */
-  .section-nav {
-    position: sticky; top: 0; z-index: 60;
-    background: var(--bg); padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  /* Day toolbar: index chips + expand/collapse controls */
-  .day-toolbar {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-    margin-bottom: 16px; padding: 12px 14px;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);
-  }
-  .day-chip {
-    display: inline-flex; align-items: center; justify-content: center;
-    min-width: 38px; height: 30px; padding: 0 8px;
-    border-radius: 8px; border: 1px solid var(--border);
-    background: var(--bg); color: var(--text-muted);
-    font-size: 0.78rem; font-weight: 600; text-decoration: none;
-    cursor: pointer; transition: all var(--transition);
-  }
-  .day-chip:hover { background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary); }
-  .day-toolbar-spacer { flex: 1; }
-  .day-toolbar-btn {
-    padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border);
-    background: white; color: var(--text-muted); font-size: 0.78rem; font-weight: 600;
-    cursor: pointer; transition: all var(--transition); font-family: inherit;
-  }
-  .day-toolbar-btn:hover { background: var(--primary-light); color: var(--primary-dark); border-color: var(--primary); }
-
-  /* Stronger day header hierarchy */
-  .day-card { scroll-margin-top: 130px; }
-  .day-header-info h3 { font-size: 1.12rem; }
-  .day-header-info .day-meta { font-size: 0.85rem; font-weight: 500; }
-  .day-num { width: 44px; height: 44px; font-size: 0.9rem; }
-
-  /* Timeline: fixed-width time column, clearer rows */
-  .tl-item {
-    display: grid; grid-template-columns: 92px 1fr; column-gap: 4px;
-    padding-bottom: 14px; margin-bottom: 14px;
-    border-bottom: 1px dashed var(--border);
-  }
-  .tl-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-  .tl-time {
-    font-size: 0.82rem; color: var(--primary-dark); font-weight: 700;
-    text-transform: none; letter-spacing: 0; margin-bottom: 0;
-    padding-top: 2px; line-height: 1.4;
-  }
-  .tl-content h4 { font-size: 0.98rem; }
-  .tl-content p { font-size: 0.86rem; }
-
-  /* Missing styles: nightly stay bar + pace note (were rendered unstyled) */
-  .stay-bar {
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    margin-top: 16px; padding: 12px 16px;
-    background: var(--primary-50); border: 1px solid #BAE6FD;
-    border-radius: var(--radius-sm); font-size: 0.88rem; color: var(--text);
-  }
-  .stay-bar .stay-label {
-    font-weight: 700; color: var(--primary-dark); white-space: nowrap; font-size: 0.82rem;
-  }
-  .pace-note {
-    margin-bottom: 14px; padding: 10px 14px;
-    background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-sm);
-    font-size: 0.85rem; color: #92400E;
-  }
-
-  @media print {
-    .day-toolbar { display: none !important; }
-    .section-nav { position: static; }
-  }
-  @media (max-width: 640px) {
-    .tl-item { grid-template-columns: 76px 1fr; }
-    .day-num { width: 38px; height: 38px; }
-    .day-card { scroll-margin-top: 110px; }
-  }
-
-  .stay-bar { display:flex; gap:10px; align-items:baseline; background:#F5F3FF; border:1px solid #DDD6FE; border-radius:10px; padding:10px 14px; margin-top:16px; font-size:13px; color:#5B21B6; }
-  .stay-label { font-weight:700; white-space:nowrap; }
-  .pace-note { background:#FFFBEB; border:1px solid #FDE68A; color:#92400E; border-radius:10px; padding:10px 14px; margin-bottom:14px; font-size:13px; }
-  .xhs-block { margin-top:12px; margin-bottom:0; }
-
-  .alt-head { font-size:16px; font-weight:700; color:var(--text); margin:26px 0 12px; }
-
-  .booking-btn { display:inline-block; margin-top:8px; font-size:12px; font-weight:600; color:#003580; background:#EAF2FD; border:1px solid #BFDBFE; border-radius:6px; padding:5px 10px; text-decoration:none; }
-  .booking-btn:hover { background:#DBEAFE; }
-  .booking-link { color:#003580; font-weight:600; text-decoration:none; white-space:nowrap; }
-  .booking-link:hover { text-decoration:underline; }
-
-  .preview-card { display:flex; align-items:center; gap:12px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px 14px; text-decoration:none; color:inherit; box-shadow:var(--shadow); transition:box-shadow .15s, transform .15s; }
-  .preview-card:hover { box-shadow:var(--shadow-md); transform:translateY(-1px); }
-  .pc-badge { flex:none; width:36px; height:36px; border-radius:9px; color:#fff; font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center; font-family:inherit; }
-  .pc-body { flex:1; min-width:0; }
-  .pc-title { font-size:13px; font-weight:700; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .pc-sub { font-size:12px; color:var(--text-muted); margin-top:2px; line-height:1.55; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .pc-meta { font-size:11px; color:#FF2442; margin-top:4px; font-weight:600; }
-  .pc-arrow { flex:none; color:var(--text-muted); font-size:15px; }
-  .booking-card { margin-top:10px; border-color:#BFDBFE; background:linear-gradient(135deg,#F0F7FF 0%,#fff 60%); }
-  /* ---- Booking tracker ---- */
-  .booking-progress { margin-left:auto; font-size:0.85rem; font-weight:700; color:var(--success); background:var(--success-light); padding:5px 14px; border-radius:99px; white-space:nowrap; }
-  .booking-hint { font-size:0.82rem; color:var(--text-muted); margin:-8px 0 16px; }
-  .booking-list { display:flex; flex-direction:column; gap:10px; }
-  .booking-row { display:flex; align-items:center; gap:13px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); padding:14px 16px; cursor:pointer; transition:all var(--transition); }
-  .booking-row:hover { box-shadow:var(--shadow); }
-  .booking-row input { width:20px; height:20px; accent-color:var(--success); flex:none; cursor:pointer; }
-  .booking-row.is-booked { border-color:#6EE7B7; background:linear-gradient(135deg,#ECFDF5 0%,#fff 60%); }
-  .bk-kind { font-size:1.15rem; flex:none; }
-  .bk-text { display:flex; flex-direction:column; gap:2px; flex:1 1 auto; min-width:0; }
-  .bk-title { font-size:0.95rem; font-weight:600; color:var(--text); }
-  .bk-sub { font-size:0.8rem; color:var(--text-muted); line-height:1.45; }
-  .bk-status { flex:none; font-size:0.76rem; font-weight:600; padding:3px 11px; border-radius:99px; background:var(--bg); color:var(--text-muted); white-space:nowrap; }
-  .booking-row.is-booked .bk-status { background:var(--success-light); color:#047857; }
-  .bk-addr { font-size:0.8rem; color:var(--success); font-weight:600; margin-top:2px; }
-  .bk-hint { font-size:0.72rem; color:var(--text-muted); opacity:0.75; margin-top:2px; }
-  .bk-actions { flex:none; display:flex; flex-direction:column; align-items:flex-end; gap:6px; }
-  .bk-pdf { font-size:0.78rem; font-weight:600; color:#003580; background:#EAF2FD; border:1px solid #BFDBFE; border-radius:6px; padding:4px 10px; text-decoration:none; white-space:nowrap; }
-  .bk-pdf:hover { background:#DBEAFE; }
-  .bk-rec { font-size:0.76rem; font-weight:600; color:var(--accent); text-decoration:none; white-space:nowrap; }
-  .bk-rec:hover { text-decoration:underline; }
-  .stay-card { margin-top:16px; }
-  .xhs-card { margin-bottom:8px; border-color:#FECDD3; background:linear-gradient(135deg,#FFF5F6 0%,#fff 60%); }
-  .xhs-card:last-child { margin-bottom:0; }
-  .gmaps-link { color:#2563EB; font-weight:600; text-decoration:none; }
-  .gmaps-link:hover { text-decoration:underline; }
-</style>
-</head>
-<body>
-<div class="container">
-
-  <!-- Hero -->
-  <div class="hero" role="banner">
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-content">
-      <h1 id="heroTitle">德国+瑞士 14日自驾环游（修订版）</h1>
-      <div class="hero-meta">
-        <div class="hero-meta-item">
-          <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-          <span id="heroDate">2026-09-25 ~ 10-08</span>
-        </div>
-        <div class="hero-meta-item">
-          <span class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-          <span id="heroTravelers">2人 · 自驾</span>
-        </div>
-        <div class="hero-meta-item">
-          <span class="icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
-          <span>预估 <strong id="heroBudget">¥60190</strong></span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Section Nav -->
-  <nav class="section-nav" aria-label="快速导航">
-    <a class="nav-pill" href="#sec-weather"><span class="icon"><svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"/><path d="M12 2v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg></span>天气</a>
-    <a class="nav-pill" href="#sec-days"><span class="icon"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>行程</a>
-    <a class="nav-pill" href="#sec-hotels"><span class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M3 7v14M21 7v14M6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg></span>住宿</a>
-    <a class="nav-pill" href="#sec-bookings"><span class="icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>预订</a>
-    <a class="nav-pill" href="#sec-budget"><span class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>预算</a>
-    <a class="nav-pill" href="#sec-tips"><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span>贴士</a>
-  </nav>
-
-  <!-- Weather -->
-  <div class="section" id="sec-weather">
-    <div class="section-header">
-      <div class="section-icon"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><path d="M17.5 19a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"/><path d="M12 2v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M4.93 19.07l1.41-1.41m11.32-11.32 1.41-1.41"/></svg></span></div>
-      <h2 class="section-title">天气概览</h2>
-    </div>
-    <div class="weather-bar" id="weatherBar"></div>
-    <div class="weather-tip" id="weatherTip"></div>
-  </div>
-
-  <!-- Daily Itinerary -->
-  <div class="section" id="sec-days">
-    <div class="section-header">
-      <div class="section-icon"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></span></div>
-      <h2 class="section-title">每日行程</h2>
-    </div>
-    <div class="day-toolbar" id="dayToolbar"></div>
-    <div id="daysContainer"></div>
-  </div>
-
-  <!-- Hotels -->
-  <div class="section" id="sec-hotels">
-    <div class="section-header">
-      <div class="section-icon" style="background:var(--accent-light);color:var(--accent);"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><path d="M3 21h18M3 7v14M21 7v14M6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg></span></div>
-      <h2 class="section-title">住宿推荐</h2>
-    </div>
-    <div class="hotel-grid" id="hotelGrid"></div>
-  </div>
-
-  <!-- Bookings -->
-  <div class="section" id="sec-bookings">
-    <div class="section-header">
-      <div class="section-icon" style="background:var(--success-light);color:var(--success);"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span></div>
-      <h2 class="section-title">预订状态</h2>
-      <span class="booking-progress" id="bookingProgress"></span>
-    </div>
-    <p class="booking-hint">机票 / 租车 / 酒店的预订进度。已上传订单 PDF 的项目自动标记「已预订」并可点开查看；其余可手动勾选（本设备浏览器记忆）。把订单 PDF 发我即可加入仓库，永久保存、两人跨设备可见。</p>
-    <div class="booking-list" id="bookingList"></div>
-  </div>
-
-  <!-- Budget -->
-  <div class="section" id="sec-budget">
-    <div class="section-header">
-      <div class="section-icon" style="background:var(--success-light);color:var(--success);"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span></div>
-      <h2 class="section-title">预算明细</h2>
-    </div>
-    <div class="budget-wrapper">
-      <div class="budget-chart" id="budgetChart"></div>
-      <table class="budget-table" id="budgetTable">
-        <thead><tr><th>分类</th><th>项目</th><th style="text-align:right">费用</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-    <div class="budget-total" id="budgetTotal">
-      <div>
-        <div class="budget-total-label">预估总费用</div>
-        <div class="budget-total-per">人均 ¥30095</div>
-      </div>
-      <div class="budget-total-amount">¥60190</div>
-    </div>
-  </div>
-
-  <!-- Tips -->
-  <div class="section" id="sec-tips">
-    <div class="section-header">
-      <div class="section-icon" style="background:var(--rose-light);color:var(--rose);"><span class="icon icon-lg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></span></div>
-      <h2 class="section-title">实用贴士</h2>
-    </div>
-    <div class="tips-grid" id="tipsList"></div>
-  </div>
-
-  <footer class="footer">
-    <div class="footer-line"></div>
-    <p>由 AI 生成 · 价格与信息仅供参考，请以实际为准 · 2026-08-25</p>
-  </footer>
-
-</div>
-
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><style>
+:root{--ink:#17352f;--pine:#1d5145;--moss:#56806d;--paper:#f7f5ef;--sand:#ebe5d8;--card:#fffdfa;--line:#d9d8ce;--sky:#dceceb;--amber:#bd6c31;--muted:#62726d;--r:16px;--sh:0 10px 28px #17352f12}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.eyebrow,.label{color:var(--moss);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero{padding:34px 0 26px;background:var(--ink);color:#fff}.hero-grid{display:grid;grid-template-columns:1.6fr .9fr;gap:28px;align-items:end}.hero h1,h2,h3{font-family:ui-serif,Georgia,"Songti SC",serif}.hero h1{font-size:clamp(31px,5vw,55px);line-height:1.08;margin:8px 0 14px;letter-spacing:-.04em}.hero .eyebrow,.hero p{color:#c6ddd5}.hero p{margin:0}.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid #ffffff2e;border-radius:12px;padding:12px;background:#ffffff0d}.stat b{display:block;font-size:19px}.stat span{font-size:12px;color:#c6ddd5}.mode-nav{position:sticky;top:0;z-index:20;background:#f7f5eff2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.mode-nav .wrap{display:flex;align-items:center;gap:6px;min-height:58px}.brand{font-family:ui-serif,Georgia,serif;font-weight:800;margin-right:auto}.mode,.day-picker button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;padding:9px 12px;border-radius:9px;cursor:pointer}.mode:hover,.mode[aria-selected="true"]{background:var(--ink);color:#fff}.view{display:none;padding:34px 0 90px}.view.active{display:block}.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:36px 0 14px}.head h2{font-size:28px;line-height:1.15;margin:3px 0 0}.head p{margin:0;color:var(--muted);max-width:530px}.trip-map{height:390px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--sky);box-shadow:var(--sh)}.map-fallback{padding:22px;color:var(--pine)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.metric,.panel,.day-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}.metric{padding:14px}.metric b{font-size:22px;display:block}.metric span{font-size:12px;color:var(--muted)}.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.day-card{padding:18px;text-align:left;color:var(--ink);cursor:pointer;transition:.18s}.day-card:hover,.day-card:focus-visible{transform:translateY(-2px);outline:2px solid var(--moss);outline-offset:2px}.top{display:flex;justify-content:space-between;gap:8px;color:var(--moss);font-weight:800;font-size:13px}.day-card h3{font-size:19px;line-height:1.25;margin:8px 0}.route{font-size:13px;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--sand)}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chip{font-size:12px;background:var(--sky);color:var(--pine);padding:3px 8px;border-radius:20px}.stay{font-size:13px;font-weight:700}.alert{margin-top:12px;padding:8px 10px;background:#f9eee7;color:#7b4020;border-radius:8px;font-size:12px}.cols{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{padding:20px}.panel h3{font-size:22px;line-height:1.2;margin:4px 0 14px}.today{background:linear-gradient(135deg,#17352f,#346458);color:#fff;border-radius:var(--r);padding:26px;display:grid;grid-template-columns:1fr auto;gap:16px}.today .eyebrow{color:#cce1d9}.today h2{font-size:clamp(27px,5vw,41px);line-height:1.1;margin:6px 0}.today p{margin:0;color:#d5e4df}.today-metrics{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.today-metrics span{border:1px solid #ffffff36;border-radius:8px;padding:6px 9px;font-size:13px}.primary{display:inline-flex;align-items:center;justify-content:center;background:#f5d7a7;color:#55331b;font-weight:800;text-decoration:none;border-radius:9px;padding:11px 14px}.day-picker{display:flex;gap:6px;overflow:auto;padding:12px 0 4px}.day-picker button{flex:none;border:1px solid var(--line);background:var(--card);font-size:13px}.day-picker button.active{background:var(--pine);color:#fff;border-color:var(--pine)}.route-box{margin:16px 0;padding:15px;border:1px solid #b9d4cc;background:#eff7f4;border-radius:12px}.route-box strong{display:block;font-size:16px}.route-box p{margin:4px 0 0;color:var(--muted);font-size:13px}.timeline{list-style:none;padding:0;margin:0}.timeline li{position:relative;padding:0 0 17px 26px;border-left:1px solid #bdd0c9}.timeline li:before{content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--pine)}.timeline li:last-child{border:0;padding-bottom:0}.time{font-size:12px;font-weight:800;color:var(--moss)}.timeline h4{font-size:15px;margin:2px 0}.timeline p,.muted{font-size:13px;color:var(--muted);margin:2px 0}.role{font-size:11px;color:var(--moss);font-weight:800}.details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.details summary{cursor:pointer;font-weight:800}.full{padding:12px 0;border-bottom:1px solid var(--sand)}.meal{margin-top:7px;padding:8px;background:#f9f1e8;border-radius:8px;font-size:13px}.booking{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--sand)}.booking input{accent-color:var(--pine);width:17px;height:17px}.booking b{display:block}.sub{display:block;color:var(--muted);font-size:12px}.status{font-size:12px;padding:3px 7px;border-radius:20px;background:#f8e9df;color:#884723}.status.done{background:#dceee5;color:#21613f}.budget{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--sand)}ul{margin:0;padding-left:18px}li{margin:8px 0}.footer{border-top:1px solid var(--line);padding:24px 0 90px;color:var(--muted);font-size:12px}.bottom{display:none}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #d49a56;outline-offset:3px}@media(max-width:720px){.wrap{width:min(100% - 24px,1180px)}.hero{padding:25px 0 20px}.hero-grid,.cols{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}.stat{padding:9px}.stat b{font-size:16px}.brand{font-size:13px;margin-right:0}.mode{font-size:13px;padding:8px}.view{padding-top:20px}.head{margin-top:28px;align-items:start;flex-direction:column}.head h2{font-size:25px}.trip-map{height:300px}.metrics{grid-template-columns:repeat(2,1fr)}.days{grid-template-columns:1fr}.today{padding:20px;grid-template-columns:1fr}.bottom{display:flex;position:fixed;z-index:30;bottom:0;left:0;right:0;justify-content:space-around;background:#fffdfaf2;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:7px}.bottom button{border:0;background:transparent;color:var(--muted);font:12px inherit;padding:7px 14px}.bottom button.active{color:var(--pine);font-weight:800}}
+</style></head><body>
+<header class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Roadbook · Germany & Switzerland</div><h1>德国+瑞士 14日自驾环游（修订版）</h1><p>2026-09-24 ~ 10-08 · 2人 · 自驾</p></div><div class="hero-stats"><div class="stat"><b>14</b><span>旅行日</span></div><div class="stat"><b id="drive">—</b><span>计划自驾</span></div><div class="stat"><b id="hotels">—</b><span>过夜地点</span></div></div></div></header>
+<nav class="mode-nav"><div class="wrap"><span class="brand">德国 · 瑞士 2026</span><button class="mode" data-view="overview" aria-selected="true">总览</button><button class="mode" data-view="planning">行前规划</button><button class="mode" data-view="travel">旅途进行中</button></div></nav><main class="wrap">
+<section class="view active" id="overview"><div class="head"><div><div class="label">Whole trip</div><h2>一眼看懂，整段旅程</h2></div><p>这里只保留路线、驾驶负荷、当日重点和过夜地。订票、预算与所有细节留在各自该出现的地方。</p></div><div id="tripMap" class="trip-map"><div class="map-fallback" id="fallback">正在加载总路线图…</div></div><div class="metrics" id="metrics"></div><div class="head"><div><div class="label">Day by day</div><h2>14 天行程卡</h2></div><p>点击任一天，直接切换到旅途模式查看行动版信息。</p></div><div class="days" id="days"></div></section>
+<section class="view" id="planning"><div class="head"><div><div class="label">Before you go</div><h2>行前规划</h2></div><p>用这里做预订、预算和行前准备；旅途中不必被这些信息打扰。</p></div><div class="cols"><div class="panel"><div class="label">Reservations</div><h3>预订状态</h3><div id="bookings"></div></div><div class="panel"><div class="label">Budget</div><h3>预算明细</h3><div id="budget"></div></div></div><div class="head"><div><div class="label">Detailed itinerary</div><h2>完整每日安排</h2></div><p>餐厅、研究链接、可选景点和全部说明只在这里展开阅读。</p></div><div id="planDays"></div><div class="cols"><div class="panel"><div class="label">Prepare</div><h3>出发前与路上提醒</h3><ul id="tips"></ul></div><div class="panel"><div class="label">Research log</div><h3>版本与取舍</h3><ul id="notes"></ul></div></div></section>
+<section class="view" id="travel"><div class="head"><div><div class="label">On the road</div><h2 id="travelHead">今日行动卡</h2></div><p id="travelSub">按瑞士当地日期自动选择；也可随时手动切换。</p></div><div class="day-picker" id="picker"></div><article id="today"></article></section></main><footer class="footer"><div class="wrap">行程信息以实际预订、道路状况和景点官方公告为准 · 更新于 2026-08-25</div></footer><nav class="bottom"><button data-view="overview" class="active">总览</button><button data-view="planning">规划</button><button data-view="travel">今日</button></nav>
 <script>
-const tripData = {
+const tripData={
   "title": "德国+瑞士 14日自驾环游（修订版）",
-  "dateRange": "2026-09-25 ~ 10-08",
+  "dateRange": "2026-09-24 ~ 10-08",
+  "tripStartDate": "2026-09-24",
+  "tripEndDate": "2026-10-08",
+  "tripTimezone": "Europe/Zurich",
   "travelers": "2人 · 自驾",
   "generationDate": "2026-08-25",
   "flights": [
     {
       "id": "flight-out",
-      "label": "去程 · 9/25 北京 → 迪拜 → 慕尼黑",
-      "detail": "EK309 PEK 07:25 → DXB 11:35 · 中转 3h40 · EK051 DXB 15:15 → MUC 20:00（阿联酋航空 · 777-300ER）",
+      "label": "去程 · 9/24 北京 → 曼谷 → 慕尼黑",
+      "detail": "TG615 PEK 17:05 → BKK 21:15 · 中转 3h35 · TG924 BKK 00:50(+1) → MUC 07:05(+1)（泰国国际航空）",
       "pdfUrl": "",
       "bookedRef": ""
     },
     {
       "id": "flight-return",
-      "label": "回程 · 10/7 法兰克福 → 迪拜 → 北京",
-      "detail": "EK048 FRA 22:20 → DXB 06:40(+1) · 中转 4h · EK308 DXB 10:40 → PEK 22:20（阿联酋航空 · 777-300ER）",
+      "label": "回程 · 10/7 法兰克福 → 曼谷 → 北京",
+      "detail": "TG921 FRA 14:45 → BKK 06:25(+1) · 中转 3h35 · TG614 BKK 10:00 → PEK 15:45(+1)（泰国国际航空）",
       "pdfUrl": "",
       "bookedRef": ""
     }
@@ -616,7 +40,8 @@ const tripData = {
     "⑥ v2：根据小红书高赞笔记优化酒店（苏黎世改 Central Plaza、琉森改 Radisson Blu、海德堡选希尔顿）；每日行程增加行车路线地图、公里数与驾驶时长；预算剔除伴手礼，澄清全程仅租一次车、德瑞两国通用，交通费无重叠",
     "⑦ v3：琉森并入 Day5 顺路游，Day7 改为因特拉肯周边（伊瑟尔特瓦尔德+施皮茨）+伯尔尼过夜，去黑森林当天经伯尔尼中转车程更短；除 Day9 外每日驾驶≤3h；罗滕堡经小红书核实为强烈推荐（870赞《孤独星球》封面小镇），予以保留；莱茵河谷地图点位全部加'Germany'后缀修正定位；每日行程末尾附当晚酒店与小红书笔记",
     "⑧ v4：小红书'德瑞必去'榜单核对——新增维尔茨堡(Day10)与布里恩茨蒸汽火车(Day7)；国王湖/采尔马特/Stoos/科隆等经评估不纳入（见贴士区评估表）；酒店改万豪系优先（慕尼黑/苏黎世/海德堡/法兰克福机场四站万豪，其余城镇无万豪系保留原优选）",
-    "⑨ v5：瑞士补充核对——Day6 傍晚新增哈德昆观景台（可选），First山/雪朗峰列为 Day6 替代方案，图恩/Sigriswil 列为 Day7 可选，莱茵瀑布列为 Day8 可选加站（标注3.5h取舍）；铁力士有避雷帖不推荐"
+    "⑨ v5：瑞士补充核对——Day6 傍晚新增哈德昆观景台（可选），First山/雪朗峰列为 Day6 替代方案，图恩/Sigriswil 列为 Day7 可选，莱茵瀑布列为 Day8 可选加站（标注3.5h取舍）；铁力士有避雷帖不推荐",
+    "⑩ v6：机票改订泰国国际航空（经曼谷中转），9/24 傍晚出发、9/25 清晨抵达慕尼黑，Day1 多出大半天改为轻量市区游；返程 10/7 下午 14:45 起飞，法兰克福改为上午晨游；酒店按已确认订单更新：福森→Hotel Sonne（9/27）、因特拉肯两晚→图恩 Hotel Aare Thun（9/29-10/1）、滴滴湖→拉文纳峡谷 Hotel Hofgut Sternen（10/2）；折叠概览升级：直接显示出发地/途经地/当晚酒店/交通方式"
   ],
   "weather": {
     "summary": "9月底-10月初，德瑞秋凉，晴多云为主，山区早晚偏冷（出行日超出15天预报范围，以下为气候均值，出发前请再查实时预报）",
@@ -630,7 +55,20 @@ const tripData = {
     {
       "date": "09/25",
       "weekday": "周五",
-      "theme": "北京 → 迪拜 → 慕尼黑 (München)（出发日）",
+      "activeDates": [
+        "2026-09-24",
+        "2026-09-25"
+      ],
+      "overview": {
+        "region": "启程 · 巴伐利亚",
+        "highlights": [
+          "北京经曼谷飞往慕尼黑",
+          "机场取车后轻量市区游",
+          "玛丽安广场与啤酒花园"
+        ],
+        "alert": "红眼航班后以休整为先，勿排满。"
+      },
+      "theme": "北京 → 曼谷 → 慕尼黑 (München)（9/24 晚出发 · 清晨抵达）",
       "weather": {
         "icon": "partlyCloudy",
         "high": 20,
@@ -638,44 +76,74 @@ const tripData = {
       },
       "activities": [
         {
-          "time": "04:00",
-          "name": "抵达北京首都机场 T3",
-          "duration": "-",
+          "time": "17:05",
+          "name": "TG615 北京首都T3 → 曼谷素万那普（9/24）",
+          "duration": "5h10",
           "cost": 0,
-          "transport": "市内交通",
-          "note": "EK309 07:25 起飞，国际航班建议提前 3 小时到机场办票安检"
+          "transport": "泰国国际航空",
+          "note": "9/24 傍晚起飞，国际航班建议提前 3 小时到机场办票安检；21:15 抵达曼谷"
         },
         {
-          "time": "07:25",
-          "name": "EK309 北京首都T3 → 迪拜T3",
-          "duration": "8h10",
-          "cost": 0,
-          "transport": "阿联酋航空",
-          "note": "波音777-300ER · 有餐食；11:35 抵达迪拜（含在机票 ¥11,300/人中）"
-        },
-        {
-          "time": "11:35",
-          "name": "中转迪拜 T3（停留 3h40）",
-          "duration": "3h40",
+          "time": "21:15",
+          "name": "中转曼谷素万那普机场（停留 3h35）",
+          "duration": "3h35",
           "cost": 0,
           "transport": "-",
-          "note": "无需过境签 · 行李直达，无需重新取行李"
+          "note": "无需过境签 · 行李直挂慕尼黑，无需重新取行李"
         },
         {
-          "time": "15:15",
-          "name": "EK051 迪拜T3 → 慕尼黑T1",
-          "duration": "6h45",
+          "time": "00:50",
+          "name": "TG924 曼谷素万那普 → 慕尼黑T2（+1天）",
+          "duration": "12h15",
           "cost": 0,
-          "transport": "阿联酋航空",
-          "note": "波音777-300ER · 有餐食；20:00 抵达慕尼黑 T1"
+          "transport": "泰国国际航空",
+          "note": "红眼航班有餐食，机上休息；9/25 清晨 07:05 抵达慕尼黑 T2"
         },
         {
-          "time": "20:30",
-          "name": "机场取车 + 入住慕尼黑万豪",
+          "time": "07:05",
+          "name": "抵达慕尼黑 T2 + 机场取车",
           "duration": "1.5h",
           "cost": 0,
           "transport": "租车",
-          "note": "建议提前在国内办好驾照宣誓翻译件/国际驾照认证件；当晚入住休息，次日整天游慕尼黑"
+          "note": "建议提前在国内办好驾照宣誓翻译件/国际驾照认证件；取车后自驾进市区"
+        },
+        {
+          "time": "10:00",
+          "name": "入住慕尼黑万豪 + 休整",
+          "duration": "2h",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "红眼航班后先休整（可向前台申请 early check-in），倒时差为主"
+        },
+        {
+          "time": "13:00",
+          "name": "午餐",
+          "meal": {
+            "name": "Augustiner-Keller（奥古斯丁啤酒花园）",
+            "cuisine": "巴伐利亚传统菜",
+            "perPerson": 25,
+            "recommended": "烤猪肘、白香肠",
+            "location": "近火车总站"
+          }
+        },
+        {
+          "time": "15:00",
+          "name": "玛丽安广场 (Marienplatz) + 圣母教堂 + 谷物市场",
+          "duration": "3h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "轻量市区游适应时差；谷物市场 (Viktualienmarkt) 傍晚收摊前最热闹"
+        },
+        {
+          "time": "19:00",
+          "name": "晚餐",
+          "meal": {
+            "name": "Hofbräuhaus 皇家啤酒屋",
+            "cuisine": "巴伐利亚菜",
+            "perPerson": 30,
+            "recommended": "啤酒+猪肘，体验传统啤酒大厅氛围",
+            "location": "玛丽安广场步行 5 分钟"
+          }
         }
       ],
       "route": {
@@ -690,11 +158,21 @@ const tripData = {
         ]
       },
       "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 (München) · 约¥1,100/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Munich%20Marriott%20Hotel%2C%20Munich"
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Munich%20Marriott%20Hotel%2C%20Munich",
+      "xhsNote": "红眼航班清晨抵达，当天以休整+轻量市区游为主，早点休息倒时差"
     },
     {
       "date": "09/26",
       "weekday": "周六",
+      "overview": {
+        "region": "巴伐利亚",
+        "highlights": [
+          "新市政厅木偶钟",
+          "王宫与珍宝馆",
+          "英国花园"
+        ],
+        "alert": "市政厅木偶钟仅在固定时段演出。"
+      },
       "theme": "慕尼黑 (München) · 巴伐利亚首府初印象",
       "weather": {
         "icon": "partlyCloudy",
@@ -772,6 +250,15 @@ const tripData = {
     {
       "date": "09/27",
       "weekday": "周日",
+      "overview": {
+        "region": "阿尔卑斯山麓",
+        "highlights": [
+          "新天鹅堡内部参观",
+          "玛丽安桥全景",
+          "福森老城"
+        ],
+        "alert": "新天鹅堡必须提前预约入场时段。"
+      },
       "theme": "慕尼黑 (München) → 福森 (Füssen) · 新天鹅堡童话日",
       "weather": {
         "icon": "partlyCloudy",
@@ -859,12 +346,21 @@ const tripData = {
           "takeaway": "门票按预约时段进场，90%游客票买错，务必提前官网订"
         }
       ],
-      "stay": "Hotel Schlosskrone · 福森 (Füssen) · 约¥1,100/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Schlosskrone%2C%20F%C3%BCssen"
+      "stay": "Hotel Sonne（索恩酒店）· 福森 (Füssen) · ¥1,707/晚 · 已预订 ✅",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Sonne%2C%20F%C3%BCssen"
     },
     {
       "date": "09/28",
       "weekday": "周一",
+      "overview": {
+        "region": "博登湖 → 瑞士",
+        "highlights": [
+          "林道港口灯塔",
+          "博登湖短停",
+          "抵达苏黎世"
+        ],
+        "alert": "跨境前确认租车合同与瑞士高速年票。"
+      },
       "theme": "福森 (Füssen) → 林道·博登湖 (Lindau/Bodensee) → 苏黎世 (Zürich)",
       "weather": {
         "icon": "partlyCloudy",
@@ -963,6 +459,15 @@ const tripData = {
     {
       "date": "09/29",
       "weekday": "周二",
+      "overview": {
+        "region": "瑞士中部 → 图恩湖",
+        "highlights": [
+          "琉森廊桥与老城",
+          "龙疆观景台",
+          "入住图恩"
+        ],
+        "alert": "全天三段驾驶；琉森只取精华。"
+      },
       "theme": "苏黎世 (Zürich) → 琉森 (Luzern) → 龙疆 (Lungern) → 因特拉肯 (Interlaken)（顺路游玩，不走回头路）",
       "weather": {
         "icon": "partlyCloudy",
@@ -1101,13 +606,22 @@ const tripData = {
           "takeaway": "因特拉肯是周边小镇的交通枢纽，火车/游船都从这里出发"
         }
       ],
-      "stay": "Beatenberg Resort & Spa（比滕贝格度假村）· 因特拉肯 (Interlaken) 周边 · 约¥1,700/晚 · ⚠️不可取消",
-      "xhsNote": "本日较紧凑：琉森只取精华（廊桥+老城+狮子像约3h），如想更轻松可跳过狮子像或布里恩茨短停",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Beatenberg%20Resort%20%26%20Spa%2C%20Beatenberg"
+      "stay": "Hotel Aare Thun（阿勒河图恩酒店）· 图恩 (Thun) · 2晚共¥4,788 · 已预订 ✅",
+      "xhsNote": "本日较紧凑：琉森只取精华（廊桥+老城+狮子像约3h），如想更轻松可跳过狮子像或布里恩茨短停；当晚住图恩 (Thun) Hotel Aare Thun，距因特拉肯约30分钟车程，游完龙疆后直接前往图恩入住",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun"
     },
     {
       "date": "09/30",
       "weekday": "周三",
+      "overview": {
+        "region": "少女峰地区",
+        "highlights": [
+          "少女峰铁路",
+          "欧洲之巅",
+          "哈德昆日落"
+        ],
+        "alert": "出发前先查山顶实时天气；First/雪朗峰可替代。"
+      },
       "theme": "少女峰 (Jungfraujoch) · 欧洲之巅",
       "weather": {
         "icon": "partlyCloudy",
@@ -1206,13 +720,22 @@ const tripData = {
           "takeaway": "自驾停车格林德瓦Terminal室内停车场；Eiger Express缆车比火车快40分钟；Terminal免费领中文登山护照山顶盖章；山顶建议留2.5小时"
         }
       ],
-      "stay": "Beatenberg Resort & Spa · 因特拉肯 (Interlaken) 周边 · 约¥1,700/晚（第2晚）",
-      "xhsNote": "若对少女峰票价犹豫，小红书564赞排名认为 First山（滑板车/卡丁车/飞鹰）+雪朗峰（007旋转餐厅）可玩性更高，可作 Day6 替代方案，价格约为少女峰一半",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Beatenberg%20Resort%20%26%20Spa%2C%20Beatenberg"
+      "stay": "Hotel Aare Thun（阿勒河图恩酒店）· 图恩 (Thun) · 第2晚 · 已预订 ✅",
+      "xhsNote": "若对少女峰票价犹豫，小红书564赞排名认为 First山（滑板车/卡丁车/飞鹰）+雪朗峰（007旋转餐厅）可玩性更高，可作 Day6 替代方案，价格约为少女峰一半；少女峰游玩结束后返回图恩 Hotel Aare Thun（约1小时车程）",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun"
     },
     {
       "date": "10/01",
       "weekday": "周四",
+      "overview": {
+        "region": "图恩湖 → 伯尔尼",
+        "highlights": [
+          "布里恩茨蒸汽火车",
+          "施皮茨湖景",
+          "伯尔尼老城"
+        ],
+        "alert": "蒸汽火车班次须按当日时刻表确认。"
+      },
       "theme": "因特拉肯 (Interlaken) 周边（布里恩茨 (Brienz) 蒸汽火车 · 施皮茨 (Spiez)）→ 伯尔尼 (Bern)",
       "weather": {
         "icon": "partlyCloudy",
@@ -1348,6 +871,15 @@ const tripData = {
     {
       "date": "10/02",
       "weekday": "周五",
+      "overview": {
+        "region": "瑞士 → 黑森林",
+        "highlights": [
+          "伯尔尼离境",
+          "特里贝格瀑布",
+          "滴滴湖"
+        ],
+        "alert": "加莱茵瀑布会把驾驶增至约3.5小时。"
+      },
       "theme": "伯尔尼 (Bern) → 黑森林 (Schwarzwald)（特里贝格 (Triberg)）→ 滴滴湖 (Titisee)",
       "weather": {
         "icon": "partlyCloudy",
@@ -1446,13 +978,22 @@ const tripData = {
           "takeaway": "三刷黑森林博主总结：自驾最灵活，随时停靠沿途风景；湖区+瀑布+蛋糕是经典组合"
         }
       ],
-      "stay": "Maritim TitiseeHotel（蒂蒂湖酒店）· 滴滴湖 (Titisee) 畔 · 约¥1,100/晚",
-      "xhsNote": "可选加站：莱茵瀑布（沙夫豪森，欧洲水量最大瀑布，257/279赞）。伯尔尼→瀑布1.5h、瀑布→特里贝格1h15，加站后当日驾驶约3.5h（超出3h原则），需8:30出发并压缩特里贝格停留；想看'真·大瀑布'可考虑，否则按原行程",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Maritim%20TitiseeHotel%2C%20Titisee-Neustadt"
+      "stay": "Hotel Hofgut Sternen – Ravennaschlucht（拉文纳峡谷霍夫古特斯特恩酒店）· 黑森林 (Schwarzwald) · ¥1,451/晚 · 已预订 ✅",
+      "xhsNote": "可选加站：莱茵瀑布（沙夫豪森，欧洲水量最大瀑布，257/279赞）。伯尔尼→瀑布1.5h、瀑布→特里贝格1h15，加站后当日驾驶约3.5h（超出3h原则），需8:30出发并压缩特里贝格停留；想看'真·大瀑布'可考虑，否则按原行程；当晚住拉文纳峡谷 Hotel Hofgut Sternen（黑森林内），距滴滴湖约15分钟车程，玩完滴滴湖再短驳过去入住",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Hofgut%20Sternen%2C%20Ravennaschlucht"
     },
     {
       "date": "10/03",
       "weekday": "周六",
+      "overview": {
+        "region": "黑森林 → 浪漫之路",
+        "highlights": [
+          "滴滴湖晨游",
+          "罗滕堡城墙",
+          "夜巡体验"
+        ],
+        "alert": "本行程最长驾驶日，建议准时离开。"
+      },
       "theme": "滴滴湖 (Titisee) → 罗滕堡 (Rothenburg o.d.T.)（本日车程最长，约3小时）",
       "weather": {
         "icon": "partlyCloudy",
@@ -1516,13 +1057,13 @@ const tripData = {
         }
       ],
       "route": {
-        "from": "滴滴湖 (Titisee)",
+        "from": "拉文纳峡谷 (Ravennaschlucht)",
         "to": "罗滕堡 (Rothenburg o.d.T.)",
         "via": [],
         "km": 230,
         "driveTime": "约3小时（全程最长）",
         "mapPts": [
-          "Titisee-Neustadt, Germany",
+          "Hofgut Sternen Ravennaschlucht, Breitnau, Germany",
           "Rothenburg ob der Tauber, Germany"
         ]
       },
@@ -1540,6 +1081,15 @@ const tripData = {
     {
       "date": "10/04",
       "weekday": "周日",
+      "overview": {
+        "region": "浪漫之路 → 内卡河",
+        "highlights": [
+          "罗滕堡晨游",
+          "维尔茨堡主教宫",
+          "海德堡老城"
+        ],
+        "alert": "主教宫与海德堡均需保留停车与步行时间。"
+      },
       "theme": "罗滕堡 (Rothenburg o.d.T.) → 维尔茨堡 (Würzburg)（新增）→ 海德堡 (Heidelberg)",
       "weather": {
         "icon": "partlyCloudy",
@@ -1652,6 +1202,15 @@ const tripData = {
     {
       "date": "10/05",
       "weekday": "周一",
+      "overview": {
+        "region": "内卡河 → 莱茵河谷",
+        "highlights": [
+          "海德堡城堡",
+          "马克斯堡",
+          "巴哈拉赫"
+        ],
+        "alert": "莱茵河谷小镇车位少，早到或停镇外 P+R。"
+      },
       "theme": "海德堡 (Heidelberg) → 莱茵河谷（马克斯堡 · 博帕德 (Boppard) · 圣戈尔 (St. Goar) · 巴哈拉赫 (Bacharach)）",
       "weather": {
         "icon": "partlyCloudy",
@@ -1762,6 +1321,15 @@ const tripData = {
     {
       "date": "10/06",
       "weekday": "周二",
+      "overview": {
+        "region": "莱茵河谷 → 法兰克福",
+        "highlights": [
+          "上韦瑟尔",
+          "洛蕾莱",
+          "吕德斯海姆"
+        ],
+        "alert": "最后一晚住机场，确认还车和航站楼路线。"
+      },
       "theme": "莱茵河谷（巴哈拉赫 (Bacharach) · 上韦瑟尔 (Oberwesel) · 洛蕾莱 · 吕德斯海姆 (Rüdesheim)）→ 法兰克福 (Frankfurt)",
       "weather": {
         "icon": "partlyCloudy",
@@ -1878,7 +1446,16 @@ const tripData = {
     {
       "date": "10/07",
       "weekday": "周三",
-      "theme": "法兰克福 (Frankfurt) 市区半日游 → 迪拜（返程）",
+      "overview": {
+        "region": "返程",
+        "highlights": [
+          "法兰克福晨游",
+          "机场还车",
+          "经曼谷返京"
+        ],
+        "alert": "14:45 起飞；预留还车、退税与安检时间。"
+      },
+      "theme": "法兰克福 (Frankfurt) 市区晨游 → 曼谷（返程）",
       "weather": {
         "icon": "partlyCloudy",
         "high": 18,
@@ -1886,24 +1463,24 @@ const tripData = {
       },
       "activities": [
         {
-          "time": "09:30",
+          "time": "08:30",
           "name": "退房 + 驱车进法兰克福市区",
           "duration": "-",
           "cost": 0,
           "transport": "自驾",
-          "note": "返程航班改为晚上 22:20 起飞，白天空出可游法兰克福老城"
+          "note": "返程航班 14:45 起飞，上午安排晨游，需比原计划更早到机场"
         },
         {
-          "time": "10:00",
+          "time": "09:00",
           "name": "罗马广场 Römerberg + 老市政厅 + 保罗教堂",
-          "duration": "2h",
+          "duration": "1.5h",
           "cost": 0,
           "transport": "步行",
-          "note": "法兰克福老城核心，桁架房+市政厅广场，适合逛吃拍照"
+          "note": "法兰克福老城核心，桁架房+市政厅广场，清晨人少好拍"
         },
         {
-          "time": "12:00",
-          "name": "午餐（法兰克福老城）",
+          "time": "10:30",
+          "name": "早午餐（法兰克福老城）",
           "meal": {
             "name": "Kleinmarkthalle 室内市场",
             "cuisine": "德式小吃/香肠",
@@ -1913,43 +1490,36 @@ const tripData = {
           }
         },
         {
-          "time": "14:00",
-          "name": "美因河畔 + 铁桥 Eiserner Steg（可选博物馆岸）",
+          "time": "11:30",
+          "name": "法兰克福机场还车 + 办理登机/退税",
           "duration": "1.5h",
           "cost": 0,
-          "transport": "步行",
-          "note": "沿河散步看天际线，时间富余可逛施泰德博物馆区"
-        },
-        {
-          "time": "16:30",
-          "name": "法兰克福机场还车",
-          "duration": "1h",
-          "cost": 0,
           "transport": "自驾",
-          "note": "全程租车在此归还（慕尼黑取/法兰克福还）；预留退税与还车时间"
+          "note": "全程租车在此归还（慕尼黑取/法兰克福还）；TG921 14:45 起飞，预留 3h 办票+退税"
         },
         {
-          "time": "18:30",
-          "name": "抵达法兰克福机场 T3 办登机 + 退税",
-          "duration": "-",
+          "time": "14:45",
+          "name": "TG921 法兰克福T1 → 曼谷素万那普",
+          "duration": "10h40",
           "cost": 0,
-          "transport": "-",
-          "note": "EK048 22:20 起飞，建议提前 3h 到，先办退税再安检"
-        },
-        {
-          "time": "22:20",
-          "name": "EK048 法兰克福T3 → 迪拜T3",
-          "duration": "6h20",
-          "cost": 0,
-          "transport": "阿联酋航空",
-          "note": "波音777-300ER · 有餐食；次日(10/08) 06:40 抵达迪拜"
+          "transport": "泰国国际航空",
+          "note": "有餐食；次日(10/08) 06:25 抵达曼谷"
         }
       ]
     },
     {
       "date": "10/08",
       "weekday": "周四",
-      "theme": "迪拜 → 北京 · 行程结束",
+      "overview": {
+        "region": "返抵北京",
+        "highlights": [
+          "曼谷中转",
+          "抵达北京",
+          "行程结束"
+        ],
+        "alert": "确认托运行李与到达航站楼。"
+      },
+      "theme": "曼谷 → 北京 · 行程结束",
       "weather": {
         "icon": "partlyCloudy",
         "high": 26,
@@ -1957,20 +1527,20 @@ const tripData = {
       },
       "activities": [
         {
-          "time": "06:40",
-          "name": "抵达迪拜 T3，中转停留 4h",
-          "duration": "4h",
+          "time": "06:25",
+          "name": "抵达曼谷素万那普，中转停留 3h35",
+          "duration": "3h35",
           "cost": 0,
           "transport": "-",
-          "note": "无需过境签 · 行李直达；时间充裕，可在机场用餐休息"
+          "note": "无需过境签 · 行李直达；可在机场用餐休息"
         },
         {
-          "time": "10:40",
-          "name": "EK308 迪拜T3 → 北京首都T3",
-          "duration": "7h40",
+          "time": "10:00",
+          "name": "TG614 曼谷素万那普 → 北京首都T3",
+          "duration": "4h45",
           "cost": 0,
-          "transport": "阿联酋航空",
-          "note": "波音777-300ER · 有餐食；22:20 抵达北京，结束愉快行程"
+          "transport": "泰国国际航空",
+          "note": "有餐食；15:45 抵达北京，结束愉快行程"
         }
       ]
     }
@@ -1987,12 +1557,12 @@ const tripData = {
       "pdfUrl": ""
     },
     {
-      "name": "Hotel Schlosskrone（施洛斯科隆酒店）",
-      "area": "福森 (Füssen) · 1晚 9/27",
-      "pricePerNight": 1100,
-      "highlights": "四星;含早;步行可达福森老城;距新天鹅堡10分钟车程;当地无万豪系",
-      "rating": "4.4",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Schlosskrone%2C%20F%C3%BCssen",
+      "name": "Hotel Sonne（索恩酒店）",
+      "area": "福森 (Füssen) · 1晚 9/27 · 已预订 ✅",
+      "pricePerNight": 1707,
+      "highlights": "Booking.com 已确认（9/27-9/28，CNY 1,707.18）;福森老城传统四星，德式风格;含停车信息见订单;距新天鹅堡约10分钟车程",
+      "rating": "4.5",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Sonne%2C%20F%C3%BCssen",
       "bookedAddress": "",
       "pdfUrl": ""
     },
@@ -2007,12 +1577,12 @@ const tripData = {
       "pdfUrl": ""
     },
     {
-      "name": "Beatenberg Resort & Spa（比滕贝格度假村）",
-      "area": "因特拉肯 (Interlaken) 周边 · 2晚 9/29-9/30",
-      "pricePerNight": 1700,
-      "highlights": "四星;含早;俯瞰图恩湖;⚠️不可取消故保留;平替参考：Wilderswil Jungfrau Alpine Inn（小红书96赞，约¥1000/晚含早，近车站）;当地无万豪系",
-      "rating": "4.3",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Beatenberg%20Resort%20%26%20Spa%2C%20Beatenberg",
+      "name": "Hotel Aare Thun（阿勒河图恩酒店）",
+      "area": "图恩 (Thun) · 2晚 9/29-10/1 · 已预订 ✅",
+      "pricePerNight": 2394,
+      "highlights": "Booking.com 已确认（9/29-10/1，共CNY 4,787.84）;图恩湖畔近老城，距因特拉肯约30分钟车程;可加CNY 165.67升级景观房;含停车信息见订单",
+      "rating": "4.4",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun",
       "bookedAddress": "",
       "pdfUrl": ""
     },
@@ -2027,12 +1597,12 @@ const tripData = {
       "pdfUrl": ""
     },
     {
-      "name": "Maritim TitiseeHotel（蒂蒂湖酒店）",
-      "area": "滴滴湖 (Titisee) · 1晚 10/2",
-      "pricePerNight": 1100,
-      "highlights": "四星;含早;湖景房;当地无万豪系",
-      "rating": "4.2",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Maritim%20TitiseeHotel%2C%20Titisee-Neustadt",
+      "name": "Hotel Hofgut Sternen – Ravennaschlucht（拉文纳峡谷霍夫古特斯特恩酒店）",
+      "area": "黑森林 (Schwarzwald) · 1晚 10/2 · 已预订 ✅",
+      "pricePerNight": 1451,
+      "highlights": "Booking.com 已确认（10/2-10/3，CNY 1,450.71）;黑森林内拉文纳峡谷旁，距滴滴湖约15分钟车程;历史悠久的山间旅馆;含停车信息见订单",
+      "rating": "4.3",
+      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Hofgut%20Sternen%2C%20Ravennaschlucht",
       "bookedAddress": "",
       "pdfUrl": ""
     },
@@ -2081,7 +1651,7 @@ const tripData = {
     "transport": {
       "items": [
         {
-          "name": "阿联酋航空往返机票 ×2人（经迪拜中转，¥11,300/人）",
+          "name": "泰国国际航空往返机票 ×2人（经曼谷中转，按实际订单金额为准）",
           "cost": 22600
         },
         {
@@ -2110,24 +1680,24 @@ const tripData = {
           "cost": 2200
         },
         {
-          "name": "福森 1晚 ~",
-          "cost": 1100
+          "name": "福森 Hotel Sonne 1晚（已预订）",
+          "cost": 1707
         },
         {
           "name": "苏黎世万豪 1晚 ~",
           "cost": 1500
         },
         {
-          "name": "因特拉肯 2晚 ~",
-          "cost": 3400
+          "name": "图恩 Hotel Aare Thun 2晚（已预订）",
+          "cost": 4788
         },
         {
           "name": "伯尔尼 1晚 ~",
           "cost": 1000
         },
         {
-          "name": "滴滴湖 1晚 ~",
-          "cost": 1100
+          "name": "黑森林 Hotel Hofgut Sternen 1晚（已预订）",
+          "cost": 1451
         },
         {
           "name": "罗滕堡 1晚 ~",
@@ -2146,7 +1716,7 @@ const tripData = {
           "cost": 1100
         }
       ],
-      "subtotal": 14150
+      "subtotal": 16496
     },
     "food": {
       "items": [
@@ -2215,8 +1785,8 @@ const tripData = {
       ],
       "subtotal": 600
     },
-    "total": 60190,
-    "perPerson": 30095
+    "total": 62536,
+    "perPerson": 31268
   },
   "tips": [
     "路线逻辑：慕尼黑→福森→(林道/博登湖)→苏黎世→琉森→龙疆→因特拉肯(3天)→伊瑟尔特瓦尔德/施皮茨→伯尔尼→黑森林→罗滕堡→海德堡→莱茵河谷→法兰克福，全程环线无回头路，总里程约1,625km，仅 Day9 约3小时驾驶，其余均在3小时内",
@@ -2332,403 +1902,13 @@ const tripData = {
   "car": {
     "id": "car",
     "label": "租车 · 慕尼黑 (München) 取 / 法兰克福 (Frankfurt) 还",
-    "detail": "11 天含全险，德瑞全程同一辆车，无重复计费",
+    "detail": "约12天含全险，德瑞全程同一辆车，无重复计费（9/25 清晨慕尼黑取 / 10/7 中午法兰克福还）",
     "pdfUrl": "",
     "bookedRef": ""
   }
-};
-
-// SVG icon templates (inline, no external deps)
-const SVG = {
-  sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>',
-  cloud: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>',
-  cloudSun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2M4.93 4.93l1.41 1.41M20 12h2M4 12H2M19.07 4.93l-1.41 1.41"/><circle cx="12" cy="9" r="4" opacity=".5"/><path d="M18 13h-1.26A7 7 0 0 0 6 15.26 5 5 0 1 0 9 23h9a5 5 0 0 0 0-10z"/></svg>',
-  rain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 13V4a4 4 0 0 0-8 0v1H6a4 4 0 0 0 0 8h10a4 4 0 0 0 0-8Z"/><path d="M8 19v2M12 19v2M16 19v2"/></svg>',
-  storm: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><path d="m13 12-3 5h4l-3 5"/></svg>',
-  snow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/><path d="M8 18l.01 0M12 18l.01 0M16 18l.01 0"/></svg>',
-  utensils: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>',
-  mapPin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
-  lightbulb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18h6M10 22h4M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>',
-  info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
-  plane: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>',
-  hotel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M3 7v14M21 7v14M6 7V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3"/><rect x="7" y="10" width="3" height="3" rx=".5"/><rect x="14" y="10" width="3" height="3" rx=".5"/><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg>',
-  ticket: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>',
-  box: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
-  chevDown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>'
-};
-
-const weatherIcons = { sunny: SVG.sun, cloudy: SVG.cloud, rainy: SVG.rain, stormy: SVG.storm, snowy: SVG.snow, partlyCloudy: SVG.cloudSun, overcast: SVG.cloud };
-const budgetColors = { transport: '#0EA5E9', accommodation: '#8B5CF6', food: '#F97316', tickets: '#F43F5E', other: '#64748B' };
-const budgetIcons = { transport: SVG.plane, accommodation: SVG.hotel, food: SVG.utensils, tickets: SVG.ticket, other: SVG.box };
-const budgetLabels = { transport: '交通', accommodation: '住宿', food: '餐饮', tickets: '门票', other: '其他' };
-
-function renderWeather(weather, days) {
-  const bar = document.getElementById('weatherBar');
-  bar.innerHTML = days.map(d => {
-    const icon = weatherIcons[d.weather.icon] || SVG.cloudSun;
-    return `<div class="weather-card">
-      <div class="w-date">${d.date} ${d.weekday}</div>
-      <div class="w-icon" style="color:${d.weather.icon === 'sunny' ? '#F59E0B' : d.weather.icon === 'rainy' ? '#0EA5E9' : '#64748B'}">${icon}</div>
-      <div class="w-temp">${d.weather.high}° <span class="w-temp-low">/ ${d.weather.low}°</span></div>
-    </div>`;
-  }).join('');
-
-  const tip = document.getElementById('weatherTip');
-  tip.innerHTML = `<span class="icon" style="color:var(--primary)">${SVG.info}</span>
-    <span>${weather.clothing} · 降水概率 ${weather.rainfall} · ${weather.tips}</span>`;
-}
-
-let pendingRouteMaps = [];
-const routeMapInstances = [];
-
-// Geocoded coordinates for every route waypoint (via Nominatim, baked in at generation time)
-const GEO = {"Munich Airport, Germany":[48.35396,11.77859],"Munich, Germany":[48.13711,11.57538],"Füssen, Germany":[47.5676,10.69932],"Lindau, Germany":[47.57287,9.69619],"Zürich, Switzerland":[47.37445,8.54104],"Lucerne, Switzerland":[47.05214,8.30581],"Lungern, Switzerland":[46.78573,8.16073],"Brienz, Switzerland":[46.756,8.0303],"Interlaken, Switzerland":[46.68552,7.85851],"Grindelwald, Switzerland":[46.62427,8.03675],"Lauterbrunnen, Switzerland":[46.5939,7.9078],"Spiez, Switzerland":[46.69195,7.67747],"Bern, Switzerland":[46.94847,7.45217],"Triberg im Schwarzwald, Germany":[48.1298,8.23227],"Titisee-Neustadt, Germany":[47.91734,8.17352],"Rothenburg ob der Tauber, Germany":[49.3658,10.16292],"Würzburg, Germany":[49.77804,9.94348],"Heidelberg, Germany":[49.40936,8.69472],"Braubach, Germany":[50.27512,7.65107],"Boppard, Germany":[50.23128,7.58859],"Sankt Goar, Germany":[50.15,7.71667],"Bacharach, Germany":[50.05979,7.7684],"Oberwesel, Germany":[50.1075,7.72662],"Loreley, Sankt Goarshausen, Germany":[50.12064,7.73241],"Rüdesheim am Rhein, Germany":[50.0293,7.8902],"Frankfurt Airport, Germany":[50.02441,8.5552]};
-
-function buildRouteMap(el, pts) {
-  const stops = pts.map(p => ({ name: p, ll: GEO[p] })).filter(s => s.ll);
-  if (!stops.length) return;
-  const map = L.map(el, { scrollWheelZoom: false });
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors · routing: OSRM'
-  }).addTo(map);
-  stops.forEach((s, idx) => {
-    const cls = idx === 0 ? 'map-stop first' : idx === stops.length - 1 ? 'map-stop last' : 'map-stop';
-    L.marker(s.ll, {
-      icon: L.divIcon({ className: cls, html: '<span>' + (idx + 1) + '</span>', iconSize: [24, 24], iconAnchor: [12, 12] })
-    }).addTo(map).bindTooltip(s.name, { direction: 'top', className: 'map-tip' });
-  });
-  const latlngs = stops.map(s => s.ll);
-  const bounds = L.latLngBounds(latlngs);
-  // Guarantee: the entire day's trip is visible within the frame from the start
-  map.fitBounds(bounds, { padding: [40, 40] });
-  const state = { map, bounds };
-  routeMapInstances.push(state);
-  const drawFallback = () => {
-    L.polyline(latlngs, { color: '#2563EB', weight: 4, opacity: 0.8, dashArray: '2 6' }).addTo(map);
-  };
-  // Driving route via OSRM demo server (no API key); refit after it arrives
-  fetch('https://router.project-osrm.org/route/v1/driving/' + latlngs.map(ll => ll[1] + ',' + ll[0]).join(';') + '?overview=full&geometries=geojson')
-    .then(r => (r.ok ? r.json() : Promise.reject(new Error('osrm'))))
-    .then(data => {
-      const geom = data && data.routes && data.routes[0] && data.routes[0].geometry;
-      if (!geom) { drawFallback(); return; }
-      const line = L.geoJSON(geom, { style: { color: '#2563EB', weight: 4, opacity: 0.85 } }).addTo(map);
-      state.bounds = bounds.extend(line.getBounds());
-      map.fitBounds(state.bounds, { padding: [40, 40] });
-    })
-    .catch(drawFallback);
-}
-
-function initRouteMaps() {
-  if (!window.L || !pendingRouteMaps.length) return;
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (!en.isIntersecting) return;
-      obs.unobserve(en.target);
-      const conf = pendingRouteMaps.find(m => m.elId === en.target.id);
-      if (conf) buildRouteMap(en.target, conf.pts);
-    });
-  }, { rootMargin: '300px' });
-  pendingRouteMaps.forEach(m => {
-    const el = document.getElementById(m.elId);
-    if (el) obs.observe(el);
-  });
-}
-
-// After expanding/collapsing day cards, recalc map size and re-fit the whole route
-function refreshRouteMaps() {
-  setTimeout(() => {
-    routeMapInstances.forEach(s => {
-      const el = s.map.getContainer();
-      if (!el.offsetParent) return;
-      s.map.invalidateSize();
-      if (s.bounds && s.bounds.isValid()) s.map.fitBounds(s.bounds, { padding: [40, 40] });
-    });
-  }, 420);
-}
-
-function renderDayToolbar(days) {
-  const bar = document.getElementById('dayToolbar');
-  if (!bar) return;
-  const chips = days.map((d, i) =>
-    `<a class="day-chip" href="#day-${i + 1}" title="${d.date} ${d.weekday} · ${d.theme}">D${i + 1}</a>`
-  ).join('');
-  bar.innerHTML = chips
-    + '<span class="day-toolbar-spacer"></span>'
-    + '<button class="day-toolbar-btn" onclick="setAllDays(false)">全部展开</button>'
-    + '<button class="day-toolbar-btn" onclick="setAllDays(true)">全部折叠</button>';
-}
-
-function setAllDays(collapse) {
-  document.querySelectorAll('#daysContainer .day-card').forEach(card => {
-    card.classList.toggle('collapsed', collapse);
-    const header = card.querySelector('.day-header');
-    if (header) header.setAttribute('aria-expanded', String(!collapse));
-  });
-  refreshRouteMaps();
-}
-
-function renderDays(days) {
-  pendingRouteMaps = [];
-  const container = document.getElementById('daysContainer');
-  container.innerHTML = days.map((day, i) => {
-    const wIcon = weatherIcons[day.weather.icon] || SVG.cloudSun;
-    const acts = day.activities.map(a => {
-      const isMeal = a.meal || /[午晚早]餐/.test(a.name);
-      let html = `<div class="tl-item${isMeal ? ' is-meal' : ''}"><div class="tl-dot"></div>`;
-      html += `<div class="tl-time">${a.time}${a.duration ? ' · ' + a.duration : ''}</div><div class="tl-content">`;
-      html += `<h4>${a.name}</h4>`;
-      if (a.note) html += `<p>${a.note}</p>`;
-      if (a.meal) {
-        html += `<div class="meal-card">
-          <div class="meal-icon"><span class="icon">${SVG.utensils}</span></div>
-          <div class="meal-info">
-            <div class="meal-name">${a.meal.name}</div>
-            <div class="meal-detail">${a.meal.cuisine} · ${a.meal.location}${a.meal.recommended ? ' · 推荐：' + a.meal.recommended : ''}</div>
-          </div>
-          <div class="meal-price">¥${a.meal.perPerson}/人</div>
-        </div>`;
-      }
-      const tags = [];
-      if (a.cost === 0) tags.push(`<span class="tag tag-free">免费</span>`);
-      else if (a.cost) tags.push(`<span class="tag tag-cost">¥${a.cost}</span>`);
-      if (a.transport) tags.push(`<span class="tag tag-transport">${a.transport}</span>`);
-      if (tags.length) html += `<div class="tl-tags">${tags.join('')}</div>`;
-      html += `</div></div>`;
-      return html;
-    }).join('');
-
-    let routeHtml = '';
-    if (day.route) {
-      const r = day.route;
-      const pts = [r.from].concat(r.via || []).concat([r.to]);
-      const mpts = r.mapPts || pts;
-      const dirUrl = 'https://www.google.com/maps/dir/' + mpts.map(p => encodeURIComponent(p)).join('/');
-      const mapId = 'route-map-' + (i + 1);
-      pendingRouteMaps.push({ elId: mapId, pts: mpts });
-      routeHtml = '<div class="route-bar">'
-        + '<span>🚗 ' + pts.join(' → ') + '</span>'
-        + '<span class="r-km">丨 约 ' + r.km + ' km</span>'
-        + '<span>丨 驾驶 ' + r.driveTime + '</span>'
-        + '<a class="gmaps-link" href="' + dirUrl + '" target="_blank" rel="noopener">Google Maps 打开 ↗</a>'
-        + '</div>'
-        + '<div class="route-map" id="' + mapId + '"></div>';
-    }
-    let paceHtml = '';
-    if (day.xhsNote) {
-      paceHtml = '<div class="pace-note">⏱️ 节奏提示：' + day.xhsNote + '</div>';
-    }
-    let stayHtml = '';
-    if (day.stay) {
-      stayHtml = day.stayUrl
-        ? '<a class="preview-card booking-card stay-card" href="' + day.stayUrl + '" target="_blank" rel="noopener">'
-          + '<div class="pc-badge" style="background:#003580">B</div>'
-          + '<div class="pc-body"><div class="pc-title">🏨 当晚住宿 · Booking.com 预订</div>'
-          + '<div class="pc-sub">' + day.stay + '</div></div><div class="pc-arrow">↗</div></a>'
-        : '<div class="stay-bar"><span class="stay-label">🏨 当晚住宿</span><span>' + day.stay + '</span></div>';
-    }
-    let xhsHtml = '';
-    if (day.xhs && day.xhs.length) {
-      xhsHtml = '<div class="xhs-block"><div class="xhs-title">📕 小红书实测 · 到了这地方看什么（' + day.xhs.length + '篇）</div>'
-        + day.xhs.map(n => '<a class="preview-card xhs-card" href="' + n.url + '" target="_blank" rel="noopener">'
-          + '<div class="pc-badge" style="background:#FF2442">薯</div>'
-          + '<div class="pc-body"><div class="pc-title">' + n.title + '</div>'
-          + (n.takeaway ? '<div class="pc-sub">' + n.takeaway + '</div>' : '')
-          + '<div class="pc-meta">小红书 · ❤ ' + n.likes + '</div></div>'
-          + '<div class="pc-arrow">↗</div></a>').join('') + '</div>';
-    }
-    // Compact overview line: from→to, flight flag, and where you sleep tonight
-    const hasFlight = day.activities.some(a => /航空|✈|EK ?\d|CX ?\d/.test((a.transport || '') + ' ' + (a.name || '')));
-    let seg = day.route ? (day.route.from + ' → ' + day.route.to) : day.theme.split('·')[0].trim();
-    let stayCity = '';
-    if (day.stay) { const pp = day.stay.split('·'); if (pp.length > 1) stayCity = pp[1].trim(); }
-    const sIcon = day.route ? '🚗' : '📍';
-    const summaryHtml = '<div class="day-summary">'
-      + '<span class="ds-route">' + sIcon + ' ' + seg + '</span>'
-      + (hasFlight ? '<span class="ds-fly">✈ 有航班</span>' : '')
-      + (stayCity ? '<span class="ds-stay">🏨 ' + stayCity + '</span>' : '<span class="ds-stay ds-end">🏁 无住宿</span>')
-      + '</div>';
-
-    return `<div class="day-card" id="day-${i + 1}">
-      <div class="day-header" tabindex="0" role="button" aria-expanded="true"
-           onclick="toggleDay(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleDay(this)}">
-        <div class="day-header-left">
-          <div class="day-num">D${i + 1}</div>
-          <div class="day-header-info">
-            <h3>${day.theme}</h3>
-            <div class="day-meta">
-              <span>${day.date} ${day.weekday}</span>
-              <span style="display:inline-flex;align-items:center;gap:3px;color:${day.weather.icon === 'sunny' ? '#F59E0B' : '#64748B'}">
-                <span class="icon icon-sm">${wIcon}</span> ${day.weather.high}°/${day.weather.low}°
-              </span>
-            </div>
-            ${summaryHtml}
-          </div>
-        </div>
-        <div class="toggle-icon"><span class="icon icon-sm">${SVG.chevDown}</span></div>
-      </div>
-      <div class="day-body">${routeHtml}${paceHtml}<div class="timeline">${acts}</div>${stayHtml}${xhsHtml}</div>
-    </div>`;
-  }).join('');
-  initRouteMaps();
-}
-
-function toggleDay(el) {
-  const card = el.closest('.day-card');
-  const expanded = !card.classList.contains('collapsed');
-  card.classList.toggle('collapsed');
-  el.setAttribute('aria-expanded', !expanded);
-  refreshRouteMaps();
-}
-
-function renderHotels(hotels) {
-  document.getElementById('hotelGrid').innerHTML = hotels.map((h, i) => {
-    const tags = h.highlights.split(/[;；、,，]/).filter(Boolean).map(t => `<span class="hotel-tag">${t.trim()}</span>`).join('');
-    return `<div class="hotel-card">
-      ${i === 0 ? '<div class="hotel-badge">推荐</div>' : ''}
-      <div class="hotel-name">${h.name}</div>
-      ${h.bookingUrl ? '<a class="preview-card booking-card" href="' + h.bookingUrl + '" target="_blank" rel="noopener">'
-        + '<div class="pc-badge" style="background:#003580">B</div>'
-        + '<div class="pc-body"><div class="pc-title">' + h.name.split('（')[0] + '</div>'
-        + '<div class="pc-sub">Booking.com · ' + h.area + ' · 评分 ' + h.rating + '/5 · 约¥' + h.pricePerNight + '/晚</div></div>'
-        + '<div class="pc-arrow">↗</div></a>' : ''}
-      <div class="hotel-area"><span class="icon icon-sm" style="color:var(--accent)">${SVG.mapPin}</span>${h.area}</div>
-      <div class="hotel-price-row"><span class="hotel-price">¥${h.pricePerNight}</span><span class="hotel-price-unit">/晚</span></div>
-      <div class="hotel-highlights">${tags}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderBudget(budget) {
-  // Chart bar
-  const cats = Object.entries(budget).filter(([k]) => !['total', 'perPerson'].includes(k));
-  const total = budget.total || cats.reduce((s, [, d]) => s + d.subtotal, 0);
-  document.getElementById('budgetChart').innerHTML = cats.map(([cat, data]) =>
-    `<div class="budget-chart-seg" style="width:${(data.subtotal / total * 100).toFixed(1)}%;background:${budgetColors[cat] || '#94A3B8'}"></div>`
-  ).join('');
-
-  // Table
-  const tbody = document.querySelector('#budgetTable tbody');
-  tbody.innerHTML = cats.map(([cat, data]) => {
-    const icon = budgetIcons[cat] || SVG.box;
-    const label = budgetLabels[cat] || cat;
-    let rows = `<tr class="cat-row"><td colspan="2"><span class="cat-icon"><span class="icon icon-sm" style="color:${budgetColors[cat]}">${icon}</span>${label}</span></td><td class="subtotal">¥${data.subtotal.toLocaleString()}</td></tr>`;
-    data.items.forEach(item => { rows += `<tr class="sub-row"><td></td><td>${item.name}</td><td>¥${item.cost.toLocaleString()}</td></tr>`; });
-    return rows;
-  }).join('');
-
-  // Total bar
-  const el = document.getElementById('budgetTotal');
-  el.querySelector('.budget-total-amount').textContent = `¥${total.toLocaleString()}`;
-  el.querySelector('.budget-total-per').textContent = `人均 ¥${(budget.perPerson || 0).toLocaleString()}`;
-}
-
-var BOOKING_KEY = 'germany2026_bookings';
-function loadBookings() { try { return JSON.parse(localStorage.getItem(BOOKING_KEY)) || {}; } catch (e) { return {}; } }
-function saveBookings(m) { try { localStorage.setItem(BOOKING_KEY, JSON.stringify(m)); } catch (e) {} }
-// An item counts as booked if it has an uploaded order PDF (repo-hosted) OR the
-// traveler manually ticked it. hasDoc items are locked-on (can't untick).
-function isBooked(it, state) { return !!it.pdf || !!state[it.id]; }
-function updateBookingProgress(items) {
-  var s = loadBookings();
-  var done = items.filter(function (it) { return isBooked(it, s); }).length;
-  var el = document.getElementById('bookingProgress');
-  if (el) el.textContent = '已预订 ' + done + ' / ' + items.length;
-}
-function renderBookings(flights, hotels, car) {
-  var items = [];
-  (flights || []).forEach(function (f) {
-    items.push({ id: f.id, kind: '✈️', title: f.label, sub: f.detail, pdf: f.pdfUrl || '', addr: f.bookedRef || '' });
-  });
-  (car ? [car] : []).forEach(function (c) {
-    items.push({ id: c.id || 'car', kind: '🚗', title: c.label, sub: c.detail, pdf: c.pdfUrl || '', addr: c.bookedRef || '' });
-  });
-  (hotels || []).forEach(function (h, i) {
-    items.push({ id: 'hotel-' + i, kind: '🏨', title: h.name.split('（')[0], sub: h.area + ' · 约¥' + h.pricePerNight + '/晚',
-      pdf: h.pdfUrl || '', addr: h.bookedAddress || '', rec: h.bookingUrl || '' });
-  });
-  var state = loadBookings();
-  var container = document.getElementById('bookingList');
-  container.innerHTML = items.map(function (it) {
-    var done = isBooked(it, state);
-    var locked = !!it.pdf;
-    var right = '';
-    if (it.pdf) right += '<a class="bk-pdf" href="' + it.pdf + '" target="_blank" rel="noopener">📄 查看订单</a>';
-    else if (it.rec) right += '<a class="bk-rec" href="' + it.rec + '" target="_blank" rel="noopener">去预订 ↗</a>';
-    right += '<span class="bk-status">' + (done ? '已预订' : '未预订') + '</span>';
-    var addr = it.addr ? '<span class="bk-addr">📍 实际预订：' + it.addr + '</span>' : '';
-    var hint = (!it.pdf) ? '<span class="bk-hint">订单 PDF 可发我加入仓库永久保存</span>' : '';
-    return '<div class="booking-row' + (done ? ' is-booked' : '') + '" data-id="' + it.id + '">'
-      + '<input type="checkbox"' + (done ? ' checked' : '') + (locked ? ' disabled' : '') + '>'
-      + '<span class="bk-kind">' + it.kind + '</span>'
-      + '<span class="bk-text"><span class="bk-title">' + it.title + '</span><span class="bk-sub">' + it.sub + '</span>' + addr + hint + '</span>'
-      + '<span class="bk-actions">' + right + '</span>'
-      + '</div>';
-  }).join('');
-  updateBookingProgress(items);
-  // Toggle handler: clicking the row (not a link) or the checkbox toggles the
-  // manual-booked flag; locked (has-PDF) rows are not toggleable.
-  function setRow(row, checked) {
-    var id = row.dataset.id;
-    var s = loadBookings();
-    if (checked) s[id] = true; else delete s[id];
-    saveBookings(s);
-    row.classList.toggle('is-booked', checked);
-    var st = row.querySelector('.bk-status'); if (st) st.textContent = checked ? '已预订' : '未预订';
-    updateBookingProgress(items);
-  }
-  container.querySelectorAll('.booking-row').forEach(function (row) {
-    var cb = row.querySelector('input');
-    if (cb.disabled) return;
-    cb.addEventListener('change', function (e) { setRow(row, e.target.checked); });
-    row.addEventListener('click', function (e) {
-      if (e.target.closest('a') || e.target === cb) return;
-      cb.checked = !cb.checked;
-      setRow(row, cb.checked);
-    });
-  });
-}
-
-function renderTips(tips) {
-  document.getElementById('tipsList').innerHTML = tips.map(t =>
-    `<div class="tip-card"><div class="tip-icon"><span class="icon">${SVG.lightbulb}</span></div><span>${t}</span></div>`
-  ).join('');
-}
-
-if (tripData) {
-  document.getElementById('heroTitle').textContent = tripData.title;
-  if (tripData.dateRange) document.getElementById('heroDate').textContent = tripData.dateRange;
-  if (tripData.travelers) document.getElementById('heroTravelers').textContent = tripData.travelers;
-  if (tripData.budget) document.getElementById('heroBudget').textContent = `¥${(tripData.budget.total || 0).toLocaleString()}`;
-  renderWeather(tripData.weather, tripData.days);
-  if (tripData.totalDrive) {
-    const dc = document.getElementById('daysContainer');
-    const banner = document.createElement('div');
-    banner.className = 'drive-total';
-    banner.textContent = '🛣️ ' + tripData.totalDrive.note;
-    dc.parentNode.insertBefore(banner, dc);
-  }
-  renderDayToolbar(tripData.days);
-  renderDays(tripData.days);
-  renderHotels(tripData.hotels);
-  renderBookings(tripData.flights, tripData.hotels, tripData.car);
-  renderBudget(tripData.budget);
-  renderTips(tripData.tips);
-  if (tripData.alternatives) {
-    const list = document.getElementById('tipsList');
-    const head = document.createElement('div');
-    head.className = 'alt-head';
-    head.textContent = '🧭 小红书"德瑞必去"榜单核对：未纳入目的地评估';
-    list.parentNode.insertBefore(head, list);
-    tripData.alternatives.forEach(a => {
-      const div = document.createElement('div');
-      div.className = 'tip-card';
-      div.innerHTML = '<div class="tip-icon"><span class="icon">' + SVG.lightbulb + '</span></div><span><b>' + a.place + '</b> ' + a.verdict + ' — ' + a.reason + '</span>';
-      list.appendChild(div);
-    });
-  }
-}
-</script>
-</body>
-</html>
+},E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),km=d=>d.route?.km||0,stay=d=>(d.stay||'未安排住宿').split('·')[0].trim(),title=d=>d.theme.replace(/（[^）]*）/g,'').replace(/\s*·\s*.*/,'').trim(),route=d=>d.route?[d.route.from,...(d.route.via||[]),d.route.to].join(' → '):d.theme.split('·')[0].trim(),role=a=>a.priority||(/可选|替代|如想|若对|时间充裕/.test((a.name||'')+(a.note||''))?'optional':/TG\d|EK\d|机场|取车|还车|预订|门票|火车/.test((a.name||'')+(a.transport||''))?'critical':'recommended'),url=d=>'https://www.google.com/maps/dir/'+(d.route?.mapPts||[d.route?.from,...(d.route?.via||[]),d.route?.to].filter(Boolean)).map(encodeURIComponent).join('/');
+function show(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>{let on=x.dataset.view===v;x.classList.toggle('active',on);if(x.classList.contains('mode'))x.setAttribute('aria-selected',on)});history.replaceState(null,'','#'+v);scrollTo({top:0,behavior:'smooth'})}function card(d,i){let o=d.overview||{};return`<button class="day-card" data-day="${i}"><div class="top"><span>D${i+1} · ${E(d.date)} ${E(d.weekday)}</span><span>${E(o.region||'行程')}</span></div><h3>${E(title(d))}</h3><div class="route">${E(route(d))}${d.route?` · ${km(d)} km · ${E(d.route.driveTime)}`:''}</div><div class="chips">${(o.highlights||[]).slice(0,3).map(x=>`<span class="chip">${E(x)}</span>`).join('')}</div><div class="stay">⌂ ${E(stay(d))}</div>${o.alert?`<div class="alert">注意：${E(o.alert)}</div>`:''}</button>`}function overview(){let total=tripData.days.reduce((n,d)=>n+km(d),0);drive.textContent=total.toLocaleString()+' km';hotels.textContent=tripData.hotels.length+' 站';metrics.innerHTML=`<div class="metric"><b>${total.toLocaleString()} km</b><span>全程计划驾驶</span></div><div class="metric"><b>${tripData.days.filter(d=>km(d)>=200).length} 天</b><span>200 km 以上路段</span></div><div class="metric"><b>${tripData.hotels.filter(h=>/已预订/.test(h.area)).length} / ${tripData.hotels.length}</b><span>已确认住宿</span></div><div class="metric"><b>¥${(tripData.budget?.total||0).toLocaleString()}</b><span>预估总费用</span></div>`;days.innerHTML=tripData.days.map(card).join('');document.querySelectorAll('.day-card').forEach(x=>x.onclick=()=>{selected=+x.dataset.day;travel();show('travel')})}function item(a){let r=role(a);return`<div class="full"><span class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</span><b> ${E(a.name)}</b><span class="role"> · ${r==='critical'?'必须准时':r==='optional'?'可选':'推荐'}</span>${a.note?`<div class="muted">${E(a.note)}</div>`:''}${a.meal?`<div class="meal">${E(a.meal.name)} · ${E(a.meal.cuisine)} · ¥${E(a.meal.perPerson)}/人${a.meal.recommended?' · 推荐：'+E(a.meal.recommended):''}</div>`:''}</div>`}function planning(){let all=[];(tripData.flights||[]).forEach(f=>all.push([f.id,'✈',f.label,f.detail,!!f.pdfUrl]));if(tripData.car)all.push([tripData.car.id||'car','🚗',tripData.car.label,tripData.car.detail,!!tripData.car.pdfUrl]);tripData.hotels.forEach((h,i)=>all.push(['hotel-'+i,'⌂',h.name,h.area,/已预订/.test(h.area)||!!h.pdfUrl]));let saved=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');bookings.innerHTML=all.map(x=>`<label class="booking"><input type="checkbox" data-b="${E(x[0])}" ${x[4]||saved[x[0]]?'checked':''}><span><b>${x[1]} ${E(x[2])}</b><span class="sub">${E(x[3])}</span></span><span class="status ${x[4]||saved[x[0]]?'done':''}">${x[4]||saved[x[0]]?'已预订':'待确认'}</span></label>`).join('');document.querySelectorAll('[data-b]').forEach(x=>x.onchange=()=>{let s=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');s[x.dataset.b]=x.checked;localStorage.setItem('germany2026_bookings',JSON.stringify(s));planning()});budget.innerHTML=Object.entries(tripData.budget||{}).filter(([k])=>!['total','perPerson'].includes(k)).map(([,v])=>`<div class="budget"><span>${E(v.items.map(x=>x.name).join('、'))}</span><b>¥${(v.subtotal||0).toLocaleString()}</b></div>`).join('')+`<div class="budget"><b>总计（人均 ¥${(tripData.budget?.perPerson||0).toLocaleString()}）</b><b>¥${(tripData.budget?.total||0).toLocaleString()}</b></div>`;planDays.innerHTML=tripData.days.map((d,i)=>`<details class="panel" style="margin:12px 0"><summary><b>D${i+1} · ${E(d.date)} ${E(d.weekday)}</b>　${E(d.theme)}</summary><div class="route-box"><strong>${E(route(d))}</strong>${d.route?`<p>${km(d)} km · 驾驶 ${E(d.route.driveTime)}</p>`:''}</div>${d.activities.map(item).join('')}<div class="details"><b>当晚住宿</b><p>${E(d.stay||'—')}</p></div></details>`).join('');tips.innerHTML=tripData.tips.map(x=>`<li>${E(x)}</li>`).join('');notes.innerHTML=tripData.revisionNotes.map(x=>`<li>${E(x)}</li>`).join('')}
+function ymd(n=new Date()){let p=new Intl.DateTimeFormat('en-CA',{timeZone:tripData.tripTimezone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(n),o=Object.fromEntries(p.map(x=>[x.type,x.value]));return`${o.year}-${o.month}-${o.day}`}function dates(d){return d.activeDates||[`2026-${d.date.replace('/','-')}`]}function auto(n){let t=ymd(n);if(t<tripData.tripStartDate)return 0;if(t>tripData.tripEndDate)return tripData.days.length-1;let i=tripData.days.findIndex(d=>dates(d).includes(t));return i<0?0:i}let selected=auto();function travel(){let d=tripData.days[selected],o=d.overview||{},key=d.activities.filter(a=>!a.meal&&role(a)!=='optional'),opt=d.activities.filter(a=>role(a)==='optional');travelHead.textContent=`D${selected+1} · ${d.date} ${d.weekday}`;travelSub.textContent=`瑞士当地日期 ${ymd()} · ${selected===auto()?'已自动选择今天':'手动查看此日'}`;picker.innerHTML=tripData.days.map((x,i)=>`<button class="${i===selected?'active':''}" data-p="${i}">D${i+1}<br>${E(x.date)}</button>`).join('');document.querySelectorAll('[data-p]').forEach(x=>x.onclick=()=>{selected=+x.dataset.p;travel()});today.innerHTML=`<div class="today"><div><div class="eyebrow">${E(o.region||'今日行程')}</div><h2>${E(title(d))}</h2><p>${E((o.highlights||[]).join(' · '))}</p></div><div class="today-metrics">${d.route?`<span>${km(d)} km</span><span>${E(d.route.driveTime)}</span>`:'<span>市内 / 飞行日</span>'}${d.route?`<a class="primary" target="_blank" rel="noopener" href="${url(d)}">打开导航 ↗</a>`:''}</div></div>${d.route?`<div class="route-box"><strong>🚗 ${E(route(d))}</strong><p>从这里出发；导航、停车和临时道路情况以 Google Maps 为准。</p></div>`:''}${o.alert?`<div class="alert">今日提醒：${E(o.alert)}</div>`:''}<div class="cols" style="margin-top:16px"><div class="panel"><div class="label">Run of show</div><h3>今天的关键安排</h3><ol class="timeline">${key.map(a=>`<li><div class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</div><h4>${E(a.name)}</h4>${a.note?`<p>${E(a.note)}</p>`:''}</li>`).join('')}</ol>${opt.length?`<details class="details"><summary>查看 ${opt.length} 个可选安排</summary>${opt.map(item).join('')}</details>`:''}</div><aside class="panel"><div class="label">Tonight</div><h3>当晚落脚</h3><p><b>${E(stay(d))}</b></p><p class="muted">${E(d.stay||'—')}</p><div class="details"><b>天气（气候参考）</b><p>${d.weather?`${d.weather.high}° / ${d.weather.low}° · ${E(tripData.weather?.clothing||'')}`:'请按实时天气准备'}</p></div><details class="details"><summary>完整当日安排与餐厅</summary>${d.activities.map(item).join('')}</details></aside></div>`}document.querySelectorAll('[data-view]').forEach(x=>x.onclick=()=>show(x.dataset.view));overview();planning();travel();window.__tripApp={auto,select:i=>{selected=i;travel()}};
+const geo={"Munich Airport, Germany":[48.354,11.779],"Munich, Germany":[48.137,11.575],"Füssen, Germany":[47.568,10.699],"Lindau, Germany":[47.573,9.696],"Zürich, Switzerland":[47.374,8.541],"Lucerne, Switzerland":[47.052,8.306],"Lungern, Switzerland":[46.786,8.161],"Interlaken, Switzerland":[46.686,7.859],"Grindelwald, Switzerland":[46.624,8.037],"Lauterbrunnen, Switzerland":[46.594,7.908],"Bern, Switzerland":[46.948,7.452],"Titisee-Neustadt, Germany":[47.917,8.174],"Rothenburg ob der Tauber, Germany":[49.366,10.163],"Würzburg, Germany":[49.778,9.943],"Heidelberg, Germany":[49.409,8.695],"Bacharach, Germany":[50.06,7.768],"Rüdesheim am Rhein, Germany":[50.03,7.89],"Frankfurt Airport, Germany":[50.024,8.555]};window.addEventListener('load',()=>{if(!window.L){fallback.textContent='路线图暂不可用；下方行程卡保留全部起终点、里程和导航入口。';return}let p=[];tripData.days.forEach(d=>(d.route?.mapPts||[]).forEach(n=>{if(geo[n]&&(!p.length||p[p.length-1].n!==n))p.push({n,ll:geo[n]})}));if(!p.length)return;let m=L.map('tripMap',{scrollWheelZoom:false});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(m);let l=L.polyline(p.map(x=>x.ll),{color:'#1d5145',weight:4,opacity:.8}).addTo(m);p.forEach((x,i)=>{if(i===0||i===p.length-1||i%4===0)L.circleMarker(x.ll,{radius:5,color:'#bd6c31',fillColor:'#fff',fillOpacity:1,weight:2}).addTo(m).bindTooltip(x.n)});m.fitBounds(l.getBounds(),{padding:[28,28]});fallback.remove()});
+document.addEventListener('DOMContentLoaded',()=>{tripData.days.forEach((d,i)=>{if(!d.xhs?.length)return;let box=document.querySelectorAll('#planDays details .details')[i];if(box)box.insertAdjacentHTML('beforeend',`<b>调研参考</b><ul>${d.xhs.map(x=>`<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> · ${E(x.takeaway)}</li>`).join('')}</ul>`)});if(tripData.alternatives?.length)notes.insertAdjacentHTML('beforeend',`<li><b>未纳入目的地评估</b><ul>${tripData.alternatives.map(x=>`<li><b>${E(x.place)}</b> ${E(x.verdict)} · ${E(x.reason)}</li>`).join('')}</ul></li>`)})
+</script></body></html>
