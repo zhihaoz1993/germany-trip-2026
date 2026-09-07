@@ -7,7 +7,18 @@
   Object.assign(geo, {
     'Munich Marriott Hotel, Munich, Germany': [48.171, 11.593],
     'Marienplatz, Munich, Germany': [48.137, 11.576],
-    'English Garden, Munich, Germany': [48.160, 11.603]
+    'English Garden, Munich, Germany': [48.160, 11.603],
+    'Brienz, Switzerland': [46.754, 8.036],
+    'Spiez, Switzerland': [46.686, 7.679],
+    'Triberg im Schwarzwald, Germany': [48.131, 8.233],
+    'Furtwangen im Schwarzwald, Germany': [48.051, 8.206],
+    'Hofgut Sternen Ravennaschlucht, Breitnau, Germany': [47.953, 8.099],
+    'Hilton Heidelberg, Germany': [49.404, 8.681],
+    'Braubach, Germany': [50.273, 7.645],
+    'Boppard, Germany': [50.230, 7.589],
+    'Sankt Goar, Germany': [50.149, 7.716],
+    'Oberwesel, Germany': [50.109, 7.729],
+    'Loreley, Sankt Goarshausen, Germany': [50.142, 7.724]
   });
 
   const pointsFor = d => (d.route?.mapPts || []).map(name => ({ name, ll: geo[name] })).filter(x => x.ll);
@@ -56,6 +67,72 @@
       });
     setTimeout(() => map.invalidateSize(), 80);
     return mount;
+  };
+
+  const fetchDrivingLine = points => {
+    const coordinates = points.map(x => `${x.ll[1]},${x.ll[0]}`).join(';');
+    return fetch(`https://router.project-osrm.org/route/v1/driving/${coordinates}?overview=full&geometries=geojson`)
+      .then(r => r.ok ? r.json() : Promise.reject(new Error('route unavailable')))
+      .then(data => {
+        const line = data.routes?.[0]?.geometry?.coordinates;
+        if (!line?.length) throw new Error('route unavailable');
+        return line.map(([lng, lat]) => [lat, lng]);
+      });
+  };
+
+  const renderOverviewDrivingMap = () => {
+    const original = document.getElementById('tripMap');
+    if (!original) return;
+    const mount = cleanMap(original);
+    mount.classList.add('day-map');
+    const routeDays = tripData.days
+      .map((day, index) => ({ day, index, points: pointsFor(day) }))
+      .filter(({ day, points }) => day.route && points.length >= 2);
+    if (!routeDays.length) {
+      mount.textContent = '没有可绘制的自驾路段。';
+      return;
+    }
+    if (!window.L) {
+      mount.classList.add('map-fallback');
+      mount.textContent = '路线地图未能加载；下方行程卡保留全部起终点、里程和导航入口。';
+      return;
+    }
+    const map = L.map(mount, { scrollWheelZoom: false, attributionControl: true });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' }).addTo(map);
+    const previewLayers = routeDays.map(({ points }) => L.polyline(points.map(x => x.ll), {
+      color: '#78978d', weight: 3, dashArray: '7 8', opacity: .78
+    }).addTo(map));
+    const bounds = L.featureGroup(previewLayers).getBounds();
+    if (bounds.isValid()) map.fitBounds(bounds, { padding: [28, 28] });
+    const first = routeDays[0].points[0];
+    const lastDay = routeDays[routeDays.length - 1];
+    const last = lastDay.points[lastDay.points.length - 1];
+    L.marker(first.ll).addTo(map).bindTooltip(`出发 · ${first.name}`);
+    L.marker(last.ll).addTo(map).bindTooltip(`抵达 · ${last.name}`);
+    routeDays.forEach(({ points, index }) => {
+      if (index && index % 3 === 0) L.circleMarker(points[0].ll, {
+        radius: 4, color: '#bd6c31', fillColor: '#fff', fillOpacity: 1, weight: 2
+      }).addTo(map).bindTooltip(`D${index + 1} · ${points[0].name}`);
+    });
+    status(mount, '正在加载各日实际驾车道路…');
+    Promise.allSettled(routeDays.map(({ points }) => fetchDrivingLine(points)))
+      .then(results => {
+        let loaded = 0;
+        results.forEach((result, index) => {
+          if (result.status !== 'fulfilled') return;
+          previewLayers[index].setLatLngs(result.value).setStyle({ color: '#1d5145', weight: 4, dashArray: null, opacity: 1 });
+          loaded += 1;
+        });
+        const notice = mount.querySelector('.route-status');
+        if (notice) notice.textContent = loaded === routeDays.length
+          ? '已显示全程实际驾车道路。'
+          : `已显示 ${loaded}/${routeDays.length} 个行程日的实际驾车道路；其余虚线仅示意站点顺序。`;
+      })
+      .catch(() => {
+        const notice = mount.querySelector('.route-status');
+        if (notice) notice.textContent = '实际驾车道路暂不可用；虚线仅示意站点顺序。';
+      });
+    setTimeout(() => map.invalidateSize(), 100);
   };
 
   const postCard = (post, index) => {
@@ -136,6 +213,7 @@
       if (event.target.closest('.day-card')) setTimeout(renderTravelExtras, 0);
     });
     if (document.getElementById('travel').classList.contains('active')) travel();
+    window.addEventListener('load', renderOverviewDrivingMap, { once: true });
   };
   if (document.readyState !== 'complete') document.addEventListener('DOMContentLoaded', init);
   else init();
