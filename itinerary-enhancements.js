@@ -2,7 +2,7 @@
   const style = document.createElement('style');
   style.textContent = `.day-map{position:relative}.route-status{position:absolute;z-index:500;left:10px;bottom:10px;margin:0;padding:5px 8px;border-radius:6px;background:#fffdfae8;color:#52645e;font-size:12px;box-shadow:0 2px 8px #17352f22}.ticket-board{margin:0 0 24px;padding:18px 20px;background:#fff8e9;border:1px solid #e7c98f;border-radius:16px}.ticket-board h3{margin:4px 0 9px;font-size:21px}.ticket-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;padding:12px 0;border-top:1px solid #eadbb8}.ticket-item:first-of-type{border-top:0}.ticket-level{padding:3px 7px;border-radius:20px;background:#7b4020;color:#fff;font-size:11px;font-weight:800;white-space:nowrap}.ticket-item a{color:#1d5145;font-weight:800;white-space:nowrap}.ticket-item p{margin:3px 0 0;color:#62726d;font-size:13px}.xhs-carousel{position:relative;margin-top:14px}.xhs-rail{display:flex;gap:12px;overflow-x:auto;padding:2px 1px 10px;scroll-snap-type:x mandatory;scrollbar-width:thin}.xhs-post{display:block;position:relative;flex:0 0 clamp(220px,26vw,300px);scroll-snap-align:start;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--sh)}.xhs-media{position:relative;aspect-ratio:3/4;background:#e8e1d5;overflow:hidden}.xhs-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.xhs-track::-webkit-scrollbar{display:none}.xhs-slide{flex:0 0 100%;width:100%;height:100%;scroll-snap-align:start}.xhs-photo{display:block;width:100%;height:100%;object-fit:cover;background:#e8e1d5}.xhs-media button{position:absolute;z-index:3;top:50%;transform:translateY(-50%);border:0;border-radius:50%;width:30px;height:30px;background:#17352fba;color:#fff;font-size:20px;cursor:pointer}.media-prev{left:8px}.media-next{right:8px}.media-count,.video-badge{position:absolute;z-index:2;right:9px;bottom:9px;padding:3px 7px;border-radius:20px;background:#17352fcc;color:#fff;font-size:11px;font-weight:800}.video-badge{left:9px;right:auto}.xhs-body{padding:11px;font-size:13px}.xhs-body b{display:block;line-height:1.35;margin:5px 0}.xhs-meta{display:flex;justify-content:space-between;gap:6px;color:#8a4a36;font-size:11px;font-weight:800}.food-card{flex-basis:220px;background:#fffaf4}.food-card .xhs-cover{min-height:0;padding:10px;background:linear-gradient(135deg,#bd6c31,#e2a34b)}.travel-discovery{margin-top:16px}.travel-discovery .label{margin-bottom:6px}.route-status a{color:#1d5145;font-weight:800}@media(max-width:720px){.ticket-item{grid-template-columns:1fr}.xhs-post{flex-basis:min(78vw,292px)}}`;
   document.head.appendChild(style);
-  style.textContent += '.xhs-link{display:block;color:inherit;text-decoration:none}.xhs-link:focus-visible{outline:3px solid #d49a56;outline-offset:-3px}';
+  style.textContent += '.xhs-link{display:block;color:inherit;text-decoration:none}.xhs-link:focus-visible{outline:3px solid #d49a56;outline-offset:-3px}.overview-day-pin-shell{background:transparent!important;border:0!important}.overview-day-pin{display:grid;place-items:center;width:31px;height:31px;border:2px solid #fff;border-radius:50%;background:#bd6c31;color:#fff;font:800 11px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;box-shadow:0 2px 7px #17352f66}';
 
   Object.assign(geo, {
     'Munich Marriott Hotel, Munich, Germany': [48.171, 11.593],
@@ -45,7 +45,7 @@
       mount.textContent = '路线地图未能加载；请使用上方“打开导航”获取驾车路线。';
       return mount;
     }
-    const map = L.map(mount, { scrollWheelZoom: false, attributionControl: true });
+    const map = L.map(mount, { scrollWheelZoom: false, attributionControl: true, zoomSnap: .25 });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' }).addTo(map);
     const direct = L.polyline(points.map(x => x.ll), { color: '#78978d', weight: 3, dashArray: '7 8', opacity: .8 }).addTo(map);
     L.marker(points[0].ll).addTo(map).bindTooltip('出发');
@@ -99,22 +99,30 @@
       mount.textContent = '路线地图未能加载；下方行程卡保留全部起终点、里程和导航入口。';
       return;
     }
-    const map = L.map(mount, { scrollWheelZoom: false, attributionControl: true });
+    const map = L.map(mount, { scrollWheelZoom: false, attributionControl: true, zoomSnap: .25 });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' }).addTo(map);
     const previewLayers = routeDays.map(({ points }) => L.polyline(points.map(x => x.ll), {
       color: '#78978d', weight: 3, dashArray: '7 8', opacity: .78
     }).addTo(map));
-    const bounds = L.featureGroup(previewLayers).getBounds();
-    if (bounds.isValid()) map.fitBounds(bounds, { padding: [28, 28] });
-    const first = routeDays[0].points[0];
-    const lastDay = routeDays[routeDays.length - 1];
-    const last = lastDay.points[lastDay.points.length - 1];
-    L.marker(first.ll).addTo(map).bindTooltip(`出发 · ${first.name}`);
-    L.marker(last.ll).addTo(map).bindTooltip(`抵达 · ${last.name}`);
-    routeDays.forEach(({ points, index }) => {
-      if (index && index % 3 === 0) L.circleMarker(points[0].ll, {
-        radius: 4, color: '#bd6c31', fillColor: '#fff', fillOpacity: 1, weight: 2
-      }).addTo(map).bindTooltip(`D${index + 1} · ${points[0].name}`);
+    const zoomToRoute = () => {
+      const bounds = L.featureGroup(previewLayers).getBounds();
+      if (!bounds.isValid()) return;
+      map.fitBounds(bounds, { padding: [18, 18] });
+      map.setZoom(Math.min(map.getZoom() + .5, 12), { animate: false });
+    };
+    zoomToRoute();
+    const pinnedStarts = [];
+    const pinOffsets = [[0, 0], [14, -14], [-14, -14], [14, 14], [-14, 14]];
+    routeDays.forEach(({ day, points, index }) => {
+      const label = day.dayLabel || `D${index}`;
+      const from = points[0];
+      const nearbyPins = pinnedStarts.filter(ll => Math.abs(ll[0] - from.ll[0]) < .12 && Math.abs(ll[1] - from.ll[1]) < .12).length;
+      const [offsetX, offsetY] = pinOffsets[nearbyPins % pinOffsets.length];
+      pinnedStarts.push(from.ll);
+      L.marker(from.ll, {
+        icon: L.divIcon({ className: 'overview-day-pin-shell', html: `<span class="overview-day-pin">${E(label)}</span>`, iconSize: [31, 31], iconAnchor: [15 - offsetX, 15 - offsetY] }),
+        title: `${label} · ${day.date} · ${day.route.from} → ${day.route.to}`
+      }).addTo(map).bindTooltip(`${label} · ${day.date}<br>${E(day.route.from)} → ${E(day.route.to)}`);
     });
     status(mount, '正在加载各日实际驾车道路…');
     Promise.allSettled(routeDays.map(({ points }) => fetchDrivingLine(points)))
@@ -129,6 +137,7 @@
         if (notice) notice.textContent = loaded === routeDays.length
           ? '已显示全程实际驾车道路。'
           : `已显示 ${loaded}/${routeDays.length} 个行程日的实际驾车道路；其余虚线仅示意站点顺序。`;
+        zoomToRoute();
       })
       .catch(() => {
         const notice = mount.querySelector('.route-status');
