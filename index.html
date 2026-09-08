@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script defer src="itinerary-enhancements.js?v=20260907-1"></script><style>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script defer src="itinerary-enhancements.js?v=20260908-1"></script><style>
 :root{--ink:#17352f;--pine:#1d5145;--moss:#56806d;--paper:#f7f5ef;--sand:#ebe5d8;--card:#fffdfa;--line:#d9d8ce;--sky:#dceceb;--amber:#bd6c31;--muted:#62726d;--r:16px;--sh:0 10px 28px #17352f12}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.eyebrow,.label{color:var(--moss);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero{padding:34px 0 26px;background:var(--ink);color:#fff}.hero-grid{display:grid;grid-template-columns:1.6fr .9fr;gap:28px;align-items:end}.hero h1,h2,h3{font-family:ui-serif,Georgia,"Songti SC",serif}.hero h1{font-size:clamp(31px,5vw,55px);line-height:1.08;margin:8px 0 14px;letter-spacing:-.04em}.hero .eyebrow,.hero p{color:#c6ddd5}.hero p{margin:0}.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid #ffffff2e;border-radius:12px;padding:12px;background:#ffffff0d}.stat b{display:block;font-size:19px}.stat span{font-size:12px;color:#c6ddd5}.mode-nav{position:sticky;top:0;z-index:20;background:#f7f5eff2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.mode-nav .wrap{display:flex;align-items:center;gap:6px;min-height:58px}.brand{font-family:ui-serif,Georgia,serif;font-weight:800;margin-right:auto}.mode,.day-picker button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;padding:9px 12px;border-radius:9px;cursor:pointer}.mode:hover,.mode[aria-selected="true"]{background:var(--ink);color:#fff}.view{display:none;padding:34px 0 90px}.view.active{display:block}.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:36px 0 14px}.head h2{font-size:28px;line-height:1.15;margin:3px 0 0}.head p{margin:0;color:var(--muted);max-width:530px}.trip-map{height:390px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--sky);box-shadow:var(--sh)}.map-fallback{padding:22px;color:var(--pine)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.metric,.panel,.day-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}.metric{padding:14px}.metric b{font-size:22px;display:block}.metric span{font-size:12px;color:var(--muted)}.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.day-card{padding:18px;text-align:left;color:var(--ink);cursor:pointer;transition:.18s}.day-card:hover,.day-card:focus-visible{transform:translateY(-2px);outline:2px solid var(--moss);outline-offset:2px}.top{display:flex;justify-content:space-between;gap:8px;color:var(--moss);font-weight:800;font-size:13px}.day-card h3{font-size:19px;line-height:1.25;margin:8px 0}.route{font-size:13px;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--sand)}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chip{font-size:12px;background:var(--sky);color:var(--pine);padding:3px 8px;border-radius:20px}.stay{font-size:13px;font-weight:700}.alert{margin-top:12px;padding:8px 10px;background:#f9eee7;color:#7b4020;border-radius:8px;font-size:12px}.cols{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{padding:20px}.panel h3{font-size:22px;line-height:1.2;margin:4px 0 14px}.today{background:linear-gradient(135deg,#17352f,#346458);color:#fff;border-radius:var(--r);padding:26px;display:grid;grid-template-columns:1fr auto;gap:16px}.today .eyebrow{color:#cce1d9}.today h2{font-size:clamp(27px,5vw,41px);line-height:1.1;margin:6px 0}.today p{margin:0;color:#d5e4df}.today-metrics{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.today-metrics span{border:1px solid #ffffff36;border-radius:8px;padding:6px 9px;font-size:13px}.primary{display:inline-flex;align-items:center;justify-content:center;background:#f5d7a7;color:#55331b;font-weight:800;text-decoration:none;border-radius:9px;padding:11px 14px}.day-picker{display:flex;gap:6px;overflow:auto;padding:12px 0 4px}.day-picker button{flex:none;border:1px solid var(--line);background:var(--card);font-size:13px}.day-picker button.active{background:var(--pine);color:#fff;border-color:var(--pine)}.route-box{margin:16px 0;padding:15px;border:1px solid #b9d4cc;background:#eff7f4;border-radius:12px}.route-box strong{display:block;font-size:16px}.route-box p{margin:4px 0 0;color:var(--muted);font-size:13px}.timeline{list-style:none;padding:0;margin:0}.timeline li{position:relative;padding:0 0 17px 26px;border-left:1px solid #bdd0c9}.timeline li:before{content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--pine)}.timeline li:last-child{border:0;padding-bottom:0}.time{font-size:12px;font-weight:800;color:var(--moss)}.timeline h4{font-size:15px;margin:2px 0}.timeline p,.muted{font-size:13px;color:var(--muted);margin:2px 0}.role{font-size:11px;color:var(--moss);font-weight:800}.details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.details summary{cursor:pointer;font-weight:800}.full{padding:12px 0;border-bottom:1px solid var(--sand)}.meal{margin-top:7px;padding:8px;background:#f9f1e8;border-radius:8px;font-size:13px}.booking{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--sand)}.booking input{accent-color:var(--pine);width:17px;height:17px}.booking b{display:block}.sub{display:block;color:var(--muted);font-size:12px}.status{font-size:12px;padding:3px 7px;border-radius:20px;background:#f8e9df;color:#884723}.status.done{background:#dceee5;color:#21613f}.budget{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--sand)}ul{margin:0;padding-left:18px}li{margin:8px 0}.footer{border-top:1px solid var(--line);padding:24px 0 90px;color:var(--muted);font-size:12px}.bottom{display:none}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #d49a56;outline-offset:3px}@media(max-width:720px){.wrap{width:min(100% - 24px,1180px)}.hero{padding:25px 0 20px}.hero-grid,.cols{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}.stat{padding:9px}.stat b{font-size:16px}.brand{font-size:13px;margin-right:0}.mode{font-size:13px;padding:8px}.view{padding-top:20px}.head{margin-top:28px;align-items:start;flex-direction:column}.head h2{font-size:25px}.trip-map{height:300px}.metrics{grid-template-columns:repeat(2,1fr)}.days{grid-template-columns:1fr}.today{padding:20px;grid-template-columns:1fr}.bottom{display:flex;position:fixed;z-index:30;bottom:0;left:0;right:0;justify-content:space-around;background:#fffdfaf2;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:7px}.bottom button{border:0;background:transparent;color:var(--muted);font:12px inherit;padding:7px 14px}.bottom button.active{color:var(--pine);font-weight:800}}
 .cols,.days{grid-template-columns:1fr}.day-tools{display:flex;gap:8px;margin:0 0 12px}.day-tools button{border:1px solid var(--line);background:var(--card);color:var(--pine);font:inherit;font-weight:700;padding:8px 12px;border-radius:8px;cursor:pointer}.day-map{height:300px;border:1px solid var(--line);border-radius:12px;margin:14px 0;background:var(--sky);overflow:hidden}.xhs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.xhs-card{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.xhs-cover{min-height:72px;padding:10px;color:#fff;background:linear-gradient(135deg,#f07469,#b72c4a);font-size:12px;font-weight:800}.xhs-body{padding:10px;font-size:13px}.xhs-body b{display:block;margin-bottom:4px}.food-card .xhs-cover{background:linear-gradient(135deg,#bd6c31,#e2a34b)}@media(max-width:720px){.xhs-grid{grid-template-columns:1fr}.day-map{height:240px}}
 </style></head><body>
@@ -181,8 +181,8 @@ const tripData={
           "Munich, Germany"
         ]
       },
-      "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 (München) · 约¥1,100/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Munich%20Marriott%20Hotel%2C%20Munich",
+      "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 (München) · 已预订 ✅（积分兑换）",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Munich+Marriott+Hotel",
       "xhs": [
         {
           "title": "一口气说完慕尼黑主要景点",
@@ -327,8 +327,8 @@ const tripData={
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062209/b865a80ebc4ef9e70a18908456aef870/notes_pre_post/1040g3k031m5ts9455mag5nbh0d9080ih20av8f0!nc_n_webp_prv_1"
         }
       ],
-      "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 (München) · 约¥1,100/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Munich%20Marriott%20Hotel%2C%20Munich",
+      "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 (München) · 已预订 ✅（积分兑换）",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Munich+Marriott+Hotel",
       "xhsNote": "今日以市内步行/公交为主，无城际驾驶；昨晚已抵达慕尼黑 (München) 入住，可睡到自然醒。"
     },
     {
@@ -560,8 +560,8 @@ const tripData={
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062209/4e8cb93fc00099a5a57f67fc20eb7828/1040g00831712eijl46104a0ljq53183ctir5800!nc_n_webp_prv_1"
         }
       ],
-      "stay": "Zurich Marriott Hotel（万豪系）· 苏黎世 (Zürich) · 约¥1,500/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Zurich%20Marriott%20Hotel%2C%20Zurich"
+      "stay": "Courtyard by Marriott Zurich North（万豪系）· 苏黎世 (Zürich) · 已预订 ✅（确认号 90991812，积分兑换）",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Courtyard+by+Marriott+Zurich+North"
     },
     {
       "date": "09/29",
@@ -974,9 +974,9 @@ const tripData={
           "takeaway": "伯尔尼顺路一日游：酒店领 Bern Ticket 免费坐车；钟楼整点报时、联邦宫平台、熊公园、大教堂登塔"
         }
       ],
-      "stay": "Hotel Bären am Bundesplatz（联邦广场熊酒店）· 伯尔尼 (Bern) 老城 · 约¥1,000/晚 · 送 Bern Ticket 免费公交",
+      "stay": "Moxy Bern Expo（万豪系）· 伯尔尼 (Bern) · 已预订 ✅（积分兑换）",
       "xhsNote": "时间充裕可在施皮茨之后加图恩 Thun（15分钟车程）：564赞排名第2小镇，图恩城堡塔楼俯瞰全湖；Sigriswil 340米悬索桥距图恩20分钟，本地人私藏机位",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20B%C3%A4ren%20am%20Bundesplatz%2C%20Bern"
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Moxy+Bern+Expo"
     },
     {
       "date": "10/02",
@@ -1303,7 +1303,7 @@ const tripData={
         "mapPts": [
           "Rothenburg ob der Tauber, Germany",
           "Würzburg, Germany",
-          "Hilton Heidelberg, Germany"
+          "Heidelberg Marriott Hotel, Germany"
         ]
       },
       "xhs": [
@@ -1329,8 +1329,8 @@ const tripData={
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062212/8f7967ce4630e6615c11a81db9658d8b/1040g2sg320860lq4li705ngse6308hfsdb2odq8!nc_n_webp_prv_1"
         }
       ],
-      "stay": "Hilton Heidelberg · 海德堡 (Heidelberg) · 10/4 入住，10/5 退房 · 已预订 ✅",
-      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Hilton+Heidelberg"
+      "stay": "Heidelberg Marriott Hotel（万豪系）· 海德堡 (Heidelberg) · 10/4 入住，10/5 退房 · 已预订 ✅（积分兑换）",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Heidelberg+Marriott+Hotel"
     },
     {
       "date": "10/05",
@@ -1590,8 +1590,8 @@ const tripData={
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/c64c8e9ee17430f9d6a8db14a038e3d8/1040g2sg320uuslhh7e705q5p7igmcc6p28gvofg!nc_n_webp_prv_1"
         }
       ],
-      "stay": "Frankfurt Airport Marriott Hotel（万豪系）· 法兰克福机场 (Flughafen Frankfurt) · 约¥1,100/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Frankfurt%20Airport%20Marriott%20Hotel%2C%20Frankfurt"
+      "stay": "The Westin Grand Frankfurt（万豪系）· 法兰克福市中心 · 已预订 ✅（积分兑换）",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=The+Westin+Grand+Frankfurt"
     },
     {
       "date": "10/07",
@@ -1730,62 +1730,62 @@ const tripData={
   "hotels": [
     {
       "name": "Munich Marriott Hotel（慕尼黑万豪酒店）",
-      "area": "慕尼黑 (München) · 2晚 9/25-9/26 · 万豪系",
+      "area": "慕尼黑 (München) · 2晚 9/25-9/27 · 万豪系 · 已预订 ✅",
       "pricePerNight": 1100,
-      "highlights": "万豪系;英国花园旁;停车方便;可累积万豪积分",
+      "highlights": "万豪App已确认两晚（9/25→9/26 与 9/26→9/27 两笔订单，15:00入住/12:00退房，积分兑换）;电话 +49-89-360020;英国花园旁;停车方便;可累积万豪积分",
       "rating": "4.3",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Munich%20Marriott%20Hotel%2C%20Munich",
-      "bookedAddress": "",
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Munich+Marriott+Hotel",
+      "bookedAddress": "Berliner Strasse 93, 80805 Munich, Germany",
       "pdfUrl": ""
     },
     {
       "name": "Hotel Sonne（索恩酒店）",
       "area": "福森 (Füssen) · 1晚 9/27 · 已预订 ✅",
       "pricePerNight": 1707,
-      "highlights": "Booking.com 已确认（9/27-9/28，CNY 1,707.18）;福森老城传统四星，德式风格;含停车信息见订单;距新天鹅堡约10分钟车程",
+      "highlights": "Booking.com 已确认（9/27 15:00–22:00 入住 – 9/28 07:00–12:00 退房，1晚，Standard Double Room，2位成人，€219 含7% VAT）;电话 +49 8362 9080;福森老城传统四星，德式风格;含停车信息见订单;距新天鹅堡约10分钟车程",
       "rating": "4.5",
       "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Sonne%2C%20F%C3%BCssen",
-      "bookedAddress": "",
+      "bookedAddress": "Prinzregentenplatz 1, 87629 Füssen, Germany",
       "pdfUrl": ""
     },
     {
-      "name": "Zurich Marriott Hotel（苏黎世万豪酒店）",
-      "area": "苏黎世 (Zürich) · 1晚 9/28 · 万豪系",
+      "name": "Courtyard by Marriott Zurich North（苏黎世北万怡酒店）",
+      "area": "苏黎世 (Zürich) · 1晚 9/28 · 万豪系 · 已预订 ✅",
       "pricePerNight": 1500,
-      "highlights": "万豪系;利马特河畔近火车站;非万豪备选：Central Plaza（小红书力荐，更便宜）",
+      "highlights": "万豪App已确认（确认号 90991812；9/28 15:00 入住 – 9/29 12:00 退房，积分兑换，到店仅付 CHF 3.50 城市税）;电话 +41-44-564 04 04;Oerlikon 区，近火车站与电车;可累积万豪积分",
       "rating": "4.4",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Zurich%20Marriott%20Hotel%2C%20Zurich",
-      "bookedAddress": "",
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Courtyard+by+Marriott+Zurich+North",
+      "bookedAddress": "Max-Bill-Platz 19, 8050 Zurich, Switzerland",
       "pdfUrl": ""
     },
     {
       "name": "Hotel Aare Thun（阿勒河图恩酒店）",
       "area": "图恩 (Thun) · 2晚 9/29-10/1 · 已预订 ✅",
       "pricePerNight": 2394,
-      "highlights": "Booking.com 已确认（9/29-10/1，共CNY 4,787.84）;图恩湖畔近老城，距因特拉肯约30分钟车程;可加CNY 165.67升级景观房;含停车信息见订单",
+      "highlights": "Booking.com 已确认（9/29 15:00 入住 – 10/1 11:00 退房，2晚，Standard Double Room，2位成人）;总价 CHF 560（含3.8% VAT，约CNY 4,787.84）;电话 +41 33 227 50 50;图恩湖畔近老城，距因特拉肯约30分钟车程",
       "rating": "4.4",
       "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun",
-      "bookedAddress": "",
+      "bookedAddress": "Freienhofgasse 3, Thun, 3600, Switzerland",
       "pdfUrl": ""
     },
     {
-      "name": "Hotel Bären am Bundesplatz（伯尔尼联邦广场熊酒店）",
-      "area": "伯尔尼 (Bern) · 1晚 10/1 ✨小红书力荐",
+      "name": "Moxy Bern Expo（伯尔尼世博Moxy酒店）",
+      "area": "伯尔尼 (Bern) · 1晚 10/1 · 万豪系 · 已预订 ✅",
       "pricePerNight": 1000,
-      "highlights": "四星;老城中心近钟楼;送 Bern Ticket 免费公交;比琉森便宜且次日去黑森林更近;伯尔尼无万豪系",
+      "highlights": "万豪App已确认（10/1 15:00 入住 – 10/2 12:00 退房，积分兑换）;电话 +41-31-5372300;万豪系年轻品牌，近 Bern Expo，电车直达老城;可累积万豪积分",
       "rating": "4.4",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20B%C3%A4ren%20am%20Bundesplatz%2C%20Bern",
-      "bookedAddress": "",
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Moxy+Bern+Expo",
+      "bookedAddress": "Truesselsstrasse 4, 3014 Bern, Switzerland",
       "pdfUrl": ""
     },
     {
       "name": "Hotel Hofgut Sternen – Ravennaschlucht（拉文纳峡谷霍夫古特斯特恩酒店）",
       "area": "黑森林 (Schwarzwald) · 1晚 10/2 · 已预订 ✅",
       "pricePerNight": 1451,
-      "highlights": "Booking.com 已确认（10/2-10/3，CNY 1,450.71）;黑森林内拉文纳峡谷旁，距滴滴湖约15分钟车程;历史悠久的山间旅馆;含停车信息见订单",
+      "highlights": "Booking.com 已确认（10/2 15:00–23:30 入住 – 10/3 11:00 退房，1晚，Large Double Room，2位成人，CNY 1,450.71）;电话 +49 7652 9176601;黑森林内拉文纳峡谷旁，距滴滴湖约15分钟车程;历史悠久的山间旅馆;含停车信息见订单",
       "rating": "4.3",
       "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Hofgut%20Sternen%2C%20Ravennaschlucht",
-      "bookedAddress": "",
+      "bookedAddress": "Höllsteig 76, 79874 Breitnau, Germany",
       "pdfUrl": ""
     },
     {
@@ -1799,13 +1799,13 @@ const tripData={
       "pdfUrl": ""
     },
     {
-      "name": "Hilton Heidelberg",
-      "area": "海德堡 (Heidelberg) · 1晚 10/4–10/5 · 已预订 ✅",
+      "name": "Heidelberg Marriott Hotel（海德堡万豪酒店）",
+      "area": "海德堡 (Heidelberg) · 1晚 10/4 · 万豪系 · 已预订 ✅",
       "pricePerNight": 900,
-      "highlights": "已预订；10/4 入住、10/5 退房；预算暂按 ¥900 估算，酒店及停车细节以确认单为准",
+      "highlights": "万豪App已确认（10/4 15:00 入住 – 10/5 12:00 退房，积分兑换）;电话 +49-6221-9080;内卡河畔，步行可达老城;可累积万豪积分",
       "rating": "4.2",
-      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Hilton+Heidelberg",
-      "bookedAddress": "",
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Heidelberg+Marriott+Hotel",
+      "bookedAddress": "Vangerowstrasse 16, 69115 Heidelberg, Germany",
       "pdfUrl": ""
     },
     {
@@ -1819,13 +1819,13 @@ const tripData={
       "pdfUrl": ""
     },
     {
-      "name": "Frankfurt Airport Marriott Hotel（法兰克福机场万豪酒店）",
-      "area": "法兰克福机场 (Flughafen Frankfurt) · 1晚 10/6 · 万豪系",
+      "name": "The Westin Grand Frankfurt（法兰克福威斯汀大酒店）",
+      "area": "法兰克福 (Frankfurt) · 1晚 10/6 · 万豪系 · 已预订 ✅",
       "pricePerNight": 1100,
-      "highlights": "万豪系;直连T1航站楼;还车超方便",
+      "highlights": "万豪App已确认（10/6 15:00 入住 – 10/7 12:00 退房，积分兑换）;电话 +49-69-29810;市中心近采尔大街;10/7 退房后前往机场还车;可累积万豪积分",
       "rating": "4.4",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Frankfurt%20Airport%20Marriott%20Hotel%2C%20Frankfurt",
-      "bookedAddress": "",
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=The+Westin+Grand+Frankfurt",
+      "bookedAddress": "Konrad Adenauer Strasse 7, 60313 Frankfurt, Germany",
       "pdfUrl": ""
     }
   ],
@@ -1886,7 +1886,7 @@ const tripData={
           "cost": 950
         },
         {
-          "name": "Hilton Heidelberg 1晚（10/4–10/5，已预订；预算暂按 ¥900）",
+          "name": "海德堡万豪 1晚（10/4–10/5，已预订，积分兑换）",
           "cost": 900
         },
         {
@@ -1894,7 +1894,7 @@ const tripData={
           "cost": 900
         },
         {
-          "name": "法兰克福机场万豪 1晚 ~",
+          "name": "法兰克福威斯汀 1晚（积分兑换） ~",
           "cost": 1100
         }
       ],
@@ -1983,7 +1983,7 @@ const tripData={
     "10月初海德堡/莱茵河谷正值葡萄采收季，雷司令新酒 Federweißer 值得尝",
     "标注 ~ 为参考价、≈ 为估算价；酒店以实际预订为准（报价不含城市税）",
     "机票和酒店为动态定价，出行前请在阿联酋官网/携程/Booking 确认实际价格并预订",
-    "酒店万豪系优先：慕尼黑万豪、苏黎世万豪、法兰克福机场万豪均可累积万豪旅享家积分；海德堡已预订 Hilton Heidelberg；福森/因特拉肯/伯尔尼/滴滴湖/罗滕堡/巴哈拉赫保留小红书+Booking口碑优选"
+    "酒店万豪系优先：慕尼黑万豪、苏黎世北万怡、伯尔尼Moxy、海德堡万豪、法兰克福威斯汀均可累积万豪旅享家积分；海德堡已预订万豪；福森/因特拉肯/伯尔尼/滴滴湖/罗滕堡/巴哈拉赫保留小红书+Booking口碑优选"
   ],
   "totalDrive": {
     "km": 1625,
