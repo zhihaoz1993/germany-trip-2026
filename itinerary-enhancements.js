@@ -5,7 +5,7 @@
   style.textContent += '.xhs-link{display:block;color:inherit;text-decoration:none}.xhs-link:focus-visible{outline:3px solid #d49a56;outline-offset:-3px}';
 
   Object.assign(geo, {
-    'Munich Marriott Hotel, Munich, Germany': [48.163, 11.586],
+    'Munich Marriott Hotel, Munich, Germany': [48.171, 11.593],
     'Marienplatz, Munich, Germany': [48.137, 11.576],
     'English Garden, Munich, Germany': [48.160, 11.603],
     'Brienz, Switzerland': [46.754, 8.036],
@@ -14,7 +14,7 @@
     'Furtwangen im Schwarzwald, Germany': [48.051, 8.206],
     'Hofgut Sternen Ravennaschlucht, Breitnau, Germany': [47.953, 8.099],
     'Hotel-Gasthof Goldener Greifen, Rothenburg ob der Tauber, Germany': [49.3766351, 10.1795978],
-    'Heidelberg Marriott Hotel, Germany': [49.408, 8.686],
+    'Hilton Heidelberg, Germany': [49.404, 8.681],
     'Altkölnischer Hof, Bacharach, Germany': [50.0600942, 7.7678767],
     'Braubach, Germany': [50.273, 7.645],
     'Boppard, Germany': [50.230, 7.589],
