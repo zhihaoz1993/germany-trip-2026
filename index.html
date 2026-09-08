@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script defer src="itinerary-enhancements.js?v=20260908-1"></script><style>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script defer src="itinerary-enhancements.js?v=20260908-2"></script><style>
 :root{--ink:#17352f;--pine:#1d5145;--moss:#56806d;--paper:#f7f5ef;--sand:#ebe5d8;--card:#fffdfa;--line:#d9d8ce;--sky:#dceceb;--amber:#bd6c31;--muted:#62726d;--r:16px;--sh:0 10px 28px #17352f12}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.eyebrow,.label{color:var(--moss);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero{padding:34px 0 26px;background:var(--ink);color:#fff}.hero-grid{display:grid;grid-template-columns:1.6fr .9fr;gap:28px;align-items:end}.hero h1,h2,h3{font-family:ui-serif,Georgia,"Songti SC",serif}.hero h1{font-size:clamp(31px,5vw,55px);line-height:1.08;margin:8px 0 14px;letter-spacing:-.04em}.hero .eyebrow,.hero p{color:#c6ddd5}.hero p{margin:0}.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid #ffffff2e;border-radius:12px;padding:12px;background:#ffffff0d}.stat b{display:block;font-size:19px}.stat span{font-size:12px;color:#c6ddd5}.mode-nav{position:sticky;top:0;z-index:20;background:#f7f5eff2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.mode-nav .wrap{display:flex;align-items:center;gap:6px;min-height:58px}.brand{font-family:ui-serif,Georgia,serif;font-weight:800;margin-right:auto}.mode,.day-picker button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;padding:9px 12px;border-radius:9px;cursor:pointer}.mode:hover,.mode[aria-selected="true"]{background:var(--ink);color:#fff}.view{display:none;padding:34px 0 90px}.view.active{display:block}.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:36px 0 14px}.head h2{font-size:28px;line-height:1.15;margin:3px 0 0}.head p{margin:0;color:var(--muted);max-width:530px}.trip-map{height:390px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--sky);box-shadow:var(--sh)}.map-fallback{padding:22px;color:var(--pine)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.metric,.panel,.day-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}.metric{padding:14px}.metric b{font-size:22px;display:block}.metric span{font-size:12px;color:var(--muted)}.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.day-card{padding:18px;text-align:left;color:var(--ink);cursor:pointer;transition:.18s}.day-card:hover,.day-card:focus-visible{transform:translateY(-2px);outline:2px solid var(--moss);outline-offset:2px}.top{display:flex;justify-content:space-between;gap:8px;color:var(--moss);font-weight:800;font-size:13px}.day-card h3{font-size:19px;line-height:1.25;margin:8px 0}.route{font-size:13px;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--sand)}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chip{font-size:12px;background:var(--sky);color:var(--pine);padding:3px 8px;border-radius:20px}.stay{font-size:13px;font-weight:700}.alert{margin-top:12px;padding:8px 10px;background:#f9eee7;color:#7b4020;border-radius:8px;font-size:12px}.cols{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{padding:20px}.panel h3{font-size:22px;line-height:1.2;margin:4px 0 14px}.today{background:linear-gradient(135deg,#17352f,#346458);color:#fff;border-radius:var(--r);padding:26px;display:grid;grid-template-columns:1fr auto;gap:16px}.today .eyebrow{color:#cce1d9}.today h2{font-size:clamp(27px,5vw,41px);line-height:1.1;margin:6px 0}.today p{margin:0;color:#d5e4df}.today-metrics{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.today-metrics span{border:1px solid #ffffff36;border-radius:8px;padding:6px 9px;font-size:13px}.primary{display:inline-flex;align-items:center;justify-content:center;background:#f5d7a7;color:#55331b;font-weight:800;text-decoration:none;border-radius:9px;padding:11px 14px}.day-picker{display:flex;gap:6px;overflow:auto;padding:12px 0 4px}.day-picker button{flex:none;border:1px solid var(--line);background:var(--card);font-size:13px}.day-picker button.active{background:var(--pine);color:#fff;border-color:var(--pine)}.route-box{margin:16px 0;padding:15px;border:1px solid #b9d4cc;background:#eff7f4;border-radius:12px}.route-box strong{display:block;font-size:16px}.route-box p{margin:4px 0 0;color:var(--muted);font-size:13px}.timeline{list-style:none;padding:0;margin:0}.timeline li{position:relative;padding:0 0 17px 26px;border-left:1px solid #bdd0c9}.timeline li:before{content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--pine)}.timeline li:last-child{border:0;padding-bottom:0}.time{font-size:12px;font-weight:800;color:var(--moss)}.timeline h4{font-size:15px;margin:2px 0}.timeline p,.muted{font-size:13px;color:var(--muted);margin:2px 0}.role{font-size:11px;color:var(--moss);font-weight:800}.details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.details summary{cursor:pointer;font-weight:800}.full{padding:12px 0;border-bottom:1px solid var(--sand)}.meal{margin-top:7px;padding:8px;background:#f9f1e8;border-radius:8px;font-size:13px}.booking{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--sand)}.booking input{accent-color:var(--pine);width:17px;height:17px}.booking b{display:block}.sub{display:block;color:var(--muted);font-size:12px}.status{font-size:12px;padding:3px 7px;border-radius:20px;background:#f8e9df;color:#884723}.status.done{background:#dceee5;color:#21613f}.budget{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--sand)}ul{margin:0;padding-left:18px}li{margin:8px 0}.footer{border-top:1px solid var(--line);padding:24px 0 90px;color:var(--muted);font-size:12px}.bottom{display:none}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #d49a56;outline-offset:3px}@media(max-width:720px){.wrap{width:min(100% - 24px,1180px)}.hero{padding:25px 0 20px}.hero-grid,.cols{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}.stat{padding:9px}.stat b{font-size:16px}.brand{font-size:13px;margin-right:0}.mode{font-size:13px;padding:8px}.view{padding-top:20px}.head{margin-top:28px;align-items:start;flex-direction:column}.head h2{font-size:25px}.trip-map{height:300px}.metrics{grid-template-columns:repeat(2,1fr)}.days{grid-template-columns:1fr}.today{padding:20px;grid-template-columns:1fr}.bottom{display:flex;position:fixed;z-index:30;bottom:0;left:0;right:0;justify-content:space-around;background:#fffdfaf2;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:7px}.bottom button{border:0;background:transparent;color:var(--muted);font:12px inherit;padding:7px 14px}.bottom button.active{color:var(--pine);font-weight:800}}
 .cols,.days{grid-template-columns:1fr}.day-tools{display:flex;gap:8px;margin:0 0 12px}.day-tools button{border:1px solid var(--line);background:var(--card);color:var(--pine);font:inherit;font-weight:700;padding:8px 12px;border-radius:8px;cursor:pointer}.day-map{height:300px;border:1px solid var(--line);border-radius:12px;margin:14px 0;background:var(--sky);overflow:hidden}.xhs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.xhs-card{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.xhs-cover{min-height:72px;padding:10px;color:#fff;background:linear-gradient(135deg,#f07469,#b72c4a);font-size:12px;font-weight:800}.xhs-body{padding:10px;font-size:13px}.xhs-body b{display:block;margin-bottom:4px}.food-card .xhs-cover{background:linear-gradient(135deg,#bd6c31,#e2a34b)}@media(max-width:720px){.xhs-grid{grid-template-columns:1fr}.day-map{height:240px}}
 </style></head><body>
@@ -1410,7 +1410,7 @@ const tripData={
         "driveTime": "约3小时（全程最长）",
         "mapPts": [
           "Hofgut Sternen Ravennaschlucht, Breitnau, Germany",
-          "Rothenburg ob der Tauber, Germany"
+          "Hotel-Gasthof Goldener Greifen, Rothenburg ob der Tauber, Germany"
         ]
       },
       "xhs": [
@@ -1429,12 +1429,12 @@ const tripData={
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062212/7b37cdb503fe7d88f427c29d695355a4/notes_pre_post/1040g3k031lqjg1m3kq3g40mjlgd4oh6vp5o3p5g!nc_n_webp_prv_1"
         }
       ],
-      "stay": "Hotel Rappen Rothenburg（罗滕堡拉彭酒店）· 罗滕堡 (Rothenburg o.d.T.) 近城门 · 约¥950/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Rappen%2C%20Rothenburg%20ob%20der%20Tauber",
+      "stay": "Hotel-Gasthof Goldener Greifen · Rothenburg ob der Tauber · 10/3 入住，10/4 退房 · 已预订 ✅",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Hotel-Gasthof+Goldener+Greifen+Rothenburg",
       "stayParking": {
-        "name": "酒店后方自有停车场",
-        "fee": "免费",
-        "note": "约90个免费车位（先到先得）；长期停放€10/天"
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "酒店位于老城内；原有酒店停车信息不适用，请以酒店回复为准。"
       }
     },
     {
@@ -1556,7 +1556,7 @@ const tripData={
         "mapPts": [
           "Rothenburg ob der Tauber, Germany",
           "Würzburg, Germany",
-          "Heidelberg Marriott Hotel, Germany"
+          "Hilton Heidelberg, Germany"
         ]
       },
       "xhs": [
@@ -1582,12 +1582,12 @@ const tripData={
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062212/8f7967ce4630e6615c11a81db9658d8b/1040g2sg320860lq4li705ngse6308hfsdb2odq8!nc_n_webp_prv_1"
         }
       ],
-      "stay": "Heidelberg Marriott Hotel（万豪系）· 海德堡 (Heidelberg) · 10/4 入住，10/5 退房 · 已预订 ✅（积分兑换）",
-      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Heidelberg+Marriott+Hotel",
+      "stay": "Hilton Heidelberg · 海德堡 (Heidelberg) · 10/4 入住，10/5 退房 · 已预订 ✅",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Hilton+Heidelberg",
       "stayParking": {
-        "name": "酒店地下车库",
-        "fee": "€25/晚",
-        "note": "自有地下车库，无需预约；短时€2.50/小时、日封顶€25"
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "以 Hilton Heidelberg 订单及酒店最新说明为准。"
       }
     },
     {
@@ -1740,7 +1740,7 @@ const tripData={
           "Braubach, Germany",
           "Boppard, Germany",
           "Sankt Goar, Germany",
-          "Bacharach, Germany"
+          "Altkölnischer Hof, Bacharach, Germany"
         ]
       },
       "xhs": [
@@ -1759,12 +1759,12 @@ const tripData={
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062213/31603687ee1c716bce4962667feb1443/notes_pre_post/1040g3k0322ghvki3na005oai2icgkd5n8o76h5g!nc_n_webp_prv_1"
         }
       ],
-      "stay": "Hotel Weinberg-Schlößchen · 巴哈拉赫 (Bacharach) · 约¥900/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Weinberg-Schl%C3%B6%C3%9Fchen%2C%20Bacharach",
+      "stay": "Altkölnischer Hof · Bacharach · 10/5 入住，10/6 退房 · 已预订 ✅",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Altk%C3%B6lnischer+Hof+Bacharach",
       "stayParking": {
-        "name": "酒店自有停车场",
-        "fee": "免费",
-        "note": "酒店自有停车场免费停放"
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "酒店位于 Bacharach 老城；请以订单及酒店说明为准。"
       }
     },
     {
@@ -2168,48 +2168,48 @@ const tripData={
       }
     },
     {
-      "name": "Hotel Rappen Rothenburg（罗滕堡拉彭酒店）",
-      "area": "罗滕堡 (Rothenburg o.d.T.) · 1晚 10/3",
-      "pricePerNight": 950,
-      "highlights": "四星;含早;近城门停车方便;自带餐厅口碑好;当地无万豪系",
+      "name": "Hotel-Gasthof Goldener Greifen",
+      "area": "Rothenburg ob der Tauber · 1晚 10/3–10/4 · 已预订 ✅",
+      "pricePerNight": 1087,
+      "highlights": "Booking.com 已确认；Comfort Double Room，2位成人；10/3 14:00–20:00 入住，10/4 07:00–11:00 退房；总价 €139.32（含 VAT，按 2026-09-07 ECB 参考汇率折算约 ¥1,087）；免费取消截至 9/25 23:59 CEST",
       "rating": "4.3",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Rappen%2C%20Rothenburg%20ob%20der%20Tauber",
-      "bookedAddress": "",
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Hotel-Gasthof+Goldener+Greifen+Rothenburg",
+      "bookedAddress": "Obere Schmiedgasse 5, 91541 Rothenburg ob der Tauber, Germany",
       "pdfUrl": "",
       "parking": {
-        "name": "酒店后方自有停车场",
-        "fee": "免费",
-        "note": "约90个免费车位（先到先得）；长期停放€10/天"
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "老城内住宿，停车信息以酒店回复为准。"
       }
     },
     {
-      "name": "Heidelberg Marriott Hotel（海德堡万豪酒店）",
-      "area": "海德堡 (Heidelberg) · 1晚 10/4 · 万豪系 · 已预订 ✅",
+      "name": "Hilton Heidelberg",
+      "area": "海德堡 (Heidelberg) · 1晚 10/4–10/5 · 已预订 ✅",
       "pricePerNight": 900,
-      "highlights": "万豪App已确认（10/4 15:00 入住 – 10/5 12:00 退房，积分兑换）;电话 +49-6221-9080;内卡河畔，步行可达老城;可累积万豪积分",
+      "highlights": "已预订；10/4 入住、10/5 退房；预算暂按 ¥900 估算，酒店及停车细节以确认单为准",
       "rating": "4.2",
-      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Heidelberg+Marriott+Hotel",
-      "bookedAddress": "Vangerowstrasse 16, 69115 Heidelberg, Germany",
-      "pdfUrl": "",
-      "parking": {
-        "name": "酒店地下车库",
-        "fee": "€25/晚",
-        "note": "自有地下车库，无需预约；短时€2.50/小时、日封顶€25"
-      }
-    },
-    {
-      "name": "Hotel Weinberg-Schlößchen（韦恩伯格-斯辰酒店）",
-      "area": "巴哈拉赫 (Bacharach) · 1晚 10/5",
-      "pricePerNight": 900,
-      "highlights": "三星;含早;葡萄园景观;小镇中心;当地无万豪系",
-      "rating": "4.4",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Weinberg-Schl%C3%B6%C3%9Fchen%2C%20Bacharach",
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Hilton+Heidelberg",
       "bookedAddress": "",
       "pdfUrl": "",
       "parking": {
-        "name": "酒店自有停车场",
-        "fee": "免费",
-        "note": "酒店自有停车场免费停放"
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "以 Hilton Heidelberg 订单及酒店最新说明为准。"
+      }
+    },
+    {
+      "name": "Altkölnischer Hof",
+      "area": "Bacharach · 1晚 10/5–10/6 · 已预订 ✅",
+      "pricePerNight": 1193,
+      "highlights": "已确认；Classic Double Room，2位成人；10/5 16:00–18:00 入住，10/6 08:00–10:30 退房；总价 €153（含 7% VAT 及 €2/人/晚城市税，按 2026-09-07 ECB 参考汇率折算约 ¥1,193）",
+      "rating": "4.4",
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Altk%C3%B6lnischer+Hof+Bacharach",
+      "bookedAddress": "Blücherstr. 2, 55422 Bacharach, Germany",
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "酒店位于 Bacharach 老城；请以订单及酒店说明为准。"
       }
     },
     {
@@ -2281,23 +2281,23 @@ const tripData={
           "cost": 1451
         },
         {
-          "name": "罗滕堡 1晚 ~",
-          "cost": 950
+          "name": "Hotel-Gasthof Goldener Greifen 1晚（10/3–10/4，已预订；€139.32 ≈ ¥1,087）",
+          "cost": 1087
         },
         {
-          "name": "海德堡万豪 1晚（10/4–10/5，已预订，积分兑换）",
+          "name": "Hilton Heidelberg 1晚（10/4–10/5，已预订；预算暂按 ¥900）",
           "cost": 900
         },
         {
-          "name": "巴哈拉赫 1晚 ~",
-          "cost": 900
+          "name": "Altkölnischer Hof 1晚（10/5–10/6，已预订；€153 ≈ ¥1,193）",
+          "cost": 1193
         },
         {
           "name": "法兰克福威斯汀 1晚（积分兑换） ~",
           "cost": 1100
         }
       ],
-      "subtotal": 16496
+      "subtotal": 16926
     },
     "food": {
       "items": [
@@ -2366,8 +2366,8 @@ const tripData={
       ],
       "subtotal": 600
     },
-    "total": 62536,
-    "perPerson": 31268
+    "total": 62966,
+    "perPerson": 31483
   },
   "tips": [
     "路线逻辑：慕尼黑→福森→(林道/博登湖)→苏黎世→琉森→龙疆→因特拉肯(3天)→伊瑟尔特瓦尔德/施皮茨→伯尔尼→黑森林→罗滕堡→海德堡→莱茵河谷→法兰克福，全程环线无回头路，总里程约1,625km，仅 Day9 约3小时驾驶，其余均在3小时内",
@@ -2382,7 +2382,7 @@ const tripData={
     "10月初海德堡/莱茵河谷正值葡萄采收季，雷司令新酒 Federweißer 值得尝",
     "标注 ~ 为参考价、≈ 为估算价；酒店以实际预订为准（报价不含城市税）",
     "机票和酒店为动态定价，出行前请在阿联酋官网/携程/Booking 确认实际价格并预订",
-    "酒店万豪系优先：慕尼黑万豪、苏黎世北万怡、伯尔尼Moxy、海德堡万豪、法兰克福威斯汀均可累积万豪旅享家积分；海德堡已预订万豪；福森/因特拉肯/伯尔尼/滴滴湖/罗滕堡/巴哈拉赫保留小红书+Booking口碑优选"
+    "酒店万豪系优先：慕尼黑万豪、苏黎世北万怡、伯尔尼 Moxy、法兰克福威斯汀均可累积万豪旅享家积分；海德堡已预订 Hilton Heidelberg；罗滕堡与巴哈拉赫的酒店也已确认；其余目的地保留小红书+Booking口碑优选"
   ],
   "totalDrive": {
     "km": 1625,
