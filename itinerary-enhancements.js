@@ -207,6 +207,21 @@
     const baseTravel = travel;
     travel = function () { baseTravel(); renderTravelExtras(); };
     document.querySelectorAll('[data-view="travel"]').forEach(button => button.addEventListener('click', () => setTimeout(renderTravelExtras, 0)));
+    document.addEventListener('error', event => {
+      const img = event.target;
+      if (!img.classList?.contains('xhs-photo')) return;
+      const track = img.closest('.xhs-track');
+      img.closest('.xhs-slide')?.remove();
+      if (track && !track.querySelector('.xhs-photo')) {
+        const media = track.closest('.xhs-media');
+        media.querySelectorAll('[data-media-shift],.media-count').forEach(x => x.remove());
+        track.replaceWith(Object.assign(document.createElement('div'), { className: 'xhs-cover', textContent: '小红书精选 · 图片暂不可用' }));
+      } else if (track) {
+        const total = track.children.length;
+        const count = track.closest('.xhs-media')?.querySelector('.media-count');
+        if (count) count.textContent = `${Math.min(Math.round(track.scrollLeft / track.clientWidth) + 1, total)} / ${total}`;
+      }
+    }, true);
     document.addEventListener('click', event => {
       const control = event.target.closest('[data-media-shift]');
       if (control) {

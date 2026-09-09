@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script defer src="itinerary-enhancements.js?v=20260908-4"></script><style>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script defer src="itinerary-enhancements.js?v=20260909-1"></script><style>
 :root{--ink:#17352f;--pine:#1d5145;--moss:#56806d;--paper:#f7f5ef;--sand:#ebe5d8;--card:#fffdfa;--line:#d9d8ce;--sky:#dceceb;--amber:#bd6c31;--muted:#62726d;--r:16px;--sh:0 10px 28px #17352f12}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.eyebrow,.label{color:var(--moss);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero{padding:34px 0 26px;background:var(--ink);color:#fff}.hero-grid{display:grid;grid-template-columns:1.6fr .9fr;gap:28px;align-items:end}.hero h1,h2,h3{font-family:ui-serif,Georgia,"Songti SC",serif}.hero h1{font-size:clamp(31px,5vw,55px);line-height:1.08;margin:8px 0 14px;letter-spacing:-.04em}.hero .eyebrow,.hero p{color:#c6ddd5}.hero p{margin:0}.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid #ffffff2e;border-radius:12px;padding:12px;background:#ffffff0d}.stat b{display:block;font-size:19px}.stat span{font-size:12px;color:#c6ddd5}.mode-nav{position:sticky;top:0;z-index:20;background:#f7f5eff2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.mode-nav .wrap{display:flex;align-items:center;gap:6px;min-height:58px}.brand{font-family:ui-serif,Georgia,serif;font-weight:800;margin-right:auto}.mode,.day-picker button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;padding:9px 12px;border-radius:9px;cursor:pointer}.mode:hover,.mode[aria-selected="true"]{background:var(--ink);color:#fff}.view{display:none;padding:34px 0 90px}.view.active{display:block}.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:36px 0 14px}.head h2{font-size:28px;line-height:1.15;margin:3px 0 0}.head p{margin:0;color:var(--muted);max-width:530px}.trip-map{height:390px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--sky);box-shadow:var(--sh)}.map-fallback{padding:22px;color:var(--pine)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.metric,.panel,.day-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}.metric{padding:14px}.metric b{font-size:22px;display:block}.metric span{font-size:12px;color:var(--muted)}.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.day-card{padding:18px;text-align:left;color:var(--ink);cursor:pointer;transition:.18s}.day-card:hover,.day-card:focus-visible{transform:translateY(-2px);outline:2px solid var(--moss);outline-offset:2px}.top{display:flex;justify-content:space-between;gap:8px;color:var(--moss);font-weight:800;font-size:13px}.day-card h3{font-size:19px;line-height:1.25;margin:8px 0}.route{font-size:13px;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--sand)}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chip{font-size:12px;background:var(--sky);color:var(--pine);padding:3px 8px;border-radius:20px}.stay{font-size:13px;font-weight:700}.alert{margin-top:12px;padding:8px 10px;background:#f9eee7;color:#7b4020;border-radius:8px;font-size:12px}.cols{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{padding:20px}.panel h3{font-size:22px;line-height:1.2;margin:4px 0 14px}.today{background:linear-gradient(135deg,#17352f,#346458);color:#fff;border-radius:var(--r);padding:26px;display:grid;grid-template-columns:1fr auto;gap:16px}.today .eyebrow{color:#cce1d9}.today h2{font-size:clamp(27px,5vw,41px);line-height:1.1;margin:6px 0}.today p{margin:0;color:#d5e4df}.today-metrics{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.today-metrics span{border:1px solid #ffffff36;border-radius:8px;padding:6px 9px;font-size:13px}.primary{display:inline-flex;align-items:center;justify-content:center;background:#f5d7a7;color:#55331b;font-weight:800;text-decoration:none;border-radius:9px;padding:11px 14px}.day-picker{display:flex;gap:6px;overflow:auto;padding:12px 0 4px}.day-picker button{flex:none;border:1px solid var(--line);background:var(--card);font-size:13px}.day-picker button.active{background:var(--pine);color:#fff;border-color:var(--pine)}.route-box{margin:16px 0;padding:15px;border:1px solid #b9d4cc;background:#eff7f4;border-radius:12px}.route-box strong{display:block;font-size:16px}.route-box p{margin:4px 0 0;color:var(--muted);font-size:13px}.timeline{list-style:none;padding:0;margin:0}.timeline li{position:relative;padding:0 0 17px 26px;border-left:1px solid #bdd0c9}.timeline li:before{content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--pine)}.timeline li:last-child{border:0;padding-bottom:0}.time{font-size:12px;font-weight:800;color:var(--moss)}.timeline h4{font-size:15px;margin:2px 0}.timeline p,.muted{font-size:13px;color:var(--muted);margin:2px 0}.role{font-size:11px;color:var(--moss);font-weight:800}.details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.details summary{cursor:pointer;font-weight:800}.full{padding:12px 0;border-bottom:1px solid var(--sand)}.meal{margin-top:7px;padding:8px;background:#f9f1e8;border-radius:8px;font-size:13px}.booking{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--sand)}.booking input{accent-color:var(--pine);width:17px;height:17px}.booking b{display:block}.sub{display:block;color:var(--muted);font-size:12px}.status{font-size:12px;padding:3px 7px;border-radius:20px;background:#f8e9df;color:#884723}.status.done{background:#dceee5;color:#21613f}.budget{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--sand)}ul{margin:0;padding-left:18px}li{margin:8px 0}.footer{border-top:1px solid var(--line);padding:24px 0 90px;color:var(--muted);font-size:12px}.bottom{display:none}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #d49a56;outline-offset:3px}@media(max-width:720px){.wrap{width:min(100% - 24px,1180px)}.hero{padding:25px 0 20px}.hero-grid,.cols{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}.stat{padding:9px}.stat b{font-size:16px}.brand{font-size:13px;margin-right:0}.mode{font-size:13px;padding:8px}.view{padding-top:20px}.head{margin-top:28px;align-items:start;flex-direction:column}.head h2{font-size:25px}.trip-map{height:300px}.metrics{grid-template-columns:repeat(2,1fr)}.days{grid-template-columns:1fr}.today{padding:20px;grid-template-columns:1fr}.bottom{display:flex;position:fixed;z-index:30;bottom:0;left:0;right:0;justify-content:space-around;background:#fffdfaf2;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:7px}.bottom button{border:0;background:transparent;color:var(--muted);font:12px inherit;padding:7px 14px}.bottom button.active{color:var(--pine);font-weight:800}}
 .cols,.days{grid-template-columns:1fr}.day-tools{display:flex;gap:8px;margin:0 0 12px}.day-tools button{border:1px solid var(--line);background:var(--card);color:var(--pine);font:inherit;font-weight:700;padding:8px 12px;border-radius:8px;cursor:pointer}.day-map{height:300px;border:1px solid var(--line);border-radius:12px;margin:14px 0;background:var(--sky);overflow:hidden}.xhs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.xhs-card{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.xhs-cover{min-height:72px;padding:10px;color:#fff;background:linear-gradient(135deg,#f07469,#b72c4a);font-size:12px;font-weight:800}.xhs-body{padding:10px;font-size:13px}.xhs-body b{display:block;margin-bottom:4px}.food-card .xhs-cover{background:linear-gradient(135deg,#bd6c31,#e2a34b)}@media(max-width:720px){.xhs-grid{grid-template-columns:1fr}.day-map{height:240px}}
 .trip-map{height:520px}@media(max-width:720px){.trip-map{height:360px}}
@@ -255,6 +255,12 @@ const tripData={
             "https://sns-webpic-qc.xhscdn.com/202609062217/c4207e74c55fb0832a0a651003bd26db/1040g008311uqetlfiu104be77i8a7ipirti1o80!nd_prv_wgth_webp_3",
             "https://sns-webpic-qc.xhscdn.com/202609062217/16d6656a395c72174ddb03de6bcbbb6c/1040g008311uqetlfiu1g4be77i8a7ipi7c4l3cg!nd_prv_wlteh_webp_3"
           ]
+        },
+        {
+          "title": "🇩🇪慕尼黑｜德国城市地图 路线打卡攻略",
+          "likes": "388",
+          "url": "https://www.xiaohongshu.com/explore/693155b0000000001e023631?xsec_token=ABz1pKyymKh3ipVHBZ99YHhG8RydGYGKTFPrMBMBpCZg0%3D",
+          "takeaway": "城市地图式路线参考：抵达日只取老城核心，英国花园/王宫按体力加到次日。"
         }
       ],
       "xhsNote": "红眼航班清晨抵达，当天以休整+轻量市区游为主，早点休息倒时差",
@@ -386,6 +392,12 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/68bebb5c000000001b0353ff?xsec_token=ABxE-Nyg3QjcypXuZctem3lfFu5L-CapVVgfIpyJ732BE%3D",
           "takeaway": "适合 Day 2 的王宫、老城与英国花园动线复核。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062209/b865a80ebc4ef9e70a18908456aef870/notes_pre_post/1040g3k031m5ts9455mag5nbh0d9080ih20av8f0!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇩🇪慕尼黑三日游｜行程住宿一站式攻略",
+          "likes": "206",
+          "url": "https://www.xiaohongshu.com/explore/69f1d2000000000035039af5?xsec_token=AB5ZSJo-s5ZyeWb0UuuACoRtzXE2JNPXkYRS5QiF2aSFE%3D",
+          "takeaway": "三日攻略交叉验证：王宫/老城/英国花园分两天更舒服，避免抵达日硬排。"
         }
       ],
       "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 (München) · 已预订 ✅（积分兑换）",
@@ -527,6 +539,12 @@ const tripData={
             "https://sns-webpic-qc.xhscdn.com/202609062217/4fa17a8de27ef3648d64ed046db0efa8/01027301kkedqmlnv18010eiqh33c3bsw2!nd_prv_wlteh_webp_3",
             "https://sns-webpic-qc.xhscdn.com/202609062217/1e22c48d434f5083a1893ee3377fe4f3/01027301kkedqmlnv18010eiqh34bebhwp!nd_prv_wgth_webp_3"
           ]
+        },
+        {
+          "title": "新天鹅堡，既不推荐，也不避雷",
+          "likes": "212",
+          "url": "https://www.xiaohongshu.com/explore/6a16d39f000000000803d1c7?xsec_token=ABUylUsPePXdFIUmvD0T-QgF03VhwV1t5y2KHqO_mDy_g%3D",
+          "takeaway": "平衡预期：外观与玛丽安桥视角最值，内部导览按预约时段打卡即可。"
         }
       ],
       "stay": "Hotel Sonne（索恩酒店）· 福森 (Füssen) · ¥1,707/晚 · 已预订 ✅",
@@ -665,6 +683,12 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/66ce3732000000001f03ec56?xsec_token=ABktkb-TcVVG5M7qW7prehWKyZ9UBqU8r2aKfzNGIr35E%3D",
           "takeaway": "林道湖畔短停的画面与散步点参考。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062209/4e8cb93fc00099a5a57f67fc20eb7828/1040g00831712eijl46104a0ljq53183ctir5800!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇨🇭苏黎世一日游攻略",
+          "likes": "186",
+          "url": "https://www.xiaohongshu.com/explore/69c5aa640000000021006d41?xsec_token=AB9HyS4fUD1TKbdAPSSd_xGq7vSEYDgYpMHPIKvanA-_Q%3D",
+          "takeaway": "补充苏黎世备选动线：若抵达早，可加苏黎世湖短游船或林登霍夫日落。"
         }
       ],
       "stay": "Courtyard by Marriott Zurich North（万豪系）· 苏黎世 (Zürich) · 已预订 ✅（确认号 90991812，积分兑换）",
@@ -989,6 +1013,18 @@ const tripData={
           "likes": "352",
           "url": "https://www.xiaohongshu.com/explore/69c92bf3000000002200fd52?xsec_token=ABeBW_z0lOuZcsmT5AOXIgu-YOP5yQ6n5mBR-_ZG-rghw%3D&xsec_source=pc_feed",
           "takeaway": "自驾停车格林德瓦Terminal室内停车场；Eiger Express缆车比火车快40分钟；Terminal免费领中文登山护照山顶盖章；山顶建议留2.5小时"
+        },
+        {
+          "title": "🇨🇭 | 少女峰快速上山详细攻略",
+          "likes": "249",
+          "url": "https://www.xiaohongshu.com/explore/6a343867000000001702b09f?xsec_token=ABrb0OpUoRracfI8ze5RRO5UpexBKOVXdsvkcQFTsjDCs%3D",
+          "takeaway": "快速上山口径复核：优先 Eiger Express，山顶留足 2.5h，别把时间耗在排队拍照点。"
+        },
+        {
+          "title": "瑞士|米伦Mürren+雪朗峰一日游全攻略",
+          "likes": "237",
+          "url": "https://www.xiaohongshu.com/explore/6a0d27650000000008000fa6?xsec_token=ABSnBWp06tO_EcX71-_KXaF37hB3SlF43RAUQudHlYtpg%3D",
+          "takeaway": "Day6 天气备选灵感：若少女峰大雾，米伦+雪朗峰动线可替换且仍在因特拉肯周边。"
         }
       ],
       "stay": "Hotel Aare Thun（阿勒河图恩酒店）· 图恩 (Thun) · 第2晚 · 已预订 ✅",
@@ -1309,6 +1345,18 @@ const tripData={
           "likes": "196",
           "url": "https://www.xiaohongshu.com/explore/68dd304b0000000007031e76?xsec_token=ABUtpc_irKvX5rpA90jwBtvWZ6_XTwdiPjvkXO7Wnqw-Q%3D&xsec_source=pc_feed",
           "takeaway": "三刷黑森林博主总结：自驾最灵活，随时停靠沿途风景；湖区+瀑布+蛋糕是经典组合"
+        },
+        {
+          "title": "德国黑森林B500自驾，竟然看到了梦幻山坡",
+          "likes": "51",
+          "url": "https://www.xiaohongshu.com/explore/6a49dac2000000002103d98b?xsec_token=ABqVo5rGRfzcSxOE-8_na8vR48PoUY_1HBH3iHLlUmZDU%3D",
+          "takeaway": "B500 景观自驾体感参考：弯道多、观景停车点值得短停；本日只取顺路南段。"
+        },
+        {
+          "title": "斯图周边plog|Triberg🍂黑森林最好的季节",
+          "likes": "29",
+          "url": "https://www.xiaohongshu.com/explore/68fd75ba0000000003013a5d?xsec_token=ABYsHKIpF4IroY8Hlk7SS8BeJDePadnZPEByEFmWMkuVk%3D",
+          "takeaway": "秋季黑森林氛围参考：Triberg 瀑布+咕咕钟+黑森林蛋糕是顺路组合。"
         }
       ],
       "stay": "Hotel Hofgut Sternen – Ravennaschlucht（拉文纳峡谷霍夫古特斯特恩酒店）· 黑森林 (Schwarzwald) · ¥1,451/晚 · 已预订 ✅",
@@ -1428,6 +1476,18 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/68b31d7d000000001c035749?xsec_token=ABo51fsvWeRf65p24P8A4ET2yYiAlaf-5Oag98nLlx_Gk%3D",
           "takeaway": "Day 9 老城晚餐的补充候选；以当日营业时间为准。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062212/7b37cdb503fe7d88f427c29d695355a4/notes_pre_post/1040g3k031lqjg1m3kq3g40mjlgd4oh6vp5o3p5g!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇩🇪德国罗滕堡｜中世纪🏰童话小镇半日游🌟",
+          "likes": "33",
+          "url": "https://www.xiaohongshu.com/explore/69adc618000000001d026aab?xsec_token=ABGYh6dtbbumQLVfOvw-Hz3oXkvuCLCi4kA7dqC2ZUmec%3D",
+          "takeaway": "半日游口径：Plönlein、城墙、市集广场优先；傍晚和清晨是避开旅行团的窗口。"
+        },
+        {
+          "title": "德国童话秘境：6座小镇，圆一场中世纪绮梦",
+          "likes": "49",
+          "url": "https://www.xiaohongshu.com/explore/69bd1338000000001b02015e?xsec_token=ABwoKaSCmufhBRF3G2rYy-XgnvVmHSL2VsPS6T9QZ6k4Y%3D",
+          "takeaway": "串联灵感：同帖把海德堡、巴哈拉赫也列为童话感小镇，正好覆盖后段莱茵河谷。"
         }
       ],
       "stay": "Hotel-Gasthof Goldener Greifen · Rothenburg ob der Tauber · 10/3 入住，10/4 退房 · 已预订 ✅",
@@ -1581,6 +1641,12 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/6a08b488000000003502b2dc?xsec_token=AB_hG5fnNi5Mgqg3Piw9WbznxT0q9Oq_Kn3e1iXiY-L1g%3D",
           "takeaway": "Heidelberg 晚餐氛围视频；点击在小红书播放。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062212/8f7967ce4630e6615c11a81db9658d8b/1040g2sg320860lq4li705ngse6308hfsdb2odq8!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇩🇪 德国一日游推荐｜海德堡超顺路线 🗺️",
+          "likes": "65",
+          "url": "https://www.xiaohongshu.com/explore/69eaa2860000000020003801?xsec_token=ABMaus8p9m9ReNSrOmJWafmkWkwwnJVn84_N5KFqdq044%3D",
+          "takeaway": "海德堡动线复核：城堡早上去、哲学家小径看全景，老城主街留到傍晚。"
         }
       ],
       "stay": "Hilton Heidelberg · 海德堡 (Heidelberg) · 10/4 入住，10/5 退房 · 已预订 ✅",
@@ -1758,6 +1824,12 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/6834c018000000000c03b997?xsec_token=ABBeIuG-S0U3uwvPx8HyvsGcWDlHmBMtn7pKF1Y7_yt_Q%3D",
           "takeaway": "Bacharach 傍晚步行与拍摄点参考。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062213/31603687ee1c716bce4962667feb1443/notes_pre_post/1040g3k0322ghvki3na005oai2icgkd5n8o76h5g!nc_n_webp_prv_1"
+        },
+        {
+          "title": "莱茵河 ‖ 用这种方式享受最美的一段景色",
+          "likes": "46",
+          "url": "https://www.xiaohongshu.com/explore/6a82eb6a000000002402fcb8?xsec_token=AB0sWKnFVRDapn_hwYwbMe4DNmx4VfXHw1NQHLvKwvbVA%3D",
+          "takeaway": "莱茵河谷观景方式参考：城堡密集段适合车览+短停，不必每座城堡都登。"
         }
       ],
       "stay": "Altkölnischer Hof · Bacharach · 10/5 入住，10/6 退房 · 已预订 ✅",
@@ -1924,6 +1996,12 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/6a200909000000000803c32d?xsec_token=ABvQkTIId_dmoRME8xdj9BPHcFVxVRTgLT_eKAn0afOTs%3D",
           "takeaway": "Day 12 游船与 Drosselgasse 氛围视频；点击在小红书播放。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/c64c8e9ee17430f9d6a8db14a038e3d8/1040g2sg320uuslhh7e705q5p7igmcc6p28gvofg!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇩🇪周末去哪儿｜吕德斯海姆·雷司令小镇.",
+          "likes": "35",
+          "url": "https://www.xiaohongshu.com/explore/69c463b50000000023020e45?xsec_token=ABR_trnfl82jdaJ5T7ouA2D0sdp6EBhV3LaNYDxUQJpZc%3D",
+          "takeaway": "吕德斯海姆补充灵感：画眉鸟小巷之外，可把雷司令品鉴/葡萄田缆车作为秋季重点。"
         }
       ],
       "stay": "The Westin Grand Frankfurt（万豪系）· 法兰克福市中心 · 已预订 ✅（积分兑换）",
@@ -2383,7 +2461,10 @@ const tripData={
     "10月初海德堡/莱茵河谷正值葡萄采收季，雷司令新酒 Federweißer 值得尝",
     "标注 ~ 为参考价、≈ 为估算价；酒店以实际预订为准（报价不含城市税）",
     "机票和酒店为动态定价，出行前请在阿联酋官网/携程/Booking 确认实际价格并预订",
-    "酒店万豪系优先：慕尼黑万豪、苏黎世北万怡、伯尔尼 Moxy、法兰克福威斯汀均可累积万豪旅享家积分；海德堡已预订 Hilton Heidelberg；罗滕堡与巴哈拉赫的酒店也已确认；其余目的地保留小红书+Booking口碑优选"
+    "酒店万豪系优先：慕尼黑万豪、苏黎世北万怡、伯尔尼 Moxy、法兰克福威斯汀均可累积万豪旅享家积分；海德堡已预订 Hilton Heidelberg；罗滕堡与巴哈拉赫的酒店也已确认；其余目的地保留小红书+Booking口碑优选",
+    "线上内容补充（2026-09-09）：浪漫之路官方口径为 Würzburg→Rothenburg→Füssen 主轴；若想把 Day10 放慢，可参考官方路线中的 Dinkelsbühl/Nördlingen，但会不如维尔茨堡顺海德堡",
+    "线上内容补充（2026-09-09）：UNESCO/莱茵河谷资料确认核心景观集中在 Bingen/Rüdesheim—Koblenz 约65km；St. Goar—Bacharach 约13km 城堡最密集，已拆成 Day11/Day12 慢游",
+    "线上内容补充（2026-09-09）：黑森林 B500/Schwarzwaldhochstraße 官方与路书均指经典段为 Baden-Baden—Freudenstadt 北段；本行程为住宿顺路只保留 Triberg—Furtwangen—Titisee 南段，北段留作下次专门黑森林线"
   ],
   "totalDrive": {
     "km": 1625,
