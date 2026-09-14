@@ -1,12 +1,13 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script defer src="itinerary-enhancements.js?v=20260908-1"></script><style>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script defer src="itinerary-enhancements.js?v=20260909-1"></script><style>
 :root{--ink:#17352f;--pine:#1d5145;--moss:#56806d;--paper:#f7f5ef;--sand:#ebe5d8;--card:#fffdfa;--line:#d9d8ce;--sky:#dceceb;--amber:#bd6c31;--muted:#62726d;--r:16px;--sh:0 10px 28px #17352f12}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.eyebrow,.label{color:var(--moss);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero{padding:34px 0 26px;background:var(--ink);color:#fff}.hero-grid{display:grid;grid-template-columns:1.6fr .9fr;gap:28px;align-items:end}.hero h1,h2,h3{font-family:ui-serif,Georgia,"Songti SC",serif}.hero h1{font-size:clamp(31px,5vw,55px);line-height:1.08;margin:8px 0 14px;letter-spacing:-.04em}.hero .eyebrow,.hero p{color:#c6ddd5}.hero p{margin:0}.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid #ffffff2e;border-radius:12px;padding:12px;background:#ffffff0d}.stat b{display:block;font-size:19px}.stat span{font-size:12px;color:#c6ddd5}.mode-nav{position:sticky;top:0;z-index:20;background:#f7f5eff2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.mode-nav .wrap{display:flex;align-items:center;gap:6px;min-height:58px}.brand{font-family:ui-serif,Georgia,serif;font-weight:800;margin-right:auto}.mode,.day-picker button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;padding:9px 12px;border-radius:9px;cursor:pointer}.mode:hover,.mode[aria-selected="true"]{background:var(--ink);color:#fff}.view{display:none;padding:34px 0 90px}.view.active{display:block}.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:36px 0 14px}.head h2{font-size:28px;line-height:1.15;margin:3px 0 0}.head p{margin:0;color:var(--muted);max-width:530px}.trip-map{height:390px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--sky);box-shadow:var(--sh)}.map-fallback{padding:22px;color:var(--pine)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.metric,.panel,.day-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}.metric{padding:14px}.metric b{font-size:22px;display:block}.metric span{font-size:12px;color:var(--muted)}.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.day-card{padding:18px;text-align:left;color:var(--ink);cursor:pointer;transition:.18s}.day-card:hover,.day-card:focus-visible{transform:translateY(-2px);outline:2px solid var(--moss);outline-offset:2px}.top{display:flex;justify-content:space-between;gap:8px;color:var(--moss);font-weight:800;font-size:13px}.day-card h3{font-size:19px;line-height:1.25;margin:8px 0}.route{font-size:13px;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--sand)}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chip{font-size:12px;background:var(--sky);color:var(--pine);padding:3px 8px;border-radius:20px}.stay{font-size:13px;font-weight:700}.alert{margin-top:12px;padding:8px 10px;background:#f9eee7;color:#7b4020;border-radius:8px;font-size:12px}.cols{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{padding:20px}.panel h3{font-size:22px;line-height:1.2;margin:4px 0 14px}.today{background:linear-gradient(135deg,#17352f,#346458);color:#fff;border-radius:var(--r);padding:26px;display:grid;grid-template-columns:1fr auto;gap:16px}.today .eyebrow{color:#cce1d9}.today h2{font-size:clamp(27px,5vw,41px);line-height:1.1;margin:6px 0}.today p{margin:0;color:#d5e4df}.today-metrics{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.today-metrics span{border:1px solid #ffffff36;border-radius:8px;padding:6px 9px;font-size:13px}.primary{display:inline-flex;align-items:center;justify-content:center;background:#f5d7a7;color:#55331b;font-weight:800;text-decoration:none;border-radius:9px;padding:11px 14px}.day-picker{display:flex;gap:6px;overflow:auto;padding:12px 0 4px}.day-picker button{flex:none;border:1px solid var(--line);background:var(--card);font-size:13px}.day-picker button.active{background:var(--pine);color:#fff;border-color:var(--pine)}.route-box{margin:16px 0;padding:15px;border:1px solid #b9d4cc;background:#eff7f4;border-radius:12px}.route-box strong{display:block;font-size:16px}.route-box p{margin:4px 0 0;color:var(--muted);font-size:13px}.timeline{list-style:none;padding:0;margin:0}.timeline li{position:relative;padding:0 0 17px 26px;border-left:1px solid #bdd0c9}.timeline li:before{content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--pine)}.timeline li:last-child{border:0;padding-bottom:0}.time{font-size:12px;font-weight:800;color:var(--moss)}.timeline h4{font-size:15px;margin:2px 0}.timeline p,.muted{font-size:13px;color:var(--muted);margin:2px 0}.role{font-size:11px;color:var(--moss);font-weight:800}.details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.details summary{cursor:pointer;font-weight:800}.full{padding:12px 0;border-bottom:1px solid var(--sand)}.meal{margin-top:7px;padding:8px;background:#f9f1e8;border-radius:8px;font-size:13px}.booking{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--sand)}.booking input{accent-color:var(--pine);width:17px;height:17px}.booking b{display:block}.sub{display:block;color:var(--muted);font-size:12px}.status{font-size:12px;padding:3px 7px;border-radius:20px;background:#f8e9df;color:#884723}.status.done{background:#dceee5;color:#21613f}.budget{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--sand)}ul{margin:0;padding-left:18px}li{margin:8px 0}.footer{border-top:1px solid var(--line);padding:24px 0 90px;color:var(--muted);font-size:12px}.bottom{display:none}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #d49a56;outline-offset:3px}@media(max-width:720px){.wrap{width:min(100% - 24px,1180px)}.hero{padding:25px 0 20px}.hero-grid,.cols{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}.stat{padding:9px}.stat b{font-size:16px}.brand{font-size:13px;margin-right:0}.mode{font-size:13px;padding:8px}.view{padding-top:20px}.head{margin-top:28px;align-items:start;flex-direction:column}.head h2{font-size:25px}.trip-map{height:300px}.metrics{grid-template-columns:repeat(2,1fr)}.days{grid-template-columns:1fr}.today{padding:20px;grid-template-columns:1fr}.bottom{display:flex;position:fixed;z-index:30;bottom:0;left:0;right:0;justify-content:space-around;background:#fffdfaf2;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:7px}.bottom button{border:0;background:transparent;color:var(--muted);font:12px inherit;padding:7px 14px}.bottom button.active{color:var(--pine);font-weight:800}}
 .cols,.days{grid-template-columns:1fr}.day-tools{display:flex;gap:8px;margin:0 0 12px}.day-tools button{border:1px solid var(--line);background:var(--card);color:var(--pine);font:inherit;font-weight:700;padding:8px 12px;border-radius:8px;cursor:pointer}.day-map{height:300px;border:1px solid var(--line);border-radius:12px;margin:14px 0;background:var(--sky);overflow:hidden}.xhs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.xhs-card{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.xhs-cover{min-height:72px;padding:10px;color:#fff;background:linear-gradient(135deg,#f07469,#b72c4a);font-size:12px;font-weight:800}.xhs-body{padding:10px;font-size:13px}.xhs-body b{display:block;margin-bottom:4px}.food-card .xhs-cover{background:linear-gradient(135deg,#bd6c31,#e2a34b)}@media(max-width:720px){.xhs-grid{grid-template-columns:1fr}.day-map{height:240px}}
+.trip-map{height:520px}@media(max-width:720px){.trip-map{height:360px}}
 </style></head><body>
 <header class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Roadbook · Germany & Switzerland</div><h1>德国+瑞士 14日自驾环游（修订版）</h1><p>2026-09-24 ~ 10-08 · 2人 · 自驾</p></div><div class="hero-stats"><div class="stat"><b>14</b><span>旅行日</span></div><div class="stat"><b id="drive">—</b><span>计划自驾</span></div><div class="stat"><b id="hotels">—</b><span>过夜地点</span></div></div></div></header>
 <nav class="mode-nav"><div class="wrap"><span class="brand">德国 · 瑞士 2026</span><button class="mode" data-view="overview" aria-selected="true">总览</button><button class="mode" data-view="planning">行前规划</button><button class="mode" data-view="travel">旅途进行中</button></div></nav><main class="wrap">
-<section class="view active" id="overview"><div class="head"><div><div class="label">Whole trip</div><h2>一眼看懂，整段旅程</h2></div><p>这里只保留路线、驾驶负荷、当日重点和过夜地。订票、预算与所有细节留在各自该出现的地方。</p></div><div id="tripMap" class="trip-map"><div class="map-fallback" id="fallback">正在加载总路线图…</div></div><div class="metrics" id="metrics"></div><div class="head"><div><div class="label">Day by day</div><h2>14 天行程卡</h2></div><p>点击任一天，直接切换到旅途模式查看行动版信息。</p></div><div class="days" id="days"></div></section>
+<section class="view active" id="overview"><div class="head"><div><div class="label">Whole trip</div><h2>一眼看懂，整段旅程</h2></div><p>这里只保留路线、驾驶负荷、当日重点和过夜地。订票、预算与所有细节留在各自该出现的地方。</p></div><div id="tripMap" class="trip-map"><div class="map-fallback" id="fallback">正在加载总路线图…</div></div><div class="metrics" id="metrics"></div><div class="head"><div><div class="label">Day by day</div><h2>15 天行程卡（Day 0 启程）</h2></div><p>点击任一天，直接切换到旅途模式查看行动版信息。</p></div><div class="days" id="days"></div></section>
 <section class="view" id="planning"><div class="head"><div><div class="label">Before you go</div><h2>行前规划</h2></div><p>用这里做预订、预算和行前准备；旅途中不必被这些信息打扰。</p></div><div class="cols"><div class="panel"><div class="label">Reservations</div><h3>预订状态</h3><div id="bookings"></div></div><div class="panel"><div class="label">Budget</div><h3>预算明细</h3><div id="budget"></div></div></div><div class="head"><div><div class="label">Detailed itinerary</div><h2>完整每日安排</h2></div><p>餐厅、研究链接、可选景点和全部说明只在这里展开阅读。</p></div><div id="planDays"></div><div class="cols"><div class="panel"><div class="label">Prepare</div><h3>出发前与路上提醒</h3><ul id="tips"></ul></div><div class="panel"><div class="label">Research log</div><h3>版本与取舍</h3><ul id="notes"></ul></div></div></section>
-<section class="view" id="travel"><div class="head"><div><div class="label">On the road</div><h2 id="travelHead">今日行动卡</h2></div><p id="travelSub">按瑞士当地日期自动选择；也可随时手动切换。</p></div><div class="day-picker" id="picker"></div><article id="today"></article></section></main><footer class="footer"><div class="wrap">行程信息以实际预订、道路状况和景点官方公告为准 · 更新于 2026-08-25</div></footer><nav class="bottom"><button data-view="overview" class="active">总览</button><button data-view="planning">规划</button><button data-view="travel">今日</button></nav>
+<section class="view" id="travel"><div class="head"><div><div class="label">On the road</div><h2 id="travelHead">今日行动卡</h2></div><p id="travelSub">按瑞士当地日期自动选择；也可随时手动切换。</p></div><div class="day-picker" id="picker"></div><article id="today"></article></section></main><footer class="footer"><div class="wrap">行程信息以实际预订、道路状况和景点官方公告为准 · 更新于 2026-09-14（v5 修订）</div></footer><nav class="bottom"><button data-view="overview" class="active">总览</button><button data-view="planning">规划</button><button data-view="travel">今日</button></nav>
 <script>
 const tripData={
   "title": "德国+瑞士 14日自驾环游（修订版）",
@@ -15,7 +16,7 @@ const tripData={
   "tripEndDate": "2026-10-08",
   "tripTimezone": "Europe/Zurich",
   "travelers": "2人 · 自驾",
-  "generationDate": "2026-08-25",
+  "generationDate": "2026-09-14（v5 修订）",
   "flights": [
     {
       "id": "flight-out",
@@ -60,12 +61,13 @@ const tripData={
     "② 新增海德堡(Heidelberg)一晚：Day10 罗滕堡→海德堡，Day11 上午继续游览后前往莱茵河谷",
     "③ 莱茵河谷小镇按口碑重排：布劳巴赫(马克斯堡)、博帕德(四湖景缆车)、圣戈尔(莱茵费尔斯堡)、巴哈拉赫、上韦瑟尔、洛蕾莱、吕德斯海姆",
     "④ 博登湖(林道)移至 Day4 福森→苏黎世顺路停靠，原 Day8 不再绕路",
-    "⑤ Day11 住巴哈拉赫、Day12 住法兰克福机场，住宿总晚数仍为 11 晚",
+    "⑤ Day11 住巴哈拉赫、Day12 住法兰克福市中心 Westin（机场还车在 Day13），住宿总晚数仍为 11 晚",
     "⑥ v2：根据小红书高赞笔记优化酒店（苏黎世改 Central Plaza、琉森改 Radisson Blu、海德堡选希尔顿）；每日行程增加行车路线地图、公里数与驾驶时长；预算剔除伴手礼，澄清全程仅租一次车、德瑞两国通用，交通费无重叠",
     "⑦ v3：琉森并入 Day5 顺路游，Day7 改为因特拉肯周边（伊瑟尔特瓦尔德+施皮茨）+伯尔尼过夜，去黑森林当天经伯尔尼中转车程更短；除 Day9 外每日驾驶≤3h；罗滕堡经小红书核实为强烈推荐（870赞《孤独星球》封面小镇），予以保留；莱茵河谷地图点位全部加'Germany'后缀修正定位；每日行程末尾附当晚酒店与小红书笔记",
     "⑧ v4：小红书'德瑞必去'榜单核对——新增维尔茨堡(Day10)与布里恩茨蒸汽火车(Day7)；国王湖/采尔马特/Stoos/科隆等经评估不纳入（见贴士区评估表）；酒店改万豪系优先（慕尼黑/苏黎世/海德堡/法兰克福机场四站万豪，其余城镇无万豪系保留原优选）",
     "⑨ v5：瑞士补充核对——Day6 傍晚新增哈德昆观景台（可选），First山/雪朗峰列为 Day6 替代方案，图恩/Sigriswil 列为 Day7 可选，莱茵瀑布列为 Day8 可选加站（标注3.5h取舍）；铁力士有避雷帖不推荐",
-    "⑩ v6：机票改订泰国国际航空（经曼谷中转），9/24 傍晚出发、9/25 清晨抵达慕尼黑，Day1 多出大半天改为轻量市区游；返程 10/7 下午 14:45 起飞，法兰克福改为上午晨游；酒店按已确认订单更新：福森→Hotel Sonne（9/27）、因特拉肯两晚→图恩 Hotel Aare Thun（9/29-10/1）、滴滴湖→拉文纳峡谷 Hotel Hofgut Sternen（10/2）；折叠概览升级：直接显示出发地/途经地/当晚酒店/交通方式"
+    "⑩ v6：机票改订泰国国际航空（经曼谷中转），9/24 傍晚出发、9/25 清晨抵达慕尼黑，Day1 多出大半天改为轻量市区游；返程 10/7 下午 14:45 起飞，法兰克福改为上午晨游；酒店按已确认订单更新：福森→Hotel Sonne（9/27）、因特拉肯两晚→图恩 Hotel Aare Thun（9/29-10/1）、滴滴湖→拉文纳峡谷 Hotel Hofgut Sternen（10/2）；折叠概览升级：直接显示出发地/途经地/当晚酒店/交通方式",
+    "⑨ v5：慕尼黑两天按'逛得快'实测节奏加可选项（宁芬堡宫/宝马世界/德意志博物馆/阿桑教堂/哈克桥日落）；修复 D4 主题因内嵌'·'被截断导致苏黎世从标题消失的问题；9/29-10/1 起终点修正为实际住宿地图恩；10/6 终点由法兰克福机场修正为市区 Westin（还车在 10/7）；补全 D1-D14 dayLabel；地图 geo 补充 16 个缺失点位（图恩/布里恩茨/施皮茨/特里贝格/博帕德/圣戈尔/巴哈拉赫/上韦瑟尔/洛蕾莱/法兰克福等）；每日新增小红书高赞笔记与美食/历史类推荐卡片"
   ],
   "weather": {
     "summary": "9月底-10月初，德瑞秋凉，晴多云为主，山区早晚偏冷（出行日超出15天预报范围，以下为气候均值，出发前请再查实时预报）",
@@ -77,26 +79,26 @@ const tripData={
   },
   "days": [
     {
-      "date": "09/25",
-      "weekday": "周五",
+      "dayLabel": "D0",
+      "date": "09/24",
+      "weekday": "周四",
       "activeDates": [
-        "2026-09-24",
-        "2026-09-25"
+        "2026-09-24"
       ],
       "overview": {
-        "region": "启程 · 巴伐利亚",
+        "region": "启程 · 北京",
         "highlights": [
-          "北京经曼谷飞往慕尼黑",
-          "机场取车后轻量市区游",
-          "玛丽安广场与啤酒花园"
+          "傍晚北京首都机场起飞",
+          "曼谷中转 3h35",
+          "红眼航班夜航赴慕尼黑"
         ],
-        "alert": "红眼航班后以休整为先，勿排满。"
+        "alert": "国际航班建议提前 3 小时到机场办票安检。"
       },
-      "theme": "北京 → 曼谷 → 慕尼黑 (München)（9/24 晚出发 · 清晨抵达）",
+      "theme": "北京 (Beijing) → 曼谷中转 · 启程日",
       "weather": {
         "icon": "partlyCloudy",
-        "high": 20,
-        "low": 11
+        "high": 25,
+        "low": 15
       },
       "activities": [
         {
@@ -122,7 +124,35 @@ const tripData={
           "cost": 0,
           "transport": "泰国国际航空",
           "note": "红眼航班有餐食，机上休息；9/25 清晨 07:05 抵达慕尼黑 T2"
-        },
+        }
+      ],
+      "stay": "机上过夜 · TG924 曼谷 → 慕尼黑（红眼航班）",
+      "stayUrl": "",
+      "xhs": [],
+      "xhsNote": "启程日无驾驶安排；飞机上尽量休息，为抵达日储备精力。"
+    },
+    {
+      "date": "09/25",
+      "weekday": "周五",
+      "activeDates": [
+        "2026-09-25"
+      ],
+      "overview": {
+        "region": "启程 · 巴伐利亚",
+        "highlights": [
+          "北京经曼谷飞往慕尼黑",
+          "机场取车后轻量市区游",
+          "玛丽安广场与啤酒花园"
+        ],
+        "alert": "红眼航班后以休整为先，勿排满。"
+      },
+      "theme": "清晨抵达慕尼黑 (München) · 机场取车 + 轻量市区游",
+      "weather": {
+        "icon": "partlyCloudy",
+        "high": 20,
+        "low": 11
+      },
+      "activities": [
         {
           "time": "07:05",
           "name": "抵达慕尼黑 T2 + 机场取车",
@@ -156,7 +186,16 @@ const tripData={
           "duration": "3h",
           "cost": 0,
           "transport": "步行",
-          "note": "轻量市区游适应时差；谷物市场 (Viktualienmarkt) 傍晚收摊前最热闹"
+          "note": "轻量市区游适应时差；谷物市场 (Viktualienmarkt) 傍晚收摊前最热闹",
+          "parking": [
+            {
+              "name": "Tiefgarage Marienplatz（Contipark）",
+              "location": "Rindermarkt 16, 80331 München",
+              "fee": "€6.5/小时 · €45/天封顶",
+              "note": "距玛丽安广场约150米；车位偏窄，SUV慎入",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "19:00",
@@ -168,6 +207,15 @@ const tripData={
             "recommended": "啤酒+猪肘，体验传统啤酒大厅氛围",
             "location": "玛丽安广场步行 5 分钟"
           }
+        },
+        {
+          "time": "17:30",
+          "name": "阿桑教堂 + 哈克桥日落（可选）",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行/S-Bahn",
+          "priority": "optional",
+          "note": "阿桑教堂是暗黑系洛可可，免费、10 分钟即可看完；体力够的话傍晚去 Hackerbrücke 桥，本地人坐在桥栏杆上喝啤酒看日落"
         }
       ],
       "route": {
@@ -217,9 +265,33 @@ const tripData={
             "https://sns-webpic-qc.xhscdn.com/202609062217/c4207e74c55fb0832a0a651003bd26db/1040g008311uqetlfiu104be77i8a7ipirti1o80!nd_prv_wgth_webp_3",
             "https://sns-webpic-qc.xhscdn.com/202609062217/16d6656a395c72174ddb03de6bcbbb6c/1040g008311uqetlfiu1g4be77i8a7ipi7c4l3cg!nd_prv_wlteh_webp_3"
           ]
+        },
+        {
+          "title": "🇩🇪慕尼黑｜德国城市地图 路线打卡攻略",
+          "likes": "388",
+          "url": "https://www.xiaohongshu.com/explore/693155b0000000001e023631?xsec_token=ABz1pKyymKh3ipVHBZ99YHhG8RydGYGKTFPrMBMBpCZg0%3D",
+          "takeaway": "城市地图式路线参考：抵达日只取老城核心，英国花园/王宫按体力加到次日。"
+        },
+        {
+          "title": "慕尼黑10小时转机，citywalk暴走全攻略",
+          "likes": "124",
+          "url": "https://www.xiaohongshu.com/explore/692817ea000000001e00a580?xsec_token=ABPKTTiWTn5K6o0yjOVz5pVIsYo3NzuGHQA3hmN4CJvhU%3D",
+          "takeaway": "证明老城核心区半天到一天即可走完：圣母教堂→玛丽亚广场→谷物市场一线全部步行可达"
+        },
+        {
+          "title": "德国慕尼黑市区1日游",
+          "likes": "62",
+          "url": "https://www.xiaohongshu.com/explore/6a869059000000001603ff44?xsec_token=ABgIhU7Rt-CWPh4bz3mOJvm3KJ_u6id-utXRVBp33aaRc%3D",
+          "takeaway": "作者一天走完老城+王宫+英国花园+宝马世界；你们抵达日下午+次日一整天，节奏更从容"
         }
       ],
-      "xhsNote": "红眼航班清晨抵达，当天以休整+轻量市区游为主，早点休息倒时差"
+      "xhsNote": "红眼航班清晨抵达，当天以休整+轻量市区游为主，早点休息倒时差",
+      "stayParking": {
+        "name": "酒店地下车库（APCOA）",
+        "fee": "€29/晚",
+        "note": "地下车库，限高2米、约141车位；短时首小时€4、日封顶€29"
+      },
+      "dayLabel": "D1"
     },
     {
       "date": "09/26",
@@ -231,7 +303,7 @@ const tripData={
           "王宫与珍宝馆",
           "英国花园"
         ],
-        "alert": "市政厅木偶钟仅在固定时段演出。"
+        "alert": "市政厅木偶钟 11:00/12:00（夏季加17:00）演出；王宫+珍宝馆你们 2 小时够逛，下午可弹性加宁芬堡或宝马。"
       },
       "theme": "慕尼黑 (München) · 巴伐利亚首府初印象",
       "weather": {
@@ -254,7 +326,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 0,
           "transport": "自驾+步行",
-          "note": "11:00/12:00/17:00 有木偶报时钟表演"
+          "note": "11:00/12:00/17:00 有木偶报时钟表演",
+          "parking": [
+            {
+              "name": "Tiefgarage Marienplatz（Contipark）",
+              "location": "Rindermarkt 16, 80331 München",
+              "fee": "€6.5/小时 · €45/天封顶",
+              "note": "距玛丽安广场约150米；车位偏窄，SUV慎入",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "12:30",
@@ -264,7 +345,8 @@ const tripData={
             "cuisine": "巴伐利亚菜",
             "perPerson": 25,
             "recommended": "烤猪肘、白香肠、HB啤酒",
-            "location": "玛利亚广场步行 5 分钟"
+            "location": "玛利亚广场步行 5 分钟",
+            "note": "备选：谷物市场旁的 Schmalznudel – Cafe Frischhut（糖油果子，本地人排队，只收现金）；想安静可选 Augustiner Bräustuben"
           }
         },
         {
@@ -281,7 +363,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 0,
           "transport": "自驾/电车",
-          "note": "看冲浪者挑战艾斯巴赫河浪"
+          "note": "看冲浪者挑战艾斯巴赫河浪",
+          "parking": [
+            {
+              "name": "Parkplatz am Chinesischen Turm",
+              "location": "Englischer Garten 3, 80538 München",
+              "fee": "约€5/次",
+              "note": "就在中国塔啤酒花园旁；约100车位，周末早到",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "19:30",
@@ -293,6 +384,33 @@ const tripData={
             "recommended": "烤排骨、Radler",
             "location": "市中心"
           }
+        },
+        {
+          "time": "15:30",
+          "name": "宁芬堡宫（可选，与王宫二选一或都打卡）",
+          "duration": "2h",
+          "cost": 60,
+          "transport": "电车17路到 Schloss Nymphenburg",
+          "priority": "optional",
+          "note": "宫殿票€8、联票€15、花园免费；电车约20分钟。后花园天鹅湖人少出片；你们逛得快，王宫2小时+宁芬堡2小时完全来得及"
+        },
+        {
+          "time": "17:00",
+          "name": "宝马世界 BMW Welt / 宝马博物馆（可选）",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "U3 到 Olympiazentrum",
+          "priority": "optional",
+          "note": "Welt 免费、开到22:00，螺旋展厅很有未来感；博物馆€10、10:00-18:00；车迷必去，不感兴趣可跳过"
+        },
+        {
+          "time": "—",
+          "name": "备选：德意志博物馆（雨天/科技爱好者）",
+          "duration": "2h+",
+          "cost": 30,
+          "transport": "电车/步行",
+          "priority": "optional",
+          "note": "世界最大科技博物馆，€15/人；如遇雨天可替换英国花园"
         }
       ],
       "route": {
@@ -325,11 +443,54 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/68bebb5c000000001b0353ff?xsec_token=ABxE-Nyg3QjcypXuZctem3lfFu5L-CapVVgfIpyJ732BE%3D",
           "takeaway": "适合 Day 2 的王宫、老城与英国花园动线复核。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062209/b865a80ebc4ef9e70a18908456aef870/notes_pre_post/1040g3k031m5ts9455mag5nbh0d9080ih20av8f0!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇩🇪慕尼黑三日游｜行程住宿一站式攻略",
+          "likes": "206",
+          "url": "https://www.xiaohongshu.com/explore/69f1d2000000000035039af5?xsec_token=AB5ZSJo-s5ZyeWb0UuuACoRtzXE2JNPXkYRS5QiF2aSFE%3D",
+          "takeaway": "三日攻略交叉验证：王宫/老城/英国花园分两天更舒服，避免抵达日硬排。"
+        },
+        {
+          "title": "宁芬堡宫｜慕尼黑梦幻童话宫殿一日游",
+          "likes": "160",
+          "url": "https://www.xiaohongshu.com/explore/6810c8070000000023003de0?xsec_token=AB0AN2jV5vhR8s5PFjzBF3HQl5K-WhOTiX3UH8JWOsWVU%3D",
+          "takeaway": "电车17路直达；宫殿€8/联票€15/花园免费；镜厅华丽，后花园天鹅湖是出片机位"
+        },
+        {
+          "title": "慕尼黑暴走一日游：从老城到球场全覆盖",
+          "likes": "148",
+          "url": "https://www.xiaohongshu.com/explore/69bc9eca000000001a0293a3?xsec_token=ABgoy3p9shON2ZcLtmvnw_EcqvYzTNtuZ63FDvdXC40qo%3D",
+          "takeaway": "老城→球场动线参考，适合体力好的一天打卡更多点位"
+        },
+        {
+          "title": "慕尼黑，本地人才知道的小众玩法",
+          "likes": "63",
+          "url": "https://www.xiaohongshu.com/explore/6a329e4200000000110135fa?xsec_token=ABnqepJu65JXpkTXHEaLnjRSvIhG13a5aMnX34FiEYNiQ%3D",
+          "takeaway": "本地人视角的小众去处，可与经典线互补"
+        },
+        {
+          "title": "慕尼黑必来啤酒花园？我说点不滤镜的",
+          "likes": "10",
+          "url": "https://www.xiaohongshu.com/explore/6956c01b000000001e0065a3?xsec_token=ABSPjfwOpF21y5uoV1zbuWEdn_pP-YLk4CFXhKoaz_B20%3D",
+          "takeaway": "啤酒花园真实体验：部分需自己找位/柜台点单，可自带食物（英国花园啤酒花园允许）"
+        },
+        {
+          "src": "马蜂窝系攻略",
+          "title": "慕尼黑2日游懒人攻略：经典景点与美食推荐",
+          "likes": "攻略",
+          "url": "https://www.danglv.com/zhishi/20250221/20597.html",
+          "takeaway": "王宫语音导览免费；圣神教堂挂满风筝很出片；哈克桥日落氛围惬意"
         }
       ],
       "stay": "Munich Marriott Hotel（万豪系）· 慕尼黑 (München) · 已预订 ✅（积分兑换）",
       "stayUrl": "https://www.google.com/maps/search/?api=1&query=Munich+Marriott+Hotel",
-      "xhsNote": "今日以市内步行/公交为主，无城际驾驶；昨晚已抵达慕尼黑 (München) 入住，可睡到自然醒。"
+      "xhsNote": "今日以市内步行/公交为主，无城际驾驶；昨晚已抵达慕尼黑 (München) 入住，可睡到自然醒。",
+      "stayParking": {
+        "name": "酒店地下车库（APCOA）",
+        "fee": "€29/晚",
+        "note": "地下车库，限高2米、约141车位；短时首小时€4、日封顶€29"
+      },
+      "dayLabel": "D2"
     },
     {
       "date": "09/27",
@@ -364,7 +525,16 @@ const tripData={
           "duration": "2.5h",
           "cost": 300,
           "transport": "步行/摆渡车",
-          "note": "门票约 €21/人；内部禁止拍照"
+          "note": "门票约 €21/人；内部禁止拍照",
+          "parking": [
+            {
+              "name": "Parkplatz P4（P1–P4 通用）",
+              "location": "Hohenschwangau, Schwangau",
+              "fee": "€12/6小时 · 之后€1/小时 · €16/天封顶",
+              "note": "距票务中心步行约10分钟；城堡在山顶，P4有摆渡车€3.5上山，旺季早到",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "12:00",
@@ -391,7 +561,16 @@ const tripData={
           "duration": "2h",
           "cost": 0,
           "transport": "步行",
-          "note": "彩色老城 + 圣曼格修道院外观"
+          "note": "彩色老城 + 圣曼格修道院外观",
+          "parking": [
+            {
+              "name": "Parkgarage City Sparkassenhaus",
+              "location": "Kaiser-Maximilianplatz 3, 87629 Füssen",
+              "fee": "€2.5/小时 · €17/天封顶",
+              "note": "老城中心，出车库即到步行街；24小时开放",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "18:30",
@@ -443,10 +622,22 @@ const tripData={
             "https://sns-webpic-qc.xhscdn.com/202609062217/4fa17a8de27ef3648d64ed046db0efa8/01027301kkedqmlnv18010eiqh33c3bsw2!nd_prv_wlteh_webp_3",
             "https://sns-webpic-qc.xhscdn.com/202609062217/1e22c48d434f5083a1893ee3377fe4f3/01027301kkedqmlnv18010eiqh34bebhwp!nd_prv_wgth_webp_3"
           ]
+        },
+        {
+          "title": "新天鹅堡，既不推荐，也不避雷",
+          "likes": "212",
+          "url": "https://www.xiaohongshu.com/explore/6a16d39f000000000803d1c7?xsec_token=ABUylUsPePXdFIUmvD0T-QgF03VhwV1t5y2KHqO_mDy_g%3D",
+          "takeaway": "平衡预期：外观与玛丽安桥视角最值，内部导览按预约时段打卡即可。"
         }
       ],
       "stay": "Hotel Sonne（索恩酒店）· 福森 (Füssen) · ¥1,707/晚 · 已预订 ✅",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Sonne%2C%20F%C3%BCssen"
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Sonne%2C%20F%C3%BCssen",
+      "stayParking": {
+        "name": "酒店地下车库",
+        "fee": "€14/晚",
+        "note": "需提前预约、车位有限、限高2米；对面P5公共车库凭前台票券同价€14"
+      },
+      "dayLabel": "D3"
     },
     {
       "date": "09/28",
@@ -460,7 +651,7 @@ const tripData={
         ],
         "alert": "跨境前确认租车合同与瑞士高速年票。"
       },
-      "theme": "福森 (Füssen) → 林道·博登湖 (Lindau/Bodensee) → 苏黎世 (Zürich)",
+      "theme": "福森 (Füssen) → 林道/博登湖 (Lindau/Bodensee) → 苏黎世 (Zürich)",
       "weather": {
         "icon": "partlyCloudy",
         "high": 19,
@@ -481,7 +672,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 0,
           "transport": "步行",
-          "note": "灯塔+石狮是博登湖标志性机位"
+          "note": "灯塔+石狮是博登湖标志性机位",
+          "parking": [
+            {
+              "name": "P1 Parkplatz Blauwiese",
+              "location": "Reutiner Straße 45, 88131 Lindau",
+              "fee": "€5/天（08:00–20:00 收费）",
+              "note": "距港口步行约25分钟；可乘5路公交约10分钟上岛（游客卡免费），岛上禁驶",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "12:00",
@@ -508,7 +708,16 @@ const tripData={
           "duration": "2h",
           "cost": 0,
           "transport": "步行",
-          "note": "《爱的迫降》取景地"
+          "note": "《爱的迫降》取景地",
+          "parking": [
+            {
+              "name": "Parkhaus Hauptbahnhof",
+              "location": "Sihlquai 入口, 8001 Zürich",
+              "fee": "CHF 4/小时 · CHF 45/天封顶",
+              "note": "紧邻中央火车站，距班霍夫大街步行约5分钟",
+              "gps": "47.381475,8.537677"
+            }
+          ]
         },
         {
           "time": "17:30",
@@ -528,6 +737,15 @@ const tripData={
             "recommended": "苏黎世小牛肉 Zürcher Geschnetzeltes",
             "location": "班霍夫大街旁"
           }
+        },
+        {
+          "time": "20:30",
+          "name": "苏黎世湖畔夜游（可选）",
+          "duration": "45min",
+          "cost": 0,
+          "transport": "步行",
+          "priority": "optional",
+          "note": "饭后沿 Bürkliplatz 湖边散步看老城灯火；明天长途驾驶日，量力而行"
         }
       ],
       "route": {
@@ -558,10 +776,53 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/66ce3732000000001f03ec56?xsec_token=ABktkb-TcVVG5M7qW7prehWKyZ9UBqU8r2aKfzNGIr35E%3D",
           "takeaway": "林道湖畔短停的画面与散步点参考。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062209/4e8cb93fc00099a5a57f67fc20eb7828/1040g00831712eijl46104a0ljq53183ctir5800!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇨🇭苏黎世一日游攻略",
+          "likes": "186",
+          "url": "https://www.xiaohongshu.com/explore/69c5aa640000000021006d41?xsec_token=AB9HyS4fUD1TKbdAPSSd_xGq7vSEYDgYpMHPIKvanA-_Q%3D",
+          "takeaway": "补充苏黎世备选动线：若抵达早，可加苏黎世湖短游船或林登霍夫日落。"
+        },
+        {
+          "title": "这座千年古城满足你对中欧所有幻想（林道）",
+          "likes": "277",
+          "url": "https://www.xiaohongshu.com/explore/6a9bd48b0000000011038f71?xsec_token=ABXxiBZ_yg6ujQGso9KMbf_XZBN732-c_V768P-XQJDKo%3D",
+          "takeaway": "林道港灯塔+巴伐利亚狮像是博登湖明信片机位，老城岛步行一圈约1小时"
+        },
+        {
+          "title": "苏黎世一日游",
+          "likes": "1370",
+          "url": "https://www.xiaohongshu.com/explore/69d90739000000001d01a9aa?xsec_token=ABPhAEsl1Wx0LW1q53tuqVTZz3W_25_GGUhysNA9UMA4g%3D",
+          "takeaway": "苏黎世最高赞一日游：老城、林登霍夫山、班霍夫大街一线走完"
+        },
+        {
+          "title": "苏黎世一日通票指南｜爱的迫降打卡",
+          "likes": "253",
+          "url": "https://www.xiaohongshu.com/explore/69d319f70000000022028042?xsec_token=ABGHgJ-q2g0w2ggHnxYTG7hP-BmOWUmcj4alxJ0juvj7o%3D",
+          "takeaway": "《爱的迫降》同款机位：林登霍夫山、苏黎世湖、老城；自驾进城注意限行，建议停酒店步行"
+        },
+        {
+          "title": "瑞士被严重低估的城市｜苏黎世私藏机位",
+          "likes": "141",
+          "url": "https://www.xiaohongshu.com/explore/6a522c9900000000160263ed?xsec_token=ABSBMeiPJUQ4XRsWSPxcHAqTMVXFWi_rkGIlfjcSqiCac%3D",
+          "takeaway": "私藏机位合集，傍晚林登霍夫山俯瞰老城全景最出片"
+        },
+        {
+          "src": "美食推荐",
+          "title": "苏黎世必吃：Zeughauskeller 军械库餐厅 + Sprüngli",
+          "likes": "美食",
+          "url": "https://www.mafengwo.cn/search/q.php?q=%E8%8B%8F%E9%BB%8E%E4%B8%96%20%E7%BE%8E%E9%A3%9F",
+          "takeaway": "Zeughauskeller 吃苏黎世小牛肉（Zürcher Geschnetzeltes，人均€35）；Sprüngli 的 Luxemburgerli 马卡龙当伴手礼"
         }
       ],
       "stay": "Courtyard by Marriott Zurich North（万豪系）· 苏黎世 (Zürich) · 已预订 ✅（确认号 90991812，积分兑换）",
-      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Courtyard+by+Marriott+Zurich+North"
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Courtyard+by+Marriott+Zurich+North",
+      "stayParking": {
+        "name": "酒店自有车库",
+        "fee": "CHF 57/晚",
+        "note": "现场停车约CHF 57/天（按小时CHF 4）；车位有限，可考虑周边公共停车"
+      },
+      "dayLabel": "D4"
     },
     {
       "date": "09/29",
@@ -575,7 +836,7 @@ const tripData={
         ],
         "alert": "全天三段驾驶；琉森只取精华。"
       },
-      "theme": "苏黎世 (Zürich) → 琉森 (Luzern) → 龙疆 (Lungern) → 因特拉肯 (Interlaken)（顺路游玩，不走回头路）",
+      "theme": "苏黎世 (Zürich) → 琉森 (Luzern) → 龙疆 (Lungern) → 图恩 (Thun)（顺路游玩，不走回头路）",
       "weather": {
         "icon": "partlyCloudy",
         "high": 17,
@@ -596,7 +857,16 @@ const tripData={
           "duration": "2h",
           "cost": 0,
           "transport": "步行",
-          "note": "欧洲最古老木桥；老城 Gerberggasse 彩绘房子顺路逛"
+          "note": "欧洲最古老木桥；老城 Gerberggasse 彩绘房子顺路逛",
+          "parking": [
+            {
+              "name": "Parkhaus Kesselturm",
+              "location": "Burgerstrasse 20, 6003 Luzern",
+              "fee": "CHF 3/小时 · CHF 35/天封顶",
+              "note": "距卡佩尔廊桥步行约5分钟，狮子像再约10分钟",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "11:30",
@@ -631,7 +901,16 @@ const tripData={
           "duration": "2h",
           "cost": 0,
           "transport": "步行",
-          "note": "翡翠色湖水（小红书304赞攻略）：①明信片机位 Kaiserstuhl 观景台步行10分钟；②S弯定位 Mülibachersträssli 14；⚠️勿入私人草坪，只走公共步道"
+          "note": "翡翠色湖水（小红书304赞攻略）：①明信片机位 Kaiserstuhl 观景台步行10分钟；②S弯定位 Mülibachersträssli 14；⚠️勿入私人草坪，只走公共步道",
+          "parking": [
+            {
+              "name": "龙疆湖畔停车场（缆车站旁）",
+              "location": "Seilbahn 附近, 6078 Lungern",
+              "fee": "约 CHF 5-7/天",
+              "note": "就在湖边观景点旁，步行约1-2分钟",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "16:00",
@@ -655,7 +934,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 0,
           "transport": "步行",
-          "note": "大草坪远眺少女峰，滑翔伞降落点"
+          "note": "大草坪远眺少女峰，滑翔伞降落点",
+          "parking": [
+            {
+              "name": "Parkhaus Zentrum Interlaken",
+              "location": "Jungfraustrasse 53, 3800 Interlaken",
+              "fee": "CHF 2/小时 · CHF 25/天封顶",
+              "note": "距何维克街步行约3-5分钟；更便宜可选 Kursaal 西停车场 CHF 1/小时 · CHF 12/天",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "19:00",
@@ -667,11 +955,19 @@ const tripData={
             "recommended": "芝士火锅 Fondue",
             "location": "因特拉肯西站附近"
           }
+        },
+        {
+          "time": "20:00",
+          "name": "因特拉肯 → 图恩，入住 Hotel Aare Thun",
+          "duration": "35min",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "图恩是接下来两晚的大本营，比因特拉肯更安静、性价比高"
         }
       ],
       "route": {
         "from": "苏黎世 (Zürich)",
-        "to": "因特拉肯 (Interlaken)",
+        "to": "图恩 (Thun)",
         "via": [
           "琉森 (Luzern)",
           "龙疆 (Lungern)",
@@ -684,7 +980,8 @@ const tripData={
           "Lucerne, Switzerland",
           "Lungern, Switzerland",
           "Brienz, Switzerland",
-          "Interlaken, Switzerland"
+          "Interlaken, Switzerland",
+          "Thun, Switzerland"
         ]
       },
       "xhs": [
@@ -712,11 +1009,48 @@ const tripData={
           "likes": "493",
           "url": "https://www.xiaohongshu.com/explore/6a1c2bb3000000003601ef3f?xsec_token=ABMBaxmHK0aZupPLql17gUgpvcM8Wm1s1dl0QjWn93yE4%3D&xsec_source=pc_feed",
           "takeaway": "因特拉肯是周边小镇的交通枢纽，火车/游船都从这里出发"
+        },
+        {
+          "title": "瑞士龙疆小镇怎么玩，看这里",
+          "likes": "304",
+          "url": "https://www.xiaohongshu.com/explore/69e83b4c0000000020038456?xsec_token=AB5VStRa0CRj7N3AZF8dK0kMU9U0XGvTD-tsYrXFhkMu0%3D",
+          "takeaway": "龙疆翡翠湖环湖步道约1.5h；S弯观景台（Brünigstrasse 路边）是最经典机位"
+        },
+        {
+          "title": "龙疆小镇打卡机位分享",
+          "likes": "269",
+          "url": "https://www.xiaohongshu.com/explore/69d47e6b000000001a02b3ff?xsec_token=ABc1cUt0V-Q9v3L4t5yj6e5s2diSe2fF9poXLwnrnteZY%3D",
+          "takeaway": "机位合集：湖边长椅、教堂尖顶、山坡俯瞰；下午顺光拍湖水更绿"
+        },
+        {
+          "title": "卢塞恩（琉森）老城Citywalk路线",
+          "likes": "257",
+          "url": "https://www.xiaohongshu.com/explore/6a4a2401000000001003ee59?xsec_token=ABMfWHyTX5xL1FoPE0_jN2r-yQpyDtiyLUx6uDn8-CbAc%3D",
+          "takeaway": "卡佩尔廊桥→老城壁画→垂死狮子像→穆塞格城墙（爬塔俯瞰全城，免费）"
+        },
+        {
+          "title": "卢塞恩+Rigi山+龙疆一日速通",
+          "likes": "198",
+          "url": "https://www.xiaohongshu.com/explore/69f76638000000003601c118?xsec_token=AB7uG7nCWlyhkd5OWmvWgNmBv8kl7gcUwBUhHUyD_X6S8%3D",
+          "takeaway": "速通动线参考；你们自驾版顺序一致，时间更弹性"
+        },
+        {
+          "src": "攻略补充",
+          "title": "卢塞恩一日漫游保姆级攻略",
+          "likes": "攻略",
+          "url": "https://www.mafengwo.cn/search/q.php?q=%E7%90%89%E6%A3%AE%20%E6%94%BB%E7%95%A5",
+          "takeaway": "垂死狮子像纪念1792年保卫法王路易十六的瑞士雇佣兵；城墙塔楼16:50关闭，注意时间"
         }
       ],
       "stay": "Hotel Aare Thun（阿勒河图恩酒店）· 图恩 (Thun) · 2晚共¥4,788 · 已预订 ✅",
       "xhsNote": "本日较紧凑：琉森只取精华（廊桥+老城+狮子像约3h），如想更轻松可跳过狮子像或布里恩茨短停；当晚住图恩 (Thun) Hotel Aare Thun，距因特拉肯约30分钟车程，游完龙疆后直接前往图恩入住",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun"
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun",
+      "stayParking": {
+        "name": "酒店旁公共车库 Freienhof",
+        "fee": "CHF 20/24小时",
+        "note": "车库与酒店电梯直通，54车位不可预订；住客优惠价退房时前台盖章生效"
+      },
+      "dayLabel": "D5"
     },
     {
       "date": "09/30",
@@ -743,7 +1077,16 @@ const tripData={
           "duration": "40min",
           "cost": 0,
           "transport": "自驾",
-          "note": "⚠️ 出发前查 Jungfrau 官网山顶实时摄像头，大雾则与 Day7 互换"
+          "note": "⚠️ 出发前查 Jungfrau 官网山顶实时摄像头，大雾则与 Day7 互换",
+          "parking": [
+            {
+              "name": "Parkhaus Grindelwald Terminal",
+              "location": "Grundstrasse 54, 3818 Grindelwald",
+              "fee": "CHF 1（0–2小时）· CHF 15（2–24小时）",
+              "note": "就在艾格快线站旁步行约1分钟；去少女峰建议全天停 CHF 15",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "08:30",
@@ -770,7 +1113,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 0,
           "transport": "自驾",
-          "note": "瀑布山谷，施陶布河瀑布 Staubbachfall"
+          "note": "瀑布山谷，施陶布河瀑布 Staubbachfall",
+          "parking": [
+            {
+              "name": "Parkhaus Talstation Lauterbrunnen",
+              "location": "Zuben 479, 3822 Lauterbrunnen",
+              "fee": "CHF 18（8小时）",
+              "note": "距缆车站/火车站步行约2分钟；教堂旁 Parking Kirche 8小时 CHF 12 更便宜",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "17:00",
@@ -801,17 +1153,19 @@ const tripData={
         }
       ],
       "route": {
-        "from": "因特拉肯 (Interlaken)",
-        "to": "劳特布龙嫩 (Lauterbrunnen)",
+        "from": "图恩 (Thun)",
+        "to": "图恩 (Thun)",
         "via": [
           "格林德瓦 (Grindelwald)"
         ],
         "km": 70,
         "driveTime": "约1.5小时(环线)",
         "mapPts": [
-          "Interlaken, Switzerland",
+          "Thun, Switzerland",
           "Grindelwald, Switzerland",
-          "Lauterbrunnen, Switzerland"
+          "Lauterbrunnen, Switzerland",
+          "Interlaken, Switzerland",
+          "Thun, Switzerland"
         ]
       },
       "xhs": [
@@ -827,11 +1181,54 @@ const tripData={
           "likes": "352",
           "url": "https://www.xiaohongshu.com/explore/69c92bf3000000002200fd52?xsec_token=ABeBW_z0lOuZcsmT5AOXIgu-YOP5yQ6n5mBR-_ZG-rghw%3D&xsec_source=pc_feed",
           "takeaway": "自驾停车格林德瓦Terminal室内停车场；Eiger Express缆车比火车快40分钟；Terminal免费领中文登山护照山顶盖章；山顶建议留2.5小时"
+        },
+        {
+          "title": "🇨🇭 | 少女峰快速上山详细攻略",
+          "likes": "249",
+          "url": "https://www.xiaohongshu.com/explore/6a343867000000001702b09f?xsec_token=ABrb0OpUoRracfI8ze5RRO5UpexBKOVXdsvkcQFTsjDCs%3D",
+          "takeaway": "快速上山口径复核：优先 Eiger Express，山顶留足 2.5h，别把时间耗在排队拍照点。"
+        },
+        {
+          "title": "瑞士|米伦Mürren+雪朗峰一日游全攻略",
+          "likes": "237",
+          "url": "https://www.xiaohongshu.com/explore/6a0d27650000000008000fa6?xsec_token=ABSnBWp06tO_EcX71-_KXaF37hB3SlF43RAUQudHlYtpg%3D",
+          "takeaway": "Day6 天气备选灵感：若少女峰大雾，米伦+雪朗峰动线可替换且仍在因特拉肯周边。"
+        },
+        {
+          "title": "少女峰别再走左上右下了！自驾的来抄作业",
+          "likes": "378",
+          "url": "https://www.xiaohongshu.com/explore/69c92bf3000000002200fd52?xsec_token=ABeBW_z0lOuZcsmT5AOXIgu0uqt70DYJghkkNiZYH8Pzo%3D",
+          "takeaway": "自驾党路线：车停格林德瓦 Terminal，艾格快线15分钟上艾格冰川站再转登山火车，比劳特布龙嫩线快"
+        },
+        {
+          "title": "少女峰快速上山详细攻略",
+          "likes": "276",
+          "url": "https://www.xiaohongshu.com/explore/6a343867000000001702b09f?xsec_token=ABrb0OpUoRracfI8ze5RRO5Tfcb5hodY4Lbi_8yTaYaeU%3D",
+          "takeaway": "山顶3454m注意高反缓行；冰宫、 Sphinx 观景台必看；下山可绕劳特布龙嫩看瀑布"
+        },
+        {
+          "title": "瑞士第一'诈骗'｜少女峰（避坑向）",
+          "likes": "108",
+          "url": "https://www.xiaohongshu.com/explore/6a6b62d10000000008011199?xsec_token=AB19I4AeTw2ea3NUhK-GVNxON0EuVt_Cj9Sum8sZw49rs%3D",
+          "takeaway": "反方观点值得读：票价贵、天气决定一切——出发前务必查山顶实时摄像头，阴天别硬上"
+        },
+        {
+          "src": "攻略补充",
+          "title": "哈德昆 Harder Kulm 日落要点",
+          "likes": "攻略",
+          "url": "https://www.mafengwo.cn/search/q.php?q=Harder%20Kulm",
+          "takeaway": "因特拉肯北站步行10分钟到缆车站，往返约CHF 38；两湖之间观景台日落时分最美"
         }
       ],
       "stay": "Hotel Aare Thun（阿勒河图恩酒店）· 图恩 (Thun) · 第2晚 · 已预订 ✅",
       "xhsNote": "若对少女峰票价犹豫，小红书564赞排名认为 First山（滑板车/卡丁车/飞鹰）+雪朗峰（007旋转餐厅）可玩性更高，可作 Day6 替代方案，价格约为少女峰一半；少女峰游玩结束后返回图恩 Hotel Aare Thun（约1小时车程）",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun"
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun",
+      "stayParking": {
+        "name": "酒店旁公共车库 Freienhof",
+        "fee": "CHF 20/24小时",
+        "note": "车库与酒店电梯直通，54车位不可预订；住客优惠价退房时前台盖章生效"
+      },
+      "dayLabel": "D6"
     },
     {
       "date": "10/01",
@@ -845,7 +1242,7 @@ const tripData={
         ],
         "alert": "蒸汽火车班次须按当日时刻表确认。"
       },
-      "theme": "因特拉肯 (Interlaken) 周边（布里恩茨 (Brienz) 蒸汽火车 · 施皮茨 (Spiez)）→ 伯尔尼 (Bern)",
+      "theme": "因特拉肯 (Interlaken) 周边（布里恩茨 (Brienz) 蒸汽火车、施皮茨 (Spiez)）→ 伯尔尼 (Bern)",
       "weather": {
         "icon": "partlyCloudy",
         "high": 17,
@@ -866,7 +1263,16 @@ const tripData={
           "duration": "2h",
           "cost": 850,
           "transport": "百年蒸汽登山火车",
-          "note": "往返约 CHF52/人（两人约 CHF104）；一路爬升一步一景，山顶俯瞰布里恩茨湖全景"
+          "note": "往返约 CHF52/人（两人约 CHF104）；一路爬升一步一景，山顶俯瞰布里恩茨湖全景",
+          "parking": [
+            {
+              "name": "Brienz Rothorn Bahn 山谷站停车场",
+              "location": "Talstation Brienz Rothorn Bahn, 3855 Brienz",
+              "fee": "CHF 8/天",
+              "note": "就在蒸汽火车站旁，步行约1分钟",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "12:00",
@@ -893,7 +1299,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 80,
           "transport": "步行",
-          "note": "城堡门票约 CHF10；葡萄园+湖景+雪山同框"
+          "note": "城堡门票约 CHF10；葡萄园+湖景+雪山同框",
+          "parking": [
+            {
+              "name": "Parkplatz Schloss Spiez",
+              "location": "Schlossstrasse 16, 3700 Spiez",
+              "fee": "CHF 2/小时（07:00–19:00）",
+              "note": "就在城堡门口步行约1分钟；可停 Parkhaus Spiez Bucht CHF 1.5/小时",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "15:00",
@@ -909,7 +1324,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 60,
           "transport": "步行",
-          "note": "整点前钟楼机械木偶报时；老城为 UNESCO 世界遗产"
+          "note": "整点前钟楼机械木偶报时；老城为 UNESCO 世界遗产",
+          "parking": [
+            {
+              "name": "Bahnhof Parking",
+              "location": "伯尔尼中央火车站旁（近 Bundesplatz）",
+              "fee": "CHF 4起/小时 · CHF 35/天封顶",
+              "note": "距联邦宫/钟楼步行约5-8分钟；近熊苑改停 Rathaus Parking",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "17:30",
@@ -932,7 +1356,7 @@ const tripData={
         }
       ],
       "route": {
-        "from": "因特拉肯 (Interlaken)",
+        "from": "图恩 (Thun)",
         "to": "伯尔尼 (Bern)",
         "via": [
           "布里恩茨 (Brienz)",
@@ -941,7 +1365,7 @@ const tripData={
         "km": 85,
         "driveTime": "约1.5小时",
         "mapPts": [
-          "Interlaken, Switzerland",
+          "Thun, Switzerland",
           "Brienz, Switzerland",
           "Spiez, Switzerland",
           "Bern, Switzerland"
@@ -972,11 +1396,48 @@ const tripData={
           "likes": "250",
           "url": "https://www.xiaohongshu.com/explore/6a09c913000000003701d23c?xsec_token=ABFTxlJAg1JkQnFb3xzeLG-eKgJiqAMbZU38r5G0sW9Ik%3D&xsec_source=pc_feed",
           "takeaway": "伯尔尼顺路一日游：酒店领 Bern Ticket 免费坐车；钟楼整点报时、联邦宫平台、熊公园、大教堂登塔"
+        },
+        {
+          "title": "布里恩茨蒸汽小火车打卡攻略",
+          "likes": "740",
+          "url": "https://www.xiaohongshu.com/explore/6a33d9a0000000001c026797?xsec_token=ABTdoTiU4OkdyZD-mh48lICJW04SFwCfP88AEi4qa1J20%3D",
+          "takeaway": "Brienz Rothorn Bahn：6月初-10月底运行，往返约CHF 96，旺季务必官网提前订时段；单程约1小时"
+        },
+        {
+          "title": "按需避雷：布里恩茨蒸汽火车真的不值票价？",
+          "likes": "95",
+          "url": "https://www.xiaohongshu.com/explore/68e83ace0000000004028028?xsec_token=ABrWQqVG_vrHxUiYZlgXgrY1pA9UDFtEXDuAGA7dniPno%3D",
+          "takeaway": "反方观点：票价高、山顶停留短——晴天值、阴天亏；坐左侧（湖侧）视野更好"
+        },
+        {
+          "title": "伯尔尼超顺路一日游攻略",
+          "likes": "281",
+          "url": "https://www.xiaohongshu.com/explore/6a09c913000000003701d23c?xsec_token=ABFTxlJAg1JkQnFb3xzeLG-eR8WgbfnnBTt_OVZgraXVY%3D",
+          "takeaway": "时钟塔整点木偶表演（提前5分钟占位置）→爱因斯坦故居→熊苑→玫瑰园俯瞰老城"
+        },
+        {
+          "title": "瑞士伯尔尼｜被严重低估的童话首都",
+          "likes": "95",
+          "url": "https://www.xiaohongshu.com/explore/6a6ee2b0000000002402f558?xsec_token=ABxSHCPEsIS2ebwDk8C7yFocmWD0F9ict6ycKZpCVNO_o%3D",
+          "takeaway": "老城拱廊6km雨天也能逛；玫瑰园餐厅可边看全景边吃晚餐"
+        },
+        {
+          "src": "美食推荐",
+          "title": "伯尔尼吃什么：Kornhauskeller 地窖餐厅",
+          "likes": "美食",
+          "url": "https://www.mafengwo.cn/search/q.php?q=%E4%BC%AF%E5%B0%94%E5%B0%BC%20%E7%BE%8E%E9%A3%9F",
+          "takeaway": "Kornhauskeller 巴洛克地窖吃伯恩拼盘（人均CHF 40）；或玫瑰园餐厅看日落"
         }
       ],
       "stay": "Moxy Bern Expo（万豪系）· 伯尔尼 (Bern) · 已预订 ✅（积分兑换）",
       "xhsNote": "时间充裕可在施皮茨之后加图恩 Thun（15分钟车程）：564赞排名第2小镇，图恩城堡塔楼俯瞰全湖；Sigriswil 340米悬索桥距图恩20分钟，本地人私藏机位",
-      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Moxy+Bern+Expo"
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Moxy+Bern+Expo",
+      "stayParking": {
+        "name": "酒店自有停车场",
+        "fee": "CHF 30/天",
+        "note": "有高度限制；附近BERNEXPO车库(P8) CHF 2/小时、24h上限CHF 38"
+      },
+      "dayLabel": "D7"
     },
     {
       "date": "10/02",
@@ -1012,7 +1473,16 @@ const tripData={
           "duration": "2.5h",
           "cost": 130,
           "transport": "步行",
-          "note": "瀑布门票约 €8/人；咕咕钟整点报时"
+          "note": "瀑布门票约 €8/人；咕咕钟整点报时",
+          "parking": [
+            {
+              "name": "Parkhaus Kreuzgasse",
+              "location": "Kreuzstraße, Triberg",
+              "fee": "€1.5/小时（8:00-19:00）",
+              "note": "最靠近瀑布主入口，步行约2-3分钟；备选 Scheffelplatz €0.75/30分钟",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "13:30",
@@ -1040,7 +1510,16 @@ const tripData={
           "duration": "1h",
           "cost": 120,
           "transport": "电动游船",
-          "note": "约 €8/人，40分钟环湖"
+          "note": "约 €8/人，40分钟环湖",
+          "parking": [
+            {
+              "name": "Großparkplatz Titisee P1（湖边）",
+              "location": "Titisee 镇中心/湖边",
+              "fee": "€2/小时 · €9/天封顶（8:00-22:00）",
+              "note": "湖边 Strandbad 停车场最近且最便宜，步行约2-5分钟；旺季午后到",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "16:30",
@@ -1092,11 +1571,48 @@ const tripData={
           "likes": "196",
           "url": "https://www.xiaohongshu.com/explore/68dd304b0000000007031e76?xsec_token=ABUtpc_irKvX5rpA90jwBtvWZ6_XTwdiPjvkXO7Wnqw-Q%3D&xsec_source=pc_feed",
           "takeaway": "三刷黑森林博主总结：自驾最灵活，随时停靠沿途风景；湖区+瀑布+蛋糕是经典组合"
+        },
+        {
+          "title": "德国黑森林B500自驾，竟然看到了梦幻山坡",
+          "likes": "51",
+          "url": "https://www.xiaohongshu.com/explore/6a49dac2000000002103d98b?xsec_token=ABqVo5rGRfzcSxOE-8_na8vR48PoUY_1HBH3iHLlUmZDU%3D",
+          "takeaway": "B500 景观自驾体感参考：弯道多、观景停车点值得短停；本日只取顺路南段。"
+        },
+        {
+          "title": "斯图周边plog|Triberg🍂黑森林最好的季节",
+          "likes": "29",
+          "url": "https://www.xiaohongshu.com/explore/68fd75ba0000000003013a5d?xsec_token=ABYsHKIpF4IroY8Hlk7SS8BeJDePadnZPEByEFmWMkuVk%3D",
+          "takeaway": "秋季黑森林氛围参考：Triberg 瀑布+咕咕钟+黑森林蛋糕是顺路组合。"
+        },
+        {
+          "title": "金秋徒步特里贝格瀑布线",
+          "likes": "43",
+          "url": "https://www.xiaohongshu.com/explore/690a55d100000000070341c5?xsec_token=ABEtSeOAh3g5Sufubl5WL733pqbn6v3oLnSLneD1YpPVw%3D",
+          "takeaway": "瀑布步道金秋最美；主瀑布入口收门票，旁边的自然步道线免费"
+        },
+        {
+          "title": "今日复活点：德国黑森林特里贝格",
+          "likes": "20",
+          "url": "https://www.xiaohongshu.com/explore/68f8c306000000000302c7a7?xsec_token=ABtlM2hfVAdfFX0ZrAxN2jxMeNmVPpTWY2YRjlxgKveVE%3D",
+          "takeaway": "特里贝格咕咕钟商店街比价再买；德国最大咕咕钟在镇外 Schonachbach"
+        },
+        {
+          "src": "美食推荐",
+          "title": "黑森林蛋糕：Café Schäfer（特里贝格）",
+          "likes": "美食",
+          "url": "https://www.mafengwo.cn/search/q.php?q=%E7%89%B9%E9%87%8C%E8%B4%9D%E6%A0%BC%20%E9%BB%91%E6%A3%AE%E6%9E%97%E8%9B%8B%E7%B3%95",
+          "takeaway": "特里贝格 Café Schäfer 号称最正宗黑森林蛋糕（樱桃酒味浓）；晚餐试黑森林火腿"
         }
       ],
       "stay": "Hotel Hofgut Sternen – Ravennaschlucht（拉文纳峡谷霍夫古特斯特恩酒店）· 黑森林 (Schwarzwald) · ¥1,451/晚 · 已预订 ✅",
       "xhsNote": "小红书常推荐 B500 自驾：本日已将 Triberg→Furtwangen→Titisee 的南段写入导航，和当晚 Hotel Hofgut Sternen 顺路兼容。被广泛称为 Schwarzwaldhochstraße 的经典 Baden-Baden→Ruhestein→Freudenstadt 北段不顺路；完整绕行会明显拉长当日驾驶，建议留待另一次黑森林行程。莱茵瀑布也不再建议加站：会进一步压缩特里贝格与滴滴湖时间。",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Hofgut%20Sternen%2C%20Ravennaschlucht"
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Hofgut%20Sternen%2C%20Ravennaschlucht",
+      "stayParking": {
+        "name": "酒店自有停车场",
+        "fee": "免费",
+        "note": "住客免费；旁徒步停车场对日间游客收费€3.50/天"
+      },
+      "dayLabel": "D8"
     },
     {
       "date": "10/03",
@@ -1150,7 +1666,16 @@ const tripData={
           "duration": "2.5h",
           "cost": 0,
           "transport": "步行",
-          "note": "《孤独星球》封面机位；下午旅行团渐散"
+          "note": "《孤独星球》封面机位；下午旅行团渐散",
+          "parking": [
+            {
+              "name": "P1 Friedrich-Hörner-Weg（城门外）",
+              "location": "老城东侧城墙外",
+              "fee": "€1.3/小时（9:00-18:00）· 天票€8",
+              "note": "城门步行约5分钟进老城；18点后及9点前免费",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "19:00",
@@ -1162,6 +1687,15 @@ const tripData={
             "recommended": "烤肠拼盘、雪球点心 Schneeball",
             "location": "罗滕堡老城"
           }
+        },
+        {
+          "time": "17:00",
+          "name": "Käthe Wohlfahrt 圣诞村商店（可选）",
+          "duration": "45min",
+          "cost": 0,
+          "transport": "步行",
+          "priority": "optional",
+          "note": "全球最大圣诞用品店，全年都是圣诞节；胡桃夹子和木雕值得看，伴手礼好去处"
         },
         {
           "time": "20:30",
@@ -1180,7 +1714,7 @@ const tripData={
         "driveTime": "约3小时（全程最长）",
         "mapPts": [
           "Hofgut Sternen Ravennaschlucht, Breitnau, Germany",
-          "Rothenburg ob der Tauber, Germany"
+          "Hotel-Gasthof Goldener Greifen, Rothenburg ob der Tauber, Germany"
         ]
       },
       "xhs": [
@@ -1197,10 +1731,47 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/68b31d7d000000001c035749?xsec_token=ABo51fsvWeRf65p24P8A4ET2yYiAlaf-5Oag98nLlx_Gk%3D",
           "takeaway": "Day 9 老城晚餐的补充候选；以当日营业时间为准。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062212/7b37cdb503fe7d88f427c29d695355a4/notes_pre_post/1040g3k031lqjg1m3kq3g40mjlgd4oh6vp5o3p5g!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇩🇪德国罗滕堡｜中世纪🏰童话小镇半日游🌟",
+          "likes": "33",
+          "url": "https://www.xiaohongshu.com/explore/69adc618000000001d026aab?xsec_token=ABGYh6dtbbumQLVfOvw-Hz3oXkvuCLCi4kA7dqC2ZUmec%3D",
+          "takeaway": "半日游口径：Plönlein、城墙、市集广场优先；傍晚和清晨是避开旅行团的窗口。"
+        },
+        {
+          "title": "德国童话秘境：6座小镇，圆一场中世纪绮梦",
+          "likes": "49",
+          "url": "https://www.xiaohongshu.com/explore/69bd1338000000001b02015e?xsec_token=ABwoKaSCmufhBRF3G2rYy-XgnvVmHSL2VsPS6T9QZ6k4Y%3D",
+          "takeaway": "串联灵感：同帖把海德堡、巴哈拉赫也列为童话感小镇，正好覆盖后段莱茵河谷。"
+        },
+        {
+          "title": "罗滕堡一日漫游：把中世纪童话与钟声带回家",
+          "likes": "42",
+          "url": "https://www.xiaohongshu.com/explore/6a6eed70000000002c003a75?xsec_token=ABxSHCPEsIS2ebwDk8C7yFoZ4H7Ep8-lFyTnMTec7tGwE%3D",
+          "takeaway": "城墙环城步道免费、可俯瞰红屋顶；Plönlein 小广场清晨人最少"
+        },
+        {
+          "title": "罗滕堡（无滤镜版）",
+          "likes": "54",
+          "url": "https://www.xiaohongshu.com/explore/6a981511000000001001f2c6?xsec_token=ABl-C6mF3xD4EC4m6Ypw5WDe2nZybvbZJpV3aoikKkjeg%3D",
+          "takeaway": "无滤镜真实反馈：白天旅行团多，傍晚和清晨才是罗滕堡的正确打开方式"
+        },
+        {
+          "src": "美食推荐",
+          "title": "罗滕堡必吃：雪球 Schneeball + 法兰肯葡萄酒",
+          "likes": "美食",
+          "url": "https://www.mafengwo.cn/search/q.php?q=%E7%BD%97%E6%BB%95%E5%A0%A1%20%E7%BE%8E%E9%A3%9F",
+          "takeaway": "雪球是油炸面团球（原味/巧克力/杏仁），买一个分食即可；配法兰肯西万尼白葡萄酒"
         }
       ],
-      "stay": "Hotel Rappen Rothenburg（罗滕堡拉彭酒店）· 罗滕堡 (Rothenburg o.d.T.) 近城门 · 约¥950/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Rappen%2C%20Rothenburg%20ob%20der%20Tauber"
+      "stay": "Hotel-Gasthof Goldener Greifen · Rothenburg ob der Tauber · 10/3 入住，10/4 退房 · 已预订 ✅",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Hotel-Gasthof+Goldener+Greifen+Rothenburg",
+      "stayParking": {
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "酒店位于老城内；原有酒店停车信息不适用，请以酒店回复为准。"
+      },
+      "dayLabel": "D9"
     },
     {
       "date": "10/04",
@@ -1212,7 +1783,7 @@ const tripData={
           "维尔茨堡主教宫",
           "海德堡老城"
         ],
-        "alert": "主教宫与海德堡均需保留停车与步行时间。"
+        "alert": "主教宫与海德堡均需保留停车与步行时间。 10/4 为周日，德国商店全天关门，但景点、餐厅正常营业；想购物请提前在罗滕堡完成。"
       },
       "theme": "罗滕堡 (Rothenburg o.d.T.) → 维尔茨堡 (Würzburg)（新增）→ 海德堡 (Heidelberg)",
       "weather": {
@@ -1243,7 +1814,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 150,
           "transport": "步行",
-          "note": "UNESCO 世界遗产，欧洲最顶级巴洛克宫殿之一，约 €9/人；缇耶波罗穹顶壁画"
+          "note": "UNESCO 世界遗产，欧洲最顶级巴洛克宫殿之一，约 €9/人；缇耶波罗穹顶壁画",
+          "parking": [
+            {
+              "name": "Parkplatz Residenz",
+              "location": "Residenzplatz 2, 97070 Würzburg",
+              "fee": "前2小时各€2 · 第3小时起€1.5 · 全天€19",
+              "note": "主教宫正前方，步行约1分钟",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "12:30",
@@ -1278,7 +1858,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 0,
           "transport": "步行",
-          "note": "老桥桥头摸铜猴寓意重返海德堡；城堡改到明早"
+          "note": "老桥桥头摸铜猴寓意重返海德堡；城堡改到明早",
+          "parking": [
+            {
+              "name": "Parkhaus Kornmarkt/Schloss (P12)",
+              "location": "Zwingerstraße 20, 69117 Heidelberg",
+              "fee": "€2.5/小时 · 全天€20.5",
+              "note": "紧邻城堡缆车站；车库层高仅1.8米，高车身慎入",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "19:00",
@@ -1303,7 +1892,7 @@ const tripData={
         "mapPts": [
           "Rothenburg ob der Tauber, Germany",
           "Würzburg, Germany",
-          "Heidelberg Marriott Hotel, Germany"
+          "Hilton Heidelberg, Germany"
         ]
       },
       "xhs": [
@@ -1327,10 +1916,40 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/6a08b488000000003502b2dc?xsec_token=AB_hG5fnNi5Mgqg3Piw9WbznxT0q9Oq_Kn3e1iXiY-L1g%3D",
           "takeaway": "Heidelberg 晚餐氛围视频；点击在小红书播放。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062212/8f7967ce4630e6615c11a81db9658d8b/1040g2sg320860lq4li705ngse6308hfsdb2odq8!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇩🇪 德国一日游推荐｜海德堡超顺路线 🗺️",
+          "likes": "65",
+          "url": "https://www.xiaohongshu.com/explore/69eaa2860000000020003801?xsec_token=ABMaus8p9m9ReNSrOmJWafmkWkwwnJVn84_N5KFqdq044%3D",
+          "takeaway": "海德堡动线复核：城堡早上去、哲学家小径看全景，老城主街留到傍晚。"
+        },
+        {
+          "title": "一整个时代的野心都被画在这段楼梯之上",
+          "likes": "603",
+          "url": "https://www.xiaohongshu.com/explore/69ff72bb0000000006020518?xsec_token=ABTsAn1r2iI8qHJTTab43CHGUxnPcnoltGYxAomgb0aBk%3D",
+          "takeaway": "维尔茨堡主教宫镜厅与提埃坡罗天顶壁画细节讲解——世界文化遗产，进去前建议读这篇"
+        },
+        {
+          "title": "巴洛克幻境：维尔茨堡主教宫教堂（附指引）",
+          "likes": "163",
+          "url": "https://www.xiaohongshu.com/explore/69f74846000000003503043d?xsec_token=AB7uG7nCWlyhkd5OWmvWgNmBdZffdM-c580FFgKnlx_LE%3D",
+          "takeaway": "主教宫内教堂免费区域与参观动线指引；宫殿部分需跟导览"
+        },
+        {
+          "title": "维尔茨堡走一圈，归来不看无忧宫",
+          "likes": "37",
+          "url": "https://www.xiaohongshu.com/explore/69fb7ecf0000000036033ce0?xsec_token=ABCt5s8MCKWNAc3v8PNlDZY1Bsg-lqRdR9JWpD1LUXhrg%3D",
+          "takeaway": "老美因桥端杯葡萄酒看玛丽恩堡是本地人的日常；周日晚桥上有现场音乐"
         }
       ],
-      "stay": "Heidelberg Marriott Hotel（万豪系）· 海德堡 (Heidelberg) · 10/4 入住，10/5 退房 · 已预订 ✅（积分兑换）",
-      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Heidelberg+Marriott+Hotel"
+      "stay": "Hilton Heidelberg · 海德堡 (Heidelberg) · 10/4 入住，10/5 退房 · 已预订 ✅",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Hilton+Heidelberg",
+      "stayParking": {
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "以 Hilton Heidelberg 订单及酒店最新说明为准。"
+      },
+      "dayLabel": "D10"
     },
     {
       "date": "10/05",
@@ -1344,7 +1963,7 @@ const tripData={
         ],
         "alert": "莱茵河谷小镇车位少，早到或停镇外 P+R。"
       },
-      "theme": "海德堡 (Heidelberg) → 莱茵河谷（马克斯堡 · 博帕德 (Boppard) · 圣戈尔 (St. Goar) · 巴哈拉赫 (Bacharach)）",
+      "theme": "海德堡 (Heidelberg) → 莱茵河谷（马克斯堡、博帕德 (Boppard)、圣戈尔 (St. Goar)、巴哈拉赫 (Bacharach)）",
       "weather": {
         "icon": "partlyCloudy",
         "high": 18,
@@ -1357,7 +1976,16 @@ const tripData={
           "duration": "2h",
           "cost": 160,
           "transport": "缆车",
-          "note": "缆车+城堡庭院+大酒桶联票约 €9/人；露台俯瞰老城红屋顶与内卡河，早上去人少"
+          "note": "缆车+城堡庭院+大酒桶联票约 €9/人；露台俯瞰老城红屋顶与内卡河，早上去人少",
+          "parking": [
+            {
+              "name": "Parkhaus Kornmarkt/Schloss (P12)",
+              "location": "Zwingerstraße 20, 69117 Heidelberg",
+              "fee": "€2.5/小时 · 全天€20.5",
+              "note": "紧邻城堡缆车站；车库层高仅1.8米，高车身慎入",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "10:15",
@@ -1373,7 +2001,16 @@ const tripData={
           "duration": "1h45",
           "cost": 0,
           "transport": "自驾 160km",
-          "note": "进入莱茵河谷精华段（世界文化遗产）"
+          "note": "进入莱茵河谷精华段（世界文化遗产）",
+          "parking": [
+            {
+              "name": "Parkplatz Marksburg（城堡下方）",
+              "location": "Braubach 城堡山脚",
+              "fee": "旺季约€4/次 · 淡季免费",
+              "note": "停车后步行约5-7分钟上坡到城堡大门",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "13:30",
@@ -1392,7 +2029,16 @@ const tripData={
           "duration": "2h",
           "cost": 200,
           "transport": "自驾 25min + 缆车",
-          "note": "Sesselbahn 缆车约 €13/人登顶 Gedeonseck，俯瞰莱茵河大回环'四湖景'，莱茵河谷最经典视角"
+          "note": "Sesselbahn 缆车约 €13/人登顶 Gedeonseck，俯瞰莱茵河大回环'四湖景'，莱茵河谷最经典视角",
+          "parking": [
+            {
+              "name": "Parkplatz Mühltal（缆车站旁）",
+              "location": "Mühltal 12, Boppard",
+              "fee": "€1/小时 · 日票€6",
+              "note": "紧邻四湖缆车山下站，步行1分钟",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "16:30",
@@ -1400,7 +2046,16 @@ const tripData={
           "duration": "1.5h",
           "cost": 100,
           "transport": "自驾 20min",
-          "note": "莱茵河谷最大城堡废墟，地下甬道探险"
+          "note": "莱茵河谷最大城堡废墟，地下甬道探险",
+          "parking": [
+            {
+              "name": "Parkplatz Burg Rheinfels",
+              "location": "城堡正门旁, St. Goar",
+              "fee": "约€3/次",
+              "note": "车位有限，夏季周末早到；山下可免费停车后步行20分钟",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "18:15",
@@ -1408,7 +2063,16 @@ const tripData={
           "duration": "1h",
           "cost": 0,
           "transport": "自驾 15min",
-          "note": "入住小镇，傍晚看 Postenturm 塔楼葡萄园日落"
+          "note": "入住小镇，傍晚看 Postenturm 塔楼葡萄园日落",
+          "parking": [
+            {
+              "name": "Rheinufer 河岸免费停车场",
+              "location": "莱茵河岸（B9沿线）",
+              "fee": "免费（河岸区）· B9沿线€1/小时·日票€5",
+              "note": "河岸免费车位步行约10分钟到老城；老城内部禁停",
+              "gps": "50.0550,7.7710"
+            }
+          ]
         },
         {
           "time": "19:30",
@@ -1437,7 +2101,7 @@ const tripData={
           "Braubach, Germany",
           "Boppard, Germany",
           "Sankt Goar, Germany",
-          "Bacharach, Germany"
+          "Altkölnischer Hof, Bacharach, Germany"
         ]
       },
       "xhs": [
@@ -1454,10 +2118,47 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/6834c018000000000c03b997?xsec_token=ABBeIuG-S0U3uwvPx8HyvsGcWDlHmBMtn7pKF1Y7_yt_Q%3D",
           "takeaway": "Bacharach 傍晚步行与拍摄点参考。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062213/31603687ee1c716bce4962667feb1443/notes_pre_post/1040g3k0322ghvki3na005oai2icgkd5n8o76h5g!nc_n_webp_prv_1"
+        },
+        {
+          "title": "莱茵河 ‖ 用这种方式享受最美的一段景色",
+          "likes": "46",
+          "url": "https://www.xiaohongshu.com/explore/6a82eb6a000000002402fcb8?xsec_token=AB0sWKnFVRDapn_hwYwbMe4DNmx4VfXHw1NQHLvKwvbVA%3D",
+          "takeaway": "莱茵河谷观景方式参考：城堡密集段适合车览+短停，不必每座城堡都登。"
+        },
+        {
+          "title": "这个德国小镇，不愧登上《孤独星球》封面（巴哈拉赫）",
+          "likes": "517",
+          "url": "https://www.xiaohongshu.com/explore/6a1b6327000000003502b656?xsec_token=AB_4Yf3R6aipvJ9zNGIs42f9krM0HaCuWbm9jBVxkhZg4%3D",
+          "takeaway": "巴哈拉赫：Postenturm 塔顶俯瞰全镇+葡萄园机位；维尔纳小教堂遗址在镇中心"
+        },
+        {
+          "title": "Bacharach小镇必看攻略！不然累死",
+          "likes": "53",
+          "url": "https://www.xiaohongshu.com/explore/6a3eb4fc0000000008030f30?xsec_token=ABWlAkdIs0KIuHzjCR1jgqsJ0JuQbkTtQ-24Mdo0THubI%3D",
+          "takeaway": "镇子是山城，穿舒服的鞋；Postenturm 爬坡15分钟，日落前上去光线最好"
+        },
+        {
+          "title": "德国的浪漫，是莱茵河上古堡写成的史诗",
+          "likes": "131",
+          "url": "https://www.xiaohongshu.com/explore/6948fbd6000000001f00fd5e?xsec_token=ABt9usv-aUv10MOjlnoIz1cUEpy9b3J9RLMdyGYMGEoXM%3D",
+          "takeaway": "莱茵河谷40座古堡的精华段正是你们开的这一段（布劳巴赫-吕德斯海姆）"
+        },
+        {
+          "src": "攻略补充",
+          "title": "马克斯堡 Marksburg 导览须知",
+          "likes": "攻略",
+          "url": "https://www.mafengwo.cn/search/q.php?q=%E9%A9%AC%E5%85%8B%E6%96%AF%E5%A0%A1",
+          "takeaway": "莱茵河谷唯一未被毁的山顶城堡，只能跟导览进入（约€8，英文/德文场次）；旺季周末排队，建议13:00前到"
         }
       ],
-      "stay": "Hotel Weinberg-Schlößchen · 巴哈拉赫 (Bacharach) · 约¥900/晚",
-      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Weinberg-Schl%C3%B6%C3%9Fchen%2C%20Bacharach"
+      "stay": "Altkölnischer Hof · Bacharach · 10/5 入住，10/6 退房 · 已预订 ✅",
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Altk%C3%B6lnischer+Hof+Bacharach",
+      "stayParking": {
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "酒店位于 Bacharach 老城；请以订单及酒店说明为准。"
+      },
+      "dayLabel": "D11"
     },
     {
       "date": "10/06",
@@ -1471,7 +2172,7 @@ const tripData={
         ],
         "alert": "最后一晚住机场，确认还车和航站楼路线。"
       },
-      "theme": "莱茵河谷（巴哈拉赫 (Bacharach) · 上韦瑟尔 (Oberwesel) · 洛蕾莱 · 吕德斯海姆 (Rüdesheim)）→ 法兰克福 (Frankfurt)",
+      "theme": "莱茵河谷（巴哈拉赫 (Bacharach)、上韦瑟尔 (Oberwesel)、洛蕾莱、吕德斯海姆 (Rüdesheim)）→ 法兰克福 (Frankfurt)",
       "weather": {
         "icon": "partlyCloudy",
         "high": 18,
@@ -1492,7 +2193,16 @@ const tripData={
           "duration": "45min",
           "cost": 0,
           "transport": "自驾 10min",
-          "note": "红色圣母教堂 + 山上 Schönburg 城堡外观"
+          "note": "红色圣母教堂 + 山上 Schönburg 城堡外观",
+          "parking": [
+            {
+              "name": "Parkplatz am Rhein（河岸）",
+              "location": "An der B9, Oberwesel",
+              "fee": "免费（限2小时，用停车盘）",
+              "note": "距老城步行数分钟",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "11:00",
@@ -1500,7 +2210,16 @@ const tripData={
           "duration": "45min",
           "cost": 0,
           "transport": "自驾 10min",
-          "note": "莱茵河最窄最深险滩，女妖传说发源地"
+          "note": "莱茵河最窄最深险滩，女妖传说发源地",
+          "parking": [
+            {
+              "name": "Loreley 游客中心停车场",
+              "location": "洛蕾莱高原游客中心旁",
+              "fee": "€3/天（前30分钟免费）",
+              "note": "距洛蕾莱岩石观景点约380米",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "12:00",
@@ -1519,7 +2238,16 @@ const tripData={
           "duration": "2h",
           "cost": 120,
           "transport": "步行",
-          "note": "音乐盒博物馆约 €8/人"
+          "note": "音乐盒博物馆约 €8/人",
+          "parking": [
+            {
+              "name": "Parkhaus Drosselgasse / P2",
+              "location": "An der Ringmauer 2",
+              "fee": "€3/2小时",
+              "note": "紧邻画眉小巷，距登山缆车站最近",
+              "gps": ""
+            }
+          ]
         },
         {
           "time": "14:30",
@@ -1531,11 +2259,11 @@ const tripData={
         },
         {
           "time": "16:30",
-          "name": "吕德斯海姆 → 法兰克福机场",
+          "name": "吕德斯海姆 → 法兰克福市区（入住 Westin）",
           "duration": "1h",
           "cost": 0,
           "transport": "自驾约 70km",
-          "note": "机场还车（预留加油+验车 1 小时）"
+          "note": "机场还车安排在明天（10/7）上午，今晚住市中心 Westin，晚饭后可沿美因河散步"
         },
         {
           "time": "19:00",
@@ -1551,7 +2279,7 @@ const tripData={
       ],
       "route": {
         "from": "巴哈拉赫 (Bacharach)",
-        "to": "法兰克福机场 (Flughafen Frankfurt)",
+        "to": "法兰克福 (Frankfurt)",
         "via": [
           "上韦瑟尔 (Oberwesel)",
           "洛蕾莱",
@@ -1564,7 +2292,7 @@ const tripData={
           "Oberwesel, Germany",
           "Loreley, Sankt Goarshausen, Germany",
           "Rüdesheim am Rhein, Germany",
-          "Frankfurt Airport, Germany"
+          "Frankfurt, Germany"
         ]
       },
       "xhs": [
@@ -1588,10 +2316,47 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/6a200909000000000803c32d?xsec_token=ABvQkTIId_dmoRME8xdj9BPHcFVxVRTgLT_eKAn0afOTs%3D",
           "takeaway": "Day 12 游船与 Drosselgasse 氛围视频；点击在小红书播放。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/c64c8e9ee17430f9d6a8db14a038e3d8/1040g2sg320uuslhh7e705q5p7igmcc6p28gvofg!nc_n_webp_prv_1"
+        },
+        {
+          "title": "🇩🇪周末去哪儿｜吕德斯海姆·雷司令小镇.",
+          "likes": "35",
+          "url": "https://www.xiaohongshu.com/explore/69c463b50000000023020e45?xsec_token=ABR_trnfl82jdaJ5T7ouA2D0sdp6EBhV3LaNYDxUQJpZc%3D",
+          "takeaway": "吕德斯海姆补充灵感：画眉鸟小巷之外，可把雷司令品鉴/葡萄田缆车作为秋季重点。"
+        },
+        {
+          "title": "吕德斯海姆｜游船+缆车+画眉鸟巷一日游",
+          "likes": "36",
+          "url": "https://www.xiaohongshu.com/explore/6a64b0d40000000011011b51?xsec_token=ABN0bMqzWDsU_MwVbVw6Jw7L4ft7mRrNeHUgkj12jReeA%3D",
+          "takeaway": "缆车上海拔223m尼德瓦尔德纪念碑俯瞰莱茵大拐弯；画眉鸟巷雷司令冰酒值得试"
+        },
+        {
+          "title": "吕德斯海姆一日游（缆车+游船+酒庄）",
+          "likes": "39",
+          "url": "https://www.xiaohongshu.com/explore/68bcd2ac000000001c011f45?xsec_token=ABXQYaNI2sg7RSdEHk4-Q1hRAgH8DwZhdYpHoitcHA128%3D",
+          "takeaway": "环线玩法：缆车上山→徒步纪念碑→缆车下山→画眉鸟巷午餐→下午游船"
+        },
+        {
+          "title": "莱茵河｜用这种方式享受最美的一段景色",
+          "likes": "53",
+          "url": "https://www.xiaohongshu.com/explore/6a82eb6a000000002402fcb8?xsec_token=AB0sWKnFVRDapn_hwYwbMe4MtIoYYjtaRfS70rQqCPDzQ%3D",
+          "takeaway": "KD 游船圣戈尔→巴哈拉赫段是古堡最密集段；若体验游船可把上午车停在巴哈拉赫"
+        },
+        {
+          "src": "美食推荐",
+          "title": "画眉鸟巷：雷司令白葡萄酒 + 吕德斯海姆咖啡",
+          "likes": "美食",
+          "url": "https://www.mafengwo.cn/search/q.php?q=%E5%90%95%E5%BE%B7%E6%96%AF%E6%B5%B7%E5%A7%86%20%E7%BE%8E%E9%A3%9F",
+          "takeaway": "Rüdesheimer Kaffee：白兰地点燃后浇咖啡+奶油，是这里的发明；雷司令选半干（Halbtrocken）"
         }
       ],
       "stay": "The Westin Grand Frankfurt（万豪系）· 法兰克福市中心 · 已预订 ✅（积分兑换）",
-      "stayUrl": "https://www.google.com/maps/search/?api=1&query=The+Westin+Grand+Frankfurt"
+      "stayUrl": "https://www.google.com/maps/search/?api=1&query=The+Westin+Grand+Frankfurt",
+      "stayParking": {
+        "name": "酒店旁公共停车库",
+        "fee": "€37/晚",
+        "note": "约150车位、限高2米、不可预约；Booking显示€37/天"
+      },
+      "dayLabel": "D12"
     },
     {
       "date": "10/07",
@@ -1626,7 +2391,25 @@ const tripData={
           "duration": "1.5h",
           "cost": 0,
           "transport": "步行",
-          "note": "法兰克福老城核心，桁架房+市政厅广场，清晨人少好拍"
+          "note": "法兰克福老城核心，桁架房+市政厅广场，清晨人少好拍",
+          "parking": [
+            {
+              "name": "Tiefgarage Dom-Römer",
+              "location": "Domstraße 1, 60311 Frankfurt",
+              "fee": "平日€2/小时 · 周日€1/小时 · 全天€32",
+              "note": "就在大教堂脚下，步行约2分钟到罗马广场",
+              "gps": ""
+            }
+          ]
+        },
+        {
+          "time": "10:00",
+          "name": "铁桥 Eiserner Steg + 美因河南岸（可选）",
+          "duration": "40min",
+          "cost": 0,
+          "transport": "步行",
+          "priority": "optional",
+          "note": "挂满同心锁的人行铁桥，拍法兰克福天际线最好的角度"
         },
         {
           "time": "10:30",
@@ -1670,8 +2453,28 @@ const tripData={
           "url": "https://www.xiaohongshu.com/explore/675ca677000000000700a3f5?xsec_token=ABkWULdxmx37XRFdp5ejcb33zWxIoCDG1YqXRow5dMpew%3D",
           "takeaway": "Kleinmarkthalle 之外的市中心餐饮备选；不可挤占机场时间。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/031aec77197a43028684828238002efa/1040g2sg31bc5ha5qng70400bo8i032qbemflr50!nc_n_webp_prv_1"
+        },
+        {
+          "title": "法兰克福一日游，跟着这18张照片走就行",
+          "likes": "1259",
+          "url": "https://www.xiaohongshu.com/explore/68da2784000000001202fcba?xsec_token=ABdhDj8r7z9q6p0O7rbhT1mUTPx19z9D4iPD4Z9xgrq4Y%3D",
+          "takeaway": "罗马广场→大教堂→铁桥→欧元塔经典动线，半天可走完"
+        },
+        {
+          "title": "法兰克福一日Citywalk攻略",
+          "likes": "1351",
+          "url": "https://www.xiaohongshu.com/explore/682e945b00000000200285c3?xsec_token=ABt8NehYZxnqB_D0ZZGVmdOZLsmwu1kf_HE7SqjtrgEvc%3D",
+          "takeaway": "老城+美因河畔+博物馆岸动线；采尔大街购物安排在行程末尾正好"
+        },
+        {
+          "src": "美食推荐",
+          "title": "法兰克福必吃：苹果酒 + 绿汁（Green Sauce）",
+          "likes": "美食",
+          "url": "https://www.mafengwo.cn/search/q.php?q=%E6%B3%95%E5%85%B0%E5%85%8B%E7%A6%8F%20%E8%8B%B9%E6%9E%9C%E9%85%92",
+          "takeaway": "Sachsenhausen 区苹果酒酒馆（Adolf Wagner / Atschel）：绿汁配炸猪排+苹果酒，人均€25；绿汁是7种香草冷酱，本地骄傲"
         }
-      ]
+      ],
+      "dayLabel": "D13"
     },
     {
       "date": "10/08",
@@ -1724,7 +2527,8 @@ const tripData={
           "takeaway": "作为转机补给参考；以登机口距离和实时登机时间优先。",
           "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/c3aa3c3f1724469f9e434fcf7a8e4123/1040g00831o65lhmh5m00414ajligftnse06ia4o!nc_n_webp_prv_1"
         }
-      ]
+      ],
+      "dayLabel": "D14"
     }
   ],
   "hotels": [
@@ -1736,7 +2540,12 @@ const tripData={
       "rating": "4.3",
       "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Munich+Marriott+Hotel",
       "bookedAddress": "Berliner Strasse 93, 80805 Munich, Germany",
-      "pdfUrl": ""
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店地下车库（APCOA）",
+        "fee": "€29/晚",
+        "note": "地下车库，限高2米、约141车位；短时首小时€4、日封顶€29"
+      }
     },
     {
       "name": "Hotel Sonne（索恩酒店）",
@@ -1746,7 +2555,12 @@ const tripData={
       "rating": "4.5",
       "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Sonne%2C%20F%C3%BCssen",
       "bookedAddress": "Prinzregentenplatz 1, 87629 Füssen, Germany",
-      "pdfUrl": ""
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店地下车库",
+        "fee": "€14/晚",
+        "note": "需提前预约、车位有限、限高2米；对面P5公共车库凭前台票券同价€14"
+      }
     },
     {
       "name": "Courtyard by Marriott Zurich North（苏黎世北万怡酒店）",
@@ -1756,7 +2570,12 @@ const tripData={
       "rating": "4.4",
       "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Courtyard+by+Marriott+Zurich+North",
       "bookedAddress": "Max-Bill-Platz 19, 8050 Zurich, Switzerland",
-      "pdfUrl": ""
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店自有车库",
+        "fee": "CHF 57/晚",
+        "note": "现场停车约CHF 57/天（按小时CHF 4）；车位有限，可考虑周边公共停车"
+      }
     },
     {
       "name": "Hotel Aare Thun（阿勒河图恩酒店）",
@@ -1766,7 +2585,12 @@ const tripData={
       "rating": "4.4",
       "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun",
       "bookedAddress": "Freienhofgasse 3, Thun, 3600, Switzerland",
-      "pdfUrl": ""
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店旁公共车库 Freienhof",
+        "fee": "CHF 20/24小时",
+        "note": "车库与酒店电梯直通，54车位不可预订；住客优惠价退房时前台盖章生效"
+      }
     },
     {
       "name": "Moxy Bern Expo（伯尔尼世博Moxy酒店）",
@@ -1776,7 +2600,12 @@ const tripData={
       "rating": "4.4",
       "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Moxy+Bern+Expo",
       "bookedAddress": "Truesselsstrasse 4, 3014 Bern, Switzerland",
-      "pdfUrl": ""
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店自有停车场",
+        "fee": "CHF 30/天",
+        "note": "有高度限制；附近BERNEXPO车库(P8) CHF 2/小时、24h上限CHF 38"
+      }
     },
     {
       "name": "Hotel Hofgut Sternen – Ravennaschlucht（拉文纳峡谷霍夫古特斯特恩酒店）",
@@ -1786,37 +2615,57 @@ const tripData={
       "rating": "4.3",
       "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Hofgut%20Sternen%2C%20Ravennaschlucht",
       "bookedAddress": "Höllsteig 76, 79874 Breitnau, Germany",
-      "pdfUrl": ""
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店自有停车场",
+        "fee": "免费",
+        "note": "住客免费；旁徒步停车场对日间游客收费€3.50/天"
+      }
     },
     {
-      "name": "Hotel Rappen Rothenburg（罗滕堡拉彭酒店）",
-      "area": "罗滕堡 (Rothenburg o.d.T.) · 1晚 10/3",
-      "pricePerNight": 950,
-      "highlights": "四星;含早;近城门停车方便;自带餐厅口碑好;当地无万豪系",
+      "name": "Hotel-Gasthof Goldener Greifen",
+      "area": "Rothenburg ob der Tauber · 1晚 10/3–10/4 · 已预订 ✅",
+      "pricePerNight": 1087,
+      "highlights": "Booking.com 已确认；Comfort Double Room，2位成人；10/3 14:00–20:00 入住，10/4 07:00–11:00 退房；总价 €139.32（含 VAT，按 2026-09-07 ECB 参考汇率折算约 ¥1,087）；免费取消截至 9/25 23:59 CEST",
       "rating": "4.3",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Rappen%2C%20Rothenburg%20ob%20der%20Tauber",
-      "bookedAddress": "",
-      "pdfUrl": ""
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Hotel-Gasthof+Goldener+Greifen+Rothenburg",
+      "bookedAddress": "Obere Schmiedgasse 5, 91541 Rothenburg ob der Tauber, Germany",
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "老城内住宿，停车信息以酒店回复为准。"
+      }
     },
     {
-      "name": "Heidelberg Marriott Hotel（海德堡万豪酒店）",
-      "area": "海德堡 (Heidelberg) · 1晚 10/4 · 万豪系 · 已预订 ✅",
+      "name": "Hilton Heidelberg",
+      "area": "海德堡 (Heidelberg) · 1晚 10/4–10/5 · 已预订 ✅",
       "pricePerNight": 900,
-      "highlights": "万豪App已确认（10/4 15:00 入住 – 10/5 12:00 退房，积分兑换）;电话 +49-6221-9080;内卡河畔，步行可达老城;可累积万豪积分",
+      "highlights": "已预订；10/4 入住、10/5 退房；预算暂按 ¥900 估算，酒店及停车细节以确认单为准",
       "rating": "4.2",
-      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Heidelberg+Marriott+Hotel",
-      "bookedAddress": "Vangerowstrasse 16, 69115 Heidelberg, Germany",
-      "pdfUrl": ""
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Hilton+Heidelberg",
+      "bookedAddress": "",
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "以 Hilton Heidelberg 订单及酒店最新说明为准。"
+      }
     },
     {
-      "name": "Hotel Weinberg-Schlößchen（韦恩伯格-斯辰酒店）",
-      "area": "巴哈拉赫 (Bacharach) · 1晚 10/5",
-      "pricePerNight": 900,
-      "highlights": "三星;含早;葡萄园景观;小镇中心;当地无万豪系",
+      "name": "Altkölnischer Hof",
+      "area": "Bacharach · 1晚 10/5–10/6 · 已预订 ✅",
+      "pricePerNight": 1193,
+      "highlights": "已确认；Classic Double Room，2位成人；10/5 16:00–18:00 入住，10/6 08:00–10:30 退房；总价 €153（含 7% VAT 及 €2/人/晚城市税，按 2026-09-07 ECB 参考汇率折算约 ¥1,193）",
       "rating": "4.4",
-      "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Weinberg-Schl%C3%B6%C3%9Fchen%2C%20Bacharach",
-      "bookedAddress": "",
-      "pdfUrl": ""
+      "bookingUrl": "https://www.google.com/maps/search/?api=1&query=Altk%C3%B6lnischer+Hof+Bacharach",
+      "bookedAddress": "Blücherstr. 2, 55422 Bacharach, Germany",
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店停车安排",
+        "fee": "到店前向酒店确认",
+        "note": "酒店位于 Bacharach 老城；请以订单及酒店说明为准。"
+      }
     },
     {
       "name": "The Westin Grand Frankfurt（法兰克福威斯汀大酒店）",
@@ -1826,7 +2675,12 @@ const tripData={
       "rating": "4.4",
       "bookingUrl": "https://www.google.com/maps/search/?api=1&query=The+Westin+Grand+Frankfurt",
       "bookedAddress": "Konrad Adenauer Strasse 7, 60313 Frankfurt, Germany",
-      "pdfUrl": ""
+      "pdfUrl": "",
+      "parking": {
+        "name": "酒店旁公共停车库",
+        "fee": "€37/晚",
+        "note": "约150车位、限高2米、不可预约；Booking显示€37/天"
+      }
     }
   ],
   "budget": {
@@ -1882,23 +2736,23 @@ const tripData={
           "cost": 1451
         },
         {
-          "name": "罗滕堡 1晚 ~",
-          "cost": 950
+          "name": "Hotel-Gasthof Goldener Greifen 1晚（10/3–10/4，已预订；€139.32 ≈ ¥1,087）",
+          "cost": 1087
         },
         {
-          "name": "海德堡万豪 1晚（10/4–10/5，已预订，积分兑换）",
+          "name": "Hilton Heidelberg 1晚（10/4–10/5，已预订；预算暂按 ¥900）",
           "cost": 900
         },
         {
-          "name": "巴哈拉赫 1晚 ~",
-          "cost": 900
+          "name": "Altkölnischer Hof 1晚（10/5–10/6，已预订；€153 ≈ ¥1,193）",
+          "cost": 1193
         },
         {
           "name": "法兰克福威斯汀 1晚（积分兑换） ~",
           "cost": 1100
         }
       ],
-      "subtotal": 16496
+      "subtotal": 16926
     },
     "food": {
       "items": [
@@ -1967,8 +2821,8 @@ const tripData={
       ],
       "subtotal": 600
     },
-    "total": 62536,
-    "perPerson": 31268
+    "total": 62966,
+    "perPerson": 31483
   },
   "tips": [
     "路线逻辑：慕尼黑→福森→(林道/博登湖)→苏黎世→琉森→龙疆→因特拉肯(3天)→伊瑟尔特瓦尔德/施皮茨→伯尔尼→黑森林→罗滕堡→海德堡→莱茵河谷→法兰克福，全程环线无回头路，总里程约1,625km，仅 Day9 约3小时驾驶，其余均在3小时内",
@@ -1983,7 +2837,10 @@ const tripData={
     "10月初海德堡/莱茵河谷正值葡萄采收季，雷司令新酒 Federweißer 值得尝",
     "标注 ~ 为参考价、≈ 为估算价；酒店以实际预订为准（报价不含城市税）",
     "机票和酒店为动态定价，出行前请在阿联酋官网/携程/Booking 确认实际价格并预订",
-    "酒店万豪系优先：慕尼黑万豪、苏黎世北万怡、伯尔尼Moxy、海德堡万豪、法兰克福威斯汀均可累积万豪旅享家积分；海德堡已预订万豪；福森/因特拉肯/伯尔尼/滴滴湖/罗滕堡/巴哈拉赫保留小红书+Booking口碑优选"
+    "酒店万豪系优先：慕尼黑万豪、苏黎世北万怡、伯尔尼 Moxy、法兰克福威斯汀均可累积万豪旅享家积分；海德堡已预订 Hilton Heidelberg；罗滕堡与巴哈拉赫的酒店也已确认；其余目的地保留小红书+Booking口碑优选",
+    "线上内容补充（2026-09-09）：浪漫之路官方口径为 Würzburg→Rothenburg→Füssen 主轴；若想把 Day10 放慢，可参考官方路线中的 Dinkelsbühl/Nördlingen，但会不如维尔茨堡顺海德堡",
+    "线上内容补充（2026-09-09）：UNESCO/莱茵河谷资料确认核心景观集中在 Bingen/Rüdesheim—Koblenz 约65km；St. Goar—Bacharach 约13km 城堡最密集，已拆成 Day11/Day12 慢游",
+    "线上内容补充（2026-09-09）：黑森林 B500/Schwarzwaldhochstraße 官方与路书均指经典段为 Baden-Baden—Freudenstadt 北段；本行程为住宿顺路只保留 Triberg—Furtwangen—Titisee 南段，北段留作下次专门黑森林线"
   ],
   "totalDrive": {
     "km": 1625,
@@ -2088,11 +2945,11 @@ const tripData={
     "pdfUrl": "",
     "bookedRef": "Sixt 9738997067"
   }
-},E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),km=d=>d.route?.km||0,stay=d=>(d.stay||'未安排住宿').split('·')[0].trim(),title=d=>d.theme.replace(/（[^）]*）/g,'').replace(/\s*·\s*.*/,'').trim(),route=d=>d.route?[d.route.from,...(d.route.via||[]),d.route.to].join(' → '):d.theme.split('·')[0].trim(),role=a=>a.priority||(/可选|替代|如想|若对|时间充裕/.test((a.name||'')+(a.note||''))?'optional':/TG\d|EK\d|机场|取车|还车|预订|门票|火车/.test((a.name||'')+(a.transport||''))?'critical':'recommended'),url=d=>'https://www.google.com/maps/dir/'+(d.route?.mapPts||[d.route?.from,...(d.route?.via||[]),d.route?.to].filter(Boolean)).map(encodeURIComponent).join('/');
-function show(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>{let on=x.dataset.view===v;x.classList.toggle('active',on);if(x.classList.contains('mode'))x.setAttribute('aria-selected',on)});history.replaceState(null,'','#'+v);scrollTo({top:0,behavior:'smooth'})}function card(d,i){let o=d.overview||{};return`<button class="day-card" data-day="${i}"><div class="top"><span>D${i+1} · ${E(d.date)} ${E(d.weekday)}</span><span>${E(o.region||'行程')}</span></div><h3>${E(title(d))}</h3><div class="route">${E(route(d))}${d.route?` · ${km(d)} km · ${E(d.route.driveTime)}`:''}</div><div class="chips">${(o.highlights||[]).slice(0,3).map(x=>`<span class="chip">${E(x)}</span>`).join('')}</div><div class="stay">⌂ ${E(stay(d))}</div>${o.alert?`<div class="alert">注意：${E(o.alert)}</div>`:''}</button>`}function overview(){let total=tripData.days.reduce((n,d)=>n+km(d),0);drive.textContent=total.toLocaleString()+' km';hotels.textContent=tripData.hotels.length+' 站';metrics.innerHTML=`<div class="metric"><b>${total.toLocaleString()} km</b><span>全程计划驾驶</span></div><div class="metric"><b>${tripData.days.filter(d=>km(d)>=200).length} 天</b><span>200 km 以上路段</span></div><div class="metric"><b>${tripData.hotels.filter(h=>/已预订/.test(h.area)).length} / ${tripData.hotels.length}</b><span>已确认住宿</span></div><div class="metric"><b>¥${(tripData.budget?.total||0).toLocaleString()}</b><span>预估总费用</span></div>`;days.innerHTML=tripData.days.map(card).join('');document.querySelectorAll('.day-card').forEach(x=>x.onclick=()=>{selected=+x.dataset.day;travel();show('travel')})}function item(a){let r=role(a);return`<div class="full"><span class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</span><b> ${E(a.name)}</b><span class="role"> · ${r==='critical'?'必须准时':r==='optional'?'可选':'推荐'}</span>${a.note?`<div class="muted">${E(a.note)}</div>`:''}${a.meal?`<div class="meal">${E(a.meal.name)} · ${E(a.meal.cuisine)} · ¥${E(a.meal.perPerson)}/人${a.meal.recommended?' · 推荐：'+E(a.meal.recommended):''}</div>`:''}</div>`}function planning(){let all=[];(tripData.flights||[]).forEach(f=>all.push([f.id,'✈',f.label,f.detail,!!f.pdfUrl]));if(tripData.car)all.push([tripData.car.id||'car','🚗',tripData.car.label,tripData.car.detail,!!tripData.car.pdfUrl]);tripData.hotels.forEach((h,i)=>all.push(['hotel-'+i,'⌂',h.name,h.area,/已预订/.test(h.area)||!!h.pdfUrl]));let saved=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');bookings.innerHTML=all.map(x=>`<label class="booking"><input type="checkbox" data-b="${E(x[0])}" ${x[4]||saved[x[0]]?'checked':''}><span><b>${x[1]} ${E(x[2])}</b><span class="sub">${E(x[3])}</span></span><span class="status ${x[4]||saved[x[0]]?'done':''}">${x[4]||saved[x[0]]?'已预订':'待确认'}</span></label>`).join('');document.querySelectorAll('[data-b]').forEach(x=>x.onchange=()=>{let s=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');s[x.dataset.b]=x.checked;localStorage.setItem('germany2026_bookings',JSON.stringify(s));planning()});budget.innerHTML=Object.entries(tripData.budget||{}).filter(([k])=>!['total','perPerson'].includes(k)).map(([,v])=>`<div class="budget"><span>${E(v.items.map(x=>x.name).join('、'))}</span><b>¥${(v.subtotal||0).toLocaleString()}</b></div>`).join('')+`<div class="budget"><b>总计（人均 ¥${(tripData.budget?.perPerson||0).toLocaleString()}）</b><b>¥${(tripData.budget?.total||0).toLocaleString()}</b></div>`;planDays.innerHTML=tripData.days.map((d,i)=>`<details class="panel" style="margin:12px 0"><summary><b>D${i+1} · ${E(d.date)} ${E(d.weekday)}</b>　${E(d.theme)}</summary><div class="route-box"><strong>${E(route(d))}</strong>${d.route?`<p>${km(d)} km · 驾驶 ${E(d.route.driveTime)}</p>`:''}</div>${d.activities.map(item).join('')}<div class="details"><b>当晚住宿</b><p>${E(d.stay||'—')}</p></div></details>`).join('');tips.innerHTML=tripData.tips.map(x=>`<li>${E(x)}</li>`).join('');notes.innerHTML=tripData.revisionNotes.map(x=>`<li>${E(x)}</li>`).join('')}
-function ymd(n=new Date()){let p=new Intl.DateTimeFormat('en-CA',{timeZone:tripData.tripTimezone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(n),o=Object.fromEntries(p.map(x=>[x.type,x.value]));return`${o.year}-${o.month}-${o.day}`}function dates(d){return d.activeDates||[`2026-${d.date.replace('/','-')}`]}function auto(n){let t=ymd(n);if(t<tripData.tripStartDate)return 0;if(t>tripData.tripEndDate)return tripData.days.length-1;let i=tripData.days.findIndex(d=>dates(d).includes(t));return i<0?0:i}let selected=auto();function travel(){let d=tripData.days[selected],o=d.overview||{},key=d.activities.filter(a=>!a.meal&&role(a)!=='optional'),opt=d.activities.filter(a=>role(a)==='optional');travelHead.textContent=`D${selected+1} · ${d.date} ${d.weekday}`;travelSub.textContent=`瑞士当地日期 ${ymd()} · ${selected===auto()?'已自动选择今天':'手动查看此日'}`;picker.innerHTML=tripData.days.map((x,i)=>`<button class="${i===selected?'active':''}" data-p="${i}">D${i+1}<br>${E(x.date)}</button>`).join('');document.querySelectorAll('[data-p]').forEach(x=>x.onclick=()=>{selected=+x.dataset.p;travel()});today.innerHTML=`<div class="today"><div><div class="eyebrow">${E(o.region||'今日行程')}</div><h2>${E(title(d))}</h2><p>${E((o.highlights||[]).join(' · '))}</p></div><div class="today-metrics">${d.route?`<span>${km(d)} km</span><span>${E(d.route.driveTime)}</span>`:'<span>市内 / 飞行日</span>'}${d.route?`<a class="primary" target="_blank" rel="noopener" href="${url(d)}">打开导航 ↗</a>`:''}</div></div>${d.route?`<div class="route-box"><strong>🚗 ${E(route(d))}</strong><p>从这里出发；导航、停车和临时道路情况以 Google Maps 为准。</p></div>`:''}${o.alert?`<div class="alert">今日提醒：${E(o.alert)}</div>`:''}<div class="cols" style="margin-top:16px"><div class="panel"><div class="label">Run of show</div><h3>今天的关键安排</h3><ol class="timeline">${key.map(a=>`<li><div class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</div><h4>${E(a.name)}</h4>${a.note?`<p>${E(a.note)}</p>`:''}</li>`).join('')}</ol>${opt.length?`<details class="details"><summary>查看 ${opt.length} 个可选安排</summary>${opt.map(item).join('')}</details>`:''}</div><aside class="panel"><div class="label">Tonight</div><h3>当晚落脚</h3><p><b>${E(stay(d))}</b></p><p class="muted">${E(d.stay||'—')}</p><div class="details"><b>天气（气候参考）</b><p>${d.weather?`${d.weather.high}° / ${d.weather.low}° · ${E(tripData.weather?.clothing||'')}`:'请按实时天气准备'}</p></div><details class="details"><summary>完整当日安排与餐厅</summary>${d.activities.map(item).join('')}</details></aside></div>`}document.querySelectorAll('[data-view]').forEach(x=>x.onclick=()=>show(x.dataset.view));overview();planning();travel();window.__tripApp={auto,select:i=>{selected=i;travel()}};
-const geo={"Munich Airport, Germany":[48.354,11.779],"Munich, Germany":[48.137,11.575],"Füssen, Germany":[47.568,10.699],"Lindau, Germany":[47.573,9.696],"Zürich, Switzerland":[47.374,8.541],"Lucerne, Switzerland":[47.052,8.306],"Lungern, Switzerland":[46.786,8.161],"Interlaken, Switzerland":[46.686,7.859],"Grindelwald, Switzerland":[46.624,8.037],"Lauterbrunnen, Switzerland":[46.594,7.908],"Bern, Switzerland":[46.948,7.452],"Titisee-Neustadt, Germany":[47.917,8.174],"Rothenburg ob der Tauber, Germany":[49.366,10.163],"Würzburg, Germany":[49.778,9.943],"Heidelberg, Germany":[49.409,8.695],"Bacharach, Germany":[50.06,7.768],"Rüdesheim am Rhein, Germany":[50.03,7.89],"Frankfurt Airport, Germany":[50.024,8.555]};window.addEventListener('load',()=>{if(!window.L){fallback.textContent='路线图暂不可用；下方行程卡保留全部起终点、里程和导航入口。';return}let p=[];tripData.days.forEach(d=>(d.route?.mapPts||[]).forEach(n=>{if(geo[n]&&(!p.length||p[p.length-1].n!==n))p.push({n,ll:geo[n]})}));if(!p.length)return;let m=L.map('tripMap',{scrollWheelZoom:false});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(m);let l=L.polyline(p.map(x=>x.ll),{color:'#1d5145',weight:4,opacity:.8}).addTo(m);p.forEach((x,i)=>{if(i===0||i===p.length-1||i%4===0)L.circleMarker(x.ll,{radius:5,color:'#bd6c31',fillColor:'#fff',fillOpacity:1,weight:2}).addTo(m).bindTooltip(x.n)});m.fitBounds(l.getBounds(),{padding:[28,28]});fallback.remove()});
+},E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),km=d=>d.route?.km||0,stay=d=>(d.stay||'未安排住宿').split('·')[0].trim(),title=d=>d.theme.replace(/（[^）]*）/g,'').replace(/\s*·\s*.*/,'').trim(),route=d=>d.route?[d.route.from,...(d.route.via||[]),d.route.to].join(' → '):d.theme.split('·')[0].trim(),role=a=>a.priority||(/可选|替代|如想|若对|时间充裕/.test((a.name||'')+(a.note||''))?'optional':/TG\d|EK\d|机场|取车|还车|预订|门票|火车/.test((a.name||'')+(a.transport||''))?'critical':'recommended'),url=d=>'https://www.google.com/maps/dir/'+(d.route?.mapPts||[d.route?.from,...(d.route?.via||[]),d.route?.to].filter(Boolean)).map(encodeURIComponent).join('/'),dn=(d,i)=>d.dayLabel||`D${i}`,parkLink=p=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((p.name||'')+' '+(p.location||'')),parkingInline=a=>(a.parking&&a.parking.length?a.parking.map(p=>'<div style="margin:5px 0 0 0;padding:6px 9px;background:#eef4f1;border-radius:8px;font-size:13px">🅿️ 停车 '+E(p.name)+' · '+E(p.fee)+' <a href="'+parkLink(p)+'" target="_blank" rel="noopener" style="color:#1d5145;font-weight:800">导航 ↗</a>'+(p.note?'<div class="muted">'+E(p.note)+'</div>':'')+'</div>').join(''):''),stayParkHTML=d=>(d.stayParking?'<div style="margin-top:6px;padding:6px 9px;background:#eef4f1;border-radius:8px;font-size:13px">🅿️ 酒店停车 '+E(d.stayParking.name)+' · '+E(d.stayParking.fee)+(d.stayParking.note?'<div class="muted">'+E(d.stayParking.note)+'</div>':'')+'</div>':'')
+function show(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>{let on=x.dataset.view===v;x.classList.toggle('active',on);if(x.classList.contains('mode'))x.setAttribute('aria-selected',on)});history.replaceState(null,'','#'+v);scrollTo({top:0,behavior:'smooth'})}function card(d,i){let o=d.overview||{};return`<button class="day-card" data-day="${i}"><div class="top"><span>${dn(d,i)} · ${E(d.date)} ${E(d.weekday)}</span><span>${E(o.region||'行程')}</span></div><h3>${E(title(d))}</h3><div class="route">${E(route(d))}${d.route?` · ${km(d)} km · ${E(d.route.driveTime)}`:''}</div><div class="chips">${(o.highlights||[]).slice(0,3).map(x=>`<span class="chip">${E(x)}</span>`).join('')}</div><div class="stay">⌂ ${E(stay(d))}</div>${o.alert?`<div class="alert">注意：${E(o.alert)}</div>`:''}</button>`}function overview(){let total=tripData.days.reduce((n,d)=>n+km(d),0);drive.textContent=total.toLocaleString()+' km';hotels.textContent=tripData.hotels.length+' 站';metrics.innerHTML=`<div class="metric"><b>${total.toLocaleString()} km</b><span>全程计划驾驶</span></div><div class="metric"><b>${tripData.days.filter(d=>km(d)>=200).length} 天</b><span>200 km 以上路段</span></div><div class="metric"><b>${tripData.hotels.filter(h=>/已预订/.test(h.area)).length} / ${tripData.hotels.length}</b><span>已确认住宿</span></div><div class="metric"><b>¥${(tripData.budget?.total||0).toLocaleString()}</b><span>预估总费用</span></div>`;days.innerHTML=tripData.days.map(card).join('');document.querySelectorAll('.day-card').forEach(x=>x.onclick=()=>{selected=+x.dataset.day;travel();show('travel')})}function item(a){let r=role(a);return`<div class="full"><span class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</span><b> ${E(a.name)}</b><span class="role"> · ${r==='critical'?'必须准时':r==='optional'?'可选':'推荐'}</span>${a.note?`<div class="muted">${E(a.note)}</div>`:''}${parkingInline(a)}${a.meal?`<div class="meal">${E(a.meal.name)} · ${E(a.meal.cuisine)} · ¥${E(a.meal.perPerson)}/人${a.meal.recommended?' · 推荐：'+E(a.meal.recommended):''}</div>`:''}</div>`}function planning(){let all=[];(tripData.flights||[]).forEach(f=>all.push([f.id,'✈',f.label,f.detail,!!f.pdfUrl]));if(tripData.car)all.push([tripData.car.id||'car','🚗',tripData.car.label,tripData.car.detail,!!tripData.car.pdfUrl]);tripData.hotels.forEach((h,i)=>all.push(['hotel-'+i,'⌂',h.name,h.area+(h.parking?' · 🅿️ '+h.parking.name+' '+h.parking.fee:''),/已预订/.test(h.area)||!!h.pdfUrl]));let saved=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');bookings.innerHTML=all.map(x=>`<label class="booking"><input type="checkbox" data-b="${E(x[0])}" ${x[4]||saved[x[0]]?'checked':''}><span><b>${x[1]} ${E(x[2])}</b><span class="sub">${E(x[3])}</span></span><span class="status ${x[4]||saved[x[0]]?'done':''}">${x[4]||saved[x[0]]?'已预订':'待确认'}</span></label>`).join('');document.querySelectorAll('[data-b]').forEach(x=>x.onchange=()=>{let s=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');s[x.dataset.b]=x.checked;localStorage.setItem('germany2026_bookings',JSON.stringify(s));planning()});budget.innerHTML=Object.entries(tripData.budget||{}).filter(([k])=>!['total','perPerson'].includes(k)).map(([,v])=>`<div class="budget"><span>${E(v.items.map(x=>x.name).join('、'))}</span><b>¥${(v.subtotal||0).toLocaleString()}</b></div>`).join('')+`<div class="budget"><b>总计（人均 ¥${(tripData.budget?.perPerson||0).toLocaleString()}）</b><b>¥${(tripData.budget?.total||0).toLocaleString()}</b></div>`;planDays.innerHTML=tripData.days.map((d,i)=>`<details class="panel" open style="margin:12px 0"><summary><b>${dn(d,i)} · ${E(d.date)} ${E(d.weekday)}</b>　${E(d.theme)}</summary><div class="route-box"><strong>${E(route(d))}</strong>${d.route?`<p>${km(d)} km · 驾驶 ${E(d.route.driveTime)}</p>`:''}</div>${d.activities.map(item).join('')}<div class="details"><b>当晚住宿</b><p>${E(d.stay||'—')}</p></div>${stayParkHTML(d)}</details>`).join('');tips.innerHTML=tripData.tips.map(x=>`<li>${E(x)}</li>`).join('');notes.innerHTML=tripData.revisionNotes.map(x=>`<li>${E(x)}</li>`).join('')}
+function ymd(n=new Date()){let p=new Intl.DateTimeFormat('en-CA',{timeZone:tripData.tripTimezone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(n),o=Object.fromEntries(p.map(x=>[x.type,x.value]));return`${o.year}-${o.month}-${o.day}`}function dates(d){return d.activeDates||[`2026-${d.date.replace('/','-')}`]}function auto(n){let t=ymd(n);if(t<tripData.tripStartDate)return 0;if(t>tripData.tripEndDate)return tripData.days.length-1;let i=tripData.days.findIndex(d=>dates(d).includes(t));return i<0?0:i}let selected=auto();function travel(){let d=tripData.days[selected],o=d.overview||{},key=d.activities.filter(a=>!a.meal&&role(a)!=='optional'),opt=d.activities.filter(a=>role(a)==='optional');travelHead.textContent=`${dn(d,selected)} · ${d.date} ${d.weekday}`;travelSub.textContent=`瑞士当地日期 ${ymd()} · ${selected===auto()?'已自动选择今天':'手动查看此日'}`;picker.innerHTML=tripData.days.map((x,i)=>`<button class="${i===selected?'active':''}" data-p="${i}">${dn(x,i)}<br>${E(x.date)}</button>`).join('');document.querySelectorAll('[data-p]').forEach(x=>x.onclick=()=>{selected=+x.dataset.p;travel()});today.innerHTML=`<div class="today"><div><div class="eyebrow">${E(o.region||'今日行程')}</div><h2>${E(title(d))}</h2><p>${E((o.highlights||[]).join(' · '))}</p></div><div class="today-metrics">${d.route?`<span>${km(d)} km</span><span>${E(d.route.driveTime)}</span>`:'<span>市内 / 飞行日</span>'}${d.route?`<a class="primary" target="_blank" rel="noopener" href="${url(d)}">打开导航 ↗</a>`:''}</div></div>${d.route?`<div class="route-box"><strong>🚗 ${E(route(d))}</strong><p>从这里出发；导航、停车和临时道路情况以 Google Maps 为准。</p></div>`:''}${o.alert?`<div class="alert">今日提醒：${E(o.alert)}</div>`:''}<div class="cols" style="margin-top:16px"><div class="panel"><div class="label">Run of show</div><h3>今天的关键安排</h3><ol class="timeline">${key.map(a=>`<li><div class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</div><h4>${E(a.name)}</h4>${a.note?`<p>${E(a.note)}</p>`:''}${parkingInline(a)}</li>`).join('')}</ol>${opt.length?`<details class="details" open><summary>查看 ${opt.length} 个可选安排</summary>${opt.map(item).join('')}</details>`:''}</div><aside class="panel"><div class="label">Tonight</div><h3>当晚落脚</h3><p><b>${E(stay(d))}</b></p><p class="muted">${E(d.stay||'—')}</p>${stayParkHTML(d)}<div class="details"><b>天气（气候参考）</b><p>${d.weather?`${d.weather.high}° / ${d.weather.low}° · ${E(tripData.weather?.clothing||'')}`:'请按实时天气准备'}</p></div><details class="details" open><summary>完整当日安排与餐厅</summary>${d.activities.map(item).join('')}</details></aside></div>`}document.querySelectorAll('[data-view]').forEach(x=>x.onclick=()=>show(x.dataset.view));overview();planning();travel();window.__tripApp={auto,select:i=>{selected=i;travel()}};
+const geo={"Munich Airport, Germany":[48.354,11.779],"Munich, Germany":[48.137,11.575],"Munich Marriott Hotel, Munich, Germany":[48.177,11.591],"Marienplatz, Munich, Germany":[48.137,11.576],"English Garden, Munich, Germany":[48.153,11.592],"Füssen, Germany":[47.568,10.699],"Lindau, Germany":[47.573,9.696],"Zürich, Switzerland":[47.374,8.541],"Lucerne, Switzerland":[47.052,8.306],"Lungern, Switzerland":[46.786,8.161],"Thun, Switzerland":[46.758,7.628],"Brienz, Switzerland":[46.754,8.035],"Spiez, Switzerland":[46.686,7.680],"Interlaken, Switzerland":[46.686,7.859],"Grindelwald, Switzerland":[46.624,8.037],"Lauterbrunnen, Switzerland":[46.594,7.908],"Bern, Switzerland":[46.948,7.452],"Triberg im Schwarzwald, Germany":[48.128,8.232],"Furtwangen im Schwarzwald, Germany":[48.052,8.207],"Hofgut Sternen Ravennaschlucht, Breitnau, Germany":[47.922,8.086],"Titisee-Neustadt, Germany":[47.917,8.174],"Rothenburg ob der Tauber, Germany":[49.366,10.163],"Hotel-Gasthof Goldener Greifen, Rothenburg ob der Tauber, Germany":[49.377,10.179],"Würzburg, Germany":[49.778,9.943],"Heidelberg, Germany":[49.409,8.695],"Hilton Heidelberg, Germany":[49.405,8.676],"Braubach, Germany":[50.276,7.646],"Boppard, Germany":[50.231,7.591],"Sankt Goar, Germany":[50.150,7.724],"Bacharach, Germany":[50.06,7.768],"Altkölnischer Hof, Bacharach, Germany":[50.060,7.769],"Oberwesel, Germany":[50.108,7.728],"Loreley, Sankt Goarshausen, Germany":[50.139,7.729],"Rüdesheim am Rhein, Germany":[50.03,7.89],"Frankfurt, Germany":[50.110,8.682],"Frankfurt Airport, Germany":[50.024,8.555]};window.addEventListener('load',()=>{if(!window.L){fallback.textContent='路线图暂不可用；下方行程卡保留全部起终点、里程和导航入口。';return}let p=[];tripData.days.forEach(d=>(d.route?.mapPts||[]).forEach(n=>{if(geo[n]&&(!p.length||p[p.length-1].n!==n))p.push({n,ll:geo[n]})}));if(!p.length)return;let m=L.map('tripMap',{scrollWheelZoom:false});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(m);let l=L.polyline(p.map(x=>x.ll),{color:'#1d5145',weight:4,opacity:.8}).addTo(m);p.forEach((x,i)=>{if(i===0||i===p.length-1||i%4===0)L.circleMarker(x.ll,{radius:5,color:'#bd6c31',fillColor:'#fff',fillOpacity:1,weight:2}).addTo(m).bindTooltip(x.n)});m.fitBounds(l.getBounds(),{padding:[28,28]});fallback.remove()});
 document.addEventListener('DOMContentLoaded',()=>{tripData.days.forEach((d,i)=>{if(!d.xhs?.length)return;let box=document.querySelectorAll('#planDays details .details')[i];if(box)box.insertAdjacentHTML('beforeend',`<b>调研参考</b><ul>${d.xhs.map(x=>`<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> · ${E(x.takeaway)}</li>`).join('')}</ul>`)});if(tripData.alternatives?.length)notes.insertAdjacentHTML('beforeend',`<li><b>未纳入目的地评估</b><ul>${tripData.alternatives.map(x=>`<li><b>${E(x.place)}</b> ${E(x.verdict)} · ${E(x.reason)}</li>`).join('')}</ul></li>`)})
-document.addEventListener('DOMContentLoaded',()=>{planDays.insertAdjacentHTML('beforebegin','<div class="day-tools"><button id="expandDays" type="button">全部展开</button><button id="collapseDays" type="button">全部折叠</button></div>');let all=[...document.querySelectorAll('#planDays>details')];expandDays.onclick=()=>all.forEach(x=>x.open=true);collapseDays.onclick=()=>all.forEach(x=>x.open=false);tripData.days.forEach((d,i)=>{let detail=all[i],box=detail.querySelector('.details'),posts=(d.xhs||[]).map(x=>`<a class="xhs-card" href="${E(x.url)}" target="_blank" rel="noopener"><div class="xhs-cover">小红书精选 · ${E(x.likes||'推荐')} 赞</div><div class="xhs-body"><b>${E(x.title)}</b><span>${E(x.takeaway)}</span></div></a>`).join(''),foods=d.activities.filter(x=>x.meal).slice(0,2).map(x=>`<div class="xhs-card food-card"><div class="xhs-cover">今日吃什么 · ¥${E(x.meal.perPerson)}/人</div><div class="xhs-body"><b>${E(x.meal.name)}</b><span>${E(x.meal.cuisine)} · ${E(x.meal.recommended||x.meal.location)}</span></div></div>`).join('');box.insertAdjacentHTML('afterend',`<div class="day-map" data-day-map="${i}"></div>${posts||foods?`<div class="xhs-grid">${posts}${foods}</div>`:''}`);detail.addEventListener('toggle',()=>{let el=detail.querySelector('[data-day-map]');if(!detail.open||el.dataset.ready||!window.L)return;let p=(d.route?.mapPts||[]).map(n=>geo[n]).filter(Boolean);if(!p.length){el.textContent='本日无自驾路线地图。';return}let m=L.map(el,{scrollWheelZoom:false});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(m);let l=L.polyline(p,{color:'#1d5145',weight:4}).addTo(m);L.marker(p[0]).addTo(m);L.marker(p[p.length-1]).addTo(m);m.fitBounds(l.getBounds(),{padding:[26,26]});el.dataset.ready='1'})})})
+document.addEventListener('DOMContentLoaded',()=>{planDays.insertAdjacentHTML('beforebegin','<div class="day-tools"><button id="expandDays" type="button">全部展开</button><button id="collapseDays" type="button">全部折叠</button></div>');let all=[...document.querySelectorAll('#planDays>details')];expandDays.onclick=()=>all.forEach(x=>x.open=true);collapseDays.onclick=()=>all.forEach(x=>x.open=false);tripData.days.forEach((d,i)=>{let detail=all[i],box=detail.querySelector('.details'),posts=(d.xhs||[]).map(x=>`<a class="xhs-card" href="${E(x.url)}" target="_blank" rel="noopener"><div class="xhs-cover">${E(x.src||'小红书精选')} · ${E(x.likes||'推荐')} 赞</div><div class="xhs-body"><b>${E(x.title)}</b><span>${E(x.takeaway)}</span></div></a>`).join(''),foods=d.activities.filter(x=>x.meal).slice(0,2).map(x=>`<div class="xhs-card food-card"><div class="xhs-cover">今日吃什么 · ¥${E(x.meal.perPerson)}/人</div><div class="xhs-body"><b>${E(x.meal.name)}</b><span>${E(x.meal.cuisine)} · ${E(x.meal.recommended||x.meal.location)}</span></div></div>`).join('');box.insertAdjacentHTML('afterend',`<div class="day-map" data-day-map="${i}"></div>${posts||foods?`<div class="xhs-grid">${posts}${foods}</div>`:''}`);detail.addEventListener('toggle',()=>{let el=detail.querySelector('[data-day-map]');if(!detail.open||el.dataset.ready||!window.L)return;let p=(d.route?.mapPts||[]).map(n=>geo[n]).filter(Boolean);if(!p.length){el.textContent='本日无自驾路线地图。';return}let m=L.map(el,{scrollWheelZoom:false});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(m);let l=L.polyline(p,{color:'#1d5145',weight:4}).addTo(m);L.marker(p[0]).addTo(m);L.marker(p[p.length-1]).addTo(m);m.fitBounds(l.getBounds(),{padding:[26,26]});el.dataset.ready='1'})})})
 const originalTravel=travel;travel=function(){originalTravel();let d=tripData.days[selected],old=document.getElementById('activeDayMap');if(old)old.remove();if(!d.route||!window.L)return;let anchor=document.querySelector('#today .cols');if(!anchor)return;anchor.insertAdjacentHTML('beforebegin','<div class="day-map" id="activeDayMap" aria-label="今日路线图"></div>');let p=(d.route.mapPts||[]).map(n=>geo[n]).filter(Boolean);if(!p.length){activeDayMap.textContent='路线地图暂不可用；请使用上方导航链接。';return}let m=L.map('activeDayMap',{scrollWheelZoom:false}),l=L.polyline(p,{color:'#1d5145',weight:4}).addTo(m);L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(m);L.marker(p[0]).addTo(m);L.marker(p[p.length-1]).addTo(m);m.fitBounds(l.getBounds(),{padding:[26,26]})};document.addEventListener('DOMContentLoaded',()=>travel())
 </script></body></html>
