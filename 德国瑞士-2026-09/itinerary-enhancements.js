@@ -2,7 +2,7 @@
   const style = document.createElement('style');
   style.textContent = `.day-map{position:relative}.route-status{position:absolute;z-index:500;left:10px;bottom:10px;margin:0;padding:5px 8px;border-radius:6px;background:#fffdfae8;color:#52645e;font-size:12px;box-shadow:0 2px 8px #17352f22}.ticket-board{margin:0 0 24px;padding:18px 20px;background:#fff8e9;border:1px solid #e7c98f;border-radius:16px}.ticket-board h3{margin:4px 0 9px;font-size:21px}.ticket-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;padding:12px 0;border-top:1px solid #eadbb8}.ticket-item:first-of-type{border-top:0}.ticket-level{padding:3px 7px;border-radius:20px;background:#7b4020;color:#fff;font-size:11px;font-weight:800;white-space:nowrap}.ticket-item a{color:#1d5145;font-weight:800;white-space:nowrap}.ticket-item p{margin:3px 0 0;color:#62726d;font-size:13px}.xhs-carousel{position:relative;margin-top:14px}.xhs-rail{display:flex;gap:12px;overflow-x:auto;padding:2px 1px 10px;scroll-snap-type:x mandatory;scrollbar-width:thin}.xhs-post{display:block;position:relative;flex:0 0 clamp(220px,26vw,300px);scroll-snap-align:start;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--sh)}.xhs-media{position:relative;aspect-ratio:3/4;background:#e8e1d5;overflow:hidden}.xhs-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.xhs-track::-webkit-scrollbar{display:none}.xhs-slide{flex:0 0 100%;width:100%;height:100%;scroll-snap-align:start}.xhs-photo{display:block;width:100%;height:100%;object-fit:cover;background:#e8e1d5}.xhs-media button{position:absolute;z-index:3;top:50%;transform:translateY(-50%);border:0;border-radius:50%;width:30px;height:30px;background:#17352fba;color:#fff;font-size:20px;cursor:pointer}.media-prev{left:8px}.media-next{right:8px}.media-count,.video-badge{position:absolute;z-index:2;right:9px;bottom:9px;padding:3px 7px;border-radius:20px;background:#17352fcc;color:#fff;font-size:11px;font-weight:800}.video-badge{left:9px;right:auto}.xhs-body{padding:11px;font-size:13px}.xhs-body b{display:block;line-height:1.35;margin:5px 0}.xhs-meta{display:flex;justify-content:space-between;gap:6px;color:#8a4a36;font-size:11px;font-weight:800}.food-card{flex-basis:220px;background:#fffaf4}.food-card .xhs-cover{min-height:0;padding:10px;background:linear-gradient(135deg,#bd6c31,#e2a34b)}.travel-discovery{margin-top:16px}.travel-discovery .label{margin-bottom:6px}.route-status a{color:#1d5145;font-weight:800}@media(max-width:720px){.ticket-item{grid-template-columns:1fr}.xhs-post{flex-basis:min(78vw,292px)}}`;
   document.head.appendChild(style);
-  style.textContent += '.xhs-link{display:block;color:inherit;text-decoration:none}.xhs-link:focus-visible{outline:3px solid #d49a56;outline-offset:-3px}.overview-day-pin-shell{background:transparent!important;border:0!important}.overview-day-pin{display:grid;place-items:center;width:31px;height:31px;border:2px solid #fff;border-radius:50%;background:#bd6c31;color:#fff;font:800 11px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;box-shadow:0 2px 7px #17352f66}.day-card.past{opacity:.55;filter:saturate(.6)}.day-card.past .stay{color:#7b4020}.xhs-cover-fill{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;padding:14px;color:#fff;background:linear-gradient(160deg,#e9766c 0%,#c23a52 55%,#8f2440 100%);min-height:0}.xhs-cover-fill b{font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.xhs-cover-fill span{font-size:11px;font-weight:800;opacity:.92}' ;
+  style.textContent += '.xhs-link{display:block;color:inherit;text-decoration:none}.xhs-link:focus-visible{outline:3px solid #d49a56;outline-offset:-3px}.overview-day-pin-shell{background:transparent!important;border:0!important}.overview-day-pin{display:grid;place-items:center;width:31px;height:31px;border:2px solid #fff;border-radius:50%;background:#bd6c31;color:#fff;font:800 11px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;box-shadow:0 2px 7px #17352f66}.day-card.past{opacity:.55;filter:saturate(.6)}.day-card.past .stay{color:#7b4020}.xhs-cover-fill{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;padding:14px;color:#fff;background:linear-gradient(160deg,#e9766c 0%,#c23a52 55%,#8f2440 100%);min-height:0}.xhs-cover-fill b{font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 1px 6px #00000088}.xhs-cover-fill span{font-size:11px;font-weight:800;opacity:.95;text-shadow:0 1px 4px #00000066}.xhs-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#e8e1d5;z-index:1}' ;
 
   Object.assign(geo, {
     'Munich Marriott Hotel, Munich, Germany': [48.171, 11.593],
@@ -15,6 +15,8 @@
     'Hofgut Sternen Ravennaschlucht, Breitnau, Germany': [47.953, 8.099],
     'Hotel-Gasthof Goldener Greifen, Rothenburg ob der Tauber, Germany': [49.3766351, 10.1795978],
     'Hilton Heidelberg, Germany': [49.404, 8.681],
+    'Würzburg, Germany': [49.794, 9.929],
+    'Rothenburg ob der Tauber, Germany': [49.376, 10.179],
     'Altkölnischer Hof, Bacharach, Germany': [50.0600942, 7.7678767],
     'Braubach, Germany': [50.273, 7.645],
     'Boppard, Germany': [50.230, 7.589],
@@ -146,14 +148,21 @@
     setTimeout(() => map.invalidateSize(), 100);
   };
 
-  const postCard = (post, index) => {
-    const link = `href="${E(post.url)}" target="_blank" rel="noopener" aria-label="打开小红书笔记：${E(post.title)}"`;
-    const badge = post.type === 'video' ? '<span class="video-badge">▶ 视频 · 在小红书播放</span>' : '';
-    return `<article class="xhs-post"><a class="xhs-link" ${link}><div class="xhs-media"><div class="xhs-cover xhs-cover-fill">${badge}<b>${E(post.title)}</b><span>${E(post.likes || '推荐')} 赞 · 小红书精选</span></div></div><div class="xhs-body"><div class="xhs-meta"><span>小红书精选</span><span>${E(post.likes || '推荐')} 赞</span></div><b>${E(post.title)}</b><span>${E(post.takeaway)}</span></div></a></article>`;
+  const sourceLabel = post => post.source || post.src || (post.url && post.url.includes('mafengwo') ? '马蜂窝' : post.url && post.url.includes('instagram') ? 'Instagram' : '小红书');
+  const postCard = (post, index, dayImg) => {
+    const link = `href="${E(post.url)}" target="_blank" rel="noopener" aria-label="打开参考笔记：${E(post.title)}"`;
+    const label = sourceLabel(post);
+    const badge = post.type === 'video' ? '<span class="video-badge">▶ 视频</span>' : '';
+    const primary = post.media?.[0] || post.cover || '';
+    const fallback = dayImg || '';
+    const src = primary || fallback;
+    const img = src ? `<img class="xhs-photo" src="${E(src)}" alt="${E(post.title)}" loading="lazy" referrerpolicy="no-referrer"${primary && fallback ? ` onerror="this.onerror=null;this.src='${E(fallback)}'"` : ' onerror="this.remove()"'}>` : '';
+    return `<article class="xhs-post"><a class="xhs-link" ${link}><div class="xhs-media"><div class="xhs-cover xhs-cover-fill">${badge}<b>${E(post.title)}</b><span>${E(post.likes || '推荐')} 赞 · ${E(label)}</span></div>${img}</div><div class="xhs-body"><div class="xhs-meta"><span>${E(label)}</span><span>${E(post.likes || '推荐')} 赞</span></div><b>${E(post.title)}</b><span>${E(post.takeaway)}</span></div></a></article>`;
   };
   const foodCard = activity => `<article class="xhs-post food-card"><div class="xhs-cover">今日吃什么 · ¥${E(activity.meal.perPerson)}/人</div><div class="xhs-body"><div class="xhs-meta"><span>餐厅建议</span><span>${E(activity.meal.cuisine)}</span></div><b>${E(activity.meal.name)}</b><span>${E(activity.meal.recommended || activity.meal.location || '')}</span></div></article>`;
   const discovery = day => {
-    const posts = (day.xhs || []).slice(0, 4).map(postCard).join('');
+    const dayImg = (tripData.dayImages || {})[day.date] || '';
+    const posts = (day.xhs || []).slice(0, 4).map(p => postCard(p, 0, dayImg)).join('');
     const foods = day.activities.filter(x => x.meal).slice(0, 2).map(foodCard).join('');
     return posts || foods ? `<div class="xhs-carousel"><div class="xhs-rail">${posts}${foods}</div></div>` : '';
   };
