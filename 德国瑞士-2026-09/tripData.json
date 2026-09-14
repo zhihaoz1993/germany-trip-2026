@@ -131,7 +131,8 @@
     "highlights": [
      "北京经曼谷飞往慕尼黑",
      "机场取车后轻量市区游",
-     "玛丽安广场与啤酒花园"
+     "玛丽安广场与啤酒花园",
+     "慕尼黑啤酒节（进行中）"
     ],
     "alert": "红眼航班后以休整为先，勿排满。"
    },
@@ -205,6 +206,15 @@
      "transport": "步行/S-Bahn",
      "priority": "optional",
      "note": "阿桑教堂是暗黑系洛可可，免费、10 分钟即可看完；体力够的话傍晚去 Hackerbrücke 桥，本地人坐在桥栏杆上喝啤酒看日落"
+    },
+    {
+     "time": "20:30",
+     "name": "慕尼黑啤酒节 Oktoberfest 初探（可选）",
+     "duration": "1.5h",
+     "cost": 0,
+     "transport": "U-Bahn U4/U5 至 Theresienwiese 站",
+     "priority": "optional",
+     "note": "2026年啤酒节 9/19–10/4 正进行中，你们正好赶上！红眼航班后如体力尚可，可地铁前往特蕾莎草坪看灯光夜景与欢乐氛围（帐篷营业至22:30）；累了可跳过，留到明晚。"
     }
    ],
    "route": {
@@ -290,9 +300,10 @@
     "highlights": [
      "新市政厅木偶钟",
      "王宫与珍宝馆",
-     "英国花园"
+     "英国花园",
+     "慕尼黑啤酒节 Oktoberfest"
     ],
-    "alert": "市政厅木偶钟 11:00/12:00（夏季加17:00）演出；王宫+珍宝馆你们 2 小时够逛，下午可弹性加宁芬堡或宝马。"
+    "alert": "恰逢慕尼黑啤酒节 Oktoberfest（9/19–10/4 进行中）；周六最热闹，建议晚间前往或提前官网约座。市政厅木偶钟 11:00/12:00（夏季加17:00）演出；王宫+珍宝馆你们 2 小时够逛。"
    },
    "theme": "慕尼黑 (München) · 巴伐利亚首府初印象",
    "weather": {
@@ -391,6 +402,23 @@
      "transport": "U3 到 Olympiazentrum",
      "priority": "optional",
      "note": "Welt 免费、开到22:00，螺旋展厅很有未来感；博物馆€10、10:00-18:00；车迷必去，不感兴趣可跳过"
+    },
+    {
+     "time": "17:30",
+     "name": "慕尼黑啤酒节 Oktoberfest @ 特蕾莎草坪 (Theresienwiese)",
+     "duration": "3.5h",
+     "cost": 60,
+     "transport": "U-Bahn U4/U5 至 Theresienwiese 站（约15分钟）",
+     "priority": "recommended",
+     "note": "2026年啤酒节 9/19–10/4 进行中，你们在慕尼黑的三天（9/25–9/27）全部在啤酒节期间！周六人最多，建议 17:00 后进园或提前在官网约座；入园免费，1L 啤酒(Maß)约 €14–15，必试烤鸡 Hend l 与椒盐卷饼 Brezn；可穿/租巴伐利亚传统服装 Dirndl+Lederhosen；帐篷营业至22:30。本时段可替代英国花园与晚餐（今晚就在啤酒帐篷里吃）。",
+     "parking": [
+      {
+       "name": "Theresienwiese 周边停车有限",
+       "location": "特蕾莎草坪",
+       "fee": "不建议自驾",
+       "note": "啤酒节期间周边封路且停车极贵，强烈建议坐地铁 U4/U5。"
+      }
+     ]
     },
     {
      "time": "—",
@@ -1528,6 +1556,15 @@
       "recommended": "鳟鱼",
       "location": "酒店内"
      }
+    },
+    {
+     "time": "20:00",
+     "name": "酒店内 Ravenna Gorge 峡谷步道 + 玻璃工坊（可选）",
+     "duration": "1h",
+     "cost": 0,
+     "transport": "步行",
+     "priority": "optional",
+     "note": "Hofgut Sternen 就在 Ravenna 峡谷入口，是 300 年历史的庄园（energy-autonomous）：谷内 Ravenna 桥/铁路高架桥与瀑布徒步约 40 分钟；庄园还自带玻璃吹制工坊（Glasmanufaktur）与布谷鸟钟房（SteigenHaus）。与 10/2 白天 Triberg 咕咕钟/瀑布有轻度主题重叠，但峡谷夜景与玻璃工坊是独有体验。"
     }
    ],
    "route": {
