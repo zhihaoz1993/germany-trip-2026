@@ -203,40 +203,39 @@
   };
 
   const WMO = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌦️',56:'🌧️',57:'🌧️',61:'🌧️',63:'🌧️',65:'🌧️',66:'🌧️',67:'🌧️',71:'🌨️',73:'🌨️',75:'🌨️',77:'🌨️',80:'🌦️',81:'🌧️',82:'🌧️',85:'🌨️',86:'🌨️',95:'⛈️',96:'⛈️',97:'⛈️',99:'⛈️'};
-  const weatherCache = new Map();
-  const fetchWeather = day => {
-    const loc = day.weatherLoc;
-    if (!loc) return Promise.resolve(null);
-    const key = `${loc.lat},${loc.lon}`;
-    if (weatherCache.has(key)) return Promise.resolve(weatherCache.get(key));
-    return fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=${encodeURIComponent(tripData.tripTimezone || 'Europe/Zurich')}&forecast_days=16`)
-      .then(r => r.ok ? r.json() : Promise.reject(new Error('weather unavailable')))
-      .then(data => {
-        const d = data.daily;
-        const out = {};
-        d.time.forEach((t, i) => { out[t] = { code: d.weather_code[i], hi: Math.round(d.temperature_2m_max[i]), lo: Math.round(d.temperature_2m_min[i]), rain: d.precipitation_probability_max[i] }; });
-        weatherCache.set(key, out);
-        return out;
-      })
-      .catch(() => { weatherCache.set(key, null); return null; });
-  };
-  const wxParts = (day, forecast) => {
+  const AQI_LABEL = {1:'优',2:'良',3:'中等',4:'较差'};
+  const POLLEN_LABEL = {0:'无',1:'低',2:'中',3:'高'};
+  let weatherLive = null;
+  const fetchWeather = () => fetch('weather_live.json?cb=' + (tripData.generationDate || '1'), { cache: 'no-cache' })
+    .then(r => r.ok ? r.json() : Promise.reject(new Error('weather_live unavailable')))
+    .then(data => { weatherLive = data; return data; })
+    .catch(() => { weatherLive = null; return null; });
+  const wxParts = (day, data) => {
     if (!day.weatherLoc) return null;
     const dateStr = `2026-${day.date.replace('/', '-')}`;
-    const w = forecast && forecast[dateStr];
-    if (w && w.code != null && w.hi != null) {
-      return { icon: WMO[w.code] || '🌡️', hi: w.hi, lo: w.lo, rain: w.rain, live: true };
+    const w = data && data.days && data.days[dateStr];
+    if (w && w.live && w.hi != null) {
+      return {
+        icon: WMO[w.code] || '🌡️', hi: w.hi, lo: w.lo, rain: w.rain, live: true,
+        wind: w.wind, gust: w.gust, aqi: w.aqi, aqiLevel: w.aqiLevel, pm25: w.pm25,
+        pollenLevel: w.pollenLevel, pollen: w.pollen
+      };
     }
     if (day.weather && day.weather.high != null) {
-      return { icon: day.weather.icon === 'partlyCloudy' ? '⛅' : '🌤️', hi: day.weather.high, lo: day.weather.low, rain: null, live: false };
+      return { icon: day.weather.icon === 'partlyCloudy' ? '⛅' : '🌤️', hi: day.weather.high, lo: day.weather.low, rain: null, live: false, wind: null, gust: null, aqi: null, aqiLevel: null, pm25: null, pollenLevel: null, pollen: null };
     }
     return null;
   };
+  const windTxt = p => p.wind != null ? `${p.wind} km/h${p.gust != null ? `（阵风 ${p.gust}）` : ''}` : '';
+  const airTxt = p => {
+    const a = p.aqiLevel ? `空气质量 ${AQI_LABEL[p.aqiLevel] || '—'}` + (p.pm25 != null ? ` · PM2.5 ${p.pm25}` : '') : '';
+    const pl = p.pollenLevel != null && p.pollenLevel > 0 ? `花粉 ${POLLEN_LABEL[p.pollenLevel]}` : '';
+    return [a, pl].filter(Boolean).join(' · ');
+  };
   const applyWeather = () => {
-    const forecasts = tripData.days.map(fetchWeather);
-    Promise.all(forecasts).then(fcs => {
+    fetchWeather().then(data => {
       tripData.days.forEach((day, i) => {
-        const p = wxParts(day, fcs[i]);
+        const p = wxParts(day, data);
         const city = day.weatherLoc ? day.weatherLoc.city : '';
         if (!p) {
           document.querySelectorAll(`[data-wx="${i}"]`).forEach(el => { el.textContent = ''; });
@@ -245,12 +244,15 @@
         const rainTxt = p.live && p.rain != null && p.rain >= 30 ? ` · 降水 ${p.rain}%` : '';
         const liveTag = p.live ? '' : '（气候）';
         const full = `${p.icon} ${p.hi}°${p.live ? '（白天）/ ' + p.lo + '°（夜）' : ' / ' + p.lo + '°'}`;
+        const extras = [windTxt(p), airTxt(p)].filter(Boolean).join(' · ');
         document.querySelectorAll(`[data-wx="${i}"]`).forEach(el => {
           if (el.classList.contains('wx-badge')) {
             el.textContent = `${p.icon} ${p.hi}°`;
-            el.title = `${city} ${full}${rainTxt}${liveTag}`;
+            el.title = `${city} ${full}${rainTxt}${liveTag}${extras ? ' · ' + extras : ''}`;
+          } else if (el.id === 'travelWeather') {
+            el.innerHTML = `<b>${p.icon} ${p.hi}°（白天）/ ${p.lo}°（夜）</b>${rainTxt}${liveTag}<span class="muted" style="display:block">${extras || ''}</span>`;
           } else {
-            el.textContent = `${city} ${full}${rainTxt}${liveTag}`;
+            el.textContent = `${city} ${full}${rainTxt}${liveTag}${extras ? ' · ' + extras : ''}`;
           }
         });
       });

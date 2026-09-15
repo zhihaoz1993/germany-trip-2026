@@ -1,0 +1,39 @@
+name: Update daily weather
+
+on:
+  schedule:
+    # Daily at 06:00 UTC (07:00/08:00 CET depending on DST) — updates forecast for the day ahead
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}   # allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-weather:
+    # Only run while the trip is upcoming/active (trip ends 2026-10-08). Cron keeps firing
+    # but the script itself is a no-op once forecast dates are past, so this is just a guard.
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch weather / wind / pollen / air quality
+        working-directory: 德国瑞士-2026-09
+        run: python3 update_weather.py
+
+      - name: Commit updated weather_live.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add 德国瑞士-2026-09/weather_live.json
+          if git diff --cached --quiet; then
+            echo "No weather changes to commit."
+          else
+            git commit -m "chore: refresh daily weather (auto)"
+            git push
+          fi
