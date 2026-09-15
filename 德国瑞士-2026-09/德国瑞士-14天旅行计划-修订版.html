@@ -1,5 +1,5 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>德国+瑞士 14日自驾环游（修订版）</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script defer src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script defer src="itinerary-enhancements.js?v=20260914-1"></script><style>
-:root{--ink:#17352f;--pine:#1d5145;--moss:#56806d;--paper:#f7f5ef;--sand:#ebe5d8;--card:#fffdfa;--line:#d9d8ce;--sky:#dceceb;--amber:#bd6c31;--muted:#62726d;--r:16px;--sh:0 10px 28px #17352f12}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.eyebrow,.label{color:var(--moss);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero{padding:34px 0 26px;background:var(--ink);color:#fff}.hero-grid{display:grid;grid-template-columns:1.6fr .9fr;gap:28px;align-items:end}.hero h1,h2,h3{font-family:ui-serif,Georgia,"Songti SC",serif}.hero h1{font-size:clamp(31px,5vw,55px);line-height:1.08;margin:8px 0 14px;letter-spacing:-.04em}.hero .eyebrow,.hero p{color:#c6ddd5}.hero p{margin:0}.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid #ffffff2e;border-radius:12px;padding:12px;background:#ffffff0d}.stat b{display:block;font-size:19px}.stat span{font-size:12px;color:#c6ddd5}.mode-nav{position:sticky;top:0;z-index:20;background:#f7f5eff2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.mode-nav .wrap{display:flex;align-items:center;gap:6px;min-height:58px}.brand{font-family:ui-serif,Georgia,serif;font-weight:800;margin-right:auto}.mode,.day-picker button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;padding:9px 12px;border-radius:9px;cursor:pointer}.mode:hover,.mode[aria-selected="true"]{background:var(--ink);color:#fff}.view{display:none;padding:34px 0 90px}.view.active{display:block}.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:36px 0 14px}.head h2{font-size:28px;line-height:1.15;margin:3px 0 0}.head p{margin:0;color:var(--muted);max-width:530px}.trip-map{height:390px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--sky);box-shadow:var(--sh)}.map-fallback{padding:22px;color:var(--pine)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.metric,.panel,.day-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}.metric{padding:14px}.metric b{font-size:22px;display:block}.metric span{font-size:12px;color:var(--muted)}.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.day-card{padding:18px;text-align:left;color:var(--ink);cursor:pointer;transition:.18s}.day-card:hover,.day-card:focus-visible{transform:translateY(-2px);outline:2px solid var(--moss);outline-offset:2px}.top{display:flex;justify-content:space-between;gap:8px;color:var(--moss);font-weight:800;font-size:13px}.day-card h3{font-size:19px;line-height:1.25;margin:8px 0}.route{font-size:13px;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--sand)}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chip{font-size:12px;background:var(--sky);color:var(--pine);padding:3px 8px;border-radius:20px}.stay{font-size:13px;font-weight:700}.alert{margin-top:12px;padding:8px 10px;background:#f9eee7;color:#7b4020;border-radius:8px;font-size:12px}.cols{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{padding:20px}.panel h3{font-size:22px;line-height:1.2;margin:4px 0 14px}.today{background:linear-gradient(135deg,#17352f,#346458);color:#fff;border-radius:var(--r);padding:26px;display:grid;grid-template-columns:1fr auto;gap:16px}.today .eyebrow{color:#cce1d9}.today h2{font-size:clamp(27px,5vw,41px);line-height:1.1;margin:6px 0}.today p{margin:0;color:#d5e4df}.today-metrics{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.today-metrics span{border:1px solid #ffffff36;border-radius:8px;padding:6px 9px;font-size:13px}.primary{display:inline-flex;align-items:center;justify-content:center;background:#f5d7a7;color:#55331b;font-weight:800;text-decoration:none;border-radius:9px;padding:11px 14px}.day-picker{display:flex;gap:6px;overflow:auto;padding:12px 0 4px}.day-picker button{flex:none;border:1px solid var(--line);background:var(--card);font-size:13px}.day-picker button.active{background:var(--pine);color:#fff;border-color:var(--pine)}.route-box{margin:16px 0;padding:15px;border:1px solid #b9d4cc;background:#eff7f4;border-radius:12px}.route-box strong{display:block;font-size:16px}.route-box p{margin:4px 0 0;color:var(--muted);font-size:13px}.timeline{list-style:none;padding:0;margin:0}.timeline li{position:relative;padding:0 0 17px 26px;border-left:1px solid #bdd0c9}.timeline li:before{content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--pine)}.timeline li:last-child{border:0;padding-bottom:0}.time{font-size:12px;font-weight:800;color:var(--moss)}.timeline h4{font-size:15px;margin:2px 0}.timeline p,.muted{font-size:13px;color:var(--muted);margin:2px 0}.role{font-size:11px;color:var(--moss);font-weight:800}.details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.details summary{cursor:pointer;font-weight:800}.full{padding:12px 0;border-bottom:1px solid var(--sand)}.meal{margin-top:7px;padding:8px;background:#f9f1e8;border-radius:8px;font-size:13px}.booking{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--sand)}.booking input{accent-color:var(--pine);width:17px;height:17px}.booking b{display:block}.sub{display:block;color:var(--muted);font-size:12px}.status{font-size:12px;padding:3px 7px;border-radius:20px;background:#f8e9df;color:#884723}.status.done{background:#dceee5;color:#21613f}.budget{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--sand)}ul{margin:0;padding-left:18px}li{margin:8px 0}.footer{border-top:1px solid var(--line);padding:24px 0 90px;color:var(--muted);font-size:12px}.bottom{display:none}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #d49a56;outline-offset:3px}@media(max-width:720px){.wrap{width:min(100% - 24px,1180px)}.hero{padding:25px 0 20px}.hero-grid,.cols{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}.stat{padding:9px}.stat b{font-size:16px}.brand{font-size:13px;margin-right:0}.mode{font-size:13px;padding:8px}.view{padding-top:20px}.head{margin-top:28px;align-items:start;flex-direction:column}.head h2{font-size:25px}.trip-map{height:300px}.metrics{grid-template-columns:repeat(2,1fr)}.days{grid-template-columns:1fr}.today{padding:20px;grid-template-columns:1fr}.bottom{display:flex;position:fixed;z-index:30;bottom:0;left:0;right:0;justify-content:space-around;background:#fffdfaf2;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:7px}.bottom button{border:0;background:transparent;color:var(--muted);font:12px inherit;padding:7px 14px}.bottom button.active{color:var(--pine);font-weight:800}}
+:root{--ink:#17352f;--pine:#1d5145;--moss:#56806d;--paper:#f7f5ef;--sand:#ebe5d8;--card:#fffdfa;--line:#d9d8ce;--sky:#dceceb;--amber:#bd6c31;--muted:#62726d;--r:16px;--sh:0 10px 28px #17352f12}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.eyebrow,.label{color:var(--moss);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero{padding:34px 0 26px;background:var(--ink);color:#fff}.hero-grid{display:grid;grid-template-columns:1.6fr .9fr;gap:28px;align-items:end}.hero h1,h2,h3{font-family:ui-serif,Georgia,"Songti SC",serif}.hero h1{font-size:clamp(31px,5vw,55px);line-height:1.08;margin:8px 0 14px;letter-spacing:-.04em}.hero .eyebrow,.hero p{color:#c6ddd5}.hero p{margin:0}.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{border:1px solid #ffffff2e;border-radius:12px;padding:12px;background:#ffffff0d}.stat b{display:block;font-size:19px}.stat span{font-size:12px;color:#c6ddd5}.mode-nav{position:sticky;top:0;z-index:20;background:#f7f5eff2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.mode-nav .wrap{display:flex;align-items:center;gap:6px;min-height:58px}.brand{font-family:ui-serif,Georgia,serif;font-weight:800;margin-right:auto}.mode,.day-picker button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;padding:9px 12px;border-radius:9px;cursor:pointer}.mode:hover,.mode[aria-selected="true"]{background:var(--ink);color:#fff}.view{display:none;padding:34px 0 90px}.view.active{display:block}.head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:36px 0 14px}.head h2{font-size:28px;line-height:1.15;margin:3px 0 0}.head p{margin:0;color:var(--muted);max-width:530px}.trip-map{height:390px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--sky);box-shadow:var(--sh)}.map-fallback{padding:22px;color:var(--pine)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.metric,.panel,.day-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}.metric{padding:14px}.metric b{font-size:22px;display:block}.metric span{font-size:12px;color:var(--muted)}.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.day-card{padding:18px;text-align:left;color:var(--ink);cursor:pointer;transition:.18s}.day-card:hover,.day-card:focus-visible{transform:translateY(-2px);outline:2px solid var(--moss);outline-offset:2px}.top{display:flex;justify-content:space-between;gap:8px;color:var(--moss);font-weight:800;font-size:13px}.day-card h3{font-size:19px;line-height:1.25;margin:8px 0}.route{font-size:13px;color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--sand)}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.chip{font-size:12px;background:var(--sky);color:var(--pine);padding:3px 8px;border-radius:20px}.stay{font-size:13px;font-weight:700}.weather{font-size:12px;color:var(--moss);margin-top:4px;font-weight:600}.alert{margin-top:12px;padding:8px 10px;background:#f9eee7;color:#7b4020;border-radius:8px;font-size:12px}.cols{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{padding:20px}.panel h3{font-size:22px;line-height:1.2;margin:4px 0 14px}.today{background:linear-gradient(135deg,#17352f,#346458);color:#fff;border-radius:var(--r);padding:26px;display:grid;grid-template-columns:1fr auto;gap:16px}.today .eyebrow{color:#cce1d9}.today h2{font-size:clamp(27px,5vw,41px);line-height:1.1;margin:6px 0}.today p{margin:0;color:#d5e4df}.today-metrics{display:flex;gap:8px;flex-wrap:wrap;align-items:end}.today-metrics span{border:1px solid #ffffff36;border-radius:8px;padding:6px 9px;font-size:13px}.primary{display:inline-flex;align-items:center;justify-content:center;background:#f5d7a7;color:#55331b;font-weight:800;text-decoration:none;border-radius:9px;padding:11px 14px}.day-picker{display:flex;gap:6px;overflow:auto;padding:12px 0 4px}.day-picker button{flex:none;border:1px solid var(--line);background:var(--card);font-size:13px}.day-picker button.active{background:var(--pine);color:#fff;border-color:var(--pine)}.route-box{margin:16px 0;padding:15px;border:1px solid #b9d4cc;background:#eff7f4;border-radius:12px}.route-box strong{display:block;font-size:16px}.route-box p{margin:4px 0 0;color:var(--muted);font-size:13px}.timeline{list-style:none;padding:0;margin:0}.timeline li{position:relative;padding:0 0 17px 26px;border-left:1px solid #bdd0c9}.timeline li:before{content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--pine)}.timeline li:last-child{border:0;padding-bottom:0}.time{font-size:12px;font-weight:800;color:var(--moss)}.timeline h4{font-size:15px;margin:2px 0}.timeline p,.muted{font-size:13px;color:var(--muted);margin:2px 0}.role{font-size:11px;color:var(--moss);font-weight:800}.details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.details summary{cursor:pointer;font-weight:800}.full{padding:12px 0;border-bottom:1px solid var(--sand)}.meal{margin-top:7px;padding:8px;background:#f9f1e8;border-radius:8px;font-size:13px}.booking{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--sand)}.booking input{accent-color:var(--pine);width:17px;height:17px}.booking b{display:block}.sub{display:block;color:var(--muted);font-size:12px}.status{font-size:12px;padding:3px 7px;border-radius:20px;background:#f8e9df;color:#884723}.status.done{background:#dceee5;color:#21613f}.budget{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--sand)}ul{margin:0;padding-left:18px}li{margin:8px 0}.footer{border-top:1px solid var(--line);padding:24px 0 90px;color:var(--muted);font-size:12px}.bottom{display:none}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #d49a56;outline-offset:3px}@media(max-width:720px){.wrap{width:min(100% - 24px,1180px)}.hero{padding:25px 0 20px}.hero-grid,.cols{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(3,1fr)}.stat{padding:9px}.stat b{font-size:16px}.brand{font-size:13px;margin-right:0}.mode{font-size:13px;padding:8px}.view{padding-top:20px}.head{margin-top:28px;align-items:start;flex-direction:column}.head h2{font-size:25px}.trip-map{height:300px}.metrics{grid-template-columns:repeat(2,1fr)}.days{grid-template-columns:1fr}.today{padding:20px;grid-template-columns:1fr}.bottom{display:flex;position:fixed;z-index:30;bottom:0;left:0;right:0;justify-content:space-around;background:#fffdfaf2;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:7px}.bottom button{border:0;background:transparent;color:var(--muted);font:12px inherit;padding:7px 14px}.bottom button.active{color:var(--pine);font-weight:800}}
 .cols,.days{grid-template-columns:1fr}.day-tools{display:flex;gap:8px;margin:0 0 12px}.day-tools button{border:1px solid var(--line);background:var(--card);color:var(--pine);font:inherit;font-weight:700;padding:8px 12px;border-radius:8px;cursor:pointer}.day-map{height:300px;border:1px solid var(--line);border-radius:12px;margin:14px 0;background:var(--sky);overflow:hidden}.xhs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.xhs-card{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.xhs-cover{min-height:72px;padding:10px;color:#fff;background:linear-gradient(135deg,#f07469,#b72c4a);font-size:12px;font-weight:800}.xhs-body{padding:10px;font-size:13px}.xhs-body b{display:block;margin-bottom:4px}.food-card .xhs-cover{background:linear-gradient(135deg,#bd6c31,#e2a34b)}@media(max-width:720px){.xhs-grid{grid-template-columns:1fr}.day-map{height:240px}}
 .trip-map{height:520px}@media(max-width:720px){.trip-map{height:360px}}
 </style></head><body>
@@ -129,7 +129,12 @@ const tripData={
       "stay": "机上过夜 · TG924 曼谷 → 慕尼黑（红眼航班）",
       "stayUrl": "",
       "xhs": [],
-      "xhsNote": "启程日无驾驶安排；飞机上尽量休息，为抵达日储备精力。"
+      "xhsNote": "启程日无驾驶安排；飞机上尽量休息，为抵达日储备精力。",
+      "weatherLoc": {
+        "city": "北京",
+        "lat": 39.904,
+        "lon": 116.407
+      }
     },
     {
       "date": "09/25",
@@ -263,52 +268,42 @@ const tripData={
           "likes": "555",
           "url": "https://www.xiaohongshu.com/explore/69dd8455000000001e00d790?xsec_token=ABpYmiTzGYFyQctkNOtgwnJQwzCo5yRubig3dC5JZCgTE%3D&xsec_source=pc_feed",
           "takeaway": "抵达日只取玛丽安广场、老城和啤酒花园；把王宫留给 Day 2。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062157/463ff1225a9ccf6154c4cad0a5798606/note_pre_post_uhdr/1040g3r031utvemtsiq005nt2q6k08ous3m12e60!nd_prv_wlteh_webp_3"
+          "cover": "media/xhs/69dd8455000000001e00d790.webp"
         },
         {
           "title": "📍第一次来慕尼黑｜玛利亚广场一日路线攻略",
           "likes": "429",
           "url": "https://www.xiaohongshu.com/explore/69f502410000000022024e50?xsec_token=AB_g8TFBrlOa7aLS55_V8DLtwBTrB43Pnq6KAD63bqnkg%3D",
           "takeaway": "抵达日下午走玛丽安广场一带即可，王宫与英国花园留给第二天。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062217/4920f0a56dc897739e53927a6dd97cce/notes_pre_post/1040g3k831vkub9mlii7g5nivru7g9dat2qb307o!nd_prv_wlteh_webp_3",
-          "media": [
-            "https://sns-webpic-qc.xhscdn.com/202609062217/4920f0a56dc897739e53927a6dd97cce/notes_pre_post/1040g3k831vkub9mlii7g5nivru7g9dat2qb307o!nd_prv_wlteh_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/093162297d282d3b03b9511085d761a6/note_pre_post_uhdr/1040g3r031vkub8ch2g205nivru7g9dat5o1f2eo!nd_prv_wlteh_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/db3759f84cdcb4bd0fa496e1a25c3c01/note_pre_post_uhdr/1040g3r031vkub8ch2g2g5nivru7g9dat0rk1eb0!nd_prv_wlteh_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/59eb92427aa2476d3aed300c53d3db41/note_pre_post_uhdr/1040g3r031vkub8ch2g305nivru7g9dat3jir7m8!nd_prv_wlteh_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/3e7361c3dc7b3be007bfe53fb5dadd11/notes_pre_post/1040g3k831vkub9mlii805nivru7g9datkb5fstg!nd_prv_wgth_webp_3"
-          ]
+          "cover": "media/xhs/69f502410000000022024e50.webp"
         },
         {
           "title": "慕尼黑｜德国人自己也排队的啤酒馆",
           "likes": "347",
           "url": "https://www.xiaohongshu.com/explore/6628123c0000000003021d14?xsec_token=ABkcUIM-eqPvmxAGMd64kI1hpAtUEm_0ZOcdpXHuaZvuc%3D",
           "takeaway": "啤酒馆适合抵达日的低强度晚餐；高峰时段注意排队。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062217/e89db974414f16798717e3ad00cd09af/1040g008311uqetlfiu004be77i8a7ipi9iogtp0!nd_prv_wgth_webp_3",
-          "media": [
-            "https://sns-webpic-qc.xhscdn.com/202609062217/e89db974414f16798717e3ad00cd09af/1040g008311uqetlfiu004be77i8a7ipi9iogtp0!nd_prv_wgth_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/f539b13a1d653517eddfa94879694bca/1040g008311uqetlfiu0g4be77i8a7ipi1g1mll0!nd_prv_wgth_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/c4207e74c55fb0832a0a651003bd26db/1040g008311uqetlfiu104be77i8a7ipirti1o80!nd_prv_wgth_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/16d6656a395c72174ddb03de6bcbbb6c/1040g008311uqetlfiu1g4be77i8a7ipi7c4l3cg!nd_prv_wlteh_webp_3"
-          ]
+          "cover": "media/xhs/6628123c0000000003021d14.webp"
         },
         {
           "title": "🇩🇪慕尼黑｜德国城市地图 路线打卡攻略",
           "likes": "388",
           "url": "https://www.xiaohongshu.com/explore/693155b0000000001e023631?xsec_token=ABz1pKyymKh3ipVHBZ99YHhG8RydGYGKTFPrMBMBpCZg0%3D",
-          "takeaway": "城市地图式路线参考：抵达日只取老城核心，英国花园/王宫按体力加到次日。"
+          "takeaway": "城市地图式路线参考：抵达日只取老城核心，英国花园/王宫按体力加到次日。",
+          "cover": "media/xhs/693155b0000000001e023631.webp"
         },
         {
           "title": "慕尼黑10小时转机，citywalk暴走全攻略",
           "likes": "124",
           "url": "https://www.xiaohongshu.com/explore/692817ea000000001e00a580?xsec_token=ABPKTTiWTn5K6o0yjOVz5pVIsYo3NzuGHQA3hmN4CJvhU%3D",
-          "takeaway": "证明老城核心区半天到一天即可走完：圣母教堂→玛丽亚广场→谷物市场一线全部步行可达"
+          "takeaway": "证明老城核心区半天到一天即可走完：圣母教堂→玛丽亚广场→谷物市场一线全部步行可达",
+          "cover": "media/xhs/692817ea000000001e00a580.webp"
         },
         {
           "title": "德国慕尼黑市区1日游",
           "likes": "62",
           "url": "https://www.xiaohongshu.com/explore/6a869059000000001603ff44?xsec_token=ABgIhU7Rt-CWPh4bz3mOJvm3KJ_u6id-utXRVBp33aaRc%3D",
-          "takeaway": "作者一天走完老城+王宫+英国花园+宝马世界；你们抵达日下午+次日一整天，节奏更从容"
+          "takeaway": "作者一天走完老城+王宫+英国花园+宝马世界；你们抵达日下午+次日一整天，节奏更从容",
+          "cover": "media/xhs/6a869059000000001603ff44.webp"
         }
       ],
       "xhsNote": "红眼航班清晨抵达，当天以休整+轻量市区游为主，早点休息倒时差",
@@ -317,7 +312,12 @@ const tripData={
         "fee": "€29/晚",
         "note": "地下车库，限高2米、约141车位；短时首小时€4、日封顶€29"
       },
-      "dayLabel": "D1"
+      "dayLabel": "D1",
+      "weatherLoc": {
+        "city": "慕尼黑",
+        "lat": 48.137,
+        "lon": 11.576
+      }
     },
     {
       "date": "09/26",
@@ -479,44 +479,49 @@ const tripData={
           "likes": "527",
           "url": "https://www.xiaohongshu.com/explore/69dd8455000000001e00d790?xsec_token=ABpYmiTzGYFyQctkNOtgwnJQwzCo5yRubig3dC5JZCgTE%3D&xsec_source=pc_feed",
           "takeaway": "王宫+珍宝馆至少预留3小时；市政厅木偶钟每天固定场次；新天鹅堡适合从慕尼黑一日往返",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062157/463ff1225a9ccf6154c4cad0a5798606/note_pre_post_uhdr/1040g3r031utvemtsiq005nt2q6k08ous3m12e60!nd_prv_wlteh_webp_3"
+          "cover": "media/xhs/69dd8455000000001e00d790.webp"
         },
         {
           "title": "💫【暴走慕尼黑】一日攻略！路线+机位+美食❗️",
           "likes": "438",
           "url": "https://www.xiaohongshu.com/explore/68bebb5c000000001b0353ff?xsec_token=ABxE-Nyg3QjcypXuZctem3lfFu5L-CapVVgfIpyJ732BE%3D",
           "takeaway": "适合 Day 2 的王宫、老城与英国花园动线复核。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062209/b865a80ebc4ef9e70a18908456aef870/notes_pre_post/1040g3k031m5ts9455mag5nbh0d9080ih20av8f0!nc_n_webp_prv_1"
+          "cover": "media/xhs/68bebb5c000000001b0353ff.webp"
         },
         {
           "title": "🇩🇪慕尼黑三日游｜行程住宿一站式攻略",
           "likes": "206",
           "url": "https://www.xiaohongshu.com/explore/69f1d2000000000035039af5?xsec_token=AB5ZSJo-s5ZyeWb0UuuACoRtzXE2JNPXkYRS5QiF2aSFE%3D",
-          "takeaway": "三日攻略交叉验证：王宫/老城/英国花园分两天更舒服，避免抵达日硬排。"
+          "takeaway": "三日攻略交叉验证：王宫/老城/英国花园分两天更舒服，避免抵达日硬排。",
+          "cover": "media/xhs/69f1d2000000000035039af5.webp"
         },
         {
           "title": "宁芬堡宫｜慕尼黑梦幻童话宫殿一日游",
           "likes": "160",
           "url": "https://www.xiaohongshu.com/explore/6810c8070000000023003de0?xsec_token=AB0AN2jV5vhR8s5PFjzBF3HQl5K-WhOTiX3UH8JWOsWVU%3D",
-          "takeaway": "电车17路直达；宫殿€8/联票€15/花园免费；镜厅华丽，后花园天鹅湖是出片机位"
+          "takeaway": "电车17路直达；宫殿€8/联票€15/花园免费；镜厅华丽，后花园天鹅湖是出片机位",
+          "cover": "media/xhs/6810c8070000000023003de0.webp"
         },
         {
           "title": "慕尼黑暴走一日游：从老城到球场全覆盖",
           "likes": "148",
           "url": "https://www.xiaohongshu.com/explore/69bc9eca000000001a0293a3?xsec_token=ABgoy3p9shON2ZcLtmvnw_EcqvYzTNtuZ63FDvdXC40qo%3D",
-          "takeaway": "老城→球场动线参考，适合体力好的一天打卡更多点位"
+          "takeaway": "老城→球场动线参考，适合体力好的一天打卡更多点位",
+          "cover": "media/xhs/69bc9eca000000001a0293a3.webp"
         },
         {
           "title": "慕尼黑，本地人才知道的小众玩法",
           "likes": "63",
           "url": "https://www.xiaohongshu.com/explore/6a329e4200000000110135fa?xsec_token=ABnqepJu65JXpkTXHEaLnjRSvIhG13a5aMnX34FiEYNiQ%3D",
-          "takeaway": "本地人视角的小众去处，可与经典线互补"
+          "takeaway": "本地人视角的小众去处，可与经典线互补",
+          "cover": "media/xhs/6a329e4200000000110135fa.webp"
         },
         {
           "title": "慕尼黑必来啤酒花园？我说点不滤镜的",
           "likes": "10",
           "url": "https://www.xiaohongshu.com/explore/6956c01b000000001e0065a3?xsec_token=ABSPjfwOpF21y5uoV1zbuWEdn_pP-YLk4CFXhKoaz_B20%3D",
-          "takeaway": "啤酒花园真实体验：部分需自己找位/柜台点单，可自带食物（英国花园啤酒花园允许）"
+          "takeaway": "啤酒花园真实体验：部分需自己找位/柜台点单，可自带食物（英国花园啤酒花园允许）",
+          "cover": "media/xhs/6956c01b000000001e0065a3.webp"
         },
         {
           "src": "马蜂窝系攻略",
@@ -534,7 +539,12 @@ const tripData={
         "fee": "€29/晚",
         "note": "地下车库，限高2米、约141车位；短时首小时€4、日封顶€29"
       },
-      "dayLabel": "D2"
+      "dayLabel": "D2",
+      "weatherLoc": {
+        "city": "慕尼黑",
+        "lat": 48.137,
+        "lon": 11.576
+      }
     },
     {
       "date": "09/27",
@@ -653,33 +663,28 @@ const tripData={
           "likes": "298",
           "url": "https://www.xiaohongshu.com/explore/68dab80b0000000011016daf?xsec_token=ABdhDj8r7z9q6p0O7rbhT1mchRX2L3pn0eB_rQZrCBl90%3D&xsec_source=pc_feed",
           "takeaway": "玛丽安桥限流要排队；讲解多为德语场；内部禁止拍照；返程公交班次少——自驾可避免",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/fe839b6320e3cc7034eea56cd84f89e4/notes_uhdr/1040g3qg31n196ftmli0g5og796ik18okd7vns3o!nd_prv_wlteh_webp_3"
+          "cover": "media/xhs/68dab80b0000000011016daf.webp"
         },
         {
           "title": "新天鹅堡｜德国最火景点，90%游客票都买错",
           "likes": "7",
           "url": "https://www.xiaohongshu.com/explore/6a740029000000002403f181?xsec_token=AB632AMkQjz1wag6Dh-BO-gPkEr9mlE5l79lNf-yt7rLc%3D&xsec_source=pc_feed",
-          "takeaway": "门票按预约时段进场，90%游客票买错，务必提前官网订"
+          "takeaway": "门票按预约时段进场，90%游客票买错，务必提前官网订",
+          "cover": "media/xhs/6a740029000000002403f181.webp"
         },
         {
           "title": "新天鹅堡自驾攻略",
           "likes": "32",
           "url": "https://www.xiaohongshu.com/explore/62c0caef000000000303c7a9?xsec_token=ABVK3qOrY8B7u0p_bYwwECrPoX39SDMfIG7NfK3-vrpeY%3D",
           "takeaway": "用于核对自驾抵达、停车与上山衔接。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062217/37a9cec5bed3548dff929065a4004e57/01027301kkedqmlnv18010eiqh30z4vqs7!nc_n_webp_prv_1",
-          "media": [
-            "https://sns-webpic-qc.xhscdn.com/202609062217/37a9cec5bed3548dff929065a4004e57/01027301kkedqmlnv18010eiqh30z4vqs7!nd_prv_wgth_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/95000988864d7d4368753a5657326ed8/01027301kkedqmlnv18010eiqh3180myef!nd_prv_wgth_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/e2027d3acd21a475c7a027354beb0814/01027301kkedqmlnv18010eiqh32n0xi64!nd_prv_wgth_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/4fa17a8de27ef3648d64ed046db0efa8/01027301kkedqmlnv18010eiqh33c3bsw2!nd_prv_wlteh_webp_3",
-            "https://sns-webpic-qc.xhscdn.com/202609062217/1e22c48d434f5083a1893ee3377fe4f3/01027301kkedqmlnv18010eiqh34bebhwp!nd_prv_wgth_webp_3"
-          ]
+          "cover": "media/xhs/62c0caef000000000303c7a9.webp"
         },
         {
           "title": "新天鹅堡，既不推荐，也不避雷",
           "likes": "212",
           "url": "https://www.xiaohongshu.com/explore/6a16d39f000000000803d1c7?xsec_token=ABUylUsPePXdFIUmvD0T-QgF03VhwV1t5y2KHqO_mDy_g%3D",
-          "takeaway": "平衡预期：外观与玛丽安桥视角最值，内部导览按预约时段打卡即可。"
+          "takeaway": "平衡预期：外观与玛丽安桥视角最值，内部导览按预约时段打卡即可。",
+          "cover": "media/xhs/6a16d39f000000000803d1c7.webp"
         }
       ],
       "stay": "Hotel Sonne（索恩酒店）· 福森 (Füssen) · ¥1,707/晚 · 已预订 ✅",
@@ -689,7 +694,12 @@ const tripData={
         "fee": "€14/晚",
         "note": "需提前预约、车位有限、限高2米；对面P5公共车库凭前台票券同价€14"
       },
-      "dayLabel": "D3"
+      "dayLabel": "D3",
+      "weatherLoc": {
+        "city": "福森",
+        "lat": 47.568,
+        "lon": 10.699
+      }
     },
     {
       "date": "09/28",
@@ -820,20 +830,21 @@ const tripData={
           "likes": "301",
           "url": "https://www.xiaohongshu.com/explore/69845ede000000000d00ba9f?xsec_token=AB-Fd0tPIpfGMegJIbrH9OUCiKreyxWRMy61qAQDtj1DI%3D&xsec_source=pc_feed",
           "takeaway": "苏黎世一日游一篇搞定：老城+班霍夫大街+湖边的经典动线",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062157/728b2db8c5afcda162c94e8e087e6b11/notes_pre_post/1040g3k831s6upebd5k005p493mb487kfi14v1fo!nd_prv_wlteh_webp_3"
+          "cover": "media/xhs/69845ede000000000d00ba9f.webp"
         },
         {
           "title": "在德国🌲南部滨海小镇找到了我的精神保护区",
           "likes": "435",
           "url": "https://www.xiaohongshu.com/explore/66ce3732000000001f03ec56?xsec_token=ABktkb-TcVVG5M7qW7prehWKyZ9UBqU8r2aKfzNGIr35E%3D",
           "takeaway": "林道湖畔短停的画面与散步点参考。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062209/4e8cb93fc00099a5a57f67fc20eb7828/1040g00831712eijl46104a0ljq53183ctir5800!nc_n_webp_prv_1"
+          "cover": "media/xhs/66ce3732000000001f03ec56.webp"
         },
         {
           "title": "🇨🇭苏黎世一日游攻略",
           "likes": "186",
           "url": "https://www.xiaohongshu.com/explore/69c5aa640000000021006d41?xsec_token=AB9HyS4fUD1TKbdAPSSd_xGq7vSEYDgYpMHPIKvanA-_Q%3D",
-          "takeaway": "补充苏黎世备选动线：若抵达早，可加苏黎世湖短游船或林登霍夫日落。"
+          "takeaway": "补充苏黎世备选动线：若抵达早，可加苏黎世湖短游船或林登霍夫日落。",
+          "cover": "media/xhs/69c5aa640000000021006d41.webp"
         },
         {
           "title": "这座千年古城满足你对中欧所有幻想（林道）",
@@ -845,19 +856,22 @@ const tripData={
           "title": "苏黎世一日游",
           "likes": "1370",
           "url": "https://www.xiaohongshu.com/explore/69d90739000000001d01a9aa?xsec_token=ABPhAEsl1Wx0LW1q53tuqVTZz3W_25_GGUhysNA9UMA4g%3D",
-          "takeaway": "苏黎世最高赞一日游：老城、林登霍夫山、班霍夫大街一线走完"
+          "takeaway": "苏黎世最高赞一日游：老城、林登霍夫山、班霍夫大街一线走完",
+          "cover": "media/xhs/69d90739000000001d01a9aa.webp"
         },
         {
           "title": "苏黎世一日通票指南｜爱的迫降打卡",
           "likes": "253",
           "url": "https://www.xiaohongshu.com/explore/69d319f70000000022028042?xsec_token=ABGHgJ-q2g0w2ggHnxYTG7hP-BmOWUmcj4alxJ0juvj7o%3D",
-          "takeaway": "《爱的迫降》同款机位：林登霍夫山、苏黎世湖、老城；自驾进城注意限行，建议停酒店步行"
+          "takeaway": "《爱的迫降》同款机位：林登霍夫山、苏黎世湖、老城；自驾进城注意限行，建议停酒店步行",
+          "cover": "media/xhs/69d319f70000000022028042.webp"
         },
         {
           "title": "瑞士被严重低估的城市｜苏黎世私藏机位",
           "likes": "141",
           "url": "https://www.xiaohongshu.com/explore/6a522c9900000000160263ed?xsec_token=ABSBMeiPJUQ4XRsWSPxcHAqTMVXFWi_rkGIlfjcSqiCac%3D",
-          "takeaway": "私藏机位合集，傍晚林登霍夫山俯瞰老城全景最出片"
+          "takeaway": "私藏机位合集，傍晚林登霍夫山俯瞰老城全景最出片",
+          "cover": "media/xhs/6a522c9900000000160263ed.webp"
         },
         {
           "src": "美食推荐",
@@ -874,7 +888,12 @@ const tripData={
         "fee": "CHF 57/晚",
         "note": "现场停车约CHF 57/天（按小时CHF 4）；车位有限，可考虑周边公共停车"
       },
-      "dayLabel": "D4"
+      "dayLabel": "D4",
+      "weatherLoc": {
+        "city": "苏黎世",
+        "lat": 47.374,
+        "lon": 8.541
+      }
     },
     {
       "date": "09/29",
@@ -1050,49 +1069,56 @@ const tripData={
           "likes": "186",
           "url": "https://www.xiaohongshu.com/explore/6a4a2401000000001003ee59?xsec_token=ABMfWHyTX5xL1FoPE0_jN2r2iWEhMtJ0okidLPHoE8-_8%3D&xsec_source=pc_feed",
           "takeaway": "老城Citywalk：卡佩尔廊桥傍晚光线最好→Gerberggasse彩绘房→穆塞格城墙俯瞰红屋顶→狮子像；冰川公园通票免费但一般",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062157/1fa0ad35ef51e4ce95886562930dc168/1040g008322801tra6u005o6hvjp0bncnip11rc8!nd_prv_wlteh_webp_3"
+          "cover": "media/xhs/6a4a2401000000001003ee59.webp"
         },
         {
           "title": "瑞士🇨🇭| 龙疆小镇怎么玩，看这里！",
           "likes": "304",
           "url": "https://www.xiaohongshu.com/explore/69e83b4c0000000020038456?xsec_token=AB5VStRa0CRj7N3AZF8dK0kMU9U0XGvTD-tsYrXFhkMu0%3D&xsec_source=pc_feed",
-          "takeaway": "Kaiserstuhl观景台明信片机位；S弯定位Mülibachersträssli 14；清晨8-10点倒影最美"
+          "takeaway": "Kaiserstuhl观景台明信片机位；S弯定位Mülibachersträssli 14；清晨8-10点倒影最美",
+          "cover": "media/xhs/69e83b4c0000000020038456.webp"
         },
         {
           "title": "🇨🇭瑞士龙疆Lungern最全防坑攻略",
           "likes": "272",
           "url": "https://www.xiaohongshu.com/explore/6a4d80ce0000000022018d07?xsec_token=ABF3wAEOcRwqG4HRXlywMX9haHK1MCKA97-gV_5vfaK0g%3D&xsec_source=pc_feed",
-          "takeaway": "勿信站内指示牌去私人领地；2号站台旁小路通往公共半岛；禁令牌多，只走公共步道"
+          "takeaway": "勿信站内指示牌去私人领地；2号站台旁小路通往公共半岛；禁令牌多，只走公共步道",
+          "cover": "media/xhs/6a4d80ce0000000022018d07.webp"
         },
         {
           "title": "🇨🇭一天速通因特拉肯附近五个小镇攻略",
           "likes": "493",
           "url": "https://www.xiaohongshu.com/explore/6a1c2bb3000000003601ef3f?xsec_token=ABMBaxmHK0aZupPLql17gUgpvcM8Wm1s1dl0QjWn93yE4%3D&xsec_source=pc_feed",
-          "takeaway": "因特拉肯是周边小镇的交通枢纽，火车/游船都从这里出发"
+          "takeaway": "因特拉肯是周边小镇的交通枢纽，火车/游船都从这里出发",
+          "cover": "media/xhs/6a1c2bb3000000003601ef3f.webp"
         },
         {
           "title": "瑞士龙疆小镇怎么玩，看这里",
           "likes": "304",
           "url": "https://www.xiaohongshu.com/explore/69e83b4c0000000020038456?xsec_token=AB5VStRa0CRj7N3AZF8dK0kMU9U0XGvTD-tsYrXFhkMu0%3D",
-          "takeaway": "龙疆翡翠湖环湖步道约1.5h；S弯观景台（Brünigstrasse 路边）是最经典机位"
+          "takeaway": "龙疆翡翠湖环湖步道约1.5h；S弯观景台（Brünigstrasse 路边）是最经典机位",
+          "cover": "media/xhs/69e83b4c0000000020038456.webp"
         },
         {
           "title": "龙疆小镇打卡机位分享",
           "likes": "269",
           "url": "https://www.xiaohongshu.com/explore/69d47e6b000000001a02b3ff?xsec_token=ABc1cUt0V-Q9v3L4t5yj6e5s2diSe2fF9poXLwnrnteZY%3D",
-          "takeaway": "机位合集：湖边长椅、教堂尖顶、山坡俯瞰；下午顺光拍湖水更绿"
+          "takeaway": "机位合集：湖边长椅、教堂尖顶、山坡俯瞰；下午顺光拍湖水更绿",
+          "cover": "media/xhs/69d47e6b000000001a02b3ff.webp"
         },
         {
           "title": "卢塞恩（琉森）老城Citywalk路线",
           "likes": "257",
           "url": "https://www.xiaohongshu.com/explore/6a4a2401000000001003ee59?xsec_token=ABMfWHyTX5xL1FoPE0_jN2r-yQpyDtiyLUx6uDn8-CbAc%3D",
-          "takeaway": "卡佩尔廊桥→老城壁画→垂死狮子像→穆塞格城墙（爬塔俯瞰全城，免费）"
+          "takeaway": "卡佩尔廊桥→老城壁画→垂死狮子像→穆塞格城墙（爬塔俯瞰全城，免费）",
+          "cover": "media/xhs/6a4a2401000000001003ee59.webp"
         },
         {
           "title": "卢塞恩+Rigi山+龙疆一日速通",
           "likes": "198",
           "url": "https://www.xiaohongshu.com/explore/69f76638000000003601c118?xsec_token=AB7uG7nCWlyhkd5OWmvWgNmBv8kl7gcUwBUhHUyD_X6S8%3D",
-          "takeaway": "速通动线参考；你们自驾版顺序一致，时间更弹性"
+          "takeaway": "速通动线参考；你们自驾版顺序一致，时间更弹性",
+          "cover": "media/xhs/69f76638000000003601c118.webp"
         },
         {
           "src": "攻略补充",
@@ -1110,7 +1136,12 @@ const tripData={
         "fee": "CHF 20/24小时",
         "note": "车库与酒店电梯直通，54车位不可预订；住客优惠价退房时前台盖章生效"
       },
-      "dayLabel": "D5"
+      "dayLabel": "D5",
+      "weatherLoc": {
+        "city": "琉森",
+        "lat": 47.052,
+        "lon": 8.306
+      }
     },
     {
       "date": "09/30",
@@ -1242,13 +1273,14 @@ const tripData={
           "likes": "564",
           "url": "https://www.xiaohongshu.com/explore/69b91b21000000002103a7e4?xsec_token=ABZuLuJvTsujNa1aGBOypeDxkagpJt7IAgqi7q7da2fXU%3D&xsec_source=pc_feed",
           "takeaway": "564赞排名：First山第1、雪朗峰第2、少女峰\"人多可玩性低\"；小镇榜：施皮茨第1、图恩第2、格林德瓦第3",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/57a6d9f0fd00c0966100db328c7c0d98/1040g2sg31tqeppmm6u704103jnnmjubkjksh5b8!nd_prv_wlteh_webp_3"
+          "cover": "media/xhs/69b91b21000000002103a7e4.webp"
         },
         {
           "title": "少女峰别再走左上右下了！自驾的来抄作业",
           "likes": "352",
           "url": "https://www.xiaohongshu.com/explore/69c92bf3000000002200fd52?xsec_token=ABeBW_z0lOuZcsmT5AOXIgu-YOP5yQ6n5mBR-_ZG-rghw%3D&xsec_source=pc_feed",
-          "takeaway": "自驾停车格林德瓦Terminal室内停车场；Eiger Express缆车比火车快40分钟；Terminal免费领中文登山护照山顶盖章；山顶建议留2.5小时"
+          "takeaway": "自驾停车格林德瓦Terminal室内停车场；Eiger Express缆车比火车快40分钟；Terminal免费领中文登山护照山顶盖章；山顶建议留2.5小时",
+          "cover": "media/xhs/69c92bf3000000002200fd52.webp"
         },
         {
           "title": "🇨🇭 | 少女峰快速上山详细攻略",
@@ -1266,7 +1298,8 @@ const tripData={
           "title": "少女峰别再走左上右下了！自驾的来抄作业",
           "likes": "378",
           "url": "https://www.xiaohongshu.com/explore/69c92bf3000000002200fd52?xsec_token=ABeBW_z0lOuZcsmT5AOXIgu0uqt70DYJghkkNiZYH8Pzo%3D",
-          "takeaway": "自驾党路线：车停格林德瓦 Terminal，艾格快线15分钟上艾格冰川站再转登山火车，比劳特布龙嫩线快"
+          "takeaway": "自驾党路线：车停格林德瓦 Terminal，艾格快线15分钟上艾格冰川站再转登山火车，比劳特布龙嫩线快",
+          "cover": "media/xhs/69c92bf3000000002200fd52.webp"
         },
         {
           "title": "少女峰快速上山详细攻略",
@@ -1278,7 +1311,8 @@ const tripData={
           "title": "瑞士第一'诈骗'｜少女峰（避坑向）",
           "likes": "108",
           "url": "https://www.xiaohongshu.com/explore/6a6b62d10000000008011199?xsec_token=AB19I4AeTw2ea3NUhK-GVNxON0EuVt_Cj9Sum8sZw49rs%3D",
-          "takeaway": "反方观点值得读：票价贵、天气决定一切——出发前务必查山顶实时摄像头，阴天别硬上"
+          "takeaway": "反方观点值得读：票价贵、天气决定一切——出发前务必查山顶实时摄像头，阴天别硬上",
+          "cover": "media/xhs/6a6b62d10000000008011199.webp"
         },
         {
           "src": "攻略补充",
@@ -1296,7 +1330,12 @@ const tripData={
         "fee": "CHF 20/24小时",
         "note": "车库与酒店电梯直通，54车位不可预订；住客优惠价退房时前台盖章生效"
       },
-      "dayLabel": "D6"
+      "dayLabel": "D6",
+      "weatherLoc": {
+        "city": "少女峰",
+        "lat": 46.547,
+        "lon": 7.985
+      }
     },
     {
       "date": "10/01",
@@ -1453,7 +1492,7 @@ const tripData={
           "likes": "46",
           "url": "https://www.xiaohongshu.com/explore/68ed5ae50000000003018c1e?xsec_token=ABymBRC8KqYk4euFP7nf4kmzajS6hBC_XetnovsOG7OGA%3D&xsec_source=pc_feed",
           "takeaway": "本地人私藏：Sigriswil 340m悬索桥俯瞰图恩湖（距施皮茨20分钟）；苏黎世有薛定谔的猫雕像",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/a95a6706418e46c97f887e6427f52390/spectrum/1040g0k031njek3i9ku004a4rp7r6qji4dfn9nc0!nd_prv_wlteh_webp_3"
+          "cover": ""
         },
         {
           "title": "🇨🇭体验 从夯到拉个人向",
@@ -1513,7 +1552,12 @@ const tripData={
         "fee": "CHF 30/天",
         "note": "有高度限制；附近BERNEXPO车库(P8) CHF 2/小时、24h上限CHF 38"
       },
-      "dayLabel": "D7"
+      "dayLabel": "D7",
+      "weatherLoc": {
+        "city": "伯尔尼",
+        "lat": 46.948,
+        "lon": 7.452
+      }
     },
     {
       "date": "10/02",
@@ -1657,7 +1701,7 @@ const tripData={
           "likes": "279",
           "url": "https://www.xiaohongshu.com/explore/69a557ff0000000022031853?xsec_token=ABJtXO8p3V0kKaWknPmaaEt9kZwu1d3CVa0mq63W83k4A%3D&xsec_source=pc_feed",
           "takeaway": "279赞实拍莱茵瀑布：欧洲水量最大瀑布，乘船靠近中央岩石最震撼",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/c5fbc139a8593dfb7e3fe74aab0b18df/spectrum/1040g34o31t756hq5me105pktmj8p45894poc8rg!nd_prv_wlteh_webp_3"
+          "cover": ""
         },
         {
           "title": "连续去了三次德国黑森林，怎么玩一篇讲明白",
@@ -1705,7 +1749,12 @@ const tripData={
         "fee": "免费",
         "note": "住客免费；旁徒步停车场对日间游客收费€3.50/天"
       },
-      "dayLabel": "D8"
+      "dayLabel": "D8",
+      "weatherLoc": {
+        "city": "滴滴湖",
+        "lat": 47.917,
+        "lon": 8.174
+      }
     },
     {
       "date": "10/03",
@@ -1807,14 +1856,14 @@ const tripData={
           "likes": "870",
           "url": "https://www.xiaohongshu.com/explore/69ae94d6000000001a028855?xsec_token=AByT12ToGMrE-DNDmUAlU4nzIdgHf77UPhWwtFK3KYm8A%3D&xsec_source=pc_feed",
           "takeaway": "注意是 Rothenburg ob der Tauber（北边还有个同名罗滕堡）；Plönlein 封面机位要 8:30 前去，否则全是旅行团；城墙整圈可上约4km",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/c3dd8943dd7ae9f12babe6be01345226/notes_pre_post/1040g3k031tg5s04u62004a0ljq53183c5ccu188!nd_prv_wlteh_webp_3"
+          "cover": ""
         },
         {
           "title": "罗滕堡必吃猪肋排",
           "likes": "17",
           "url": "https://www.xiaohongshu.com/explore/68b31d7d000000001c035749?xsec_token=ABo51fsvWeRf65p24P8A4ET2yYiAlaf-5Oag98nLlx_Gk%3D",
           "takeaway": "Day 9 老城晚餐的补充候选；以当日营业时间为准。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062212/7b37cdb503fe7d88f427c29d695355a4/notes_pre_post/1040g3k031lqjg1m3kq3g40mjlgd4oh6vp5o3p5g!nc_n_webp_prv_1"
+          "cover": ""
         },
         {
           "title": "🇩🇪德国罗滕堡｜中世纪🏰童话小镇半日游🌟",
@@ -1855,7 +1904,12 @@ const tripData={
         "fee": "到店前向酒店确认",
         "note": "酒店位于老城内；原有酒店停车信息不适用，请以酒店回复为准。"
       },
-      "dayLabel": "D9"
+      "dayLabel": "D9",
+      "weatherLoc": {
+        "city": "维尔茨堡",
+        "lat": 49.794,
+        "lon": 9.929
+      }
     },
     {
       "date": "10/04",
@@ -1985,7 +2039,7 @@ const tripData={
           "likes": "368",
           "url": "https://www.xiaohongshu.com/explore/69deaf170000000023006d87?xsec_token=AB_UHpxdwTHY1T4n-ka5WXmHxnlQd8rcFOLcASxP_iwpw%3D&xsec_source=pc_feed",
           "takeaway": "368赞：维尔茨堡评级\"顶级\"——玛利亚堡俯瞰不逊海德堡，主教宫为欧洲最顶级巴洛克之一",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062158/ad9cbf36d3f03363bc287c0688aa0ac1/notes_pre_post/1040g3k831uv51ve9iib05nt2q6k08ous5797m4g!nd_prv_wlteh_webp_3"
+          "cover": ""
         },
         {
           "title": "🇩🇪海德堡｜超详细一日游保姆级攻略🗺️干货",
@@ -1999,7 +2053,7 @@ const tripData={
           "type": "video",
           "url": "https://www.xiaohongshu.com/explore/6a08b488000000003502b2dc?xsec_token=AB_hG5fnNi5Mgqg3Piw9WbznxT0q9Oq_Kn3e1iXiY-L1g%3D",
           "takeaway": "Heidelberg 晚餐氛围视频；点击在小红书播放。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062212/8f7967ce4630e6615c11a81db9658d8b/1040g2sg320860lq4li705ngse6308hfsdb2odq8!nc_n_webp_prv_1"
+          "cover": ""
         },
         {
           "title": "🇩🇪 德国一日游推荐｜海德堡超顺路线 🗺️",
@@ -2033,7 +2087,12 @@ const tripData={
         "fee": "到店前向酒店确认",
         "note": "以 Hilton Heidelberg 订单及酒店最新说明为准。"
       },
-      "dayLabel": "D10"
+      "dayLabel": "D10",
+      "weatherLoc": {
+        "city": "海德堡",
+        "lat": 49.409,
+        "lon": 8.695
+      }
     },
     {
       "date": "10/05",
@@ -2202,14 +2261,14 @@ const tripData={
           "likes": "124",
           "url": "https://www.xiaohongshu.com/explore/6948fbd6000000001f00fd5e?xsec_token=ABt9usv-aUv10MOjlnoIz1cUdxSqT09Zl2GuJeDzL01NE%3D&xsec_source=pc_feed",
           "takeaway": "65km中游40+城堡全清单：鼠塔、尼德瓦尔德纪念碑、巴哈拉赫、普法尔茨石堡、洛蕾莱都在这段世界遗产河段",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062159/56b0bed882db53b4639325e6d14fde08/spectrum/1040g34o31qcuv9rdmu104bq5q0qs1me46lj8q8o!nd_prv_wlteh_webp_3"
+          "cover": ""
         },
         {
           "title": "🇩🇪找到了！人间童话小镇巴哈拉赫",
           "likes": "190",
           "url": "https://www.xiaohongshu.com/explore/6834c018000000000c03b997?xsec_token=ABBeIuG-S0U3uwvPx8HyvsGcWDlHmBMtn7pKF1Y7_yt_Q%3D",
           "takeaway": "Bacharach 傍晚步行与拍摄点参考。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062213/31603687ee1c716bce4962667feb1443/notes_pre_post/1040g3k0322ghvki3na005oai2icgkd5n8o76h5g!nc_n_webp_prv_1"
+          "cover": ""
         },
         {
           "title": "莱茵河 ‖ 用这种方式享受最美的一段景色",
@@ -2250,7 +2309,12 @@ const tripData={
         "fee": "到店前向酒店确认",
         "note": "酒店位于 Bacharach 老城；请以订单及酒店说明为准。"
       },
-      "dayLabel": "D11"
+      "dayLabel": "D11",
+      "weatherLoc": {
+        "city": "巴哈拉赫",
+        "lat": 50.06,
+        "lon": 7.768
+      }
     },
     {
       "date": "10/06",
@@ -2401,7 +2465,7 @@ const tripData={
           "likes": "32",
           "url": "https://www.xiaohongshu.com/explore/6a64b0d40000000011011b51?xsec_token=ABN0bMqzWDsU_MwVbVw6Jw7OAtNWN5vEC_l21W6S7imL8%3D&xsec_source=pc_feed",
           "takeaway": "吕德斯海姆经典三件套：莱茵游船+尼德瓦尔德缆车+画眉鸟小巷一日游",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062159/dbcb8b2905d8e548e4c3b7c2df348f98/spectrum/1040g0k032320lr0sn4004a0pimtffqnv85e6ka0!nd_prv_wlteh_webp_3"
+          "cover": ""
         },
         {
           "title": "🇩🇪Bacharach小镇必看攻略！不然累死",
@@ -2415,7 +2479,7 @@ const tripData={
           "type": "video",
           "url": "https://www.xiaohongshu.com/explore/6a200909000000000803c32d?xsec_token=ABvQkTIId_dmoRME8xdj9BPHcFVxVRTgLT_eKAn0afOTs%3D",
           "takeaway": "Day 12 游船与 Drosselgasse 氛围视频；点击在小红书播放。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/c64c8e9ee17430f9d6a8db14a038e3d8/1040g2sg320uuslhh7e705q5p7igmcc6p28gvofg!nc_n_webp_prv_1"
+          "cover": ""
         },
         {
           "title": "🇩🇪周末去哪儿｜吕德斯海姆·雷司令小镇.",
@@ -2456,7 +2520,12 @@ const tripData={
         "fee": "€37/晚",
         "note": "约150车位、限高2米、不可预约；Booking显示€37/天"
       },
-      "dayLabel": "D12"
+      "dayLabel": "D12",
+      "weatherLoc": {
+        "city": "法兰克福",
+        "lat": 50.11,
+        "lon": 8.682
+      }
     },
     {
       "date": "10/07",
@@ -2553,14 +2622,14 @@ const tripData={
           "likes": "752",
           "url": "https://www.xiaohongshu.com/explore/6300c510000000001b01a10a?xsec_token=ABLLtyfilxvL5p7UNQdKJP3Hu1fb6BlwlmhwKtqDpuQM8%3D",
           "takeaway": "返程晨游只取老城核心，务必倒推还车、退税与值机时间。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/fc2b66167ac27b57bd442ac52f893401/0302bh016fe7ph15mx7010yey0078shplh!nc_n_webp_prv_1"
+          "cover": "media/xhs/6300c510000000001b01a10a.webp"
         },
         {
           "title": "🇩🇪法兰克福｜德国菜居然这么好吃😋",
           "likes": "389",
           "url": "https://www.xiaohongshu.com/explore/675ca677000000000700a3f5?xsec_token=ABkWULdxmx37XRFdp5ejcb33zWxIoCDG1YqXRow5dMpew%3D",
           "takeaway": "Kleinmarkthalle 之外的市中心餐饮备选；不可挤占机场时间。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/031aec77197a43028684828238002efa/1040g2sg31bc5ha5qng70400bo8i032qbemflr50!nc_n_webp_prv_1"
+          "cover": ""
         },
         {
           "title": "法兰克福一日游，跟着这18张照片走就行",
@@ -2582,7 +2651,12 @@ const tripData={
           "takeaway": "Sachsenhausen 区苹果酒酒馆（Adolf Wagner / Atschel）：绿汁配炸猪排+苹果酒，人均€25；绿汁是7种香草冷酱，本地骄傲"
         }
       ],
-      "dayLabel": "D13"
+      "dayLabel": "D13",
+      "weatherLoc": {
+        "city": "法兰克福",
+        "lat": 50.11,
+        "lon": 8.682
+      }
     },
     {
       "date": "10/08",
@@ -2626,17 +2700,22 @@ const tripData={
           "likes": "2392",
           "url": "https://www.xiaohongshu.com/explore/66f0accf00000000270011e1?xsec_token=AB5NY0VkQkIrRMgrt2ESViwkIphFITFmybGNiDGtTxzGg%3D",
           "takeaway": "转机仅 3h35；先确认登机口和安检时间，再决定是否用餐。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/8c731be8928d38b033cdc94426354078/1040g2sg3182nah73ju005nhkv1ag8c7chuf3648!nc_n_webp_prv_1"
+          "cover": ""
         },
         {
           "title": "素万那普必拿两件套",
           "likes": "1101",
           "url": "https://www.xiaohongshu.com/explore/69007ae70000000004011d30?xsec_token=AB_E2JGmZ1-DFF_vP7cyAzfxtMMSlqhgiLO8-8ujlLMq8%3D",
           "takeaway": "作为转机补给参考；以登机口距离和实时登机时间优先。",
-          "cover": "https://sns-webpic-qc.xhscdn.com/202609062214/c3aa3c3f1724469f9e434fcf7a8e4123/1040g00831o65lhmh5m00414ajligftnse06ia4o!nc_n_webp_prv_1"
+          "cover": "media/xhs/69007ae70000000004011d30.webp"
         }
       ],
-      "dayLabel": "D14"
+      "dayLabel": "D14",
+      "weatherLoc": {
+        "city": "北京",
+        "lat": 39.904,
+        "lon": 116.407
+      }
     }
   ],
   "hotels": [
@@ -3071,8 +3150,8 @@ const tripData={
     "10/08": null
   }
 },E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),km=d=>d.route?.km||0,stay=d=>(d.stay||'未安排住宿').split('·')[0].trim(),title=d=>d.theme.replace(/（[^）]*）/g,'').replace(/\s*·\s*.*/,'').trim(),route=d=>d.route?[d.route.from,...(d.route.via||[]),d.route.to].join(' → '):d.theme.split('·')[0].trim(),role=a=>a.priority||(/可选|替代|如想|若对|时间充裕/.test((a.name||'')+(a.note||''))?'optional':/TG\d|EK\d|机场|取车|还车|预订|门票|火车/.test((a.name||'')+(a.transport||''))?'critical':'recommended'),url=d=>'https://www.google.com/maps/dir/'+(d.route?.mapPts||[d.route?.from,...(d.route?.via||[]),d.route?.to].filter(Boolean)).map(encodeURIComponent).join('/'),dn=(d,i)=>d.dayLabel||`D${i}`,parkLink=p=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((p.name||'')+' '+(p.location||'')),parkingInline=a=>(a.parking&&a.parking.length?a.parking.map(p=>'<div style="margin:5px 0 0 0;padding:6px 9px;background:#eef4f1;border-radius:8px;font-size:13px">🅿️ 停车 '+E(p.name)+' · '+E(p.fee)+' <a href="'+parkLink(p)+'" target="_blank" rel="noopener" style="color:#1d5145;font-weight:800">导航 ↗</a>'+(p.note?'<div class="muted">'+E(p.note)+'</div>':'')+'</div>').join(''):''),stayParkHTML=d=>(d.stayParking?'<div style="margin-top:6px;padding:6px 9px;background:#eef4f1;border-radius:8px;font-size:13px">🅿️ 酒店停车 '+E(d.stayParking.name)+' · '+E(d.stayParking.fee)+(d.stayParking.note?'<div class="muted">'+E(d.stayParking.note)+'</div>':'')+'</div>':'')
-function show(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>{let on=x.dataset.view===v;x.classList.toggle('active',on);if(x.classList.contains('mode'))x.setAttribute('aria-selected',on)});history.replaceState(null,'','#'+v);scrollTo({top:0,behavior:'smooth'})}function card(d,i,past){let o=d.overview||{};return`<button class="day-card${past?' past':''}" data-day="${i}"><div class="top"><span>${dn(d,i)} · ${E(d.date)} ${E(d.weekday)}${past?' · 已过去':''}</span><span>${E(o.region||'行程')}</span></div><h3>${E(title(d))}</h3><div class="route">${E(route(d))}${d.route?` · ${km(d)} km · ${E(d.route.driveTime)}`:''}</div><div class="chips">${(o.highlights||[]).slice(0,3).map(x=>`<span class="chip">${E(x)}</span>`).join('')}</div><div class="stay">⌂ ${E(stay(d))}</div>${o.alert?`<div class="alert">注意：${E(o.alert)}</div>`:''}</button>`}function overview(){let total=tripData.days.reduce((n,d)=>n+km(d),0);drive.textContent=total.toLocaleString()+' km';hotels.textContent=tripData.hotels.length+' 站';metrics.innerHTML=`<div class="metric"><b>${total.toLocaleString()} km</b><span>全程计划驾驶</span></div><div class="metric"><b>${tripData.days.filter(d=>km(d)>=200).length} 天</b><span>200 km 以上路段</span></div><div class="metric"><b>${tripData.hotels.filter(h=>/已预订/.test(h.area)).length} / ${tripData.hotels.length}</b><span>已确认住宿</span></div><div class="metric"><b>¥${(tripData.budget?.total||0).toLocaleString()}</b><span>预估总费用</span></div>`;days.innerHTML=tripData.days.map((d,i)=>({d,i,past:dates(d).every(x=>x<ymd())})).sort((a,b)=>a.past-b.past).map(x=>card(x.d,x.i,x.past)).join('');document.querySelectorAll('.day-card').forEach(x=>x.onclick=()=>{selected=+x.dataset.day;travel();show('travel')})}function item(a){let r=role(a);return`<div class="full"><span class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</span><b> ${E(a.name)}</b><span class="role"> · ${r==='critical'?'必须准时':r==='optional'?'可选':'推荐'}</span>${a.note?`<div class="muted">${E(a.note)}</div>`:''}${parkingInline(a)}${a.meal?`<div class="meal">${E(a.meal.name)} · ${E(a.meal.cuisine)} · ¥${E(a.meal.perPerson)}/人${a.meal.recommended?' · 推荐：'+E(a.meal.recommended):''}</div>`:''}</div>`}function planning(){let all=[];(tripData.flights||[]).forEach(f=>all.push([f.id,'✈',f.label,f.detail,!!f.pdfUrl]));if(tripData.car)all.push([tripData.car.id||'car','🚗',tripData.car.label,tripData.car.detail,!!tripData.car.pdfUrl]);tripData.hotels.forEach((h,i)=>all.push(['hotel-'+i,'⌂',h.name,h.area+(h.parking?' · 🅿️ '+h.parking.name+' '+h.parking.fee:''),/已预订/.test(h.area)||!!h.pdfUrl]));let saved=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');bookings.innerHTML=all.map(x=>`<label class="booking"><input type="checkbox" data-b="${E(x[0])}" ${x[4]||saved[x[0]]?'checked':''}><span><b>${x[1]} ${E(x[2])}</b><span class="sub">${E(x[3])}</span></span><span class="status ${x[4]||saved[x[0]]?'done':''}">${x[4]||saved[x[0]]?'已预订':'待确认'}</span></label>`).join('');document.querySelectorAll('[data-b]').forEach(x=>x.onchange=()=>{let s=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');s[x.dataset.b]=x.checked;localStorage.setItem('germany2026_bookings',JSON.stringify(s));planning()});budget.innerHTML=Object.entries(tripData.budget||{}).filter(([k])=>!['total','perPerson'].includes(k)).map(([,v])=>`<div class="budget"><span>${E(v.items.map(x=>x.name).join('、'))}</span><b>¥${(v.subtotal||0).toLocaleString()}</b></div>`).join('')+`<div class="budget"><b>总计（人均 ¥${(tripData.budget?.perPerson||0).toLocaleString()}）</b><b>¥${(tripData.budget?.total||0).toLocaleString()}</b></div>`;planDays.innerHTML=tripData.days.map((d,i)=>`<details class="panel" open style="margin:12px 0"><summary><b>${dn(d,i)} · ${E(d.date)} ${E(d.weekday)}</b>　${E(d.theme)}</summary><div class="route-box"><strong>${E(route(d))}</strong>${d.route?`<p>${km(d)} km · 驾驶 ${E(d.route.driveTime)}</p>`:''}</div>${d.activities.map(item).join('')}<div class="details"><b>当晚住宿</b><p>${E(d.stay||'—')}</p></div>${stayParkHTML(d)}</details>`).join('');tips.innerHTML=tripData.tips.map(x=>`<li>${E(x)}</li>`).join('');notes.innerHTML=tripData.revisionNotes.map(x=>`<li>${E(x)}</li>`).join('')}
-function ymd(n=new Date()){let p=new Intl.DateTimeFormat('en-CA',{timeZone:tripData.tripTimezone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(n),o=Object.fromEntries(p.map(x=>[x.type,x.value]));return`${o.year}-${o.month}-${o.day}`}function dates(d){return d.activeDates||[`2026-${d.date.replace('/','-')}`]}function auto(n){let t=ymd(n);if(t<tripData.tripStartDate)return 0;if(t>tripData.tripEndDate)return tripData.days.length-1;let i=tripData.days.findIndex(d=>dates(d).includes(t));return i<0?0:i}let selected=auto();function travel(){let d=tripData.days[selected],o=d.overview||{},key=d.activities.filter(a=>!a.meal&&role(a)!=='optional'),opt=d.activities.filter(a=>role(a)==='optional');travelHead.textContent=`${dn(d,selected)} · ${d.date} ${d.weekday}`;travelSub.textContent=`瑞士当地日期 ${ymd()} · ${selected===auto()?'已自动选择今天':'手动查看此日'}`;picker.innerHTML=tripData.days.map((x,i)=>`<button class="${i===selected?'active':''}" data-p="${i}">${dn(x,i)}<br>${E(x.date)}</button>`).join('');document.querySelectorAll('[data-p]').forEach(x=>x.onclick=()=>{selected=+x.dataset.p;travel()});today.innerHTML=`<div class="today"><div><div class="eyebrow">${E(o.region||'今日行程')}</div><h2>${E(title(d))}</h2><p>${E((o.highlights||[]).join(' · '))}</p></div><div class="today-metrics">${d.route?`<span>${km(d)} km</span><span>${E(d.route.driveTime)}</span>`:'<span>市内 / 飞行日</span>'}${d.route?`<a class="primary" target="_blank" rel="noopener" href="${url(d)}">打开导航 ↗</a>`:''}</div></div>${d.route?`<div class="route-box"><strong>🚗 ${E(route(d))}</strong><p>从这里出发；导航、停车和临时道路情况以 Google Maps 为准。</p></div>`:''}${o.alert?`<div class="alert">今日提醒：${E(o.alert)}</div>`:''}<div class="cols" style="margin-top:16px"><div class="panel"><div class="label">Run of show</div><h3>今天的关键安排</h3><ol class="timeline">${key.map(a=>`<li><div class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</div><h4>${E(a.name)}</h4>${a.note?`<p>${E(a.note)}</p>`:''}${parkingInline(a)}</li>`).join('')}</ol>${opt.length?`<details class="details" open><summary>查看 ${opt.length} 个可选安排</summary>${opt.map(item).join('')}</details>`:''}</div><aside class="panel"><div class="label">Tonight</div><h3>当晚落脚</h3><p><b>${E(stay(d))}</b></p><p class="muted">${E(d.stay||'—')}</p>${stayParkHTML(d)}<div class="details"><b>天气（气候参考）</b><p>${d.weather?`${d.weather.high}° / ${d.weather.low}° · ${E(tripData.weather?.clothing||'')}`:'请按实时天气准备'}</p></div><details class="details" open><summary>完整当日安排与餐厅</summary>${d.activities.map(item).join('')}</details></aside></div>`}document.querySelectorAll('[data-view]').forEach(x=>x.onclick=()=>show(x.dataset.view));overview();planning();travel();window.__tripApp={auto,select:i=>{selected=i;travel()}};
+function show(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===v));document.querySelectorAll('[data-view]').forEach(x=>{let on=x.dataset.view===v;x.classList.toggle('active',on);if(x.classList.contains('mode'))x.setAttribute('aria-selected',on)});history.replaceState(null,'','#'+v);scrollTo({top:0,behavior:'smooth'})}function card(d,i,past){let o=d.overview||{};return`<button class="day-card${past?' past':''}" data-day="${i}"><div class="top"><span>${dn(d,i)} · ${E(d.date)} ${E(d.weekday)}${past?' · 已过去':''}</span><span>${E(o.region||'行程')}</span></div><h3>${E(title(d))}</h3><div class="route">${E(route(d))}${d.route?` · ${km(d)} km · ${E(d.route.driveTime)}`:''}</div><div class="chips">${(o.highlights||[]).slice(0,3).map(x=>`<span class="chip">${E(x)}</span>`).join('')}</div><div class="stay">⌂ ${E(stay(d))}</div><div class="weather" data-wx="${i}">—</div>${o.alert?`<div class="alert">注意：${E(o.alert)}</div>`:''}</button>`}function overview(){let total=tripData.days.reduce((n,d)=>n+km(d),0);drive.textContent=total.toLocaleString()+' km';hotels.textContent=tripData.hotels.length+' 站';metrics.innerHTML=`<div class="metric"><b>${total.toLocaleString()} km</b><span>全程计划驾驶</span></div><div class="metric"><b>${tripData.days.filter(d=>km(d)>=200).length} 天</b><span>200 km 以上路段</span></div><div class="metric"><b>${tripData.hotels.filter(h=>/已预订/.test(h.area)).length} / ${tripData.hotels.length}</b><span>已确认住宿</span></div><div class="metric"><b>¥${(tripData.budget?.total||0).toLocaleString()}</b><span>预估总费用</span></div>`;days.innerHTML=tripData.days.map((d,i)=>({d,i,past:dates(d).every(x=>x<ymd())})).sort((a,b)=>a.past-b.past).map(x=>card(x.d,x.i,x.past)).join('');document.querySelectorAll('.day-card').forEach(x=>x.onclick=()=>{selected=+x.dataset.day;travel();show('travel')})}function item(a){let r=role(a);return`<div class="full"><span class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</span><b> ${E(a.name)}</b><span class="role"> · ${r==='critical'?'必须准时':r==='optional'?'可选':'推荐'}</span>${a.note?`<div class="muted">${E(a.note)}</div>`:''}${parkingInline(a)}${a.meal?`<div class="meal">${E(a.meal.name)} · ${E(a.meal.cuisine)} · ¥${E(a.meal.perPerson)}/人${a.meal.recommended?' · 推荐：'+E(a.meal.recommended):''}</div>`:''}</div>`}function planning(){let all=[];(tripData.flights||[]).forEach(f=>all.push([f.id,'✈',f.label,f.detail,!!f.pdfUrl]));if(tripData.car)all.push([tripData.car.id||'car','🚗',tripData.car.label,tripData.car.detail,!!tripData.car.pdfUrl]);tripData.hotels.forEach((h,i)=>all.push(['hotel-'+i,'⌂',h.name,h.area+(h.parking?' · 🅿️ '+h.parking.name+' '+h.parking.fee:''),/已预订/.test(h.area)||!!h.pdfUrl]));let saved=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');bookings.innerHTML=all.map(x=>`<label class="booking"><input type="checkbox" data-b="${E(x[0])}" ${x[4]||saved[x[0]]?'checked':''}><span><b>${x[1]} ${E(x[2])}</b><span class="sub">${E(x[3])}</span></span><span class="status ${x[4]||saved[x[0]]?'done':''}">${x[4]||saved[x[0]]?'已预订':'待确认'}</span></label>`).join('');document.querySelectorAll('[data-b]').forEach(x=>x.onchange=()=>{let s=JSON.parse(localStorage.getItem('germany2026_bookings')||'{}');s[x.dataset.b]=x.checked;localStorage.setItem('germany2026_bookings',JSON.stringify(s));planning()});budget.innerHTML=Object.entries(tripData.budget||{}).filter(([k])=>!['total','perPerson'].includes(k)).map(([,v])=>`<div class="budget"><span>${E(v.items.map(x=>x.name).join('、'))}</span><b>¥${(v.subtotal||0).toLocaleString()}</b></div>`).join('')+`<div class="budget"><b>总计（人均 ¥${(tripData.budget?.perPerson||0).toLocaleString()}）</b><b>¥${(tripData.budget?.total||0).toLocaleString()}</b></div>`;planDays.innerHTML=tripData.days.map((d,i)=>`<details class="panel" open style="margin:12px 0"><summary><b>${dn(d,i)} · ${E(d.date)} ${E(d.weekday)}</b>　${E(d.theme)}</summary><div class="route-box"><strong>${E(route(d))}</strong>${d.route?`<p>${km(d)} km · 驾驶 ${E(d.route.driveTime)}</p>`:''}</div>${d.activities.map(item).join('')}<div class="details"><b>当晚住宿</b><p>${E(d.stay||'—')}</p></div>${stayParkHTML(d)}</details>`).join('');tips.innerHTML=tripData.tips.map(x=>`<li>${E(x)}</li>`).join('');notes.innerHTML=tripData.revisionNotes.map(x=>`<li>${E(x)}</li>`).join('')}
+function ymd(n=new Date()){let p=new Intl.DateTimeFormat('en-CA',{timeZone:tripData.tripTimezone,year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(n),o=Object.fromEntries(p.map(x=>[x.type,x.value]));return`${o.year}-${o.month}-${o.day}`}function dates(d){return d.activeDates||[`2026-${d.date.replace('/','-')}`]}function auto(n){let t=ymd(n);if(t<tripData.tripStartDate)return 0;if(t>tripData.tripEndDate)return tripData.days.length-1;let i=tripData.days.findIndex(d=>dates(d).includes(t));return i<0?0:i}let selected=auto();function travel(){let d=tripData.days[selected],o=d.overview||{},key=d.activities.filter(a=>!a.meal&&role(a)!=='optional'),opt=d.activities.filter(a=>role(a)==='optional');travelHead.textContent=`${dn(d,selected)} · ${d.date} ${d.weekday}`;travelSub.textContent=`瑞士当地日期 ${ymd()} · ${selected===auto()?'已自动选择今天':'手动查看此日'}`;picker.innerHTML=tripData.days.map((x,i)=>`<button class="${i===selected?'active':''}" data-p="${i}">${dn(x,i)}<br>${E(x.date)}</button>`).join('');document.querySelectorAll('[data-p]').forEach(x=>x.onclick=()=>{selected=+x.dataset.p;travel()});today.innerHTML=`<div class="today"><div><div class="eyebrow">${E(o.region||'今日行程')}</div><h2>${E(title(d))}</h2><p>${E((o.highlights||[]).join(' · '))}</p></div><div class="today-metrics">${d.route?`<span>${km(d)} km</span><span>${E(d.route.driveTime)}</span>`:'<span>市内 / 飞行日</span>'}${d.route?`<a class="primary" target="_blank" rel="noopener" href="${url(d)}">打开导航 ↗</a>`:''}</div></div>${d.route?`<div class="route-box"><strong>🚗 ${E(route(d))}</strong><p>从这里出发；导航、停车和临时道路情况以 Google Maps 为准。</p></div>`:''}${o.alert?`<div class="alert">今日提醒：${E(o.alert)}</div>`:''}<div class="cols" style="margin-top:16px"><div class="panel"><div class="label">Run of show</div><h3>今天的关键安排</h3><ol class="timeline">${key.map(a=>`<li><div class="time">${E(a.time)}${a.duration?' · '+E(a.duration):''}</div><h4>${E(a.name)}</h4>${a.note?`<p>${E(a.note)}</p>`:''}${parkingInline(a)}</li>`).join('')}</ol>${opt.length?`<details class="details" open><summary>查看 ${opt.length} 个可选安排</summary>${opt.map(item).join('')}</details>`:''}</div><aside class="panel"><div class="label">Tonight</div><h3>当晚落脚</h3><p><b>${E(stay(d))}</b></p><p class="muted">${E(d.stay||'—')}</p>${stayParkHTML(d)}<div class="details"><b>今日天气（实时）</b><p id="travelWeather" data-wx="${selected}">加载中…</p><p class="muted">气候参考：${d.weather?`${d.weather.high}° / ${d.weather.low}° · ${E(tripData.weather?.clothing||'')}`:'请按实时天气准备'}</p></div><details class="details" open><summary>完整当日安排与餐厅</summary>${d.activities.map(item).join('')}</details></aside></div>`}document.querySelectorAll('[data-view]').forEach(x=>x.onclick=()=>show(x.dataset.view));overview();planning();travel();window.__tripApp={auto,select:i=>{selected=i;travel()}};
 const geo={"Munich Airport, Germany":[48.354,11.779],"Munich, Germany":[48.137,11.575],"Munich Marriott Hotel, Munich, Germany":[48.177,11.591],"Marienplatz, Munich, Germany":[48.137,11.576],"English Garden, Munich, Germany":[48.153,11.592],"Füssen, Germany":[47.568,10.699],"Lindau, Germany":[47.573,9.696],"Zürich, Switzerland":[47.374,8.541],"Lucerne, Switzerland":[47.052,8.306],"Lungern, Switzerland":[46.786,8.161],"Thun, Switzerland":[46.758,7.628],"Brienz, Switzerland":[46.754,8.035],"Spiez, Switzerland":[46.686,7.680],"Interlaken, Switzerland":[46.686,7.859],"Grindelwald, Switzerland":[46.624,8.037],"Lauterbrunnen, Switzerland":[46.594,7.908],"Bern, Switzerland":[46.948,7.452],"Triberg im Schwarzwald, Germany":[48.128,8.232],"Furtwangen im Schwarzwald, Germany":[48.052,8.207],"Hofgut Sternen Ravennaschlucht, Breitnau, Germany":[47.922,8.086],"Titisee-Neustadt, Germany":[47.917,8.174],"Rothenburg ob der Tauber, Germany":[49.366,10.163],"Hotel-Gasthof Goldener Greifen, Rothenburg ob der Tauber, Germany":[49.377,10.179],"Würzburg, Germany":[49.778,9.943],"Heidelberg, Germany":[49.409,8.695],"Hilton Heidelberg, Germany":[49.405,8.676],"Braubach, Germany":[50.276,7.646],"Boppard, Germany":[50.231,7.591],"Sankt Goar, Germany":[50.150,7.724],"Bacharach, Germany":[50.06,7.768],"Altkölnischer Hof, Bacharach, Germany":[50.060,7.769],"Oberwesel, Germany":[50.108,7.728],"Loreley, Sankt Goarshausen, Germany":[50.139,7.729],"Rüdesheim am Rhein, Germany":[50.03,7.89],"Frankfurt, Germany":[50.110,8.682],"Frankfurt Airport, Germany":[50.024,8.555]};window.addEventListener('load',()=>{if(!window.L){fallback.textContent='路线图暂不可用；下方行程卡保留全部起终点、里程和导航入口。';return}let p=[];tripData.days.forEach(d=>(d.route?.mapPts||[]).forEach(n=>{if(geo[n]&&(!p.length||p[p.length-1].n!==n))p.push({n,ll:geo[n]})}));if(!p.length)return;let m=L.map('tripMap',{scrollWheelZoom:false});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(m);let l=L.polyline(p.map(x=>x.ll),{color:'#1d5145',weight:4,opacity:.8}).addTo(m);p.forEach((x,i)=>{if(i===0||i===p.length-1||i%4===0)L.circleMarker(x.ll,{radius:5,color:'#bd6c31',fillColor:'#fff',fillOpacity:1,weight:2}).addTo(m).bindTooltip(x.n)});m.fitBounds(l.getBounds(),{padding:[28,28]});fallback.remove()});
 document.addEventListener('DOMContentLoaded',()=>{tripData.days.forEach((d,i)=>{if(!d.xhs?.length)return;let box=document.querySelectorAll('#planDays details .details')[i];if(box)box.insertAdjacentHTML('beforeend',`<b>调研参考</b><ul>${d.xhs.map(x=>`<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> · ${E(x.takeaway)}</li>`).join('')}</ul>`)});if(tripData.alternatives?.length)notes.insertAdjacentHTML('beforeend',`<li><b>未纳入目的地评估</b><ul>${tripData.alternatives.map(x=>`<li><b>${E(x.place)}</b> ${E(x.verdict)} · ${E(x.reason)}</li>`).join('')}</ul></li>`)})
 document.addEventListener('DOMContentLoaded',()=>{planDays.insertAdjacentHTML('beforebegin','<div class="day-tools"><button id="expandDays" type="button">全部展开</button><button id="collapseDays" type="button">全部折叠</button></div>');let all=[...document.querySelectorAll('#planDays>details')];expandDays.onclick=()=>all.forEach(x=>x.open=true);collapseDays.onclick=()=>all.forEach(x=>x.open=false);tripData.days.forEach((d,i)=>{let detail=all[i],box=detail.querySelector('.details'),posts=(d.xhs||[]).map(x=>`<a class="xhs-card" href="${E(x.url)}" target="_blank" rel="noopener"><div class="xhs-cover">${E(x.src||'小红书精选')} · ${E(x.likes||'推荐')} 赞</div><div class="xhs-body"><b>${E(x.title)}</b><span>${E(x.takeaway)}</span></div></a>`).join(''),foods=d.activities.filter(x=>x.meal).slice(0,2).map(x=>`<div class="xhs-card food-card"><div class="xhs-cover">今日吃什么 · ¥${E(x.meal.perPerson)}/人</div><div class="xhs-body"><b>${E(x.meal.name)}</b><span>${E(x.meal.cuisine)} · ${E(x.meal.recommended||x.meal.location)}</span></div></div>`).join('');box.insertAdjacentHTML('afterend',`<div class="day-map" data-day-map="${i}"></div>${posts||foods?`<div class="xhs-grid">${posts}${foods}</div>`:''}`);detail.addEventListener('toggle',()=>{let el=detail.querySelector('[data-day-map]');if(!detail.open||el.dataset.ready||!window.L)return;let p=(d.route?.mapPts||[]).map(n=>geo[n]).filter(Boolean);if(!p.length){el.textContent='本日无自驾路线地图。';return}let m=L.map(el,{scrollWheelZoom:false});L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors'}).addTo(m);let l=L.polyline(p,{color:'#1d5145',weight:4}).addTo(m);L.marker(p[0]).addTo(m);L.marker(p[p.length-1]).addTo(m);m.fitBounds(l.getBounds(),{padding:[26,26]});el.dataset.ready='1'})})})

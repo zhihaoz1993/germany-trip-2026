@@ -202,6 +202,43 @@
     if (routeBox && section.classList.contains('active')) setTimeout(() => drawDrivingMap(document.getElementById('activeDayMap'), day), 0);
   };
 
+  const WMO = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌦️',56:'🌧️',57:'🌧️',61:'🌧️',63:'🌧️',65:'🌧️',66:'🌧️',67:'🌧️',71:'🌨️',73:'🌨️',75:'🌨️',77:'🌨️',80:'🌦️',81:'🌧️',82:'🌧️',85:'🌨️',86:'🌨️',95:'⛈️',96:'⛈️',97:'⛈️',99:'⛈️'};
+  const weatherCache = new Map();
+  const fetchWeather = day => {
+    const loc = day.weatherLoc;
+    if (!loc) return Promise.resolve(null);
+    const key = `${loc.lat},${loc.lon}`;
+    if (weatherCache.has(key)) return Promise.resolve(weatherCache.get(key));
+    return fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=${encodeURIComponent(tripData.tripTimezone || 'Europe/Zurich')}&forecast_days=16`)
+      .then(r => r.ok ? r.json() : Promise.reject(new Error('weather unavailable')))
+      .then(data => {
+        const d = data.daily;
+        const out = {};
+        d.time.forEach((t, i) => { out[t] = { code: d.weather_code[i], hi: Math.round(d.temperature_2m_max[i]), lo: Math.round(d.temperature_2m_min[i]), rain: d.precipitation_probability_max[i] }; });
+        weatherCache.set(key, out);
+        return out;
+      })
+      .catch(() => { weatherCache.set(key, null); return null; });
+  };
+  const fmtWeather = (day, forecast) => {
+    if (!day.weatherLoc) return '—';
+    const dateStr = `2026-${day.date.replace('/', '-')}`;
+    const w = forecast && forecast[dateStr];
+    if (!w || w.code == null) {
+      return day.weather ? `${day.weather.icon === 'partlyCloudy' ? '⛅' : '🌤️'} ${day.weather.high}° / ${day.weather.low}°（气候）` : '—';
+    }
+    return `${WMO[w.code] || '🌡️'} ${w.hi}° / ${w.lo}°${w.rain != null && w.rain >= 30 ? ` · 降水 ${w.rain}%` : ''}`;
+  };
+  const applyWeather = () => {
+    const forecasts = tripData.days.map(fetchWeather);
+    Promise.all(forecasts).then(fcs => {
+      tripData.days.forEach((day, i) => {
+        const label = fmtWeather(day, fcs[i]);
+        document.querySelectorAll(`[data-wx="${i}"]`).forEach(el => { el.textContent = `${day.weatherLoc ? day.weatherLoc.city + ' ' : ''}${label}`; });
+      });
+    });
+  };
+
   const init = () => {
     const carBooking = document.querySelector('[data-b="car"]');
     if (carBooking) {
@@ -218,6 +255,7 @@
       if (event.target.closest('.day-card')) setTimeout(renderTravelExtras, 0);
     });
     if (document.getElementById('travel').classList.contains('active')) travel();
+    applyWeather();
     window.addEventListener('load', renderOverviewDrivingMap, { once: true });
   };
   if (document.readyState !== 'complete') document.addEventListener('DOMContentLoaded', init);
