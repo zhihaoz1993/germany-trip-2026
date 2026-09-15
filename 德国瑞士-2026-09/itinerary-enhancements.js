@@ -220,21 +220,39 @@
       })
       .catch(() => { weatherCache.set(key, null); return null; });
   };
-  const fmtWeather = (day, forecast) => {
-    if (!day.weatherLoc) return '—';
+  const wxParts = (day, forecast) => {
+    if (!day.weatherLoc) return null;
     const dateStr = `2026-${day.date.replace('/', '-')}`;
     const w = forecast && forecast[dateStr];
-    if (!w || w.code == null) {
-      return day.weather ? `${day.weather.icon === 'partlyCloudy' ? '⛅' : '🌤️'} ${day.weather.high}° / ${day.weather.low}°（气候）` : '—';
+    if (w && w.code != null && w.hi != null) {
+      return { icon: WMO[w.code] || '🌡️', hi: w.hi, lo: w.lo, rain: w.rain, live: true };
     }
-    return `${WMO[w.code] || '🌡️'} ${w.hi}° / ${w.lo}°${w.rain != null && w.rain >= 30 ? ` · 降水 ${w.rain}%` : ''}`;
+    if (day.weather && day.weather.high != null) {
+      return { icon: day.weather.icon === 'partlyCloudy' ? '⛅' : '🌤️', hi: day.weather.high, lo: day.weather.low, rain: null, live: false };
+    }
+    return null;
   };
   const applyWeather = () => {
     const forecasts = tripData.days.map(fetchWeather);
     Promise.all(forecasts).then(fcs => {
       tripData.days.forEach((day, i) => {
-        const label = fmtWeather(day, fcs[i]);
-        document.querySelectorAll(`[data-wx="${i}"]`).forEach(el => { el.textContent = `${day.weatherLoc ? day.weatherLoc.city + ' ' : ''}${label}`; });
+        const p = wxParts(day, fcs[i]);
+        const city = day.weatherLoc ? day.weatherLoc.city : '';
+        if (!p) {
+          document.querySelectorAll(`[data-wx="${i}"]`).forEach(el => { el.textContent = ''; });
+          return;
+        }
+        const rainTxt = p.live && p.rain != null && p.rain >= 30 ? ` · 降水 ${p.rain}%` : '';
+        const liveTag = p.live ? '' : '（气候）';
+        const full = `${p.icon} ${p.hi}°${p.live ? '（白天）/ ' + p.lo + '°（夜）' : ' / ' + p.lo + '°'}`;
+        document.querySelectorAll(`[data-wx="${i}"]`).forEach(el => {
+          if (el.classList.contains('wx-badge')) {
+            el.textContent = `${p.icon} ${p.hi}°`;
+            el.title = `${city} ${full}${rainTxt}${liveTag}`;
+          } else {
+            el.textContent = `${city} ${full}${rainTxt}${liveTag}`;
+          }
+        });
       });
     });
   };
