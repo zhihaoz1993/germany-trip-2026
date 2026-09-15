@@ -1838,7 +1838,7 @@
     "driveTime": "约3小时10分",
     "mapPts": [
      "Hofgut Sternen Ravennaschlucht, Breitnau, Germany",
-     "Würzburg, Germany"
+     "AC Hotel Würzburg, Würzburg, Germany"
     ]
    },
    "xhs": [
@@ -1888,8 +1888,8 @@
      "takeaway": "雪球是油炸面团球（原味/巧克力/杏仁），买一个分食即可；配法兰肯西万尼白葡萄酒"
     }
    ],
-   "stay": "Hotel Würzburger Hof（维尔茨堡霍夫酒店）· 维尔茨堡 (Würzburg) · 10/3 入住，10/4 退房 · 建议预订（原罗滕堡改期）",
-   "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20W%C3%BCrzburger%20Hof%2C%20W%C3%BCrzburg",
+   "stay": "AC Hotel Würzburg（万豪 AC by Marriott）· 维尔茨堡 (Würzburg) · 10/3 入住，10/4 退房 · 已预订 ✅",
+   "stayUrl": "https://www.google.com/maps/search/?api=1&query=AC+Hotel+W%C3%BCrzburg+Schweinfurter+Stra%C3%9Fe+12+97080+W%C3%BCrzburg",
    "stayParking": {
     "name": "酒店停车安排",
     "fee": "到店前向酒店确认",
@@ -2801,13 +2801,13 @@
    }
   },
   {
-   "name": "Hotel Würzburger Hof（维尔茨堡霍夫酒店）",
-   "area": "维尔茨堡 (Würzburg) · 1晚 10/3–10/4 · 建议预订（原罗滕堡住宿改期，需取消 Goldener Greifen）",
+   "name": "AC Hotel Würzburg（万豪 AC by Marriott）",
+   "area": "维尔茨堡 (Würzburg) · 1晚 10/3–10/4 · 万豪系 · 已预订 ✅",
    "pricePerNight": 1000,
-   "highlights": "市中心传统酒店，近主教宫与老美因桥。维尔茨堡无万豪系酒店（最近万豪在法兰克福/纽伦堡，约1小时车程），故选当地口碑酒店。请取消原 Rothenburg 的 Hotel-Gasthof Goldener Greifen（免费取消截至 9/25）。",
+   "highlights": "万豪 AC by Marriott 品牌（万豪旅享家可积分）；10/3 15:00 入住，10/4 12:00 退房，1晚；Schweinfurter Straße 12, 97080 Würzburg；近老城，可步行至主教宫与老美因桥。",
    "rating": "4.2",
-   "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20W%C3%BCrzburger%20Hof%2C%20W%C3%BCrzburg",
-   "bookedAddress": "",
+   "bookingUrl": "https://www.google.com/maps/search/?api=1&query=AC+Hotel+W%C3%BCrzburg+Schweinfurter+Stra%C3%9Fe+12+97080+W%C3%BCrzburg",
+   "bookedAddress": "Schweinfurter Straße 12, 97080 Würzburg, Germany",
    "pdfUrl": "",
    "parking": {
     "name": "酒店停车安排",
@@ -2914,7 +2914,7 @@
      "cost": 1451
     },
     {
-     "name": "Hotel Würzburger Hof 1晚（10/3–10/4，建议预订；原罗滕堡 Goldener Greifen 改期）",
+     "name": "AC Hotel Würzburg 1晚（10/3–10/4，万豪系，已预订）",
      "cost": 1087
     },
     {

@@ -16,6 +16,7 @@
     'Hotel-Gasthof Goldener Greifen, Rothenburg ob der Tauber, Germany': [49.3766351, 10.1795978],
     'Hilton Heidelberg, Germany': [49.404, 8.681],
     'Würzburg, Germany': [49.794, 9.929],
+    'AC Hotel Würzburg, Würzburg, Germany': [49.7986676, 9.9481902],
     'Rothenburg ob der Tauber, Germany': [49.376, 10.179],
     'Altkölnischer Hof, Bacharach, Germany': [50.0600942, 7.7678767],
     'Braubach, Germany': [50.273, 7.645],
