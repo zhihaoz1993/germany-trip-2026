@@ -221,11 +221,12 @@
       return {
         icon: WMO[w.code] || '🌡️', hi: w.hi, lo: w.lo, rain: w.rain, live: true,
         wind: w.wind, gust: w.gust, aqi: w.aqi, aqiLevel: w.aqiLevel, pm25: w.pm25,
-        pollenLevel: w.pollenLevel, pollen: w.pollen
+        pollenLevel: w.pollenLevel, pollen: w.pollen,
+        hourly: w.hourly || null
       };
     }
     if (day.weather && day.weather.high != null) {
-      return { icon: day.weather.icon === 'partlyCloudy' ? '⛅' : '🌤️', hi: day.weather.high, lo: day.weather.low, rain: null, live: false, wind: null, gust: null, aqi: null, aqiLevel: null, pm25: null, pollenLevel: null, pollen: null };
+      return { icon: day.weather.icon === 'partlyCloudy' ? '⛅' : '🌤️', hi: day.weather.high, lo: day.weather.low, rain: null, live: false, wind: null, gust: null, aqi: null, aqiLevel: null, pm25: null, pollenLevel: null, pollen: null, hourly: null };
     }
     return null;
   };
@@ -235,12 +236,25 @@
     const pl = p.pollenLevel != null && p.pollenLevel > 0 ? `花粉 ${POLLEN_LABEL[p.pollenLevel]}` : '';
     return [a, pl].filter(Boolean).join(' · ');
   };
+  const hourIcon = c => WMO[c] || '🌡️';
+  const renderWxStrip = (el, p, city) => {
+    const rainTxt = p.live && p.rain != null && p.rain >= 30 ? ` · 降水 ${p.rain}%` : '';
+    const liveTag = p.live ? '' : '（气候）';
+    const extras = [windTxt(p), airTxt(p)].filter(Boolean).join(' · ');
+    const hours = p.hourly && p.hourly.length
+      ? p.hourly.filter(x => x.t != null).slice(0, 24).map(x =>
+          `<div class="wx-hour"><div class="h">${String(x.h).padStart(2, '0')}时</div><div class="ic">${hourIcon(x.c)}</div><div class="t">${x.t}°</div>${x.p != null && x.p >= 30 ? `<div class="p">${x.p}%</div>` : ''}</div>`).join('')
+      : '';
+    el.innerHTML = `<div class="weather-summary"><b>${p.icon} ${p.hi}°（白天）/ ${p.lo}°（夜）</b><span class="muted">${city}${rainTxt}${liveTag}</span>${extras ? `<span class="muted">${extras}</span>` : ''}</div>${hours ? `<div class="wx-hours">${hours}</div>` : ''}`;
+  };
   const renderWxEl = (el, p, city) => {
     const rainTxt = p.live && p.rain != null && p.rain >= 30 ? ` · 降水 ${p.rain}%` : '';
     const liveTag = p.live ? '' : '（气候）';
     const full = `${p.icon} ${p.hi}°${p.live ? '（白天）/ ' + p.lo + '°（夜）' : ' / ' + p.lo + '°'}`;
     const extras = [windTxt(p), airTxt(p)].filter(Boolean).join(' · ');
-    if (el.classList.contains('wx-badge')) {
+    if (el.id === 'weatherStrip') {
+      renderWxStrip(el, p, city);
+    } else if (el.classList.contains('wx-badge')) {
       el.textContent = `${p.icon} ${p.hi}°`;
       el.title = `${city} ${full}${rainTxt}${liveTag}${extras ? ' · ' + extras : ''}`;
     } else if (el.id === 'travelWeather') {

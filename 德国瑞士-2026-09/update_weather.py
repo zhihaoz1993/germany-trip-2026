@@ -102,6 +102,22 @@ def openmeteo_airquality(lat, lon):
     return out
 
 
+def openmeteo_hourly(lat, lon):
+    u = (f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}"
+         f"&hourly=temperature_2m,precipitation_probability,weather_code"
+         f"&timezone={TZ}&forecast_days=16")
+    d = get(u)["hourly"]
+    out = defaultdict(list)
+    for i, t in enumerate(d["time"]):
+        out[t[:10]].append({
+            "h": int(t[11:13]),
+            "t": round(d["temperature_2m"][i]) if d["temperature_2m"][i] is not None else None,
+            "p": d["precipitation_probability"][i],
+            "c": d["weather_code"][i],
+        })
+    return {k: v for k, v in out.items()}
+
+
 def pollen_level(grains):
     if grains is None or grains <= 0:
         return 0
@@ -148,10 +164,16 @@ def main():
             except Exception as e:
                 print(f"air-quality error {ck}: {e}", file=sys.stderr)
                 aq = {}
-            cache[ck] = {"om": om, "mn": mn, "aq": aq}
+            try:
+                hr = openmeteo_hourly(lat, lon)
+            except Exception as e:
+                print(f"hourly error {ck}: {e}", file=sys.stderr)
+                hr = {}
+            cache[ck] = {"om": om, "mn": mn, "aq": aq, "hr": hr}
         om = cache[ck]["om"]
         mn = cache[ck]["mn"]
         aq = cache[ck]["aq"]
+        hr = cache[ck]["hr"]
 
         entry = {"city": city}
         omday = om.get(date)
@@ -171,6 +193,9 @@ def main():
             })
         else:
             entry["live"] = False
+
+        if hr.get(date):
+            entry["hourly"] = hr[date]
 
         aqday = aq.get(date)
         if aqday:
