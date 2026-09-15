@@ -237,6 +237,30 @@
    "stayUrl": "https://www.google.com/maps/search/?api=1&query=Munich+Marriott+Hotel",
    "xhs": [
     {
+     "source": "YouTube",
+     "type": "video",
+     "title": "慕尼黑自由行：5个必去市中心景点 + BMW世界",
+     "likes": "1.2万",
+     "url": "https://www.youtube.com/watch?v=YN8-wS0--xU",
+     "cover": "https://i.ytimg.com/vi/YN8-wS0--xU/maxresdefault.jpg",
+     "takeaway": "慕尼黑市中心景点视频攻略：老城、英国花园、BMW世界动线参考。"
+    },
+    {
+     "source": "Bilibili",
+     "type": "video",
+     "title": "你好，慕尼黑-入境攻略",
+     "likes": "136",
+     "url": "https://www.bilibili.com/video/BV1mktZeqESs",
+     "takeaway": "B站慕尼黑入境攻略：机场到市区、交通卡购买补充。"
+    },
+    {
+     "source": "博客",
+     "title": "2026慕尼黑自由行全攻略（景点/花费/住宿/新天鹅堡交通）",
+     "likes": "博客",
+     "url": "https://lillian.tw/munich/",
+     "takeaway": "博客长文：慕尼黑景点、住宿安全区域、MVV交通分区，与新天鹅堡交通实测。"
+    },
+    {
      "title": "慕尼黑玛利亚广场·雨天也惊艳",
      "likes": "1.2万",
      "url": "https://www.instagram.com/explore/locations/234286/munich-germany/",
@@ -642,6 +666,23 @@
    },
    "xhs": [
     {
+     "source": "YouTube",
+     "type": "video",
+     "title": "新天鹅堡一日攻略：行前必看交通教学",
+     "likes": "2.3万",
+     "url": "https://www.youtube.com/watch?v=VP1Qv12R75g",
+     "cover": "https://i.ytimg.com/vi/VP1Qv12R75g/maxresdefault.jpg",
+     "takeaway": "新天鹅堡一日往返交通教学：邦票、公交、预约时段，出发前必看。"
+    },
+    {
+     "source": "Bilibili",
+     "type": "video",
+     "title": "8分钟看完德国经典古堡新天鹅堡",
+     "likes": "1.6万",
+     "url": "https://www.bilibili.com/video/BV1LT4y1p73e",
+     "takeaway": "B站新天鹅堡速览：内部导览精华，判断要不要进内部。"
+    },
+    {
      "title": "新天鹅堡·玛丽安桥最佳视角",
      "likes": "9800",
      "url": "https://www.instagram.com/explore/tags/neuschwanstein/",
@@ -816,6 +857,23 @@
     ]
    },
    "xhs": [
+    {
+     "source": "YouTube",
+     "type": "video",
+     "title": "苏黎世旅游该做的12件事（景点/美食/游湖/老城）",
+     "likes": "7万",
+     "url": "https://www.youtube.com/watch?v=-mWBONku2jY",
+     "cover": "https://i.ytimg.com/vi/-mWBONku2jY/maxresdefault.jpg",
+     "takeaway": "苏黎世12件事清单：老城、游湖、班霍夫大街，顺路停留参考。"
+    },
+    {
+     "source": "Bilibili",
+     "type": "video",
+     "title": "4K超清 瑞士苏黎世：一天时间请访问这里",
+     "likes": "6.9万",
+     "url": "https://www.bilibili.com/video/BV1EP4y1C7MM",
+     "takeaway": "B站苏黎世4K：爱的迫降取景地、老城动线。"
+    },
     {
      "title": "🇨🇭苏黎世一日游攻略，看一篇就够",
      "likes": "301",
@@ -1048,6 +1106,22 @@
    },
    "xhs": [
     {
+     "source": "YouTube",
+     "type": "video",
+     "title": "瑞士最美城市琉森12个必去景点",
+     "likes": "3.1万",
+     "url": "https://www.youtube.com/watch?v=gBWAt7h1oEc",
+     "cover": "https://i.ytimg.com/vi/gBWAt7h1oEc/maxresdefault.jpg",
+     "takeaway": "琉森12必去：卡佩尔廊桥、狮子纪念碑、穆塞格城墙，顺路一天刚好。"
+    },
+    {
+     "source": "博客",
+     "title": "琉森自由行攻略｜景点、交通、美食全解析",
+     "likes": "博客",
+     "url": "https://shiningchan.com/blog/post/lucerne-travel/",
+     "takeaway": "博客琉森攻略：景点、交通、美食补充，配合行程微调。"
+    },
+    {
      "title": "琉森卡佩尔廊桥·晨雾限定",
      "likes": "8600",
      "url": "https://www.instagram.com/explore/tags/luzern/",
@@ -1251,6 +1325,23 @@
     ]
    },
    "xhs": [
+    {
+     "source": "YouTube",
+     "type": "video",
+     "title": "少女峰 Top of Europe vlog：欧洲之巅",
+     "likes": "8.4万",
+     "url": "https://www.youtube.com/watch?v=g3KXpeeqdIU",
+     "cover": "https://i.ytimg.com/vi/g3KXpeeqdIU/maxresdefault.jpg",
+     "takeaway": "少女峰实拍vlog：上山火车、斯芬克斯观景台、体感与耗时参考。"
+    },
+    {
+     "source": "Bilibili",
+     "type": "video",
+     "title": "懒人登山的最终境界：瑞士少女峰全过程攻略",
+     "likes": "4410",
+     "url": "https://www.bilibili.com/video/BV1BjqUB4Er1",
+     "takeaway": "B站少女峰全过程：火车分段、观景台、票价与预约要点。"
+    },
     {
      "title": "少女峰·Top of Europe 打卡",
      "likes": "2.1万",
@@ -1471,6 +1562,15 @@
    },
    "xhs": [
     {
+     "source": "YouTube",
+     "type": "video",
+     "title": "瑞士伯尔尼自由行完整攻略（景点+最佳观景点+一日路线）",
+     "likes": "9918",
+     "url": "https://www.youtube.com/watch?v=LR1jbUYb6sU",
+     "cover": "https://i.ytimg.com/vi/LR1jbUYb6sU/maxresdefault.jpg",
+     "takeaway": "伯尔尼一日路线：老城、联邦宫、玫瑰园观景点。"
+    },
+    {
      "title": "伯尔尼·被低估的瑞士首都",
      "likes": "5400",
      "url": "https://www.instagram.com/explore/tags/bern/",
@@ -1680,6 +1780,15 @@
    },
    "xhs": [
     {
+     "source": "YouTube",
+     "type": "video",
+     "title": "黑森林秋天自驾：巴登巴登",
+     "likes": "1688",
+     "url": "https://www.youtube.com/watch?v=NxNtpaZLyOI",
+     "cover": "https://i.ytimg.com/vi/NxNtpaZLyOI/hqdefault.jpg",
+     "takeaway": "黑森林自驾实拍：秋色、B500 路段观景参考。"
+    },
+    {
      "title": "黑森林 B500 自驾·马蜂窝路书",
      "likes": "高赞",
      "url": "https://www.mafengwo.cn/search/q.php?q=%E9%BB%91%E6%A3%AE%E6%9E%97%20B500",
@@ -1842,6 +1951,23 @@
     ]
    },
    "xhs": [
+    {
+     "source": "YouTube",
+     "type": "video",
+     "title": "维尔茨堡：玛丽亚堡垒俯瞰城市 + 老美因桥",
+     "likes": "1017",
+     "url": "https://www.youtube.com/watch?v=Bs-blDU1VDA",
+     "cover": "https://i.ytimg.com/vi/Bs-blDU1VDA/maxresdefault.jpg",
+     "takeaway": "维尔茨堡视频：老美因桥、主教宫、玛利亚堡夜景视角。"
+    },
+    {
+     "source": "Bilibili",
+     "type": "video",
+     "title": "4K 维尔茨堡：德国最被低估的宝藏小城",
+     "likes": "3283",
+     "url": "https://www.bilibili.com/video/BV11zUEBEEGa",
+     "takeaway": "B站维尔茨堡4K：凡尔赛级主教宫 + 白葡萄酒 + 大学城氛围。"
+    },
     {
      "title": "不愧是德版《孤独星球》的封面小镇，美翻了！！",
      "likes": "870",
@@ -2017,6 +2143,30 @@
     ]
    },
    "xhs": [
+    {
+     "source": "YouTube",
+     "type": "video",
+     "title": "4K 海德堡一日游：老桥+圣灵大教堂",
+     "likes": "1.5万",
+     "url": "https://www.youtube.com/watch?v=PAyiKJtuOe4",
+     "cover": "https://i.ytimg.com/vi/PAyiKJtuOe4/maxresdefault.jpg",
+     "takeaway": "海德堡4K：老桥、城堡、老城动线，傍晚光线好。"
+    },
+    {
+     "source": "Bilibili",
+     "type": "video",
+     "title": "海德堡：德式浪漫主义的缩影",
+     "likes": "1.4万",
+     "url": "https://www.bilibili.com/video/BV1qspKe8Eqn",
+     "takeaway": "B站海德堡速览：城堡与老桥精华。"
+    },
+    {
+     "source": "博客",
+     "title": "海德堡旅游全攻略：景点、交通、住宿与实用贴士",
+     "likes": "博客",
+     "url": "https://sophiaday.tw/post/642",
+     "takeaway": "博客海德堡攻略：城堡门票€8、老桥免费、哲学家小径体力提醒。"
+    },
     {
      "title": "海德堡·老桥与城堡剪影",
      "likes": "7300",
@@ -2240,6 +2390,15 @@
    },
    "xhs": [
     {
+     "source": "YouTube",
+     "type": "video",
+     "title": "莱茵河游船及河畔小镇：隐藏景点",
+     "likes": "1576",
+     "url": "https://www.youtube.com/watch?v=GLUirXoqAt4",
+     "cover": "https://i.ytimg.com/vi/GLUirXoqAt4/maxresdefault.jpg",
+     "takeaway": "莱茵河游船+小镇实拍：圣戈尔、巴哈拉赫、吕德斯海姆。"
+    },
+    {
      "title": "莱茵河谷古堡·航拍级机位",
      "likes": "6100",
      "url": "https://www.instagram.com/explore/tags/rheingau/",
@@ -2443,6 +2602,15 @@
     ]
    },
    "xhs": [
+    {
+     "source": "YouTube",
+     "type": "video",
+     "title": "法兰克福：欧洲金融之都（4K）",
+     "likes": "609",
+     "url": "https://www.youtube.com/watch?v=s9iGN3L1M2U",
+     "cover": "https://i.ytimg.com/vi/s9iGN3L1M2U/hqdefault.jpg",
+     "takeaway": "法兰克福4K：罗马广场、美因河畔天际线。"
+    },
     {
      "title": "洛蕾莱·莱茵河最浪漫一段",
      "likes": "4200",
