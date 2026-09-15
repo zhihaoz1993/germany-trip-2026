@@ -434,7 +434,9 @@
        "fee": "不建议自驾",
        "note": "啤酒节期间周边封路且停车极贵，强烈建议坐地铁 U4/U5。"
       }
-     ]
+     ],
+     "mapImage": "media/oktoberfest-plan-2026.jpg",
+     "mapCaption": "2026 啤酒节场地平面图（来源：oktoberfest.de）"
     },
     {
      "time": "—",
