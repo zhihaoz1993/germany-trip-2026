@@ -207,10 +207,12 @@
   const AQI_LABEL = {1:'优',2:'良',3:'中等',4:'较差'};
   const POLLEN_LABEL = {0:'无',1:'低',2:'中',3:'高'};
   let weatherLive = null;
-  const fetchWeather = () => fetch('weather_live.json?cb=' + (tripData.generationDate || '1'), { cache: 'no-cache' })
-    .then(r => r.ok ? r.json() : Promise.reject(new Error('weather_live unavailable')))
-    .then(data => { weatherLive = data; return data; })
-    .catch(() => { weatherLive = null; return null; });
+  const loadWeather = () => weatherLive
+    ? Promise.resolve(weatherLive)
+    : fetch('weather_live.json?cb=' + (tripData.generationDate || '1'), { cache: 'no-cache' })
+        .then(r => r.ok ? r.json() : Promise.reject(new Error('weather_live unavailable')))
+        .then(data => { weatherLive = data; return data; })
+        .catch(() => null);
   const wxParts = (day, data) => {
     if (!day.weatherLoc) return null;
     const dateStr = `2026-${day.date.replace('/', '-')}`;
@@ -233,28 +235,28 @@
     const pl = p.pollenLevel != null && p.pollenLevel > 0 ? `花粉 ${POLLEN_LABEL[p.pollenLevel]}` : '';
     return [a, pl].filter(Boolean).join(' · ');
   };
+  const renderWxEl = (el, p, city) => {
+    const rainTxt = p.live && p.rain != null && p.rain >= 30 ? ` · 降水 ${p.rain}%` : '';
+    const liveTag = p.live ? '' : '（气候）';
+    const full = `${p.icon} ${p.hi}°${p.live ? '（白天）/ ' + p.lo + '°（夜）' : ' / ' + p.lo + '°'}`;
+    const extras = [windTxt(p), airTxt(p)].filter(Boolean).join(' · ');
+    if (el.classList.contains('wx-badge')) {
+      el.textContent = `${p.icon} ${p.hi}°`;
+      el.title = `${city} ${full}${rainTxt}${liveTag}${extras ? ' · ' + extras : ''}`;
+    } else if (el.id === 'travelWeather') {
+      el.innerHTML = `<b>${p.icon} ${p.hi}°（白天）/ ${p.lo}°（夜）</b>${rainTxt}${liveTag}<span class="muted" style="display:block">${extras || ''}</span>`;
+    } else {
+      el.textContent = `${city} ${full}${rainTxt}${liveTag}${extras ? ' · ' + extras : ''}`;
+    }
+  };
   const applyWeather = () => {
-    fetchWeather().then(data => {
+    loadWeather().then(data => {
       tripData.days.forEach((day, i) => {
         const p = wxParts(day, data);
         const city = day.weatherLoc ? day.weatherLoc.city : '';
-        if (!p) {
-          document.querySelectorAll(`[data-wx="${i}"]`).forEach(el => { el.textContent = ''; });
-          return;
-        }
-        const rainTxt = p.live && p.rain != null && p.rain >= 30 ? ` · 降水 ${p.rain}%` : '';
-        const liveTag = p.live ? '' : '（气候）';
-        const full = `${p.icon} ${p.hi}°${p.live ? '（白天）/ ' + p.lo + '°（夜）' : ' / ' + p.lo + '°'}`;
-        const extras = [windTxt(p), airTxt(p)].filter(Boolean).join(' · ');
         document.querySelectorAll(`[data-wx="${i}"]`).forEach(el => {
-          if (el.classList.contains('wx-badge')) {
-            el.textContent = `${p.icon} ${p.hi}°`;
-            el.title = `${city} ${full}${rainTxt}${liveTag}${extras ? ' · ' + extras : ''}`;
-          } else if (el.id === 'travelWeather') {
-            el.innerHTML = `<b>${p.icon} ${p.hi}°（白天）/ ${p.lo}°（夜）</b>${rainTxt}${liveTag}<span class="muted" style="display:block">${extras || ''}</span>`;
-          } else {
-            el.textContent = `${city} ${full}${rainTxt}${liveTag}${extras ? ' · ' + extras : ''}`;
-          }
+          if (!p) { el.textContent = ''; return; }
+          renderWxEl(el, p, city);
         });
       });
     });
@@ -270,7 +272,7 @@
     renderAdvanceTickets();
     enhancePlanning();
     const baseTravel = travel;
-    travel = function () { baseTravel(); renderTravelExtras(); };
+    travel = function () { baseTravel(); renderTravelExtras(); applyWeather(); };
     document.querySelectorAll('[data-view="travel"]').forEach(button => button.addEventListener('click', () => setTimeout(renderTravelExtras, 0)));
     document.addEventListener('click', event => {
       if (event.target.closest('.day-card')) setTimeout(renderTravelExtras, 0);
