@@ -43,6 +43,13 @@
    "name": "Brienz Rothorn Bahn 蒸汽齿轨火车",
    "action": "在线选定往返班次；车票包含指定出发时段的座位保证（旺日强烈建议）。",
    "url": "https://shop.brienz-rothorn-bahn.ch/en/ticket-with-seat-guarantee?viewmode=grid"
+  },
+  {
+   "day": "D4 · 09/28",
+   "level": "建议预订",
+   "name": "瑞士高速 e-Vignette 2026（电子高速票）",
+   "action": "入境瑞士前在线购买年度电子高速票（绑定车牌），免去在边境加油站买贴纸；先确认租车公司是否已包含。",
+   "url": "https://via.admin.ch/shop/products"
   }
  ],
  "revisionNotes": [
