@@ -5,7 +5,7 @@
  "tripEndDate": "2026-10-08",
  "tripTimezone": "Europe/Zurich",
  "travelers": "2人 · 自驾",
- "generationDate": "2026-09-20（v7 · 新天鹅堡已购票 + 各景点游客地图 + 打包清单）",
+ "generationDate": "2026-09-20（v8 · Baden-Baden 温泉 + 经典 B500 方案预览）",
  "flights": [
   {
    "id": "flight-out",
@@ -59,6 +59,13 @@
    "url": "https://www.aquaspa.ch/en/huerlimannbad-zuerich/wellness-booking/book-admission/"
   },
   {
+   "day": "D8 · 10/02",
+   "level": "建议预订",
+   "name": "Caracalla Spa Baden-Baden · 温泉池（B500 方案）",
+   "action": "本方案将 10/2 晚改为 Baden-Baden，建议出发前在官网确认 18:30 左右可用入场时段与当日营业时间。优先选 Caracalla（可穿泳衣）；Friedrichsbad 在周五通常为不着泳衣的传统入浴，非本方案首选。注意：这是一项替代方案，须先处理已订 Hofgut Sternen 住宿，再订 Baden-Baden 酒店。",
+   "url": "https://caracalla.de/"
+  },
+  {
    "day": "D4 · 09/28",
    "level": "建议预订",
    "name": "瑞士高速 e-Vignette 2026（电子高速票）",
@@ -79,6 +86,7 @@
   "⑩ v6：机票改订泰国国际航空（经曼谷中转），9/24 傍晚出发、9/25 清晨抵达慕尼黑，Day1 多出大半天改为轻量市区游；返程 10/7 下午 14:45 起飞，法兰克福改为上午晨游；酒店按已确认订单更新：福森→Hotel Sonne（9/27）、因特拉肯两晚→图恩 Hotel Aare Thun（9/29-10/1）、滴滴湖→拉文纳峡谷 Hotel Hofgut Sternen（10/2）；折叠概览升级：直接显示出发地/途经地/当晚酒店/交通方式",
   "⑨ v5：慕尼黑两天按'逛得快'实测节奏加可选项（宁芬堡宫/宝马世界/德意志博物馆/阿桑教堂/哈克桥日落）；修复 D4 主题因内嵌'·'被截断导致苏黎世从标题消失的问题；9/29-10/1 起终点修正为实际住宿地图恩；10/6 终点由法兰克福机场修正为市区 Westin（还车在 10/7）；补全 D1-D14 dayLabel；地图 geo 补充 16 个缺失点位（图恩/布里恩茨/施皮茨/特里贝格/博帕德/圣戈尔/巴哈拉赫/上韦瑟尔/洛蕾莱/法兰克福等）；每日新增小红书高赞笔记与美食/历史类推荐卡片",
   "⑪ v7：新天鹅堡门票已购（9/27 10:00 德语导览 Tour #424 ×2，€47），D3 提前至 07:15 出发；新增各景点官方游客地图（新天鹅堡景区图、维尔茨堡主教宫平面图、少女峰地区全景图、First 徒步地图）与出行打包清单"
+  ,"⑫ v8：Baden-Baden 温泉方案预览——Day8 改沿经典 B500（Triberg→Freudenstadt→Ruhestein/Mummelsee→Baden-Baden）北行，晚间 Caracalla Spa；Day9 由 Baden-Baden 直达 Würzburg。此方案以替换 10/2 Hofgut Sternen 住宿为前提，尚未变更原订单。"
  ],
  "weather": {
   "summary": "9月底-10月初，德瑞秋凉，晴多云为主，山区早晚偏冷（出行日超出15天预报范围，以下为气候均值，出发前请再查实时预报）",
@@ -1749,16 +1757,16 @@
    "date": "10/02",
    "weekday": "周五",
    "overview": {
-    "region": "瑞士 → 黑森林",
+   "region": "瑞士 → 黑森林",
     "highlights": [
      "伯尔尼离境",
      "特里贝格瀑布",
-     "B500 南段景观自驾",
-     "滴滴湖"
+     "经典 B500 Schwarzwaldhochstraße",
+     "Baden-Baden Caracalla Spa"
     ],
-    "alert": "经 B500 南段实际驾车约3小时43分（不含停车）；08:30 前出发，并不要再加莱茵瀑布。"
+    "alert": "Baden-Baden 温泉替代方案：全日约312km/5h05 驾驶（不含停靠），08:00 前出发；须先替换已订 Hofgut Sternen，切勿在同日再加滴滴湖或莱茵瀑布。"
    },
-   "theme": "伯尔尼 (Bern) → 黑森林 (Schwarzwald)（特里贝格 (Triberg)）→ 滴滴湖 (Titisee)",
+   "theme": "伯尔尼 (Bern) → 黑森林 (Schwarzwald) · 经典 B500 → 巴登巴登 (Baden-Baden)",
    "weather": {
     "icon": "partlyCloudy",
     "high": 16,
@@ -1766,17 +1774,17 @@
    },
    "activities": [
     {
-     "time": "09:00",
+     "time": "08:00",
      "name": "伯尔尼 → 特里贝格 Triberg",
-     "duration": "2h",
+     "duration": "约2h",
      "cost": 0,
      "transport": "自驾 175km",
-     "note": "✅ 经伯尔尼中转后车程缩短，无需早起赶路"
+     "note": "按时离开：本日为 B500 北段 + 温泉的长驾驶日；瑞士离境前确认油量与证件。"
     },
     {
-     "time": "11:00",
+     "time": "10:15",
      "name": "世界最大咕咕钟 + 特里贝格瀑布",
-     "duration": "2.5h",
+     "duration": "约1.5h",
      "cost": 130,
      "transport": "步行",
      "note": "瀑布门票约 €8/人；咕咕钟整点报时",
@@ -1791,7 +1799,7 @@
      ]
     },
     {
-     "time": "13:30",
+     "time": "11:45",
      "name": "午餐",
      "meal": {
       "name": "Café Schäfer",
@@ -1802,78 +1810,84 @@
      }
     },
     {
-     "time": "14:30",
-     "name": "特里贝格 → B500 南段（Furtwangen）→ 滴滴湖",
-     "duration": "1h10",
+     "time": "12:30",
+     "name": "特里贝格 → Freudenstadt → 经典 B500 北段 → Baden-Baden",
+     "duration": "约3h05（含短停）",
      "cost": 0,
-     "transport": "自驾约60km",
-     "note": "推荐走 B500 经 Furtwangen：这是与既定黑森林住宿顺路兼容的南段景观路；导航以此途经点为准。",
+     "transport": "自驾约137km",
+     "note": "把导航途经点依次设为 Freudenstadt、Ruhestein、Mummelsee，再到 Baden-Baden，避免被导航切回高速。B500 山路弯多，遇雾/雨不要赶时间；只保留 1–2 个观景短停。",
      "priority": "recommended"
     },
     {
      "time": "15:15",
-     "name": "滴滴湖游船",
-     "duration": "1h",
-     "cost": 120,
-     "transport": "电动游船",
-     "note": "约 €8/人，40分钟环湖",
+     "name": "Ruhestein / Mummelsee 观景短停",
+     "duration": "约30min",
+     "cost": 0,
+     "transport": "自驾停车 + 步行",
+     "note": "二选一短停即可，核心是把经典 Schwarzwaldhochstraße 的山脊景观留给自己；天气差时直接开往酒店。",
      "parking": [
       {
-       "name": "Großparkplatz Titisee P1（湖边）",
-       "location": "Titisee 镇中心/湖边",
-       "fee": "€2/小时 · €9/天封顶（8:00-22:00）",
-       "note": "湖边 Strandbad 停车场最近且最便宜，步行约2-5分钟；旺季午后到",
+       "name": "Mummelsee Visitor Parking",
+       "location": "Schwarzwaldhochstraße B500, Seebach",
+       "fee": "以现场标示为准",
+       "note": "临湖短停；切勿把此站延长为徒步，以免影响温泉预约。",
        "gps": ""
       }
      ]
     },
     {
-     "time": "16:30",
-     "name": "滴滴湖环湖步道 + 湖滨小镇",
-     "duration": "1.5h",
+     "time": "17:00",
+     "name": "抵达 Baden-Baden · 入住 / 停车 / 旧城短走",
+     "duration": "约1h",
      "cost": 0,
-     "transport": "步行",
-     "note": "湖水清澈，黑森林门户"
+     "transport": "自驾 + 步行",
+     "note": "本方案尚未选择新酒店：须先取消或调整 Hofgut Sternen，再预订 Baden-Baden 市中心、步行可到 Caracalla Spa 的住宿。"
     },
     {
      "time": "18:30",
-     "name": "晚餐",
-     "meal": {
-      "name": "Maritim 酒店餐厅",
-      "cuisine": "德式",
-      "perPerson": 30,
-      "recommended": "鳟鱼",
-      "location": "酒店内"
-     }
+     "name": "Caracalla Spa · Baden-Baden 温泉",
+     "duration": "约2h",
+     "cost": 0,
+     "transport": "步行或短程打车至 Römerplatz 1",
+     "priority": "critical",
+     "note": "本方案的核心体验：5,000㎡现代温泉空间，含矿物温泉池、室外区、桑拿与蒸汽浴。穿泳衣；先在官网确认 10/2 时段与票价。若想选 Friedrichsbad，10/2（周五）通常为不着泳衣传统入浴，不建议临时改选。"
     },
     {
-     "time": "20:00",
-     "name": "酒店内 Ravenna Gorge 峡谷步道 + 玻璃工坊（可选）",
-     "duration": "1h",
+     "time": "20:45",
+     "name": "晚餐 · Baden-Baden 旧城",
+     "duration": "约1.25h",
      "cost": 0,
      "transport": "步行",
-     "priority": "optional",
-     "note": "Hofgut Sternen 就在 Ravenna 峡谷入口，是 300 年历史的庄园（energy-autonomous）：谷内 Ravenna 桥/铁路高架桥与瀑布徒步约 40 分钟；庄园还自带玻璃吹制工坊（Glasmanufaktur）与布谷鸟钟房（SteigenHaus）。与 10/2 白天 Triberg 咕咕钟/瀑布有轻度主题重叠，但峡谷夜景与玻璃工坊是独有体验。"
+     "note": "温泉结束后在旧城用餐；不再安排峡谷夜走，给次日去 Würzburg 留出恢复时间。"
     }
    ],
    "route": {
     "from": "伯尔尼 (Bern)",
-    "to": "滴滴湖 (Titisee)",
+    "to": "巴登巴登 (Baden-Baden)",
     "via": [
      "特里贝格 (Triberg)",
-     "B500 南段（Furtwangen）"
+     "Freudenstadt",
+     "B500 Schwarzwaldhochstraße（Ruhestein / Mummelsee）"
     ],
-    "km": 269,
-    "driveTime": "约3小时43分（不含停车）",
+    "km": 312,
+    "driveTime": "约5小时05分（不含停车）",
     "mapPts": [
      "Bern, Switzerland",
      "Triberg im Schwarzwald, Germany",
-     "Furtwangen im Schwarzwald, Germany",
-     "Titisee-Neustadt, Germany",
-     "Hofgut Sternen Ravennaschlucht, Breitnau, Germany"
+     "Freudenstadt, Germany",
+     "Ruhestein, Baiersbronn, Germany",
+     "Mummelsee, Seebach, Germany",
+     "Caracalla Therme, Römerplatz 1, Baden-Baden, Germany"
     ]
    },
    "xhs": [
+    {
+     "source": "官方",
+     "title": "Caracalla Spa · Baden-Baden",
+     "url": "https://caracalla.de/",
+     "takeaway": "本方案的温泉主体验：现代温泉池、室外区、桑拿与蒸汽浴；以官网当天时段与票价为准。",
+     "likes": "预约"
+    },
     {
      "source": "Instagram",
      "title": "黑森林德国",
@@ -1888,13 +1902,13 @@
      "likes": "1688",
      "url": "https://www.youtube.com/watch?v=NxNtpaZLyOI",
      "cover": "https://i.ytimg.com/vi/NxNtpaZLyOI/hqdefault.jpg",
-     "takeaway": "黑森林自驾实拍：秋色、B500 路段观景参考。"
+     "takeaway": "黑森林自驾实拍：秋色、B500 路段观景参考；本日实际开到 Baden-Baden。"
     },
     {
      "title": "黑森林 B500 自驾·马蜂窝路书",
      "likes": "高赞",
      "url": "https://www.mafengwo.cn/search/q.php?q=%E9%BB%91%E6%A3%AE%E6%9E%97%20B500",
-     "takeaway": "马蜂窝黑森林合集补充：B500 南段 Triberg→Titisee 自驾观景位与停车点。",
+     "takeaway": "黑森林 B500 自驾观景位与停车点；本方案取向为经典北段，勿按原 Titisee 终点导航。",
      "source": "马蜂窝",
      "cover": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Triberg%2C_VS_-_Wallfahrtstr_-_Triberg_v_W.jpg/330px-Triberg%2C_VS_-_Wallfahrtstr_-_Triberg_v_W.jpg"
     },
@@ -1943,34 +1957,34 @@
      "takeaway": "特里贝格 Café Schäfer 号称最正宗黑森林蛋糕（樱桃酒味浓）；晚餐试黑森林火腿"
     }
    ],
-   "stay": "Hotel Hofgut Sternen – Ravennaschlucht（拉文纳峡谷霍夫古特斯特恩酒店）· 黑森林 (Schwarzwald) · ¥1,451/晚 · 已预订 ✅",
-   "xhsNote": "小红书常推荐 B500 自驾：本日已将 Triberg→Furtwangen→Titisee 的南段写入导航，和当晚 Hotel Hofgut Sternen 顺路兼容。被广泛称为 Schwarzwaldhochstraße 的经典 Baden-Baden→Ruhestein→Freudenstadt 北段不顺路；完整绕行会明显拉长当日驾驶，建议留待另一次黑森林行程。莱茵瀑布也不再建议加站：会进一步压缩特里贝格与滴滴湖时间。",
-   "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Hofgut%20Sternen%2C%20Ravennaschlucht",
+   "stay": "Baden-Baden 市中心酒店 · 10/2 住宿待订 ⚠️（本方案需替换 Hofgut Sternen 已订订单）",
+   "xhsNote": "这是为 Caracalla Spa 与经典 B500 特别制作的替代方案：从 Triberg 北上，经 Freudenstadt、Ruhestein 与 Mummelsee 到 Baden-Baden。旧方案的 Hofgut Sternen/滴滴湖行程不会与此同日并存；请先确认 Hotel Hofgut Sternen 的取消或改期条件，再订 Baden-Baden 市中心、步行可至 Caracalla 的酒店。",
+   "stayUrl": "https://www.booking.com/searchresults.html?ss=Baden-Baden",
    "stayParking": {
-    "name": "酒店自有停车场",
-    "fee": "免费",
-    "note": "住客免费；旁徒步停车场对日间游客收费€3.50/天"
+    "name": "待选酒店停车",
+    "fee": "预订前确认",
+    "note": "优先筛选有车库或合作停车场的市中心酒店；Caracalla Spa 地址为 Römerplatz 1。"
    },
    "dayLabel": "D8",
    "weatherLoc": {
-    "city": "滴滴湖",
-    "lat": 47.917,
-    "lon": 8.174
+    "city": "巴登巴登",
+    "lat": 48.7606,
+    "lon": 8.2398
    }
   },
   {
    "date": "10/03",
    "weekday": "周六",
    "overview": {
-    "region": "黑森林 → 美因河",
+    "region": "Baden-Baden → 美因河",
     "highlights": [
-     "滴滴湖晨游",
+     "Baden-Baden 旧城晨游",
      "维尔茨堡主教宫",
      "老美因桥日落"
     ],
-    "alert": "改住维尔茨堡后，本日车程约305km/3h10；主教宫周二闭馆（10/3为周六，正常开放）。"
+    "alert": "Baden-Baden 方案下本日约228km/2h21；主教宫周二闭馆（10/3为周六，正常开放）。"
    },
-   "theme": "滴滴湖 (Titisee) → 维尔茨堡 (Würzburg)",
+   "theme": "巴登巴登 (Baden-Baden) → 维尔茨堡 (Würzburg)",
    "weather": {
     "icon": "partlyCloudy",
     "high": 16,
@@ -1979,22 +1993,22 @@
    "activities": [
     {
      "time": "09:00",
-     "name": "滴滴湖晨游 + 湖畔早餐",
-     "duration": "1.5h",
+     "name": "Baden-Baden 晨游 + 早餐",
+     "duration": "1h",
      "cost": 0,
      "transport": "步行",
-     "note": "清晨湖面最平静，最后拍一波黑森林湖景后北上。"
+     "note": "在 Lichtentaler Allee 或旧城简短散步后出发；昨晚温泉后不再安排额外景点。"
     },
     {
-     "time": "10:30",
-     "name": "滴滴湖 → 维尔茨堡",
-     "duration": "3h10",
+     "time": "10:15",
+     "name": "Baden-Baden → 维尔茨堡",
+     "duration": "约2h21",
      "cost": 0,
-     "transport": "自驾 305km",
-     "note": "经 A5/A6 高速北上一路顺；中途服务区休息一次。"
+     "transport": "自驾约228km",
+     "note": "经 A5/A6 北上；较原滴滴湖出发方案少绕行约77km，午后可从容进入主教宫。"
     },
     {
-     "time": "14:00",
+     "time": "12:45",
      "name": "午餐",
      "meal": {
       "name": "Bürgerspital Weinstuben",
@@ -2005,7 +2019,7 @@
      }
     },
     {
-     "time": "15:30",
+     "time": "14:30",
      "name": "维尔茨堡主教宫 Residenz",
      "duration": "1.5h",
      "cost": 150,
@@ -2024,7 +2038,7 @@
      ]
     },
     {
-     "time": "17:30",
+     "time": "16:30",
      "name": "老美因桥 (Alte Mainbrücke) + 玛利亚堡远眺",
      "duration": "1.5h",
      "cost": 0,
@@ -2032,7 +2046,7 @@
      "note": "桥上捧一杯法兰克尼亚葡萄酒看城堡与夕阳是本地传统；日落约18:50（10月初）。"
     },
     {
-     "time": "19:30",
+     "time": "19:00",
      "name": "晚餐",
      "meal": {
       "name": "Backöfele",
@@ -2044,13 +2058,13 @@
     }
    ],
    "route": {
-    "from": "拉文纳峡谷 (Ravennaschlucht)",
+    "from": "巴登巴登 (Baden-Baden)",
     "to": "维尔茨堡 (Würzburg)",
     "via": [],
-    "km": 305,
-    "driveTime": "约3小时10分",
+    "km": 228,
+    "driveTime": "约2小时21分",
     "mapPts": [
-     "Hofgut Sternen Ravennaschlucht, Breitnau, Germany",
+     "Baden-Baden, Germany",
      "AC Hotel Würzburg, Würzburg, Germany"
     ]
    },
@@ -3094,9 +3108,9 @@
   },
   {
    "name": "Hotel Hofgut Sternen – Ravennaschlucht（拉文纳峡谷霍夫古特斯特恩酒店）",
-   "area": "黑森林 (Schwarzwald) · 1晚 10/2 · 已预订 ✅",
+   "area": "黑森林 (Schwarzwald) · 1晚 10/2 · 原已预订 ⚠️（v8 Baden-Baden 方案不使用，先查退改）",
    "pricePerNight": 1451,
-   "highlights": "Booking.com 已确认（10/2 15:00–23:30 入住 – 10/3 11:00 退房，1晚，Large Double Room，2位成人，CNY 1,450.71）;电话 +49 7652 9176601;黑森林内拉文纳峡谷旁，距滴滴湖约15分钟车程;历史悠久的山间旅馆;含停车信息见订单",
+   "highlights": "Booking.com 已确认（10/2 15:00–23:30 入住 – 10/3 11:00 退房，1晚，Large Double Room，2位成人，CNY 1,450.71）;电话 +49 7652 9176601;黑森林内拉文纳峡谷旁，距滴滴湖约15分钟车程。v8 正在展示 Baden-Baden 温泉替代方案，因此此订单须先核对取消/改期条件；未处理前仍为有效原订单。",
    "rating": "4.3",
    "bookingUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Hofgut%20Sternen%2C%20Ravennaschlucht",
    "bookedAddress": "Höllsteig 76, 79874 Breitnau, Germany",
@@ -3217,7 +3231,7 @@
      "cost": 1000
     },
     {
-     "name": "黑森林 Hotel Hofgut Sternen 1晚（已预订）",
+     "name": "Hofgut Sternen 1晚（原已订；v8 Baden-Baden 方案需先退改）",
      "cost": 1451
     },
     {
@@ -3382,7 +3396,7 @@
   }
  ],
  "tips": [
-  "路线逻辑：慕尼黑→福森→(林道/博登湖)→苏黎世→琉森→龙疆→因特拉肯(3天)→伊瑟尔特瓦尔德/施皮茨→伯尔尼→黑森林→罗滕堡→海德堡→莱茵河谷→法兰克福，全程环线无回头路，总里程约1,625km，仅 Day9 约3小时驾驶，其余均在3小时内",
+  "路线逻辑（v8 Baden-Baden 方案）：慕尼黑→福森→(林道/博登湖)→苏黎世→琉森→龙疆→因特拉肯(3天)→伊瑟尔特瓦尔德/施皮茨→伯尔尼→经典 B500→Baden-Baden→维尔茨堡→海德堡→莱茵河谷→法兰克福。全程约1,591km；Day8 为约5小时山路驾驶日，需早出发。",
   "交通费无重叠：全程只租一次车（慕尼黑机场取、法兰克福机场还），德国+瑞士段由同一辆车覆盖；德国高速免费，瑞士只需一张 CHF40 高速年票 Vignette（边境加油站购买贴前挡），除此之外无其他跨国交通费",
   "新天鹅堡、少女峰铁路务必提前在官网购票订时段；少女峰出发前查山顶实时天气摄像头",
   "龙疆打卡（小红书高赞实测）：Kaiserstuhl 观景台拍明信片全景；S弯公路定位 Mülibachersträssli 14；只在公共区域拍摄，勿闯私人领地",
@@ -3397,11 +3411,11 @@
   "酒店万豪系优先：慕尼黑万豪、苏黎世北万怡、伯尔尼 Moxy、法兰克福威斯汀均可累积万豪旅享家积分；海德堡已预订 Hilton Heidelberg；罗滕堡与巴哈拉赫的酒店也已确认；其余目的地保留小红书+Booking口碑优选",
   "线上内容补充（2026-09-09）：浪漫之路官方口径为 Würzburg→Rothenburg→Füssen 主轴；若想把 Day10 放慢，可参考官方路线中的 Dinkelsbühl/Nördlingen，但会不如维尔茨堡顺海德堡",
   "线上内容补充（2026-09-09）：UNESCO/莱茵河谷资料确认核心景观集中在 Bingen/Rüdesheim—Koblenz 约65km；St. Goar—Bacharach 约13km 城堡最密集，已拆成 Day11/Day12 慢游",
-  "线上内容补充（2026-09-09）：黑森林 B500/Schwarzwaldhochstraße 官方与路书均指经典段为 Baden-Baden—Freudenstadt 北段；本行程为住宿顺路只保留 Triberg—Furtwangen—Titisee 南段，北段留作下次专门黑森林线"
+  "线上内容补充（v8）：黑森林 B500/Schwarzwaldhochstraße 的经典段为 Baden-Baden—Freudenstadt。本版将其改为 Day8 的驾驶主线并在 Baden-Baden 泊宿、体验 Caracalla Spa；代价是替换已订 Hofgut Sternen/滴滴湖夜。本方案尚未变更原住宿订单。"
  ],
  "totalDrive": {
-  "km": 1625,
-  "note": "全程自驾总里程约 1,625 公里；除 Day9（滴滴湖→罗滕堡 约3小时）外每日驾驶均在 3 小时内；跨国不换车：同一辆车德瑞两国通用，只需入瑞士时买一张高速年票 Vignette，交通费无重叠"
+  "km": 1591,
+  "note": "v8 Baden-Baden 方案全程自驾总里程约 1,591 公里；Day8（伯尔尼→B500→Baden-Baden）约5小时05分，为唯一明显长驾驶日，Day9 则缩短至约2小时21分。跨国不换车：同一辆车德瑞两国通用，只需入瑞士时买一张高速年票 Vignette，交通费无重叠"
  },
  "alternatives": [
   {
