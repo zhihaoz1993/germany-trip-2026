@@ -36,6 +36,28 @@
     el.replaceWith(next);
     return next;
   };
+  const TILE_LAYERS = [
+    { url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', opts: { subdomains: 'abcd', maxZoom: 19, attribution: '&copy; OpenStreetMap contributors &copy; CARTO' } },
+    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', opts: { maxZoom: 19, attribution: 'Tiles &copy; Esri' } },
+    { url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', opts: { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' } }
+  ];
+  const addBaseTiles = map => {
+    let i = 0;
+    const add = () => {
+      if (i >= TILE_LAYERS.length) return;
+      const t = TILE_LAYERS[i];
+      const layer = L.tileLayer(t.url, t.opts).addTo(map);
+      let switched = false;
+      layer.on('tileerror', () => {
+        if (switched) return;
+        switched = true;
+        map.removeLayer(layer);
+        i += 1;
+        add();
+      });
+    };
+    add();
+  };
   const drawDrivingMap = (mount, day) => {
     mount = cleanMap(mount);
     const points = pointsFor(day);
@@ -49,7 +71,7 @@
       return mount;
     }
     const map = L.map(mount, { scrollWheelZoom: false, attributionControl: true, zoomSnap: .25 });
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' }).addTo(map);
+    addBaseTiles(map);
     const direct = L.polyline(points.map(x => x.ll), { color: '#78978d', weight: 3, dashArray: '7 8', opacity: .8 }).addTo(map);
     L.marker(points[0].ll).addTo(map).bindTooltip('出发');
     L.marker(points[points.length - 1].ll).addTo(map).bindTooltip('抵达');
@@ -101,7 +123,7 @@
       return;
     }
     const map = L.map(mount, { scrollWheelZoom: false, attributionControl: true, zoomSnap: .25 });
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' }).addTo(map);
+    addBaseTiles(map);
     const previewLayers = routeDays.map(({ points }) => L.polyline(points.map(x => x.ll), {
       color: '#78978d', weight: 3, dashArray: '7 8', opacity: .78
     }).addTo(map));
