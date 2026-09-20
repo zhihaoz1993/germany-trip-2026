@@ -198,6 +198,25 @@
     planDays.insertAdjacentHTML('beforebegin', `<section class="ticket-board" id="advanceTickets"><div class="label">Buy ahead</div><h3>这些票请提前处理</h3>${content}</section>`);
   };
 
+  const renderRouteAlternatives = () => {
+    if (!tripData.routeAlternatives?.length || document.getElementById('routeAlternatives')) return;
+    const html = tripData.routeAlternatives.map((alternative, ai) => `
+      <section class="route-alternative" data-alternative="${ai}">
+        <div class="label">Route alternative · 与原计划并列，不替换原计划</div>
+        <div class="alternative-head"><div><h3>${E(alternative.title)}</h3><p><b>${E(alternative.status)}</b> · ${E(alternative.decision)}</p><p class="muted">${E(alternative.why)}</p></div></div>
+        <div class="alternative-days">${(alternative.days || []).map((day, di) => `
+          <article class="alternative-day">
+            <div class="alternative-kicker">${E(day.label)}</div><h4>${E(day.theme)}</h4>
+            <p class="alternative-route">🚗 ${E(day.route?.from || '')}${(day.route?.via || []).length ? ` → ${E((day.route.via || []).join(' → '))}` : ''} → ${E(day.route?.to || '')}</p>
+            <p><b>${E(day.route?.km || '—')} km</b> · 驾驶 ${E(day.route?.driveTime || '—')} · <a href="${E(url({ route: day.route }))}" target="_blank" rel="noopener">打开导航 ↗</a></p>
+            <ul>${(day.highlights || []).map(item => `<li>${E(item)}</li>`).join('')}</ul>
+            <div class="alternative-stay">当晚：${E(day.stay || '—')}</div>
+            <div class="day-map alternative-map" data-alt-map="${ai}" data-alt-day="${di}" aria-label="${E(day.label)} 备选驾车路线图"></div>
+          </article>`).join('')}</div>
+      </section>`).join('');
+    planDays.insertAdjacentHTML('beforebegin', `<section id="routeAlternatives" class="alternatives-board"><div class="label">Compare before changing bookings</div><h3>原计划已保留；这里是可切换的 Baden-Baden 方案</h3><p>上方日程仍是已订 Hofgut Sternen / Titisee 的原计划。以下地图与时间表只用于比较，不会把任何预订标记为已改。</p>${html}</section>`);
+  };
+
   const enhancePlanning = () => {
     [...document.querySelectorAll('#planDays > details')].forEach((detail, index) => {
       const day = tripData.days[index];
@@ -235,6 +254,11 @@
       const day = tripData.days[index];
       const mount = detail.querySelector('[data-day-map]');
       if (day?.route && mount) drawDrivingMap(mount, day);
+    });
+    planning.querySelectorAll('[data-alt-map]').forEach(mount => {
+      const alternative = tripData.routeAlternatives?.[Number(mount.dataset.altMap)];
+      const day = alternative?.days?.[Number(mount.dataset.altDay)];
+      if (day?.route) drawDrivingMap(mount, { route: day.route });
     });
   };
   const schedulePlanningMaps = () => requestAnimationFrame(() =>
@@ -356,6 +380,9 @@
   };
 
   const init = () => {
+    const alternativeStyle = document.createElement('style');
+    alternativeStyle.textContent = `.alternatives-board{margin:0 0 24px;padding:20px;border:2px solid #bd6c31;border-radius:16px;background:#fffaf4}.alternatives-board>h3{margin:4px 0 8px}.alternatives-board>p{margin:0 0 16px;color:#52645e}.route-alternative{margin-top:14px;padding-top:14px;border-top:1px solid #eadbb8}.route-alternative h3{margin:5px 0}.route-alternative p{line-height:1.55}.alternative-days{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.alternative-day{border:1px solid #dec9b8;border-radius:12px;background:#fff;padding:14px}.alternative-day h4{margin:4px 0 8px}.alternative-kicker{font-size:12px;font-weight:800;color:#8a4a36}.alternative-route{color:#1d5145;font-weight:700}.alternative-day ul{margin:10px 0;padding-left:18px;font-size:13px;line-height:1.55}.alternative-stay{padding:8px;background:#fff8e9;border-radius:8px;font-size:13px}.alternative-map{height:250px;margin-top:12px}@media(max-width:720px){.alternatives-board{padding:15px}.alternative-days{grid-template-columns:1fr}.alternative-map{height:220px}}`;
+    document.head.appendChild(alternativeStyle);
     const carBooking = document.querySelector('[data-b="car"]');
     if (carBooking) {
       carBooking.checked = true;
@@ -363,6 +390,7 @@
       if (badge) { badge.classList.add('done'); badge.textContent = '已确认'; }
     }
     renderAdvanceTickets();
+    renderRouteAlternatives();
     renderPackingList();
     enhancePlanning();
     document.querySelectorAll('[data-view="planning"]').forEach(button =>
