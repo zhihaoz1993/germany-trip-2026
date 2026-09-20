@@ -177,18 +177,22 @@
   const enhancePlanning = () => {
     [...document.querySelectorAll('#planDays > details')].forEach((detail, index) => {
       const day = tripData.days[index];
-      let map = detail.querySelector('[data-day-map]');
-      if (!map) {
-        detail.insertAdjacentHTML('beforeend', `<div class="day-map" data-day-map="${index}"></div>`);
-        map = detail.querySelector('[data-day-map]');
-      }
-      let next = map.nextElementSibling;
-      if (next?.matches('.xhs-grid,.xhs-carousel')) next.remove();
       const cards = discovery(day);
-      if (cards) map.insertAdjacentHTML('afterend', cards);
-      detail.addEventListener('toggle', () => {
-        if (detail.open) setTimeout(() => drawDrivingMap(detail.querySelector('[data-day-map]'), day), 0);
-      });
+      const hasRoute = day.route && pointsFor(day).length >= 2;
+      if (hasRoute) {
+        let map = detail.querySelector('[data-day-map]');
+        if (!map) {
+          detail.insertAdjacentHTML('beforeend', `<div class="day-map" data-day-map="${index}"></div>`);
+          map = detail.querySelector('[data-day-map]');
+        }
+        if (cards) map.insertAdjacentHTML('afterend', cards);
+        detail.addEventListener('toggle', () => {
+          if (detail.open) setTimeout(() => drawDrivingMap(detail.querySelector('[data-day-map]'), day), 0);
+        });
+      } else {
+        const anchor = detail.querySelector('.details');
+        if (anchor && cards) anchor.insertAdjacentHTML('afterend', cards);
+      }
     });
   };
 
