@@ -2,7 +2,7 @@
   const style = document.createElement('style');
   style.textContent = `.day-map{position:relative}.route-status{position:absolute;z-index:500;left:10px;bottom:10px;margin:0;padding:5px 8px;border-radius:6px;background:#fffdfae8;color:#52645e;font-size:12px;box-shadow:0 2px 8px #17352f22}.ticket-board{margin:0 0 24px;padding:18px 20px;background:#fff8e9;border:1px solid #e7c98f;border-radius:16px}.ticket-board h3{margin:4px 0 9px;font-size:21px}.ticket-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;padding:12px 0;border-top:1px solid #eadbb8}.ticket-item:first-of-type{border-top:0}.ticket-level{padding:3px 7px;border-radius:20px;background:#7b4020;color:#fff;font-size:11px;font-weight:800;white-space:nowrap}.ticket-item a{color:#1d5145;font-weight:800;white-space:nowrap}.ticket-item p{margin:3px 0 0;color:#62726d;font-size:13px}.xhs-carousel{position:relative;margin-top:14px}.xhs-rail{display:flex;gap:12px;overflow-x:auto;padding:2px 1px 10px;scroll-snap-type:x mandatory;scrollbar-width:thin}.xhs-post{display:block;position:relative;flex:0 0 clamp(220px,26vw,300px);scroll-snap-align:start;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--sh)}.xhs-media{position:relative;aspect-ratio:3/4;background:#e8e1d5;overflow:hidden}.xhs-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.xhs-track::-webkit-scrollbar{display:none}.xhs-slide{flex:0 0 100%;width:100%;height:100%;scroll-snap-align:start}.xhs-photo{display:block;width:100%;height:100%;object-fit:cover;background:#e8e1d5}.xhs-media button{position:absolute;z-index:3;top:50%;transform:translateY(-50%);border:0;border-radius:50%;width:30px;height:30px;background:#17352fba;color:#fff;font-size:20px;cursor:pointer}.media-prev{left:8px}.media-next{right:8px}.media-count,.video-badge{position:absolute;z-index:2;right:9px;bottom:9px;padding:3px 7px;border-radius:20px;background:#17352fcc;color:#fff;font-size:11px;font-weight:800}.video-badge{left:9px;right:auto}.xhs-body{padding:11px;font-size:13px}.xhs-body b{display:block;line-height:1.35;margin:5px 0}.xhs-meta{display:flex;justify-content:space-between;gap:6px;color:#8a4a36;font-size:11px;font-weight:800}.food-card{flex-basis:220px;background:#fffaf4}.food-card .xhs-cover{min-height:0;padding:10px;background:linear-gradient(135deg,#bd6c31,#e2a34b)}.travel-discovery{margin-top:16px}.travel-discovery .label{margin-bottom:6px}.route-status a{color:#1d5145;font-weight:800}@media(max-width:720px){.ticket-item{grid-template-columns:1fr}.xhs-post{flex-basis:min(78vw,292px)}}`;
   document.head.appendChild(style);
-  style.textContent += '.xhs-link{display:block;color:inherit;text-decoration:none}.xhs-link:focus-visible{outline:3px solid #d49a56;outline-offset:-3px}.overview-day-pin-shell{background:transparent!important;border:0!important}.overview-day-pin{display:grid;place-items:center;width:31px;height:31px;border:2px solid #fff;border-radius:50%;background:#bd6c31;color:#fff;font:800 11px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;box-shadow:0 2px 7px #17352f66}.day-card.past{opacity:.55;filter:saturate(.6)}.day-card.past .stay{color:#7b4020}.xhs-cover-fill{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;padding:14px;color:#fff;background:linear-gradient(160deg,#e9766c 0%,#c23a52 55%,#8f2440 100%);min-height:0}.xhs-cover-fill b{font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 1px 6px #00000088}.xhs-cover-fill span{font-size:11px;font-weight:800;opacity:.95;text-shadow:0 1px 4px #00000066}.xhs-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#e8e1d5;z-index:1}.xhs-video .xhs-media{aspect-ratio:16/9}' ;
+  style.textContent += '.xhs-link{display:block;color:inherit;text-decoration:none}.xhs-link:focus-visible{outline:3px solid #d49a56;outline-offset:-3px}.overview-day-pin-shell{background:transparent!important;border:0!important}.overview-day-pin{display:grid;place-items:center;width:31px;height:31px;border:2px solid #fff;border-radius:50%;background:#bd6c31;color:#fff;font:800 11px/1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;box-shadow:0 2px 7px #17352f66}.day-card.past{opacity:.55;filter:saturate(.6)}.day-card.past .stay{color:#7b4020}.xhs-cover-fill{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:5px;padding:14px;color:#fff;background:linear-gradient(160deg,#e9766c 0%,#c23a52 55%,#8f2440 100%);min-height:0}.xhs-cover-fill b{font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 1px 6px #00000088}.xhs-cover-fill span{font-size:11px;font-weight:800;opacity:.95;text-shadow:0 1px 4px #00000066}.xhs-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#e8e1d5;z-index:1}.xhs-video .xhs-media{aspect-ratio:16/9}.packing-board{margin:0 0 24px;padding:18px 20px;background:#f0f6f2;border:1px solid #cfe0d6;border-radius:16px}.packing-board h3{margin:4px 0 12px;font-size:21px}.packing-count{font-size:13px;font-weight:800;color:#7b4020;margin-left:6px}.packing-cat{margin:14px 0}.packing-cat-head{display:flex;justify-content:space-between;align-items:center;font-size:15px;color:#1d5145;font-weight:800;margin-bottom:6px}.packing-cat-head span{font-size:12px;color:#62726d;background:#e2ece7;padding:1px 8px;border-radius:12px;font-weight:700}.packing-items{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px}.pack-item{display:flex;align-items:flex-start;gap:8px;font-size:14px;padding:6px 9px;border-radius:9px;background:#fff;border:1px solid #e3ebe6;cursor:pointer}.pack-item input{margin-top:3px;accent-color:#1d5145}.pack-item.done{opacity:.55}.pack-item.done span{text-decoration:line-through}' ;
 
   Object.assign(geo, {
     'Munich Marriott Hotel, Munich, Germany': [48.171, 11.593],
@@ -277,6 +277,35 @@
     });
   };
 
+  const renderPackingList = () => {
+    if (!tripData.packingList?.length || document.getElementById('packingBoard')) return;
+    const saved = JSON.parse(localStorage.getItem('germany2026_packing') || '{}');
+    const total = tripData.packingList.reduce((n, c) => n + (c.items?.length || 0), 0);
+    const html = tripData.packingList.map((cat, ci) => `
+      <div class="packing-cat">
+        <div class="packing-cat-head"><b>${E(cat.category)}</b><span>${(cat.items || []).length} 项</span></div>
+        <ul class="packing-items">${(cat.items || []).map((it, ii) => {
+          const key = ci + '-' + ii;
+          return `<li><label class="pack-item${saved[key] ? ' done' : ''}"><input type="checkbox" data-pk="${key}" ${saved[key] ? 'checked' : ''}><span>${E(it)}</span></label></li>`;
+        }).join('')}</ul>
+      </div>`).join('');
+    planDays.insertAdjacentHTML('afterend', `<section class="packing-board" id="packingBoard"><div class="label">Pack smart</div><h3>出行打包清单<span class="packing-count" id="packingCount"></span></h3>${html}</section>`);
+    const boxes = [...document.querySelectorAll('#packingBoard input[type=checkbox]')];
+    const update = () => {
+      const s = JSON.parse(localStorage.getItem('germany2026_packing') || '{}');
+      let done = 0;
+      boxes.forEach(cb => {
+        if (cb.checked) { s[cb.dataset.pk] = true; done += 1; } else { delete s[cb.dataset.pk]; }
+        cb.closest('.pack-item').classList.toggle('done', cb.checked);
+      });
+      localStorage.setItem('germany2026_packing', JSON.stringify(s));
+      const el = document.getElementById('packingCount');
+      if (el) el.textContent = `${done} / ${total} 已打包`;
+    };
+    boxes.forEach(cb => cb.addEventListener('change', update));
+    update();
+  };
+
   const init = () => {
     const carBooking = document.querySelector('[data-b="car"]');
     if (carBooking) {
@@ -285,6 +314,7 @@
       if (badge) { badge.classList.add('done'); badge.textContent = '已确认'; }
     }
     renderAdvanceTickets();
+    renderPackingList();
     enhancePlanning();
     const baseTravel = travel;
     travel = function () { baseTravel(); renderTravelExtras(); applyWeather(); };
