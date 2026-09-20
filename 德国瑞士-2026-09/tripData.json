@@ -54,6 +54,13 @@
   {
    "day": "D4 · 09/28",
    "level": "建议预订",
+   "name": "Hürlimannbad & Spa Zürich · 夜间温泉 + 屋顶 Infinity Pool",
+   "action": "建议预约 20:00 入场时段：温泉 + 屋顶池 CHF 35/人（两人 CHF 70）；营业至 22:00、泳池 21:30 结束。若想做约2小时的 Roman-Irish ritual，晚间档 CHF 54/人。已确认 2026/09/28 不在年度维护期内；指定日期与时段不可改期，建议尽早订。",
+   "url": "https://www.aquaspa.ch/en/huerlimannbad-zuerich/wellness-booking/book-admission/"
+  },
+  {
+   "day": "D4 · 09/28",
+   "level": "建议预订",
    "name": "瑞士高速 e-Vignette 2026（电子高速票）",
    "action": "入境瑞士前在线购买年度电子高速票（绑定车牌），免去在边境加油站买贴纸；先确认租车公司是否已包含。",
    "url": "https://via.admin.ch/shop/products"
@@ -772,9 +779,9 @@
     "highlights": [
      "林道港口灯塔",
      "博登湖短停",
-     "抵达苏黎世"
+     "Hürlimannbad 屋顶温泉"
     ],
-    "alert": "跨境前确认租车合同与瑞士高速年票。"
+    "alert": "跨境前确认租车合同与瑞士高速年票；温泉须按入场时段预约。"
    },
    "theme": "福森 (Füssen) → 林道/博登湖 (Lindau/Bodensee) → 苏黎世 (Zürich)",
    "weather": {
@@ -864,13 +871,22 @@
      }
     },
     {
+     "time": "20:00",
+     "name": "Hürlimannbad & Spa Zürich · 温泉 + 屋顶 Infinity Pool",
+     "duration": "约1.5h",
+     "cost": 35,
+     "transport": "从老城/湖边乘电车或打车前往 Brandschenkestrasse 150；结束后回 Courtyard Zurich North",
+     "priority": "recommended",
+     "note": "真正的城市温泉体验：前 Hürlimann 啤酒厂石拱空间，35–41°C 矿物温泉水与屋顶无边池。建议预约 20:00 “8 o’clock Wellness”（CHF 35/人；泳池 21:30 结束、全馆 22:00 关门）；如偏好完整 Roman-Irish ritual，预留约2小时并改订 CHF 54/人晚间档。带泳衣；毛巾、浴袍、泳衣均可现场租用。"
+    },
+    {
      "time": "20:30",
-     "name": "苏黎世湖畔夜游（可选）",
+     "name": "苏黎世湖畔夜游（温泉不去时的备选）",
      "duration": "45min",
      "cost": 0,
      "transport": "步行",
      "priority": "optional",
-     "note": "饭后沿 Bürkliplatz 湖边散步看老城灯火；明天长途驾驶日，量力而行"
+     "note": "饭后沿 Bürkliplatz 湖边散步看老城灯火；与 Hürlimannbad 二选一，明天长途驾驶日，量力而行"
     }
    ],
    "route": {

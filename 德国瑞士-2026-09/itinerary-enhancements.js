@@ -206,15 +206,36 @@
           map = detail.querySelector('[data-day-map]');
         }
         if (cards) map.insertAdjacentHTML('afterend', cards);
-        const draw = () => { if (detail.open) drawDrivingMap(detail.querySelector('[data-day-map]'), day); };
-        detail.addEventListener('toggle', () => setTimeout(draw, 0));
-        if (detail.open) setTimeout(draw, 0);
+        const draw = () => {
+          if (detail.open && document.getElementById('planning')?.classList.contains('active')) {
+            requestAnimationFrame(() => requestAnimationFrame(() =>
+              drawDrivingMap(detail.querySelector('[data-day-map]'), day)
+            ));
+          }
+        };
+        detail.addEventListener('toggle', draw);
       } else {
         const anchor = detail.querySelector('.details');
         if (anchor && cards) anchor.insertAdjacentHTML('afterend', cards);
       }
     });
   };
+
+  // Leaflet measures its container at creation time. The planning view is hidden
+  // with display:none on first load, so maps must be initialized only after the
+  // view has been made visible (two frames lets layout settle on desktop/mobile).
+  const renderVisiblePlanningMaps = () => {
+    const planning = document.getElementById('planning');
+    if (!planning?.classList.contains('active')) return;
+    [...planning.querySelectorAll('#planDays > details[open]')].forEach((detail, index) => {
+      const day = tripData.days[index];
+      const mount = detail.querySelector('[data-day-map]');
+      if (day?.route && mount) drawDrivingMap(mount, day);
+    });
+  };
+  const schedulePlanningMaps = () => requestAnimationFrame(() =>
+    requestAnimationFrame(renderVisiblePlanningMaps)
+  );
 
   const renderTravelExtras = () => {
     const day = tripData.days[selected];
@@ -340,6 +361,10 @@
     renderAdvanceTickets();
     renderPackingList();
     enhancePlanning();
+    document.querySelectorAll('[data-view="planning"]').forEach(button =>
+      button.addEventListener('click', schedulePlanningMaps)
+    );
+    if (document.getElementById('planning').classList.contains('active')) schedulePlanningMaps();
     const baseTravel = travel;
     travel = function () { baseTravel(); renderTravelExtras(); applyWeather(); };
     document.querySelectorAll('[data-view="travel"]').forEach(button => button.addEventListener('click', () => setTimeout(renderTravelExtras, 0)));
