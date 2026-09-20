@@ -55,13 +55,8 @@
     L.marker(points[points.length - 1].ll).addTo(map).bindTooltip('抵达');
     map.fitBounds(direct.getBounds(), { padding: [26, 26] });
     status(mount, '正在加载实际驾车线路…');
-    const coordinates = points.map(x => `${x.ll[1]},${x.ll[0]}`).join(';');
-    fetch(`https://router.project-osrm.org/route/v1/driving/${coordinates}?overview=full&geometries=geojson`)
-      .then(r => r.ok ? r.json() : Promise.reject(new Error('route unavailable')))
-      .then(data => {
-        const line = data.routes?.[0]?.geometry?.coordinates;
-        if (!line?.length) throw new Error('route unavailable');
-        const driving = line.map(([lng, lat]) => [lat, lng]);
+    fetchDriving(points)
+      .then(driving => {
         direct.setLatLngs(driving).setStyle({ color: '#1d5145', weight: 4, dashArray: null, opacity: 1 });
         map.fitBounds(direct.getBounds(), { padding: [26, 26] });
         mount.querySelector('.route-status')?.remove();
@@ -74,9 +69,12 @@
     return mount;
   };
 
-  const fetchDrivingLine = points => {
+  const fetchDriving = points => {
     const coordinates = points.map(x => `${x.ll[1]},${x.ll[0]}`).join(';');
-    return fetch(`https://router.project-osrm.org/route/v1/driving/${coordinates}?overview=full&geometries=geojson`)
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    return fetch(`https://router.project-osrm.org/route/v1/driving/${coordinates}?overview=full&geometries=geojson`, { signal: ctrl.signal })
+      .finally(() => clearTimeout(timer))
       .then(r => r.ok ? r.json() : Promise.reject(new Error('route unavailable')))
       .then(data => {
         const line = data.routes?.[0]?.geometry?.coordinates;
@@ -128,7 +126,7 @@
       }).addTo(map).bindTooltip(`${label} · ${day.date}<br>${E(day.route.from)} → ${E(day.route.to)}`);
     });
     status(mount, '正在加载各日实际驾车道路…');
-    Promise.allSettled(routeDays.map(({ points }) => fetchDrivingLine(points)))
+    Promise.allSettled(routeDays.map(({ points }) => fetchDriving(points)))
       .then(results => {
         let loaded = 0;
         results.forEach((result, index) => {
@@ -186,9 +184,9 @@
           map = detail.querySelector('[data-day-map]');
         }
         if (cards) map.insertAdjacentHTML('afterend', cards);
-        detail.addEventListener('toggle', () => {
-          if (detail.open) setTimeout(() => drawDrivingMap(detail.querySelector('[data-day-map]'), day), 0);
-        });
+        const draw = () => { if (detail.open) drawDrivingMap(detail.querySelector('[data-day-map]'), day); };
+        detail.addEventListener('toggle', () => setTimeout(draw, 0));
+        if (detail.open) setTimeout(draw, 0);
       } else {
         const anchor = detail.querySelector('.details');
         if (anchor && cards) anchor.insertAdjacentHTML('afterend', cards);
