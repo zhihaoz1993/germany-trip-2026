@@ -1629,10 +1629,10 @@ const tripData={
         "region": "图恩湖 → 伯尔尼",
         "highlights": [
           "布里恩茨蒸汽火车",
-          "图恩湖游船",
-          "因特拉肯"
+          "因特拉肯",
+          "伯尔尼老城"
         ],
-        "alert": "布里恩茨蒸汽火车已订 11:45 上山；上午坐图恩湖观光游船到施皮茨换火车赴布里恩茨。按当日 BLS/SBB 时刻表确认早班船与接驳。"
+        "alert": "1 Oct 预报全天阴、午后渐有雨；洛特峰山顶或在云中(登山火车体验仍佳，出发前查山顶摄像头)。车留图恩，返程默认乘火车(阴雨下游船观景价值低)；若放晴可改施皮茨→图恩游船。"
       },
       "theme": "图恩湖游船 (Thunersee) · 施皮茨 (Spiez) · 布里恩茨蒸汽火车 (Brienz Rothorn Bahn) → 伯尔尼 (Bern)",
       "weather": {
@@ -1642,37 +1642,29 @@ const tripData={
       },
       "activities": [
         {
-          "time": "09:10",
-          "name": "图恩湖游船 图恩 → 施皮茨（观光航段）",
-          "duration": "50min",
-          "cost": 430,
-          "transport": "BLS 游船",
-          "note": "施皮茨已在 Day6 游览，本段作为图恩湖观光游船赏湖(经奥伯霍芬城堡、施皮茨湖湾)，到施皮茨直接换乘火车赴布里恩茨。车留图恩(酒店 Freienhof 车库/站前 P+Rail)，傍晚坐火车回图恩取车。从 Hotel Aare Thun 步行约10分钟到图恩码头 Schiffländte；PanoramaCard 船票8折。⚠️ 先在 bls-schiff.ch 确认约09:10 图恩→施皮茨班次",
+          "time": "10:24",
+          "name": "火车 图恩 → 布里恩茨（因特拉肯东站换乘）",
+          "duration": "57min",
+          "cost": 480,
+          "transport": "火车 IC81 + PELIX",
+          "note": "车留图恩(Freienhof 车库/站前 P+Rail)。**IC81 图恩 10:24 (Gl.1)** → 因特拉肯东站 10:59 (Gl.7)；**同站换乘约5分钟, Gl.7 → Gl.4**；**PELIX 因特拉肯东站 11:04 (Gl.4)** → 布里恩茨 11:21 (Gl.1)。⚠️ 更正：换乘在因特拉肯东站，不是施皮茨。SBB App 购点对点票约CHF24/人；想更从容可乘 09:54 班次(到布里恩茨 10:53)",
           "parking": [
             {
-              "name": "酒店旁公共车库 Freienhof（车停这，坐船/火车游湖）",
+              "name": "酒店旁公共车库 Freienhof（本日车停这，坐火车游玩）",
               "location": "Freienhofgasse 3, 3600 Thun",
               "fee": "CHF 20/24小时",
-              "note": "与酒店电梯直通；本日车留此处，傍晚坐火车回图恩取车",
+              "note": "与酒店电梯直通；傍晚火车回图恩站取车再自驾伯尔尼",
               "gps": ""
             }
           ]
         },
         {
-          "time": "10:15",
-          "name": "火车 施皮茨 → 布里恩茨",
-          "duration": "45min",
-          "cost": 270,
-          "transport": "火车(经因特拉肯)",
-          "note": "施皮茨→因特拉肯→布里恩茨约40–45min，火车频繁(约每半小时一班)；SBB App 购点对点票约CHF16/人；到布里恩茨留出赶 11:45 蒸汽火车的时间"
-        },
-        {
-          "time": "11:00",
-          "name": "布里恩茨湖畔 + 木雕之乡",
-          "duration": "45min",
+          "time": "11:21",
+          "name": "布里恩茨湖畔（登车前快速一看）",
+          "duration": "20min",
           "cost": 0,
           "transport": "步行",
-          "note": "上蒸汽火车前逛布里恩茨码头、绿松石色湖水与木雕工坊(如 Jobin)"
+          "note": "上蒸汽火车前在码头看一眼绿松石色布里恩茨湖、木雕之乡(如 Jobin)；11:45 前到 BRB 站台"
         },
         {
           "time": "11:45",
@@ -1680,7 +1672,7 @@ const tripData={
           "duration": "3h",
           "cost": 1800,
           "transport": "百年蒸汽齿轮火车",
-          "note": "已订 11:45 最早上行班：单程约1小时爬升至2244m，一路一步一景，山顶俯瞰布里恩茨湖全景；含 CHF8/人保座。此线 PanoramaCard 不含。约12:45 到顶、山顶餐厅午餐，约14:00 下山、~15:00 回布里恩茨"
+          "note": "已订 11:45 最早上行班：单程约1小时爬升至2244m，山顶俯瞰布里恩茨湖；含 CHF8/人保座。此线 PanoramaCard 不含。⚠️ 1 Oct 山顶预报整日云量高、或在云雾中——登山火车与沿途景致仍值得，出发前查山顶实时摄像头；约12:45 到顶午餐、~15:00 回布里恩茨"
         },
         {
           "time": "13:00",
@@ -1689,49 +1681,67 @@ const tripData={
             "name": "Rothorn Kulm 山顶餐厅",
             "cuisine": "瑞士山间简餐",
             "perPerson": 35,
-            "recommended": "热汤、Rösti，布里恩茨湖全景露台",
+            "recommended": "热汤、Rösti，布里恩茨湖全景露台(晴则有景)",
             "location": "Brienzer Rothorn 山顶"
           }
         },
         {
-          "time": "15:05",
-          "name": "火车 布里恩茨 → 因特拉肯",
-          "duration": "20min",
+          "time": "15:02",
+          "name": "火车 布里恩茨 → 因特拉肯东站",
+          "duration": "22min",
           "cost": 130,
-          "transport": "火车",
-          "note": "约CHF11/人；到因特拉肯东站"
+          "transport": "火车 R70",
+          "note": "R70 布里恩茨 15:02 (Gl.1) → 因特拉肯东站 15:24 (Gl.4)；若下山稍晚可乘 15:27 / 15:37 班次"
         },
         {
           "time": "15:30",
-          "name": "因特拉肯 何维克街 + 荷黑马特草坪",
-          "duration": "45min",
+          "name": "因特拉肯停留（约1小时）",
+          "duration": "1–1.5h",
           "cost": 0,
           "transport": "步行",
-          "note": "Höheweg + Höhematte 大草坪远眺少女峰、滑翔伞降落点；东站↔西站沿 Höheweg 步行约1.5km/15–20min，无需坐车。⏱️ 时间富余可乘布里恩茨湖游船顺访吉斯巴赫瀑布+古董缆车(见'这些票请提前处理')"
+          "note": "Höheweg + Höhematte 大草坪远眺少女峰、老城 Unterseen；东站↔西站沿 Höheweg 步行约1.5km/15–20min，无需坐车。停留时长取决于下面选 A 还是 B"
         },
         {
-          "time": "16:20",
-          "name": "火车 因特拉肯 → 图恩取车",
-          "duration": "30min",
+          "time": "16:29",
+          "name": "返程A（短停·推荐）：火车 因特拉肯东 → 图恩取车",
+          "duration": "34min",
           "cost": 220,
-          "transport": "火车",
-          "note": "回图恩站取车(车库就在站/酒店旁)；约CHF15/人"
+          "transport": "火车 IC61",
+          "note": "因特拉肯约停1小时。**IC61 因特拉肯东 16:29 (Gl.7) → 图恩 17:03 (Gl.3)**；取车自驾图恩→伯尔尼约30min，**Bern ~17:35**，日落(~19:00)前从容抵达"
         },
         {
-          "time": "17:00",
-          "name": "图恩 → 伯尔尼",
+          "time": "16:59",
+          "name": "返程B（长停）：火车 因特拉肯东 → 图恩取车",
+          "duration": "35min",
+          "cost": 220,
+          "transport": "火车 ICE",
+          "priority": "optional",
+          "note": "因特拉肯多留约35分钟(共~1.5h)。**ICE 因特拉肯东 16:59 → 图恩 17:34**；自驾→**Bern ~18:05**，仍在日落前。A、B 二选一"
+        },
+        {
+          "time": "—",
+          "name": "返程备选（晴天）：图恩湖游船 施皮茨 → 图恩",
+          "duration": "~28min 船程",
+          "cost": 430,
+          "transport": "BLS 游船",
+          "priority": "optional",
+          "note": "☀️ 若当天意外放晴、想赏湖：改乘游船代替 A/B 火车——布里恩茨 15:37→施皮茨 16:23(火车)，游船 施皮茨 16:52→图恩 17:20，再自驾伯尔尼。PanoramaCard 船票8折。⚠️ 阴雨/大雾则走火车(游船观景价值大打折扣)；以当日 BLS 时刻表为准"
+        },
+        {
+          "time": "17:10",
+          "name": "图恩取车 → 伯尔尼",
           "duration": "30min",
           "cost": 0,
           "transport": "自驾 30km",
-          "note": "取车开往伯尔尼 Moxy Bern Expo 入住"
+          "note": "回图恩站/酒店车库取车，自驾伯尔尼 Moxy Bern Expo(A：~17:35 / B：~18:05 抵达)"
         },
         {
-          "time": "17:45",
+          "time": "18:00",
           "name": "伯尔尼老城傍晚(轻量)",
           "duration": "1.5h",
           "cost": 0,
           "transport": "步行",
-          "note": "伯尔尼取精华：Zytglogge 钟楼整点木偶报时、Bundesterrasse 联邦宫观景平台俯瞰阿勒河大拐弯、熊公园(免费)；老城为 UNESCO 世界遗产，可留次日出发前再补逛",
+          "note": "Zytglogge 钟楼整点木偶报时、Bundesterrasse 联邦宫观景平台俯瞰阿勒河大拐弯、熊公园(免费)；老城为 UNESCO 世界遗产，可留次日出发前再补逛",
           "parking": [
             {
               "name": "Bahnhof Parking Bern",
@@ -1743,7 +1753,7 @@ const tripData={
           ]
         },
         {
-          "time": "19:00",
+          "time": "19:30",
           "name": "晚餐",
           "meal": {
             "name": "Café du Commerce",
@@ -1862,7 +1872,7 @@ const tripData={
         }
       ],
       "stay": "Moxy Bern Expo（万豪系）· 伯尔尼 (Bern) · 已预订 ✅（积分兑换）",
-      "xhsNote": "施皮茨已在 Day6 游览，故 D7 不再停施皮茨：车留图恩(酒店 Freienhof 车库/站前 P+Rail)，上午把 图恩→施皮茨 作为图恩湖观光船段赏湖，到施皮茨直接换火车赴布里恩茨赶 11:45 蒸汽火车；下山后到因特拉肯小逛，再坐火车回图恩取车开去伯尔尼——湖景与蒸汽火车都不落下，衔接也稳。⏱️ 关键：确认约 09:10 的图恩→施皮茨早班船(bls-schiff.ch)。🚗 备选：全程自驾。✂️ 更从容：省略因特拉肯散步直接回图恩。",
+      "xhsNote": "本日：图恩坐火车赴布里恩茨(在因特拉肯东站换乘，非施皮茨)→11:45 蒸汽火车→下山后因特拉肯停约1小时→火车回图恩取车→自驾伯尔尼。返程两选：A 短停 16:29→图恩17:03(Bern~17:35，推荐)；B 长停 16:59→图恩17:34(Bern~18:05)，均在日落(~19:00)前。⛅ 1 Oct 预报阴有雨，默认火车返程；若意外放晴可改 施皮茨→图恩 游船赏湖(见'返程备选')。",
       "stayUrl": "https://www.google.com/maps/search/?api=1&query=Moxy+Bern+Expo",
       "stayParking": {
         "name": "酒店自有停车场",
