@@ -49,17 +49,52 @@ const tripData={
       "url": "https://www.schloesser.bayern.de/englisch/palace/objects/jahresk.htm"
     },
     {
-      "day": "D6 · 09/30",
-      "level": "必须预订",
-      "name": "Jungfraujoch – Top of Europe 车票与座位预约",
-      "action": "先购买车票；2026/05/01–10/31 另需 CHF 10 座位预约，锁定 Eigergletscher / Kleine Scheidegg 上行班次。",
+      "day": "D6 晴天备选 · 09/30",
+      "level": "备选(晴天)",
+      "name": "少女峰 Jungfraujoch（晴天备选）",
+      "action": "本行程默认走图恩+施托克峰；若当天天气极好想冲欧洲之巅，改上少女峰：先购车票，2026/05/01–10/31 另需 CHF10 座位预约锁定 Eigergletscher/Kleine Scheidegg 上行班次。",
       "url": "https://www.jungfrau.ch/en-gb/jungfraujoch-top-of-europe/buy-jungfraujoch-ticket/"
+    },
+    {
+      "day": "瑞士段 · D5–D7",
+      "level": "省钱决策",
+      "name": "图恩湖 PanoramaCard + 通票分析（Swiss Pass vs 半价卡）",
+      "action": "住图恩会自动获赠免费 PanoramaCard：免费坐 STI 巴士，图恩湖/布里恩茨湖游船与施托克峰8折，但不含火车、不含布里恩茨蒸汽火车。因全程自驾、瑞士段仅约2天用公交——结论：用 PanoramaCard + 点对点票最省，不必买 Swiss Travel Pass(3天CHF254/人，自驾用不满)或半价卡(CHF150/人，本行程略亏)。仅当启用少女峰晴天备选或大幅增加火车/游船时，改买半价卡才回本(与 PanoramaCard 不可叠加)。",
+      "url": "https://www.thunersee.ch/info-service/gaestekarten/panoramacard-thunersee"
+    },
+    {
+      "day": "D6 · 09/30",
+      "level": "现场/在线",
+      "name": "Stockhornbahn 施托克峰缆车",
+      "action": "往返约CHF62/人；凭图恩湖 PanoramaCard 8折(约CHF50/人)，可现场买；大雾会限运营，出发前查山顶实时摄像头；2026 运营至 11/22。从图恩自驾或火车(约20min)到 Erlenbach 谷站。",
+      "url": "https://stockhorn.ch/inform/timetable-prices/cableway-prices"
+    },
+    {
+      "day": "D7 · 10/01",
+      "level": "现场/在线",
+      "name": "图恩湖游船 BLS（因特拉肯↔施皮茨↔图恩）",
+      "action": "点对点约CHF30–68/人，或 BLS 图恩+布里恩茨湖日票 CHF83/人；凭 PanoramaCard 船票8折。10月初仍为近夏季班次但较疏，务必查当日时刻表与末班回图恩的船。",
+      "url": "https://www.bls-schiff.ch/en/lake-cruise/timetable/boat-schedule"
+    },
+    {
+      "day": "D6–D7",
+      "level": "现场/App",
+      "name": "瑞士段火车 & 巴士（SBB / STI）",
+      "action": "点对点火车票用 SBB Mobile App 或 sbb.ch，可当天买、提前买 Supersaver 更省：D7 图恩→布里恩茨(约50min)、布里恩茨→因特拉肯(约20min)；D6 图恩→埃伦巴赫(如不自驾,约20min)。STI 巴士与 PostAuto 60(施皮茨–莱森根)凭 PanoramaCard 免费；PanoramaCard 不含火车。",
+      "url": "https://www.sbb.ch/en"
+    },
+    {
+      "day": "D7 可选 · 10/01",
+      "level": "可选",
+      "name": "吉斯巴赫瀑布缆车 Giessbachbahn",
+      "action": "1879年欧洲最古老的公共缆车 + 14叠瀑布；乘 BLS 布里恩茨湖游船抵达，缆车往返约CHF12/人；季节性约4–10月，行前查官网。本日较满时可省略。",
+      "url": "https://www.giessbach.ch/"
     },
     {
       "day": "D7 · 10/01",
       "level": "建议预订",
       "name": "Brienz Rothorn Bahn 蒸汽齿轨火车",
-      "action": "在线选定往返班次；车票包含指定出发时段的座位保证（旺日强烈建议）。",
+      "action": "在线选定往返班次(约CHF98/人)并加 CHF8/人座位保证锁定蒸汽班次(旺日强烈建议)；图恩湖 PanoramaCard 不含此线；2026 运营至 10/25。",
       "url": "https://shop.brienz-rothorn-bahn.ch/en/ticket-with-seat-guarantee?viewmode=grid"
     },
     {
@@ -161,7 +196,8 @@ const tripData={
     "⑩ v6：机票改订泰国国际航空（经曼谷中转），9/24 傍晚出发、9/25 清晨抵达慕尼黑，Day1 多出大半天改为轻量市区游；返程 10/7 下午 14:45 起飞，法兰克福改为上午晨游；酒店按已确认订单更新：福森→Hotel Sonne（9/27）、因特拉肯两晚→图恩 Hotel Aare Thun（9/29-10/1）、滴滴湖→拉文纳峡谷 Hotel Hofgut Sternen（10/2）；折叠概览升级：直接显示出发地/途经地/当晚酒店/交通方式",
     "⑨ v5：慕尼黑两天按'逛得快'实测节奏加可选项（宁芬堡宫/宝马世界/德意志博物馆/阿桑教堂/哈克桥日落）；修复 D4 主题因内嵌'·'被截断导致苏黎世从标题消失的问题；9/29-10/1 起终点修正为实际住宿地图恩；10/6 终点由法兰克福机场修正为市区 Westin（还车在 10/7）；补全 D1-D14 dayLabel；地图 geo 补充 16 个缺失点位（图恩/布里恩茨/施皮茨/特里贝格/博帕德/圣戈尔/巴哈拉赫/上韦瑟尔/洛蕾莱/法兰克福等）；每日新增小红书高赞笔记与美食/历史类推荐卡片",
     "⑪ v7：新天鹅堡门票已购（9/27 10:00 德语导览 Tour #424 ×2，€47），D3 提前至 07:15 出发；新增各景点官方游客地图（新天鹅堡景区图、维尔茨堡主教宫平面图、少女峰地区全景图、First 徒步地图）与出行打包清单",
-    "⑫ v8：Baden-Baden 温泉方案预览——Day8 改沿经典 B500（Triberg→Freudenstadt→Ruhestein/Mummelsee→Baden-Baden）北行，晚间 Caracalla Spa；Day9 由 Baden-Baden 直达 Würzburg。此方案以替换 10/2 Hofgut Sternen 住宿为前提，尚未变更原订单。"
+    "⑫ v8：Baden-Baden 温泉方案预览——Day8 改沿经典 B500（Triberg→Freudenstadt→Ruhestein/Mummelsee→Baden-Baden）北行，晚间 Caracalla Spa；Day9 由 Baden-Baden 直达 Würzburg。此方案以替换 10/2 Hofgut Sternen 住宿为前提，尚未变更原订单。",
+    "v6：Day6/7 重构为图恩湖主题——D6 图恩古城+施托克峰，D7 图恩湖游船+施皮茨+因特拉肯+布里恩茨蒸汽火车→伯尔尼(车留图恩)；少女峰改晴天备选；新增交通通票分析(PanoramaCard / 半价卡 / Swiss Travel Pass)与火车·巴士·游船·吉斯巴赫购票信息"
   ],
   "weather": {
     "summary": "9月底-10月初，德瑞秋凉，晴多云为主，山区早晚偏冷（出行日超出15天预报范围，以下为气候均值，出发前请再查实时预报）",
@@ -1356,15 +1392,15 @@ const tripData={
       "date": "09/30",
       "weekday": "周三",
       "overview": {
-        "region": "少女峰地区",
+        "region": "图恩湖 · 图恩 + 施托克峰",
         "highlights": [
-          "少女峰铁路",
-          "欧洲之巅",
-          "哈德昆日落"
+          "图恩古城与城堡",
+          "施托克峰全景台",
+          "Stockhornsee 口袋湖"
         ],
-        "alert": "出发前先查山顶实时天气；First/雪朗峰可替代。"
+        "alert": "施托克峰大雾会限运营，出发前查山顶实时摄像头；少女峰改为晴天备选。"
       },
-      "theme": "少女峰 (Jungfraujoch) · 欧洲之巅",
+      "theme": "图恩古城 (Thun) · 施托克峰 (Stockhorn) — 图恩湖畔阿尔卑斯全景",
       "weather": {
         "icon": "partlyCloudy",
         "high": 15,
@@ -1372,112 +1408,88 @@ const tripData={
       },
       "activities": [
         {
-          "time": "07:30",
-          "name": "因特拉肯 → 格林德瓦",
-          "duration": "40min",
+          "time": "09:00",
+          "name": "图恩古城 + 图恩城堡 Schloss Thun",
+          "duration": "2.5h",
+          "cost": 170,
+          "transport": "步行(从酒店)",
+          "note": "从 Hotel Aare Thun 步行即达：上主街 Obere Hauptgasse 独特的'屋顶人行道'(店铺屋顶上的架空步道)；登12世纪城堡塔楼俯瞰图恩湖与阿尔卑斯(博物馆约CHF10/人)；Bälliz 阿勒河中岛购物街；夏道公园 Schadau + Scherzligen 教堂是隔湖眺望雪山的明信片机位"
+        },
+        {
+          "time": "11:45",
+          "name": "图恩 → 埃伦巴赫 Erlenbach",
+          "duration": "25min",
           "cost": 0,
-          "transport": "自驾",
-          "note": "⚠️ 出发前查 Jungfrau 官网山顶实时摄像头，大雾则与 Day7 互换",
+          "transport": "自驾 20km",
+          "note": "施托克峰缆车谷站；也可从图恩坐火车约20分钟到 Erlenbach im Simmental(方向 Zweisimmen)",
           "parking": [
             {
-              "name": "Parkhaus Grindelwald Terminal",
-              "location": "Grundstrasse 54, 3818 Grindelwald",
-              "fee": "CHF 1（0–2小时）· CHF 15（2–24小时）",
-              "note": "就在艾格快线站旁步行约1分钟；去少女峰建议全天停 CHF 15",
+              "name": "Stockhornbahn Talstation Erlenbach 停车场",
+              "location": "Stockhornstrasse 30, 3762 Erlenbach im Simmental",
+              "fee": "约 CHF 5/天",
+              "note": "就在缆车谷站旁，步行约1分钟",
               "gps": ""
             }
           ]
         },
         {
-          "time": "08:30",
-          "name": "少女峰铁路（艾格快线+登山火车）",
-          "duration": "5h",
-          "cost": 3000,
-          "transport": "缆车+齿轮火车",
-          "note": "往返约 CHF190/人；山顶冰宫、斯芬克斯观景台；山上 0~-5°C 需厚外套",
-          "mapImage": "media/jungfraujoch-map.jpg",
-          "mapCaption": "少女峰地区官方全景/体验地图（少女峰 Top of Europe、First、格林德瓦等全景导览）"
+          "time": "12:15",
+          "name": "施托克峰缆车 Stockhornbahn",
+          "duration": "4h",
+          "cost": 820,
+          "transport": "缆车(经中站 Chrindi)",
+          "note": "往返约CHF62/人，凭图恩湖 PanoramaCard 打8折(约CHF50/人)；山顶2190m全景台可眺望艾格/僧侣/少女峰等约200座雪山；火山口小湖 Stockhornsee 环湖步道、悬崖垂钓平台、铁索攀岩 Via Ferrata；运营至11/22，大雾会限运营"
         },
         {
-          "time": "13:30",
+          "time": "12:45",
           "name": "午餐",
           "meal": {
-            "name": "少女峰山顶餐厅/下山后格林德瓦",
-            "cuisine": "瑞士简餐",
-            "perPerson": 35,
-            "recommended": "山顶餐厅热汤面",
-            "location": "Jungfraujoch"
+            "name": "施托克峰山顶全景餐厅 Bergrestaurant Stockhorn",
+            "cuisine": "瑞士山间菜",
+            "perPerson": 40,
+            "recommended": "Rösti、奶酪火锅，湖景露台",
+            "location": "Stockhorn 山顶"
           }
         },
         {
-          "time": "15:00",
-          "name": "劳特布龙嫩",
+          "time": "14:30",
+          "name": "施托克峰慢游 + 下山",
           "duration": "1.5h",
           "cost": 0,
-          "transport": "自驾",
-          "note": "瀑布山谷，施陶布河瀑布 Staubbachfall",
-          "parking": [
-            {
-              "name": "Parkhaus Talstation Lauterbrunnen",
-              "location": "Zuben 479, 3822 Lauterbrunnen",
-              "fee": "CHF 18（8小时）",
-              "note": "距缆车站/火车站步行约2分钟；教堂旁 Parking Kirche 8小时 CHF 12 更便宜",
-              "gps": ""
-            }
-          ]
+          "transport": "步行/缆车",
+          "note": "山顶山脊步道 Gipfelrundweg，或到 Chrindi 站的 Stockhornsee 环湖漫步；下午下山"
         },
         {
-          "time": "17:00",
-          "name": "格林德瓦 · 梦幻山坡",
+          "time": "16:00",
+          "name": "返回图恩 · 阿勒河畔慢时光",
           "duration": "1.5h",
           "cost": 0,
-          "transport": "自驾+步行",
-          "note": "傍晚顺光拍摄山坡木屋最佳"
-        },
-        {
-          "time": "18:00",
-          "name": "哈德昆观景台 Harder Kulm（可选）",
-          "duration": "1.5h",
-          "cost": 600,
-          "transport": "缆车 10min 上山",
-          "note": "✅ 新增：因特拉肯自家门口的观景台，缆车起点就在东站旁；双湖+少女峰同框，日落时分最美，约 CHF35/人；若少女峰当天下山晚可跳过"
+          "transport": "自驾 20km",
+          "note": "回 Hotel Aare Thun；傍晚沿阿勒河 Bälliz、河边露台散步，或图恩湖畔夕照"
         },
         {
           "time": "—",
-          "name": "First山（Day6 替代方案 · 可选）",
-          "duration": "半天",
-          "cost": 800,
-          "transport": "格林德瓦 First 缆车",
+          "name": "少女峰 Jungfraujoch（晴天备选 · 可选）",
+          "duration": "整日",
+          "cost": 3000,
+          "transport": "格林德瓦 Terminal 艾格快线 + 齿轮火车",
           "priority": "optional",
-          "note": "564赞排名 First山可玩性第1（滑板车/卡丁车/飞鹰 First Flyer）；若少女峰大雾或想换玩法，可替换少女峰行程，票价约少女峰一半",
-          "mapImage": "media/first-map.jpg",
-          "mapCaption": "格林德瓦官方夏季徒步地图（First 缆车各站、First Cliff Walk 山顶、Bachalpsee）"
-        },
-        {
-          "time": "19:00",
-          "name": "晚餐",
-          "meal": {
-            "name": "Restaurant Taverne",
-            "cuisine": "瑞士菜",
-            "perPerson": 45,
-            "recommended": "煎小牛肉",
-            "location": "因特拉肯"
-          }
+          "note": "☀️ 若天气极好、想冲欧洲之巅，可把本日整体换成少女峰(往返约CHF210/人 + CHF10 对号座)；停格林德瓦 Terminal，出发前查山顶实时摄像头。详见'这些票请提前处理'",
+          "mapImage": "media/jungfraujoch-map.jpg",
+          "mapCaption": "少女峰地区官方全景/体验地图（Top of Europe、First、格林德瓦全景导览）"
         }
       ],
       "route": {
         "from": "图恩 (Thun)",
         "to": "图恩 (Thun)",
         "via": [
-          "格林德瓦 (Grindelwald)"
+          "埃伦巴赫 (Erlenbach)"
         ],
-        "km": 70,
-        "driveTime": "约1.5小时(环线)",
+        "km": 55,
+        "driveTime": "约1小时(往返)",
         "mapPts": [
           "Thun, Switzerland",
-          "Grindelwald, Switzerland",
-          "Lauterbrunnen, Switzerland",
-          "Interlaken, Switzerland",
+          "Erlenbach im Simmental, Switzerland",
           "Thun, Switzerland"
         ]
       },
@@ -1569,7 +1581,7 @@ const tripData={
         }
       ],
       "stay": "Hotel Aare Thun（阿勒河图恩酒店）· 图恩 (Thun) · 第2晚 · 已预订 ✅",
-      "xhsNote": "若对少女峰票价犹豫，小红书564赞排名认为 First山（滑板车/卡丁车/飞鹰）+雪朗峰（007旋转餐厅）可玩性更高，可作 Day6 替代方案，价格约为少女峰一半；少女峰游玩结束后返回图恩 Hotel Aare Thun（约1小时车程）",
+      "xhsNote": "主推图恩古城+施托克峰：住图恩两晚不折返、轻松又出片，图恩湖全景性价比高。☀️ 晴天备选：若天气极好想冲阿尔卑斯之巅，可把本日换成少女峰 Jungfraujoch(往返约CHF210/人+CHF10对号座，见'这些票请提前处理'；停格林德瓦 Terminal)——晴天备选，非默认。施托克峰遇大雾会限运营，务必先看山顶摄像头。",
       "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Aare%20Thun%2C%20Thun",
       "stayParking": {
         "name": "酒店旁公共车库 Freienhof",
@@ -1578,9 +1590,9 @@ const tripData={
       },
       "dayLabel": "D6",
       "weatherLoc": {
-        "city": "少女峰",
-        "lat": 46.547,
-        "lon": 7.985
+        "city": "图恩",
+        "lat": 46.758,
+        "lon": 7.63
       }
     },
     {
@@ -1590,12 +1602,12 @@ const tripData={
         "region": "图恩湖 → 伯尔尼",
         "highlights": [
           "布里恩茨蒸汽火车",
-          "施皮茨湖景",
-          "伯尔尼老城"
+          "图恩湖游船",
+          "施皮茨湖景"
         ],
-        "alert": "蒸汽火车班次须按当日时刻表确认。"
+        "alert": "本日较满：蒸汽火车+游船，按当日 SBB/BLS 时刻表预留班次；蒸汽火车提前订带保座早班。"
       },
-      "theme": "因特拉肯 (Interlaken) 周边（布里恩茨 (Brienz) 蒸汽火车、施皮茨 (Spiez)）→ 伯尔尼 (Bern)",
+      "theme": "图恩湖游船 (Thunersee) · 施皮茨 (Spiez) · 布里恩茨蒸汽火车 (Brienz Rothorn Bahn) → 伯尔尼 (Bern)",
       "weather": {
         "icon": "partlyCloudy",
         "high": 17,
@@ -1603,105 +1615,112 @@ const tripData={
       },
       "activities": [
         {
-          "time": "08:50",
-          "name": "因特拉肯 → 布里恩茨",
-          "duration": "20min",
-          "cost": 0,
-          "transport": "自驾 20km",
-          "note": "✅ 新增：小红书1359赞称这段蒸汽火车'夯爆了'"
+          "time": "08:20",
+          "name": "图恩站乘火车 → 布里恩茨",
+          "duration": "50min",
+          "cost": 340,
+          "transport": "火车(经因特拉肯)",
+          "note": "车留在图恩(酒店 Freienhof 车库或站前 P+Rail)，全天火车+游船，傍晚游船回图恩取车再开去伯尔尼；SBB 点对点票约CHF20/人，PanoramaCard 不含火车，用 SBB App 购票、可当天买"
         },
         {
-          "time": "09:30",
+          "time": "09:20",
           "name": "布里恩茨-洛特峰蒸汽火车 Brienz Rothorn Bahn",
-          "duration": "2h",
-          "cost": 850,
-          "transport": "百年蒸汽登山火车",
-          "note": "往返约 CHF52/人（两人约 CHF104）；一路爬升一步一景，山顶俯瞰布里恩茨湖全景",
-          "parking": [
-            {
-              "name": "Brienz Rothorn Bahn 山谷站停车场",
-              "location": "Talstation Brienz Rothorn Bahn, 3855 Brienz",
-              "fee": "CHF 8/天",
-              "note": "就在蒸汽火车站旁，步行约1分钟",
-              "gps": ""
-            }
-          ]
+          "duration": "2.5h",
+          "cost": 1800,
+          "transport": "百年蒸汽齿轮火车",
+          "note": "往返约CHF98/人 + CHF8/人保座(锁定蒸汽班次)；单程约1小时爬升至2244m，一路一步一景，山顶俯瞰布里恩茨湖全景。此线 PanoramaCard 不含，需全额或用半价卡5折；运营至10/25，强烈建议提前订带保座早班车"
         },
         {
           "time": "12:00",
-          "name": "午餐",
+          "name": "布里恩茨小镇 + 午餐",
           "meal": {
             "name": "布里恩茨湖畔餐厅",
-            "cuisine": "瑞士菜",
+            "cuisine": "瑞士湖鱼",
             "perPerson": 35,
-            "recommended": "湖鱼、Rösti",
+            "recommended": "布里恩茨湖鱼、Rösti；顺看木雕之乡工坊(如 Jobin)",
             "location": "布里恩茨码头旁"
           }
         },
         {
           "time": "13:00",
-          "name": "布里恩茨 → 施皮茨 Spiez",
-          "duration": "25min",
-          "cost": 0,
-          "transport": "自驾 25km",
-          "note": "图恩湖畔'世外桃源'小镇"
-        },
-        {
-          "time": "13:30",
-          "name": "施皮茨城堡 + 图恩湖畔",
+          "name": "吉斯巴赫瀑布 Giessbach + 古董缆车（可选）",
           "duration": "1.5h",
-          "cost": 80,
-          "transport": "步行",
-          "note": "城堡门票约 CHF10；葡萄园+湖景+雪山同框",
-          "parking": [
-            {
-              "name": "Parkplatz Schloss Spiez",
-              "location": "Schlossstrasse 16, 3700 Spiez",
-              "fee": "CHF 2/小时（07:00–19:00）",
-              "note": "就在城堡门口步行约1分钟；可停 Parkhaus Spiez Bucht CHF 1.5/小时",
-              "gps": ""
-            }
-          ]
+          "cost": 350,
+          "transport": "BLS 布里恩茨湖游船 + 缆车",
+          "priority": "optional",
+          "note": "14叠瀑布倾泻入布里恩茨湖，1879年欧洲最古老的公共缆车(往返约CHF12/人，季节性约4–10月，行前查官网)；从布里恩茨乘 BLS 布里恩茨湖游船抵达。⚠️ 本日较满，建议仅在时间富余、或采用精简版(把蒸汽火车挪到 Day6)时加入"
         },
         {
-          "time": "15:00",
-          "name": "施皮茨 → 伯尔尼",
-          "duration": "40min",
+          "time": "13:15",
+          "name": "火车 布里恩茨 → 因特拉肯",
+          "duration": "20min",
+          "cost": 130,
+          "transport": "火车",
+          "note": "约CHF11/人；到因特拉肯东站，步行/短驳到码头与何维克街"
+        },
+        {
+          "time": "13:45",
+          "name": "因特拉肯 何维克街 + 荷黑马特草坪",
+          "duration": "1h",
           "cost": 0,
-          "transport": "自驾 40km",
-          "note": "今晚住伯尔尼，次日去黑森林顺路且车程更短"
+          "transport": "步行",
+          "note": "Höheweg + Höhematte 大草坪远眺少女峰、滑翔伞降落点；老城 Unterseen 静谧值得一逛；时间富余可加哈德昆缆车 Harder Kulm(往返约CHF35/人，半价卡/STP 5折)"
+        },
+        {
+          "time": "14:45",
+          "name": "图恩湖游船 因特拉肯西 → 施皮茨",
+          "duration": "1h10",
+          "cost": 450,
+          "transport": "BLS 游船",
+          "note": "图恩湖招牌游船，湖水碧蓝、两岸城堡(奥伯霍芬等)；PanoramaCard 船票8折。⚠️ 淡季班次较疏，务必先查当日 BLS 时刻表"
         },
         {
           "time": "16:00",
-          "name": "伯尔尼老城：Zytglogge 钟楼 + 爱因斯坦故居",
-          "duration": "1.5h",
-          "cost": 60,
+          "name": "施皮茨 Spiez：城堡 + 教堂 + 港湾 + 葡萄园",
+          "duration": "1h",
+          "cost": 170,
           "transport": "步行",
-          "note": "整点前钟楼机械木偶报时；老城为 UNESCO 世界遗产",
+          "note": "施皮茨城堡与罗马式教堂矗立湖湾之上(门票约CHF10/人)；马蹄形港湾 Spiezbucht、湖畔梯田葡萄园(全瑞士海拔最高之一)，湖光雪山同框"
+        },
+        {
+          "time": "17:05",
+          "name": "图恩湖游船 施皮茨 → 图恩",
+          "duration": "50min",
+          "cost": 450,
+          "transport": "BLS 游船",
+          "note": "傍晚航段回到图恩取车，夕照湖光最美；PanoramaCard 8折。⚠️ 以当日末班船时刻为准；也可全程用 BLS 图恩+布里恩茨湖日票(CHF83/人，PanoramaCard 8折)更省心"
+        },
+        {
+          "time": "18:10",
+          "name": "图恩取车 → 伯尔尼",
+          "duration": "35min",
+          "cost": 0,
+          "transport": "自驾 30km",
+          "note": "回图恩站/酒店车库取车，开往伯尔尼 Moxy Bern Expo 入住"
+        },
+        {
+          "time": "19:15",
+          "name": "伯尔尼老城傍晚(轻量)",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "本日较满，伯尔尼取精华：Zytglogge 钟楼整点木偶报时、Bundesterrasse 联邦宫观景平台俯瞰阿勒河大拐弯、熊公园(免费)；老城为 UNESCO 世界遗产，可留次日出发前再补逛",
           "parking": [
             {
-              "name": "Bahnhof Parking",
+              "name": "Bahnhof Parking Bern",
               "location": "伯尔尼中央火车站旁（近 Bundesplatz）",
               "fee": "CHF 4起/小时 · CHF 35/天封顶",
-              "note": "距联邦宫/钟楼步行约5-8分钟；近熊苑改停 Rathaus Parking",
+              "note": "距联邦宫/钟楼步行约5-8分钟；如先去熊苑可改停 Rathaus Parking",
               "gps": ""
             }
           ]
         },
         {
-          "time": "17:30",
-          "name": "联邦宫观景平台 + 熊公园",
-          "duration": "1.5h",
-          "cost": 0,
-          "transport": "步行",
-          "note": "Bundesterrasse 俯瞰阿勒河大拐弯；熊公园免费"
-        },
-        {
-          "time": "19:00",
+          "time": "20:00",
           "name": "晚餐",
           "meal": {
             "name": "Café du Commerce",
-            "cuisine": "西班牙菜（小红书亲测不踩雷）",
+            "cuisine": "西班牙菜(小红书亲测不踩雷)",
             "perPerson": 35,
             "recommended": "西班牙烩饭、烤香肠",
             "location": "伯尔尼老城"
@@ -1713,13 +1732,15 @@ const tripData={
         "to": "伯尔尼 (Bern)",
         "via": [
           "布里恩茨 (Brienz)",
+          "因特拉肯 (Interlaken)",
           "施皮茨 (Spiez)"
         ],
-        "km": 85,
-        "driveTime": "约1.5小时",
+        "km": 60,
+        "driveTime": "约1小时自驾 + 火车/游船",
         "mapPts": [
           "Thun, Switzerland",
           "Brienz, Switzerland",
+          "Interlaken, Switzerland",
           "Spiez, Switzerland",
           "Bern, Switzerland"
         ]
@@ -1814,7 +1835,7 @@ const tripData={
         }
       ],
       "stay": "Moxy Bern Expo（万豪系）· 伯尔尼 (Bern) · 已预订 ✅（积分兑换）",
-      "xhsNote": "时间充裕可在施皮茨之后加图恩 Thun（15分钟车程）：564赞排名第2小镇，图恩城堡塔楼俯瞰全湖；Sigriswil 340米悬索桥距图恩20分钟，本地人私藏机位",
+      "xhsNote": "本日行程较满(蒸汽火车~2.5h + 图恩湖游船~2h + 多段火车)：车留在图恩(酒店 Freienhof 车库/站前 P+Rail)，全天火车+游船，傍晚游船回图恩取车再开去伯尔尼——最省心的车+船衔接。🚗 备选(全程自驾)：图恩→布里恩茨(自驾)乘蒸汽火车→自驾至施皮茨停车→游船施皮茨↔图恩往返赏图恩湖→自驾去伯尔尼。✂️ 精简法：游船只坐施皮茨→图恩一段(先火车到施皮茨)省约1h20；或把布里恩茨蒸汽火车挪到 Day6、Day7 只做图恩湖游船+施皮茨。",
       "stayUrl": "https://www.google.com/maps/search/?api=1&query=Moxy+Bern+Expo",
       "stayParking": {
         "name": "酒店自有停车场",
