@@ -2092,13 +2092,13 @@
       "date": "10/03",
       "weekday": "周六",
       "overview": {
-        "region": "黑森林 → 美因河",
+        "region": "黑森林 → 巴登-巴登 → 巴特温普芬 → 美因河",
         "highlights": [
-          "滴滴湖晨游",
-          "维尔茨堡主教宫",
-          "老美因桥日落"
+          "巴登-巴登温泉城",
+          "巴特温普芬中世纪老城",
+          "维尔茨堡主教宫"
         ],
-        "alert": "原计划车程约305km/3h10；主教宫周二闭馆（10/3为周六，正常开放）。Baden-Baden 备选下可缩短为228km/2h21。"
+        "alert": "长途改为分段观光日：拉文纳峡谷→巴登-巴登→巴特温普芬→维尔茨堡(约373km/4h20，分3段，每段≤1h40)。10/3 为德国统一日(公共假日)：商店关门，但餐厅/咖啡馆开、景点多为户外老城/宫殿不受影响；主教宫周六正常开放(周二闭馆)。假日休闲车多，老城用 Parkhaus/P+R。"
       },
       "theme": "滴滴湖 (Titisee) → 维尔茨堡 (Würzburg)",
       "weather": {
@@ -2108,39 +2108,89 @@
       },
       "activities": [
         {
-          "time": "09:00",
-          "name": "滴滴湖晨游 + 湖畔早餐",
-          "duration": "1.5h",
+          "time": "08:15",
+          "name": "拉文纳峡谷 Ravennaschlucht 晨景 + 早餐",
+          "duration": "45min",
           "cost": 0,
           "transport": "步行",
-          "note": "清晨湖面最平静，最后拍一波黑森林湖景后北上。"
+          "note": "Hofgut Sternen 旁的拉文纳峡谷铁路高架桥是黑森林经典机位；早餐后开始分段观光北上"
+        },
+        {
+          "time": "09:00",
+          "name": "第①段：拉文纳峡谷 → 巴登-巴登",
+          "duration": "1h30",
+          "cost": 0,
+          "transport": "自驾 135km（B31 + A5 北）",
+          "note": "沿 A5 北上，途经弗莱堡、奥芬堡；≤1.5h"
         },
         {
           "time": "10:30",
-          "name": "滴滴湖 → 维尔茨堡",
-          "duration": "3h10",
+          "name": "巴登-巴登 Baden-Baden",
+          "duration": "1h15",
           "cost": 0,
-          "transport": "自驾 305km",
-          "note": "经 A5/A6 高速北上一路顺；中途服务区休息一次。"
+          "transport": "步行",
+          "note": "贝儿-埃波克温泉名城：Lichtentaler Allee 河畔林荫大道(免费,24h开放)、Kurhaus 赌场廊柱、Trinkhalle 饮泉厅外观；悠闲舒展腿脚。假日商店关但户外与咖啡馆照常",
+          "parking": [
+            {
+              "name": "Parkhaus Kurhaus / Lange Straße",
+              "location": "Baden-Baden 市中心",
+              "fee": "约 €2–2.6/小时",
+              "note": "停市中心步行至 Lichtentaler Allee/Kurhaus 约5分钟",
+              "gps": ""
+            }
+          ]
         },
         {
-          "time": "14:00",
-          "name": "午餐",
+          "time": "11:45",
+          "name": "第②段：巴登-巴登 → 巴特温普芬",
+          "duration": "1h10",
+          "cost": 0,
+          "transport": "自驾 118km（A5 北 + A6 东）",
+          "note": "转 A6 向海尔布隆方向；≤1.5h"
+        },
+        {
+          "time": "12:55",
+          "name": "巴特温普芬 Bad Wimpfen 老城",
+          "duration": "1h",
+          "cost": 50,
+          "transport": "步行",
+          "note": "内卡河畔施陶芬中世纪帝国小镇，德国最美老城之一：蓝塔 Blauer Turm(€3/人,登顶俯瞰内卡河谷)、皇帝行宫 Kaiserpfalz 遗址与礼拜堂、半木屋小巷与广场。老城为步行区，停城边 P 再步行",
+          "parking": [
+            {
+              "name": "Parkplatz am Bahnhof / 老城边停车场",
+              "location": "Bad Wimpfen",
+              "fee": "假日常免费(以现场标识为准)",
+              "note": "老城核心为步行区，停车后步行入城",
+              "gps": ""
+            }
+          ]
+        },
+        {
+          "time": "13:55",
+          "name": "午餐（巴特温普芬）",
           "meal": {
-            "name": "Bürgerspital Weinstuben",
-            "cuisine": "法兰克尼亚菜",
-            "perPerson": 28,
-            "recommended": "法兰克尼亚烤猪肩、Silvaner 白葡萄酒",
-            "location": "维尔茨堡市中心"
+            "name": "巴特温普芬老城餐馆",
+            "cuisine": "德式 / 施瓦本菜",
+            "perPerson": 25,
+            "recommended": "当地烤肠、施瓦本面疙瘩 Spätzle、内卡河鳟鱼",
+            "location": "Bad Wimpfen 老城"
           }
         },
         {
-          "time": "15:30",
+          "time": "14:25",
+          "name": "第③段：巴特温普芬 → 维尔茨堡",
+          "duration": "1h40",
+          "cost": 0,
+          "transport": "自驾 120km（A81 北 + A3）",
+          "note": "A81/A3 一路顺，中途服务区可休息；约16:05 抵维尔茨堡"
+        },
+        {
+          "time": "16:15",
           "name": "维尔茨堡主教宫 Residenz",
           "duration": "1.5h",
           "cost": 150,
           "transport": "步行",
-          "note": "UNESCO 世界遗产，欧洲顶级巴洛克宫殿，缇耶波罗穹顶壁画，约 €9/人。",
+          "note": "UNESCO 世界遗产，欧洲顶级巴洛克宫殿，缇耶波罗穹顶壁画，约 €9/人；开放至18:00(末次入场约17:30)，16:15 到可从容参观。周六正常开放",
           "mapImage": "media/wuerzburg-residenz-plan.jpg",
           "mapCaption": "维尔茨堡主教宫主层建筑平面图（Grundriss，Balthasar Neumann 设计）",
           "parking": [
@@ -2154,12 +2204,12 @@
           ]
         },
         {
-          "time": "17:30",
+          "time": "17:45",
           "name": "老美因桥 (Alte Mainbrücke) + 玛利亚堡远眺",
           "duration": "1.5h",
           "cost": 0,
           "transport": "步行",
-          "note": "桥上捧一杯法兰克尼亚葡萄酒看城堡与夕阳是本地传统；日落约18:50（10月初）。"
+          "note": "桥上捧一杯法兰克尼亚 Silvaner 白葡萄酒看城堡与夕阳是本地传统；日落约18:50（10月初）"
         },
         {
           "time": "19:30",
@@ -2176,11 +2226,16 @@
       "route": {
         "from": "拉文纳峡谷 (Ravennaschlucht)",
         "to": "维尔茨堡 (Würzburg)",
-        "via": [],
-        "km": 305,
-        "driveTime": "约3小时10分",
+        "via": [
+          "巴登-巴登 (Baden-Baden)",
+          "巴特温普芬 (Bad Wimpfen)"
+        ],
+        "km": 373,
+        "driveTime": "约4小时20分（分3段观光）",
         "mapPts": [
           "Hofgut Sternen Ravennaschlucht, Breitnau, Germany",
+          "Baden-Baden, Germany",
+          "Bad Wimpfen, Germany",
           "AC Hotel Würzburg, Würzburg, Germany"
         ]
       },
@@ -2274,7 +2329,8 @@
         "city": "维尔茨堡",
         "lat": 49.794,
         "lon": 9.929
-      }
+      },
+      "xhsNote": "把 305km 直达长途拆成 3 段观光日：拉文纳峡谷→巴登-巴登(温泉名城,舒展腿脚)→巴特温普芬(内卡河畔中世纪帝国小镇,德国最美老城之一)→维尔茨堡，每段车程≤1h40，午后仍能赶上主教宫。10/3 德国统一日商店关门但餐厅/户外景点照常。🅿️ 想再多一站：巴特温普芬后可加 Weikersheim(魏克斯海姆文艺复兴宫+巴洛克花园，假日09:00–18:00开放，离维尔茨堡仅40min)，但那样需把维尔茨堡主教宫挪到 Day10 上午。"
     },
     {
       "date": "10/04",
