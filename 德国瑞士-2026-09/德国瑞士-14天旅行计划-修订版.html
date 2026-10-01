@@ -1892,14 +1892,13 @@ const tripData={
       "overview": {
         "region": "瑞士 → 黑森林",
         "highlights": [
-          "伯尔尼离境",
-          "特里贝格瀑布",
-          "B500 南段景观自驾",
-          "滴滴湖"
+          "伯尔尼 UNESCO 老城",
+          "B500 黑森林景观公路",
+          "滴滴湖游船"
         ],
-        "alert": "原计划：经 B500 南段实际驾车约3小时43分（不含停车）；08:30 前出发，并不要再加莱茵瀑布。Baden-Baden 温泉/B500 北段详见下方备选路线。"
+        "alert": "跳过特里贝格：上午深度游伯尔尼老城，午后经 B500 黑森林景观公路抵滴滴湖并安排游船。酒店送 Bern Ticket，市内公交/电车免费。"
       },
-      "theme": "伯尔尼 (Bern) → 黑森林 (Schwarzwald)（特里贝格 (Triberg)）→ 滴滴湖 (Titisee)",
+      "theme": "伯尔尼 (Bern) 晨游 → B500 黑森林景观路 → 滴滴湖 (Titisee)",
       "weather": {
         "icon": "partlyCloudy",
         "high": 16,
@@ -1907,111 +1906,108 @@ const tripData={
       },
       "activities": [
         {
-          "time": "09:00",
-          "name": "伯尔尼 → 特里贝格 Triberg",
-          "duration": "2h",
+          "time": "08:30",
+          "name": "伯尔尼老城晨游 Bern Altstadt",
+          "duration": "3h",
           "cost": 0,
-          "transport": "自驾 175km",
-          "note": "经伯尔尼中转后车程缩短，无需早起赶路。"
-        },
-        {
-          "time": "11:00",
-          "name": "世界最大咕咕钟 + 特里贝格瀑布",
-          "duration": "2.5h",
-          "cost": 130,
-          "transport": "步行",
-          "note": "瀑布门票约 €8/人；咕咕钟整点报时",
+          "transport": "步行 / Bern Ticket 免费公交",
+          "note": "UNESCO 世界遗产老城精华：Zytglogge 钟楼(整点前约4分钟机械木偶报时)、伯尔尼大教堂 Münster(可登塔俯瞰阿勒河大拐弯)、Bundesterrasse 联邦宫观景平台、6km Lauben 拱廊街、熊公园 Bärenpark、玫瑰园 Rosengarten(俯瞰红顶老城最佳)、爱因斯坦故居(Kramgasse 49)。酒店赠 Bern Ticket，公交/电车免费",
           "parking": [
             {
-              "name": "Parkhaus Kreuzgasse",
-              "location": "Kreuzstraße, Triberg",
-              "fee": "€1.5/小时（8:00-19:00）",
-              "note": "最靠近瀑布主入口，步行约2-3分钟；备选 Scheffelplatz €0.75/30分钟",
+              "name": "Bahnhof Parking / Rathaus Parking",
+              "location": "伯尔尼老城",
+              "fee": "约 CHF 4/小时",
+              "note": "或用酒店 Bern Ticket 免费乘公交/电车进老城，省停车",
               "gps": ""
             }
           ]
         },
         {
-          "time": "13:30",
-          "name": "午餐",
+          "time": "11:45",
+          "name": "午餐（伯尔尼）",
           "meal": {
-            "name": "Café Schäfer",
-            "cuisine": "德式咖啡屋",
-            "perPerson": 18,
-            "recommended": "黑森林蛋糕（号称最正宗配方）",
-            "location": "特里贝格主街"
+            "name": "Altes Tramdepot",
+            "cuisine": "瑞士菜 / 自酿啤酒",
+            "perPerson": 30,
+            "recommended": "自酿啤酒、香肠拼盘；就在熊公园旁、阿勒河畔",
+            "location": "伯尔尼 熊公园旁"
           }
         },
         {
-          "time": "14:30",
-          "name": "特里贝格 → B500 南段（Furtwangen）→ 滴滴湖",
-          "duration": "1h10",
+          "time": "12:45",
+          "name": "伯尔尼 → 滴滴湖（经 B500 黑森林景观路）",
+          "duration": "3h",
           "cost": 0,
-          "transport": "自驾约60km",
-          "note": "推荐走 B500 经 Furtwangen：这是与既定黑森林住宿顺路兼容的南段景观路；导航以此途经点为准。",
-          "priority": "recommended"
+          "transport": "自驾 ~240km（经巴塞尔入境 + A5 + B500 南段）",
+          "note": "跳过特里贝格。经巴塞尔入境德国→A5 北至黑森林西缘→转入 B500 黑森林景观公路(经 Furtwangen，云杉林海、山谷观景台)南行→滴滴湖；导航以 Furtwangen/B500 为途经点"
         },
         {
-          "time": "15:15",
-          "name": "滴滴湖游船",
+          "time": "15:45",
+          "name": "滴滴湖游船 Titisee",
           "duration": "1h",
           "cost": 120,
           "transport": "电动游船",
-          "note": "约 €8/人，40分钟环湖",
+          "note": "约 €8/人，电动游船约40分钟环湖；黑森林门户、湖水清澈",
           "parking": [
             {
               "name": "Großparkplatz Titisee P1（湖边）",
               "location": "Titisee 镇中心/湖边",
               "fee": "€2/小时 · €9/天封顶（8:00-22:00）",
-              "note": "湖边 Strandbad 停车场最近且最便宜，步行约2-5分钟；旺季午后到",
+              "note": "湖边 Strandbad 停车场最近，步行约2-5分钟",
               "gps": ""
             }
           ]
         },
         {
-          "time": "16:30",
+          "time": "16:45",
           "name": "滴滴湖环湖步道 + 湖滨小镇",
-          "duration": "1.5h",
+          "duration": "1.25h",
           "cost": 0,
           "transport": "步行",
-          "note": "湖水清澈，黑森林门户。"
+          "note": "Seestraße 湖滨漫步，黑森林咕咕钟/蜂蜜/手工艺店；傍晚湖光最静"
         },
         {
-          "time": "18:30",
+          "time": "18:15",
+          "name": "入住 Hofgut Sternen（拉文纳峡谷）",
+          "duration": "15min",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "300 年历史庄园，就在 Ravenna 峡谷入口；办理入住"
+        },
+        {
+          "time": "18:45",
           "name": "晚餐",
           "meal": {
-            "name": "Maritim 酒店餐厅",
-            "cuisine": "德式",
+            "name": "Hofgut Sternen 庄园餐厅",
+            "cuisine": "黑森林德式",
             "perPerson": 30,
-            "recommended": "鳟鱼",
-            "location": "酒店内"
+            "recommended": "黑森林火腿、鳟鱼、正宗黑森林蛋糕",
+            "location": "Hofgut Sternen（拉文纳峡谷）"
           }
         },
         {
           "time": "20:00",
-          "name": "酒店内 Ravenna Gorge 峡谷步道 + 玻璃工坊（可选）",
+          "name": "Ravenna 峡谷步道 + 玻璃工坊（可选）",
           "duration": "1h",
           "cost": 0,
           "transport": "步行",
           "priority": "optional",
-          "note": "Hofgut Sternen 就在 Ravenna 峡谷入口，是 300 年历史的庄园；谷内 Ravenna 桥/铁路高架桥与瀑布徒步约 40 分钟。"
+          "note": "谷内 Ravenna 桥/铁路高架桥与瀑布徒步约40分钟；季节性圣诞集市在此举办"
         }
       ],
       "route": {
         "from": "伯尔尼 (Bern)",
         "to": "滴滴湖 (Titisee)",
         "via": [
-          "特里贝格 (Triberg)",
-          "B500 南段（Furtwangen）"
+          "B500 黑森林景观路（Furtwangen）"
         ],
-        "km": 269,
-        "driveTime": "约3小时43分（不含停车）",
+        "km": 240,
+        "driveTime": "约3小时（含 B500 景观路）",
         "mapPts": [
           "Bern, Switzerland",
-          "Triberg im Schwarzwald, Germany",
+          "Freiburg im Breisgau, Germany",
           "Furtwangen im Schwarzwald, Germany",
-          "Titisee-Neustadt, Germany",
-          "Hofgut Sternen Ravennaschlucht, Breitnau, Germany"
+          "Titisee-Neustadt, Germany"
         ]
       },
       "xhs": [
@@ -2085,7 +2081,7 @@ const tripData={
         }
       ],
       "stay": "Hotel Hofgut Sternen – Ravennaschlucht（拉文纳峡谷霍夫古特斯特恩酒店）· 黑森林 (Schwarzwald) · ¥1,451/晚 · 已预订 ✅",
-      "xhsNote": "原计划与已订 Hotel Hofgut Sternen 顺路兼容：Triberg→Furtwangen→Titisee 的 B500 南段。若想体验 Baden-Baden 温泉与经典 B500 北段，请在下方对照备选路线；那条路线需要更换当晚酒店。",
+      "xhsNote": "本日把特里贝格换成伯尔尼深度晨游：Day7 到伯尔尼只是傍晚匆匆一瞥，今早补上老城精华(钟楼/大教堂/联邦宫平台/熊公园/玫瑰园)。午后经 B500 黑森林景观公路(云杉林海、观景台)抵滴滴湖，傍晚游船+湖滨漫步，夜宿拉文纳峡谷 Hofgut Sternen。",
       "stayUrl": "https://www.booking.com/searchresults.html?ss=Hotel%20Hofgut%20Sternen%2C%20Ravennaschlucht",
       "stayParking": {
         "name": "酒店自有停车场",
@@ -2094,9 +2090,9 @@ const tripData={
       },
       "dayLabel": "D8",
       "weatherLoc": {
-        "city": "滴滴湖",
-        "lat": 47.917,
-        "lon": 8.174
+        "city": "伯尔尼",
+        "lat": 46.948,
+        "lon": 7.447
       }
     },
     {
