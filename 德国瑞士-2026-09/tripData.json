@@ -2500,15 +2500,15 @@
       "date": "10/05",
       "weekday": "周一",
       "overview": {
-        "region": "内卡河 → 莱茵河谷",
+        "region": "内卡河 → 莱茵河谷 → 科隆",
         "highlights": [
-          "马克斯堡",
-          "博帕德四湖缆车",
-          "洛蕾莱巨岩"
+          "洛蕾莱巨岩",
+          "莱茵费尔斯堡 / 马克斯堡",
+          "科隆大教堂夜景"
         ],
-        "alert": "两天莱茵合并为一天精华(与 Day12 不再重复)。莱茵小镇车位少，早到或停镇外 P+R；10/5 周一博物馆多闭馆，但城堡/缆车/户外景点照常。"
+        "alert": "沿莱茵河谷北上一路看城堡，傍晚抵科隆入住并看大教堂夜景；全程约3h30(含景观停留)。莱茵小镇停车紧张，停镇外 P+R。10/5 周一博物馆多闭馆，但城堡/缆车/户外照常。⚠️ 原 Bacharach 住宿改订科隆 Hilton。"
       },
-      "theme": "海德堡 (Heidelberg) → 莱茵河谷精华（马克斯堡 · 博帕德 · 圣戈尔 · 洛蕾莱）→ 巴哈拉赫 (Bacharach)",
+      "theme": "海德堡 (Heidelberg) → 莱茵河谷精华（巴哈拉赫 · 洛蕾莱 · 莱茵费尔斯堡 · 马克斯堡）→ 科隆 (Köln)",
       "weather": {
         "icon": "partlyCloudy",
         "high": 18,
@@ -2517,55 +2517,36 @@
       "activities": [
         {
           "time": "08:30",
-          "name": "海德堡 → 布劳巴赫 Braubach（马克斯堡）",
-          "duration": "1h45",
+          "name": "海德堡 → 巴哈拉赫 Bacharach（入莱茵河谷）",
+          "duration": "1h30",
           "cost": 0,
-          "transport": "自驾 ~160km",
-          "note": "今早直接前往莱茵河谷（城堡/哲学家小径已在 Day10 完成）"
+          "transport": "自驾 ~130km",
+          "note": "今早直接前往莱茵河谷（城堡/哲学家小径已在 Day10 完成）；约10:00 抵巴哈拉赫"
         },
         {
-          "time": "10:30",
-          "name": "马克斯堡 Marksburg",
-          "duration": "1.5h",
-          "cost": 130,
-          "transport": "步行 / 导览",
-          "note": "中莱茵唯一从未被摧毁的山顶城堡，仅限导览参观(约€9/人)；俯瞰莱茵河湾",
+          "time": "10:00",
+          "name": "巴哈拉赫 Bacharach 老城",
+          "duration": "1h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "莱茵最美半木酒镇之一：Posthof 庭院、彼得教堂、Postenturm 塔；山上 Stahleck 城堡(青年旅舍)俯瞰河湾",
           "parking": [
             {
-              "name": "Marksburg 山下停车场",
-              "location": "Braubach",
-              "fee": "约€2–3",
-              "note": "停山下，步行约10分钟或开到半山；仅导览入内",
+              "name": "巴哈拉赫河畔停车场",
+              "location": "Bacharach 莱茵河畔",
+              "fee": "约€0.5/小时",
+              "note": "停河畔 B9 旁，步行入老城约2分钟",
               "gps": ""
             }
           ]
         },
         {
-          "time": "12:15",
-          "name": "午餐（博帕德 Boppard 河畔）",
-          "meal": {
-            "name": "莱茵河畔餐馆",
-            "cuisine": "莱茵德式",
-            "perPerson": 28,
-            "recommended": "莱茵白葡萄酒、猪排、河鱼",
-            "location": "博帕德河畔长廊"
-          }
-        },
-        {
-          "time": "13:15",
-          "name": "博帕德 Boppard + 四湖景缆车 Vierseenblick",
-          "duration": "1.5h",
-          "cost": 180,
-          "transport": "吊椅缆车 Sesselbahn",
-          "note": "吊椅缆车上山到 Vierseenblick 观景点，错位视角看莱茵河像四个湖；往返约€11/人"
-        },
-        {
-          "time": "15:00",
-          "name": "圣戈尔 St. Goar + 莱茵费尔斯堡 Rheinfels",
+          "time": "11:15",
+          "name": "圣戈尔 莱茵费尔斯堡 Rheinfels + 洛蕾莱 Loreley",
           "duration": "1.5h",
           "cost": 130,
-          "transport": "步行",
-          "note": "莱茵河谷最大的城堡废墟，地道、城墙与观景台俯瞰河谷；约€9/人",
+          "transport": "自驾 + 步行",
+          "note": "莱茵费尔斯堡是河谷最大城堡废墟(地道/城墙/观景台，约€9/人)；对岸132m洛蕾莱巨岩是峡谷最窄最险处，B9 可隔河眺望",
           "parking": [
             {
               "name": "Burg Rheinfels 停车场",
@@ -2577,50 +2558,79 @@
           ]
         },
         {
-          "time": "16:45",
-          "name": "洛蕾莱巨岩 Loreley（眺望 / 可渡轮登顶）",
-          "duration": "45min",
-          "cost": 0,
-          "transport": "自驾 + 步行",
-          "note": "传说海妖所在的132m巨岩，莱茵峡谷最窄最险处；B9 西岸可隔河眺望，时间富余可从 St. Goar 乘渡轮到对岸登洛蕾莱观景台"
+          "time": "13:00",
+          "name": "午餐（博帕德 Boppard 河畔）",
+          "meal": {
+            "name": "莱茵河畔餐馆",
+            "cuisine": "莱茵德式 · 雷司令",
+            "perPerson": 28,
+            "recommended": "莱茵白葡萄酒、河鱼、猪排",
+            "location": "博帕德河畔长廊"
+          }
         },
         {
-          "time": "17:45",
-          "name": "→ 巴哈拉赫 Bacharach 入住",
-          "duration": "20min",
+          "time": "14:15",
+          "name": "马克斯堡 Marksburg（布劳巴赫）",
+          "duration": "1h",
+          "cost": 130,
+          "transport": "自驾 + 导览",
+          "note": "中莱茵唯一从未被摧毁的山顶城堡，仅限导览参观(约€9/人)，内部盔甲/厨房/刑具保存完整；俯瞰莱茵河湾",
+          "parking": [
+            {
+              "name": "Marksburg 山下停车场",
+              "location": "Braubach",
+              "fee": "约€2–3",
+              "note": "停山下步行约10分钟，或开到半山",
+              "gps": ""
+            }
+          ]
+        },
+        {
+          "time": "15:45",
+          "name": "布劳巴赫 → 科隆",
+          "duration": "1h15",
           "cost": 0,
-          "transport": "自驾 15km",
-          "note": "入住 Altkölnischer Hof；傍晚逛巴哈拉赫半木老城与城墙"
+          "transport": "自驾 ~110km（经科布伦茨 A61 北）",
+          "note": "约17:00 抵科隆，入住 Hilton Cologne"
+        },
+        {
+          "time": "17:30",
+          "name": "科隆大教堂 Kölner Dom 夜景 + 老城",
+          "duration": "1.5h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "世界遗产哥特巨构，黄昏/夜晚打光最震撼；Altstadt 彩色山墙房、霍亨索伦桥情人锁、莱茵长廊散步(登塔与博物馆留到 Day12 白天)"
         },
         {
           "time": "19:30",
-          "name": "晚餐",
+          "name": "晚餐（科隆啤酒屋）",
           "meal": {
-            "name": "Bacharach 老城酒馆",
-            "cuisine": "莱茵德式 · 雷司令",
+            "name": "Früh am Dom",
+            "cuisine": "莱茵德式 · 科隆啤酒屋",
             "perPerson": 28,
-            "recommended": "雷司令白葡萄酒、Flammkuchen 火焰薄饼、猪排",
-            "location": "巴哈拉赫老城"
+            "recommended": "Kölsch 小杯啤酒、猪肘 Haxe、Himmel un Ääd",
+            "location": "科隆大教堂旁"
           }
         }
       ],
       "route": {
         "from": "海德堡 (Heidelberg)",
-        "to": "巴哈拉赫 (Bacharach)",
+        "to": "科隆 (Köln)",
         "via": [
-          "布劳巴赫·马克斯堡 (Braubach)",
-          "博帕德 (Boppard)",
+          "巴哈拉赫 (Bacharach)",
           "圣戈尔 (St. Goar)",
-          "洛蕾莱 (Loreley)"
+          "博帕德 (Boppard)",
+          "布劳巴赫·马克斯堡 (Braubach)"
         ],
-        "km": 210,
-        "driveTime": "约2.5小时（分段）",
+        "km": 310,
+        "driveTime": "约3小时30分（含莱茵景观停留）",
         "mapPts": [
-          "Heidelberg, Germany",
-          "Braubach, Germany",
+          "Hilton Heidelberg, Germany",
+          "Bacharach, Germany",
+          "Sankt Goar, Germany",
           "Boppard, Germany",
-          "St. Goar, Germany",
-          "Bacharach, Germany"
+          "Braubach, Germany",
+          "Cologne, Germany"
         ]
       },
       "xhs": [
@@ -2694,34 +2704,34 @@
           "takeaway": "莱茵河谷唯一未被毁的山顶城堡，只能跟导览进入（约€8，英文/德文场次）；旺季周末排队，建议13:00前到"
         }
       ],
-      "stay": "Altkölnischer Hof · Bacharach · 10/5 入住，10/6 退房 · 已预订 ✅",
-      "stayUrl": "https://www.google.com/maps/search/?api=1&query=Altk%C3%B6lnischer+Hof+Bacharach",
+      "stay": "Hilton Cologne（科隆希尔顿）· 科隆 (Köln) · 近中央车站与大教堂 · 🆕 需预订",
+      "stayUrl": "https://www.booking.com/searchresults.html?ss=Hilton%20Cologne%2C%20Cologne",
       "stayParking": {
-        "name": "酒店停车安排",
-        "fee": "到店前向酒店确认",
-        "note": "酒店位于 Bacharach 老城；请以订单及酒店说明为准。"
+        "name": "Hilton Cologne 停车 / Parkhaus am Dom",
+        "fee": "约 €30/天",
+        "note": "酒店近中央火车站与大教堂，步行可达老城；大教堂下 Parkhaus Am Dom 亦可"
       },
       "dayLabel": "D11",
       "weatherLoc": {
-        "city": "巴哈拉赫",
-        "lat": 50.06,
-        "lon": 7.768
+        "city": "科隆",
+        "lat": 50.938,
+        "lon": 6.96
       },
-      "xhsNote": "城堡与哲学家小径已在 Day10 完成，今早直奔莱茵河谷，把原本两天的莱茵精华压缩到一天：马克斯堡(中莱茵唯一未被毁的山顶城堡)→博帕德四湖景缆车→圣戈尔·莱茵费尔斯堡(最大城堡废墟)→洛蕾莱巨岩→巴哈拉赫。Day12 腾出来去科隆换口味。莱茵小镇停车紧张，停镇外 P+R。"
+      "xhsNote": "保留莱茵精华：从海德堡沿莱茵河谷北上，一路城堡(莱茵费尔斯堡/马克斯堡)+洛蕾莱巨岩+半木酒镇巴哈拉赫，傍晚抵科隆入住，正好赶上大教堂夜景；Day12 再慢游科隆市区。车程约3h30(含停留)。⚠️ 原 Bacharach 住宿请改订科隆 Hilton。"
     },
     {
       "date": "10/06",
       "weekday": "周二",
       "overview": {
-        "region": "莱茵河谷 → 科隆 → 法兰克福",
+        "region": "科隆 → 法兰克福",
         "highlights": [
-          "科隆大教堂",
-          "科隆老城 · 霍亨索伦桥",
-          "莱茵河畔"
+          "科隆大教堂登塔",
+          "巧克力博物馆 / 路德维希博物馆",
+          "法兰克福天际线"
         ],
-        "alert": "换口味的大城市日：北上科隆看大教堂，再南下法兰克福入住。Bacharach→科隆→法兰克福约342km/3h40(比直达多约2h40)，建议早出发。舍弃吕德斯海姆(又一葡萄酒小镇)。最后一晚住 Westin，确认次日还车路线。"
+        "alert": "上午慢游科隆(大教堂登塔533级、老城、博物馆)，午后南下法兰克福约2h入住。最后一晚住 Westin，确认次日还车路线。"
       },
-      "theme": "巴哈拉赫 (Bacharach) → 科隆 (Köln) → 法兰克福 (Frankfurt)",
+      "theme": "科隆 (Köln) 市区 → 法兰克福 (Frankfurt)",
       "weather": {
         "icon": "partlyCloudy",
         "high": 18,
@@ -2729,80 +2739,72 @@
       },
       "activities": [
         {
-          "time": "08:00",
-          "name": "巴哈拉赫老城晨游 + 出发",
-          "duration": "45min",
-          "cost": 0,
-          "transport": "步行",
-          "note": "清晨快速逛巴哈拉赫半木老城、Posthof；随后沿莱茵北上科隆"
-        },
-        {
-          "time": "08:45",
-          "name": "巴哈拉赫 → 科隆",
-          "duration": "1h35",
-          "cost": 0,
-          "transport": "自驾 ~152km（B9 → A61 北）",
-          "note": "沿莱茵左岸北上，经科布伦茨方向；约10:20 抵科隆"
-        },
-        {
-          "time": "10:30",
-          "name": "科隆大教堂 Kölner Dom + 登塔",
+          "time": "09:00",
+          "name": "科隆大教堂 Kölner Dom + 登南塔533级",
           "duration": "1.5h",
           "cost": 140,
           "transport": "步行",
-          "note": "世界遗产哥特巨构，内部免费参观(工作日约10:00–17:00)；登南塔533级到97m观景平台(约€8/人，无电梯，末入17:30)俯瞰全城与莱茵",
+          "note": "内部免费参观；登南塔533级到97m观景平台(约€8/人，无电梯，09:00–18:00末入17:30)俯瞰全城与莱茵",
           "parking": [
             {
               "name": "Parkhaus Am Dom (CONTIPARK)",
               "location": "大教堂广场下方",
               "fee": "约€0.60/20分钟 · 全天上限约€18",
-              "note": "就在大教堂正下方，24h，最近最省心",
+              "note": "就在大教堂正下方，24h",
               "gps": ""
             }
           ]
         },
         {
-          "time": "12:00",
+          "time": "10:45",
           "name": "科隆老城 + 霍亨索伦桥 + 莱茵河畔",
-          "duration": "1.5h",
+          "duration": "1h",
           "cost": 0,
           "transport": "步行",
-          "note": "Altstadt 彩色山墙房、霍亨索伦桥情人锁、莱茵长廊；可小酌一杯科隆特有的 Kölsch 小杯啤酒"
+          "note": "Altstadt 彩色山墙房、霍亨索伦桥情人锁、莱茵长廊；白天补看夜景没看清的角落"
         },
         {
-          "time": "13:30",
-          "name": "午餐（科隆老城啤酒屋）",
+          "time": "11:45",
+          "name": "巧克力博物馆 Schokoladenmuseum 或 路德维希博物馆（二选一）",
+          "duration": "1.5h",
+          "cost": 260,
+          "transport": "步行",
+          "note": "巧克力博物馆在莱茵河畔(巧克力喷泉+试吃，约€15/人)；或大教堂旁 Museum Ludwig 现代艺术(毕加索/波普，周二开)"
+        },
+        {
+          "time": "13:15",
+          "name": "午餐（科隆啤酒屋）",
           "meal": {
-            "name": "Früh am Dom",
+            "name": "Gaffel am Dom",
             "cuisine": "莱茵德式 · 科隆啤酒屋",
             "perPerson": 28,
-            "recommended": "Kölsch 小杯啤酒、猪肘 Haxe、Himmel un Ääd(土豆血肠)",
+            "recommended": "Kölsch、莱茵酸焖牛肉 Sauerbraten、猪肘",
             "location": "科隆大教堂旁"
           }
         },
         {
-          "time": "14:30",
-          "name": "巧克力博物馆 Schokoladenmuseum（可选）",
-          "duration": "1h",
-          "cost": 260,
-          "transport": "步行",
-          "note": "莱茵河畔的巧克力博物馆，含巧克力喷泉与试吃(约€15/人)；或改看旁边的 Museum Ludwig 现代艺术(周二开)，二选一"
-        },
-        {
-          "time": "15:45",
+          "time": "14:15",
           "name": "科隆 → 法兰克福",
           "duration": "2h",
           "cost": 0,
           "transport": "自驾 ~190km（A3 东南）",
-          "note": "约17:45 抵法兰克福入住 The Westin Grand"
+          "note": "约16:15 抵法兰克福入住 The Westin Grand"
         },
         {
-          "time": "18:00",
+          "time": "16:30",
           "name": "入住 The Westin Grand Frankfurt",
           "duration": "30min",
           "cost": 0,
           "transport": "自驾",
-          "note": "市中心，近采尔大街 Zeil；办理入住"
+          "note": "市中心，近采尔大街 Zeil"
+        },
+        {
+          "time": "17:00",
+          "name": "美因河畔 + 法兰克福天际线 + 萨克森豪森",
+          "duration": "2h",
+          "cost": 0,
+          "transport": "步行",
+          "note": "铁桥 Eiserner Steg 看摩天楼天际线(美因塔/欧洲央行)、美因河南岸博物馆岸 Museumsufer 散步；萨克森豪森苹果酒区晚餐(罗马广场留到 Day13 晨游)"
         },
         {
           "time": "19:30",
@@ -2812,20 +2814,17 @@
             "cuisine": "黑森地方菜",
             "perPerson": 28,
             "recommended": "Apfelwein 苹果酒、Grüne Soße 绿酱配水煮蛋、Schnitzel",
-            "location": "法兰克福 萨克森豪森/老城"
+            "location": "法兰克福 萨克森豪森"
           }
         }
       ],
       "route": {
-        "from": "巴哈拉赫 (Bacharach)",
+        "from": "科隆 (Köln)",
         "to": "法兰克福 (Frankfurt)",
-        "via": [
-          "科隆 (Köln)"
-        ],
-        "km": 342,
-        "driveTime": "约3小时40分（含科隆往返）",
+        "via": [],
+        "km": 190,
+        "driveTime": "约2小时",
         "mapPts": [
-          "Bacharach, Germany",
           "Cologne, Germany",
           "Frankfurt, Germany"
         ]
@@ -2921,7 +2920,7 @@
         "lat": 50.11,
         "lon": 8.682
       },
-      "xhsNote": "莱茵小镇在 Day11 已集中游完，Day12 换个大城市口味：北上科隆看大教堂(可登塔533级看全景)、老城、霍亨索伦桥情人锁、莱茵河畔、巧克力博物馆，再南下法兰克福。代价是比直达多约2h40车程，早点出发；舍弃吕德斯海姆(又一葡萄酒小镇，与主题重复)。"
+      "xhsNote": "Day11 傍晚已看大教堂夜景，今早慢游科隆：登大教堂南塔533级看全景、霍亨索伦桥情人锁、莱茵河畔、巧克力博物馆或路德维希现代艺术馆(二选一)；午后南下法兰克福(约2h)入住 Westin，傍晚看美因河天际线。"
     },
     {
       "date": "10/07",
