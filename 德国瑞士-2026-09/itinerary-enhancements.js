@@ -31,6 +31,7 @@
   });
 
   const pointsFor = d => (d.route?.mapPts || []).map(name => ({ name, ll: geo[name] })).filter(x => x.ll);
+  document.head.appendChild(Object.assign(document.createElement('style'), { textContent: '.leaflet-tooltip.map-lbl{font:700 11px/1.1 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;padding:1px 6px;border-radius:5px;box-shadow:0 1px 3px #0000002e;white-space:nowrap}.leaflet-tooltip.map-lbl-stop{color:#13463a;border-color:#2e8b6f}.leaflet-tooltip.map-lbl-alt{color:#8a4a12;background:#fff6e8;border-color:#e0a24a}.leaflet-tooltip.map-lbl-end{color:#163a5f;font-weight:800}' }));
   const status = (el, message, withNav) => {
     const nav = withNav && el.dataset.day ? '' : '';
     el.insertAdjacentHTML('beforeend', `<p class="route-status">${E(message)}${withNav ? ` · <a href="${E(url(withNav))}" target="_blank" rel="noopener">打开导航</a>` : nav}</p>`);
@@ -77,11 +78,12 @@
     const map = L.map(mount, { scrollWheelZoom: false, attributionControl: true, zoomSnap: .25 });
     addBaseTiles(map);
     const direct = L.polyline(points.map(x => x.ll), { color: '#78978d', weight: 3, dashArray: '7 8', opacity: .8 }).addTo(map);
-    L.marker(points[0].ll).addTo(map).bindTooltip('出发');
-    L.marker(points[points.length - 1].ll).addTo(map).bindTooltip('抵达');
-    points.slice(1, -1).forEach(p => L.circleMarker(p.ll, { radius: 6, color: '#1d5145', weight: 2, fillColor: '#2e8b6f', fillOpacity: .95 }).addTo(map).bindTooltip('停靠：' + p.name.split(',')[0]));
+    const shortName = s => s.split(',')[0].replace(/^(Hilton|Hotel|AC Hotel|Hofgut Sternen)\s*/, '') || s.split(',')[0];
+    L.marker(points[0].ll).addTo(map).bindTooltip(shortName(points[0].name), { permanent: true, direction: 'right', className: 'map-lbl map-lbl-end' });
+    L.marker(points[points.length - 1].ll).addTo(map).bindTooltip(shortName(points[points.length - 1].name), { permanent: true, direction: 'left', className: 'map-lbl map-lbl-end' });
+    points.slice(1, -1).forEach(p => L.circleMarker(p.ll, { radius: 6, color: '#1d5145', weight: 2, fillColor: '#2e8b6f', fillOpacity: .95 }).addTo(map).bindTooltip(shortName(p.name), { permanent: true, direction: 'top', className: 'map-lbl map-lbl-stop' }));
     const altLL = (day.altStops || []).map(n => geo[n]).filter(Boolean);
-    (day.altStops || []).forEach(n => { const ll = geo[n]; if (ll) L.circleMarker(ll, { radius: 7, color: '#b5651d', weight: 2, fillColor: '#f3a63c', fillOpacity: .95 }).addTo(map).bindTooltip('备选停靠：' + n.split(',')[0]); });
+    (day.altStops || []).forEach(n => { const ll = geo[n]; if (ll) L.circleMarker(ll, { radius: 7, color: '#b5651d', weight: 2, fillColor: '#f3a63c', fillOpacity: .95 }).addTo(map).bindTooltip('备选·' + shortName(n), { permanent: true, direction: 'bottom', className: 'map-lbl map-lbl-alt' }); });
     map.fitBounds(L.latLngBounds(points.map(x => x.ll).concat(altLL)), { padding: [26, 26] });
     status(mount, '正在加载实际驾车线路…');
     fetchDriving(points)
