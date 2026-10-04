@@ -384,6 +384,28 @@
     update();
   };
 
+  const renderWineGuide = () => {
+    const wg = tripData.wineGuide;
+    const planDays = document.getElementById('planDays');
+    if (!wg || !planDays || document.getElementById('wineGuide')) return;
+    document.head.appendChild(Object.assign(document.createElement('style'), { textContent: '.wine-board{margin:0 0 24px;padding:18px 20px;background:#fbf3ef;border:1px solid #e0bfb0;border-radius:16px}.wine-board>h3{margin:4px 0 10px;font-size:21px}.wine-banner{width:100%;height:150px;object-fit:cover;border-radius:12px}.wine-banner-credit,.wine-fig small{display:block;font-size:10px;color:#9a8576}.wine-intro{color:#52645e;line-height:1.6;margin:10px 0}.wine-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:14px 0}.wine-fig{margin:0;border:1px solid #e9dcd3;border-radius:12px;overflow:hidden;background:#fff}.wine-fig img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}.wine-fig figcaption{padding:8px 10px}.wine-fig b{font-size:13px}.wine-fig span{display:block;font-size:12px;color:#62726d;margin:2px 0}.wine-table-wrap{overflow-x:auto}.wine-table{width:100%;border-collapse:collapse;font-size:13px}.wine-table th,.wine-table td{text-align:left;padding:8px 9px;border-top:1px solid #ecddd4;vertical-align:top}.wine-table th{color:#7b4020;font-size:12px}.w-sub{font-size:11px;color:#8a8073}.w-price{font-weight:700;color:#1d5145;white-space:nowrap}.wine-note{font-size:12px;color:#62726d;margin:10px 0 0;line-height:1.55}@media(max-width:720px){.wine-banner{height:110px}}' }));
+    const banner = wg.banner ? `<img class="wine-banner" loading="lazy" src="${E(wg.banner.img)}" alt="vineyard"><div class="wine-banner-credit">${E(wg.banner.credit || '')}</div>` : '';
+    const gallery = (wg.gallery || []).map(g => `<figure class="wine-fig"><img loading="lazy" src="${E(g.img)}" alt="${E(g.name)}"><figcaption><b>${E(g.name)}</b><span>${E(g.caption || '')}</span><small>${E(g.credit || '')}</small></figcaption></figure>`).join('');
+    const rows = (wg.wines || []).map(w => `<tr><td><b>${E(w.name)}</b><div class="w-sub">${E(w.grape || '')}</div></td><td>${E(w.region || '')}</td><td>${E(w.taste || '')}</td><td class="w-price">${E(w.price || '')}</td></tr>`).join('');
+    const html = `<section class="wine-board" id="wineGuide"><div class="label">Taste the region</div><h3>🍷 德国名酒指南 · 价格与在哪买</h3>${banner}<p class="wine-intro">${E(wg.intro || '')}</p><div class="wine-gallery">${gallery}</div><div class="wine-table-wrap"><table class="wine-table"><thead><tr><th>酒款</th><th>产区</th><th>风味</th><th>零售价/瓶</th></tr></thead><tbody>${rows}</tbody></table></div><p class="wine-note">${E(wg.ladder || '')}</p><p class="wine-note">${E(wg.disclaimer || '')}</p></section>`;
+    (document.getElementById('packingBoard') || planDays).insertAdjacentHTML('afterend', html);
+  };
+
+  const renderAltTables = () => {
+    document.head.appendChild(Object.assign(document.createElement('style'), { textContent: '.alt-table-wrap{margin:14px 0 2px}.alt-table th,.alt-table td{font-size:12.5px}.alt-table .alt-detour{white-space:nowrap;color:#8a4a36;font-weight:700}' }));
+    [...document.querySelectorAll('#planDays > details')].forEach((detail, index) => {
+      const day = tripData.days[index];
+      if (!day?.altInfo?.length || detail.querySelector('.alt-table-wrap')) return;
+      const rows = day.altInfo.map(a => `<tr><td><b>${E(a.town)}</b></td><td>${E(a.why)}</td><td>${E(a.wine || '')}</td><td class="alt-detour">${E(a.detour || '')}</td></tr>`).join('');
+      detail.insertAdjacentHTML('beforeend', `<div class="alt-table-wrap"><div class="label" style="margin-bottom:6px">🟠 备选停靠 · 为何值得看</div><div class="wine-table-wrap"><table class="wine-table alt-table"><thead><tr><th>城镇</th><th>亮点 / 为何值得看</th><th>招牌酒 &amp; 买酒点</th><th>绕行</th></tr></thead><tbody>${rows}</tbody></table></div></div>`);
+    });
+  };
+
   const init = () => {
     const alternativeStyle = document.createElement('style');
     alternativeStyle.textContent = `.alternatives-board{margin:0 0 24px;padding:20px;border:2px solid #bd6c31;border-radius:16px;background:#fffaf4}.alternatives-board>h3{margin:4px 0 8px}.alternatives-board>p{margin:0 0 16px;color:#52645e}.route-alternative{margin-top:14px;padding-top:14px;border-top:1px solid #eadbb8}.route-alternative h3{margin:5px 0}.route-alternative p{line-height:1.55}.alternative-days{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.alternative-day{border:1px solid #dec9b8;border-radius:12px;background:#fff;padding:14px}.alternative-day h4{margin:4px 0 8px}.alternative-kicker{font-size:12px;font-weight:800;color:#8a4a36}.alternative-route{color:#1d5145;font-weight:700}.alternative-day ul{margin:10px 0;padding-left:18px;font-size:13px;line-height:1.55}.alternative-stay{padding:8px;background:#fff8e9;border-radius:8px;font-size:13px}.alternative-map{height:250px;margin-top:12px}@media(max-width:720px){.alternatives-board{padding:15px}.alternative-days{grid-template-columns:1fr}.alternative-map{height:220px}}`;
@@ -397,7 +419,9 @@
     renderAdvanceTickets();
     renderRouteAlternatives();
     renderPackingList();
+    renderWineGuide();
     enhancePlanning();
+    renderAltTables();
     document.querySelectorAll('[data-view="planning"]').forEach(button =>
       button.addEventListener('click', schedulePlanningMaps)
     );

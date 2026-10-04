@@ -2602,6 +2602,70 @@
             "recommended": "Kölsch 小杯啤酒、猪肘 Haxe、Himmel un Ääd",
             "location": "科隆大教堂旁"
           }
+        },
+        {
+          "time": "🍷备选",
+          "name": "莱茵沿途备选停靠(可替换/增补 圣戈尔+马克斯堡)",
+          "priority": "optional",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "以下为顺路、绕行很小的备选城镇，括注当地招牌酒与买酒点；完整价格见页面下方『德国名酒指南』"
+        },
+        {
+          "time": "备选①",
+          "name": "沃尔姆斯 Worms（海德堡→巴哈拉赫南线）",
+          "priority": "optional",
+          "cost": 0,
+          "transport": "自驾 距海德堡约45min",
+          "note": "罗曼式皇帝大教堂 Wormser Dom、路德宗教改革纪念碑、尼伯龙根传说之城；也是『圣母之乳』Liebfraumilch 发源地(Liebfrauenkirche 旁葡萄园可买)"
+        },
+        {
+          "time": "备选②",
+          "name": "美因茨 Mainz（入莱茵处）",
+          "priority": "optional",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "千年美因茨大教堂 + 古腾堡印刷博物馆；莱茵黑森葡萄酒城，老城 Weinstuben 与周末市集可买雷司令、西万尼"
+        },
+        {
+          "time": "备选③",
+          "name": "巴哈拉赫 Bacharach（莱茵河谷）",
+          "priority": "optional",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "中莱茵最美酒镇 · 招牌中莱茵雷司令(陡坡板岩)。买酒:Weingut Toni Jost(Oberstraße 14)、Ratzenberger、Fritz Bastian『Weinkarussell』15款转盘品鉴"
+        },
+        {
+          "time": "备选④",
+          "name": "上韦瑟尔 Oberwesel（莱茵河谷）",
+          "priority": "optional",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "『塔楼之城』，莱茵保存最完整的中世纪城墙(16座塔) · 招牌 Oelsberg 单一园雷司令。买酒:Weingut Lanius-Knab"
+        },
+        {
+          "time": "备选⑤",
+          "name": "博帕德 Boppard（莱茵河谷）",
+          "priority": "optional",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "莱茵最大连片葡萄园 Bopparder Hamm + 四湖景吊椅缆车 · 招牌 Bopparder Hamm 雷司令。买酒:Weingut August Perll(Oberstraße)、Heilig Grab(最老酒庄)"
+        },
+        {
+          "time": "备选⑥",
+          "name": "科布伦茨 Koblenz（科隆方向）",
+          "priority": "optional",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "德意志角(摩泽尔汇莱茵)+ 缆车过河上埃伦布赖特施坦因要塞 · 大城换口味。买酒:Weindorf Koblenz 酒村、老城 Weinhaus Hubertus，可同尝中莱茵与摩泽尔雷司令"
+        },
+        {
+          "time": "备选⑦",
+          "name": "波恩 Bonn（距科隆约30min）",
+          "priority": "optional",
+          "cost": 0,
+          "transport": "自驾",
+          "note": "前西德首都、贝多芬故居 Beethoven-Haus、老城集市广场；近科隆的最后一站(非酒镇)"
         }
       ],
       "route": {
@@ -2713,6 +2777,50 @@
         "Boppard, Germany",
         "Koblenz, Germany",
         "Bonn, Germany"
+      ],
+      "altInfo": [
+        {
+          "town": "沃尔姆斯 Worms",
+          "why": "罗曼式皇帝大教堂(千年)、路德宗教改革纪念碑、尼伯龙根传说之城；欧洲最古老犹太墓园",
+          "wine": "『圣母之乳』Liebfraumilch 发源地(圣母教堂旁葡萄园)",
+          "detour": "海德堡→巴哈拉赫南线，距海德堡约45min"
+        },
+        {
+          "town": "美因茨 Mainz",
+          "why": "千年美因茨大教堂 + 古腾堡印刷博物馆(活字印刷发明地)；莱茵黑森州府",
+          "wine": "莱茵黑森酒城：老城 Weinstuben/市集买雷司令、西万尼",
+          "detour": "入莱茵处，基本顺路"
+        },
+        {
+          "town": "巴哈拉赫 Bacharach",
+          "why": "中莱茵最美半木酒镇；Stahleck 城堡俯瞰莱茵河湾，陡坡板岩葡萄园",
+          "wine": "中莱茵雷司令：Toni Jost(Oberstraße14)、Ratzenberger、Fritz Bastian『Weinkarussell』15款转盘",
+          "detour": "B9 河边，几乎0绕行"
+        },
+        {
+          "town": "上韦瑟尔 Oberwesel",
+          "why": "『塔楼之城』，莱茵保存最完整的中世纪城墙(16座塔)",
+          "wine": "Oelsberg 单一园雷司令：Weingut Lanius-Knab",
+          "detour": "B9 河边，几乎0绕行"
+        },
+        {
+          "town": "博帕德 Boppard",
+          "why": "莱茵最大连片葡萄园 Bopparder Hamm；四湖景吊椅缆车 Vierseenblick，罗马城墙",
+          "wine": "Bopparder Hamm 雷司令：Weingut August Perll、Heilig Grab(最老酒庄)",
+          "detour": "路线上，几乎0绕行"
+        },
+        {
+          "town": "科布伦茨 Koblenz",
+          "why": "德意志角(摩泽尔汇入莱茵)+ 缆车过河登埃伦布赖特施坦因要塞；是一座大城，换口味",
+          "wine": "Weindorf 酒村、老城 Weinhaus Hubertus：可同尝中莱茵与摩泽尔雷司令",
+          "detour": "正在去科隆路上，0绕行"
+        },
+        {
+          "town": "波恩 Bonn",
+          "why": "前西德首都、贝多芬故居 Beethoven-Haus、老城集市广场",
+          "wine": "非酒镇(城市酒吧/餐厅可小酌)",
+          "detour": "距科隆约30min，顺路"
+        }
       ]
     },
     {
@@ -3611,5 +3719,112 @@
     "10/06": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Loreley%2C_Rhine%2C_Castle_Katz.jpg/330px-Loreley%2C_Rhine%2C_Castle_Katz.jpg",
     "10/07": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Frankfurt_am_Main%2C_Central_business_district_%282024%29.jpg/330px-Frankfurt_am_Main%2C_Central_business_district_%282024%29.jpg",
     "10/08": null
+  },
+  "wineGuide": {
+    "intro": "莱茵河谷(中莱茵/莱茵高/莱茵黑森)是德国葡萄酒心脏，招牌是陡坡板岩上的雷司令。沿途小镇多有酒庄品鉴室(Vinothek)可买『当地招牌酒』——下面列出德国最有名的酒款、零售价区间，以及在本行程各镇哪里买(见 Day11 备选停靠)。",
+    "banner": {
+      "img": "media/wine/vineyard.jpg",
+      "credit": "巴哈拉赫莱茵河畔梯田葡萄园 · Photo: William Ward / Wikimedia Commons, CC BY 2.0"
+    },
+    "gallery": [
+      {
+        "name": "雷司令 Riesling",
+        "caption": "德国招牌白；干到甜皆有",
+        "img": "media/wine/riesling.jpg",
+        "credit": "Photo: Joschi71 / Wikimedia, CC BY-SA 4.0"
+      },
+      {
+        "name": "黑皮诺 Spätburgunder",
+        "caption": "德国顶级红(巴登/阿尔)",
+        "img": "media/wine/spatburgunder.jpg",
+        "credit": "Photo: David Monniaux / Wikimedia, CC BY-SA 3.0"
+      },
+      {
+        "name": "西万尼 Silvaner",
+        "caption": "弗兰肯 Bocksbeutel 圆扁瓶",
+        "img": "media/wine/silvaner.jpg",
+        "credit": "Photo: Agne27 / Wikimedia, CC BY-SA 3.0"
+      },
+      {
+        "name": "冰酒 Eiswein",
+        "caption": "葡萄冻在枝头压榨的甜酒",
+        "img": "media/wine/eiswein.jpg",
+        "credit": "Photo: Michal Osmenda / Wikimedia, CC BY-SA 2.0"
+      }
+    ],
+    "wines": [
+      {
+        "name": "雷司令 Riesling",
+        "grape": "白 · 干/半干/甜",
+        "region": "摩泽尔·莱茵高·法尔茨·中莱茵",
+        "taste": "高酸，柑橘/青苹果/桃，板岩矿感",
+        "price": "日常 €6–12；酒庄 €12–25；GG €25–60+"
+      },
+      {
+        "name": "黑皮诺 Spätburgunder",
+        "grape": "红 (Pinot Noir)",
+        "region": "巴登·阿尔",
+        "taste": "中轻酒体，红樱桃覆盆子，丝滑单宁",
+        "price": "€10–18；优质 €18–40；顶级GG €40–100+"
+      },
+      {
+        "name": "西万尼 Silvaner",
+        "grape": "白 · 多干型",
+        "region": "弗兰肯(Bocksbeutel)·莱茵黑森",
+        "taste": "内敛，梨/草本，酸柔，百搭餐食",
+        "price": "€7–14；优质 €14–30"
+      },
+      {
+        "name": "灰/白皮诺 Grau-/Weissburgunder",
+        "grape": "白 (Pinot Gris/Blanc)",
+        "region": "巴登·法尔茨·莱茵黑森",
+        "taste": "灰:饱满梨杏仁；白:清爽苹果坚果",
+        "price": "€8–14；优质 €15–30"
+      },
+      {
+        "name": "米勒-图高 Müller-Thurgau",
+        "grape": "白 (Rivaner)",
+        "region": "莱茵黑森·巴登·弗兰肯",
+        "taste": "轻柔花香，酸低，易饮",
+        "price": "€5–9；较好 €10–14"
+      },
+      {
+        "name": "琼瑶浆 Gewürztraminer",
+        "grape": "白 · 芳香，多半干",
+        "region": "法尔茨·巴登",
+        "taste": "荔枝/玫瑰/香料，浓郁馥郁",
+        "price": "€9–15；优质 €15–30"
+      },
+      {
+        "name": "丹菲特 Dornfelder",
+        "grape": "红",
+        "region": "法尔茨·莱茵黑森",
+        "taste": "深色，多汁黑莓樱桃，单宁柔",
+        "price": "€5–10；橡木桶 €10–18"
+      },
+      {
+        "name": "冰酒 Eiswein",
+        "grape": "甜 · 枝头冻葡萄",
+        "region": "摩泽尔·莱茵高·法尔茨",
+        "taste": "极致甜度配高酸，纯净浓缩",
+        "price": "半瓶375ml €40–120；顶级 €150–400+"
+      },
+      {
+        "name": "贵腐甜酒 TBA / BA",
+        "grape": "甜 · 贵腐",
+        "region": "莱茵高·法尔茨·摩泽尔",
+        "taste": "蜂蜜/杏/贵腐，丰腴耐陈",
+        "price": "TBA 375ml €80–300+；BA €40–120"
+      },
+      {
+        "name": "德国气泡酒 Sekt",
+        "grape": "气泡 · 常用雷司令/皮诺",
+        "region": "全德(摩泽尔/莱茵高优质)",
+        "taste": "Brut 到半干，苹果柑橘细泡",
+        "price": "日常 €6–12；传统法 Winzersekt €12–30"
+      }
+    ],
+    "ladder": "🍇 Prädikat 等级(按采收糖度，不等于甜度，很多酿成干型)：Kabinett → Spätlese → Auslese → Beerenauslese(BA) → Trockenbeerenauslese(TBA) → Eiswein。VDP『Grosses Gewächs (GG)』= 顶级单一园的干型特级酒(约€30–80+)。",
+    "disclaimer": "💶 价格为德国本地零售/酒庄参考区间，随酒庄与年份浮动；酒庄品鉴室多周日休息、冬季缩短营业，出行前请确认。图片来自 Wikimedia Commons(CC BY / CC BY-SA)。"
   }
 }
