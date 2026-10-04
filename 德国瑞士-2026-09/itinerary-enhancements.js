@@ -79,12 +79,15 @@
     const direct = L.polyline(points.map(x => x.ll), { color: '#78978d', weight: 3, dashArray: '7 8', opacity: .8 }).addTo(map);
     L.marker(points[0].ll).addTo(map).bindTooltip('出发');
     L.marker(points[points.length - 1].ll).addTo(map).bindTooltip('抵达');
-    map.fitBounds(direct.getBounds(), { padding: [26, 26] });
+    points.slice(1, -1).forEach(p => L.circleMarker(p.ll, { radius: 6, color: '#1d5145', weight: 2, fillColor: '#2e8b6f', fillOpacity: .95 }).addTo(map).bindTooltip('停靠：' + p.name.split(',')[0]));
+    const altLL = (day.altStops || []).map(n => geo[n]).filter(Boolean);
+    (day.altStops || []).forEach(n => { const ll = geo[n]; if (ll) L.circleMarker(ll, { radius: 7, color: '#b5651d', weight: 2, fillColor: '#f3a63c', fillOpacity: .95 }).addTo(map).bindTooltip('备选停靠：' + n.split(',')[0]); });
+    map.fitBounds(L.latLngBounds(points.map(x => x.ll).concat(altLL)), { padding: [26, 26] });
     status(mount, '正在加载实际驾车线路…');
     fetchDriving(points)
       .then(driving => {
         direct.setLatLngs(driving).setStyle({ color: '#1d5145', weight: 4, dashArray: null, opacity: 1 });
-        map.fitBounds(direct.getBounds(), { padding: [26, 26] });
+        map.fitBounds(L.latLngBounds(driving.concat(altLL)), { padding: [26, 26] });
         mount.querySelector('.route-status')?.remove();
       })
       .catch(() => {
